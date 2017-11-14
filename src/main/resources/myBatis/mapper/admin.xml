@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis map 선언 표시 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pknu.pass.admin.dao.AdminDao">
+	<insert id="insertConcertInf" parameterType="concert">
+		MERGE INTO CONCERT
+				USING DUAL
+				ON (mt20id = #{mt20id})
+				WHEN MATCHED THEN
+					UPDATE SET
+						prfnm = #{prfnm},
+						prfpdfrom = #{prfpdfrom},
+						prfpdto = #{prfpdto},
+						fcltynm = #{fcltynm},
+						prfcast = #{prfcast},
+						prfcrew = #{prfcrew},
+						prfruntime = #{prfruntime},
+						prfage = #{prfage},
+						entrpsnm = #{entrpsnm},
+						pcseguidance = #{pcseguidance},
+						genrenm = #{genrenm},
+						mt10id = #{mt10id},
+						dtguidance = #{dtguidance}
+				WHEN NOT MATCHED THEN
+					INSERT VALUES 
+					(
+						#{mt20id},
+						#{prfnm},
+						#{prfpdfrom},
+						#{prfpdto},
+						#{fcltynm},
+						#{prfcast},
+						#{prfcrew},
+						#{prfruntime},
+						#{prfage},
+						#{entrpsnm},
+						#{pcseguidance},
+						#{genrenm},
+						#{mt10id},
+						#{dtguidance}
+					)
+	</insert>
+	
+	<insert id="insertImageInf" parameterType="image">
+			MERGE INTO IMAGE
+				USING DUAL
+				ON (fileName = #{fileName})
+				WHEN MATCHED THEN
+					UPDATE SET
+						mt20id = #{mt20id},
+						imageType = #{imageType}
+				WHEN NOT MATCHED THEN
+					INSERT VALUES
+					(
+						#{mt20id},
+						#{fileName},
+						#{imageType}
+					)
+	</insert>
+
+	<insert id="insertPlaceInf" parameterType="place">
+			MERGE INTO PLACE
+				USING DUAL
+				ON (mt10id = #{mt10id})
+				WHEN MATCHED THEN
+					UPDATE SET
+						fcltynm = #{fcltynm},
+						telno = #{telno},
+						relateurl = #{relateurl}
+				WHEN NOT MATCHED THEN
+					INSERT VALUES
+					(
+						#{fcltynm},
+						#{mt10id},
+						#{telno},
+						#{relateurl},
+						#{adres},
+						#{sidonm},
+						#{la},
+						#{lo}
+					)
+	</insert>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

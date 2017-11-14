@@ -32,3 +32,4 @@ hs_err_pid*
 .worksheet
 .metadata
 /.settings
+db.properties
