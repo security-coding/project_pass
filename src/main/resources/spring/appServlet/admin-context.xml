@@ -17,7 +17,7 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="prefix" value="/WEB-INF/views/admin/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
@@ -25,6 +25,6 @@
 		<constructor-arg value="47ada5583c08472ca6e324cb319cfac7"/>
 	</bean>
 	
-	<context:component-scan base-package="com.pknu.pass" />
+	<context:component-scan base-package="com.pknu.pass.admin" />
 	
 </beans>

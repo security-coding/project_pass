@@ -194,6 +194,7 @@ public class AdminServiceImpl implements AdminService {
 		}
 	}
 
+	// XML File 파싱하는 작업
 	private Document getXMLInf(String url) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
