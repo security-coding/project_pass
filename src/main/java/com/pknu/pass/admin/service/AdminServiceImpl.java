@@ -48,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
 		String stdate = dateFormat.format(cur_date);
 		String eddate = dateFormat.format(cal_date.getTime());
 		String cpage = "1";
-		String rows = "20";
+		String rows = "30";
 
 		url.append("?service=" + API_KEY + "&stdate=" + stdate + "&eddate=" + eddate + "&cpage=" + cpage + "&rows="
 				+ rows);

@@ -22,7 +22,7 @@ public class PlayController {
 		
 		playService.playMain(model);
 		
-		return "play";
+		return "index";
 	}
 	
 	
