@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -50,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
 		String stdate ="20150101";
 		String eddate = "20171231";
 		String cpage = "1";
-		String rows = "1000";
+		String rows = "30";
 
 		url.append("?service=" + API_KEY + "&stdate=" + stdate + "&eddate=" + eddate + "&cpage=" + cpage + "&rows="
 				+ rows);

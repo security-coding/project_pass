@@ -83,8 +83,8 @@
 	</servlet-mapping>
 	
 	
-
-	<!-- Error Page Setting -->
+<!--
+	
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/common/error/throwable</location>
@@ -124,7 +124,7 @@
 		<error-code>503</error-code>
 		<location>/common/error/503</location>
 	</error-page>
-	
+ -->
 	
 	
 </web-app>
