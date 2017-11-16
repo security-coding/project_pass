@@ -11,7 +11,7 @@
 <body>
 	<button onclick="setDB('/pass/admin/update/concert');">공연 정보 가져오기</button>
 	<button onclick="setDB('/pass/admin/update/place');">공연 시설 정보 가져오기</button>
-
+	<button onclick="setDB('/pass/admin/update/boxoffice');">박스오피스 정보 가져오기</button>
 </body>
 
 <script>

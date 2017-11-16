@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
@@ -39,7 +40,7 @@ public class AdminController {
 		adminService.getPlaceInf();
 	}
 
-	@RequestMapping("/update/boxoffice")
+	@RequestMapping(value = "/update/boxoffice", method= RequestMethod.POST)
 	@ResponseBody
 	public void getBoxofficeInf() {
 		logger.info("BoxOffice Update Service");
