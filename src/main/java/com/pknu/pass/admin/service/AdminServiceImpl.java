@@ -187,11 +187,18 @@ public class AdminServiceImpl implements AdminService {
 				String lo = dbElement.getElementsByTagName("lo").item(0).getTextContent();
 				
 				place.setDetail(telno, relateurl, adres, la, lo);
-				System.out.println("Insert Start!");
 				adminDao.insertPlaceInf(place);
-				System.out.println("Insert OK!");
 			} catch(Exception e) { }
 		}
+	}
+
+	@Override
+	public void getBoxofficeInf() {
+		// TODO Auto-generated method stub
+		StringBuffer url = new StringBuffer("http://kopis.or.kr/openApi/restful/prfplc");
+		String cpage = "1";
+		String rows = "1103";
+		
 	}
 
 	// XML File 파싱하는 작업
