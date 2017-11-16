@@ -48,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
 		String stdate = dateFormat.format(cur_date);
 		String eddate = dateFormat.format(cal_date.getTime());
 		String cpage = "1";
-		String rows = "20";
+		String rows = "50";
 
 		url.append("?service=" + API_KEY + "&stdate=" + stdate + "&eddate=" + eddate + "&cpage=" + cpage + "&rows="
 				+ rows);
@@ -193,11 +193,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void getBoxofficeInf() {
+	public void getBoxofficeInf(String ststype, String catecode) {
 		// TODO Auto-generated method stub
-		StringBuffer url = new StringBuffer("http://kopis.or.kr/openApi/restful/prfplc");
-		String cpage = "1";
-		String rows = "1103";
+		StringBuffer url = new StringBuffer("http://www.kopis.or.kr/openApi/restful/boxWeekMonthly");
+		
+		url.append("?service="+API_KEY+"&ststype="+ ststype + "&catecode="+ catecode);
+		
+		
 		
 	}
 
