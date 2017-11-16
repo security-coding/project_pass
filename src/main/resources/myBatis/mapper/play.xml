@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis map 선언 표시 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pknu.pass.play.dao.PlayDao">
+	
+	
+	<select id="getPoster" resultType="String">
+		select filename
+          from image e, concert a
+          where e.mt20id = a.mt20id  and e.imagetype = 1
+	</select>
+	
+	
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

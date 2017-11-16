@@ -15,9 +15,9 @@
    <tr>
     <td>  
          
-      <a href="${pageContext.request.contextPath}/resources/upload/poster/${play.poster}">
+      <a href="${pageContext.request.contextPath}/resources/upload/poster/${play}">
         <img
-		src="${pageContext.request.contextPath}/resources/upload/poster/${play.poster}" />  
+		src="${pageContext.request.contextPath}/resources/upload/poster/${play}" />  
       </a> 
          
 	</td>
