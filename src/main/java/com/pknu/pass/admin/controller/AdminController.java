@@ -43,6 +43,6 @@ public class AdminController {
 	@ResponseBody
 	public void getBoxofficeInf() {
 		logger.info("BoxOffice Update Service");
-
+		adminService.getBoxofficeInf();
 	}
 }

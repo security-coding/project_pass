@@ -59,8 +59,10 @@
 		
 	<servlet-mapping>
 		<servlet-name>commonServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/common/*</url-pattern>
 	</servlet-mapping>
+	
+	
 
 	<!-- Error Page Setting -->
 	<error-page>
