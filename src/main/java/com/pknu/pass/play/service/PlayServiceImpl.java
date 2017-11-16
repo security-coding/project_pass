@@ -38,13 +38,13 @@ public class PlayServiceImpl implements PlayService {
 		String pType2="클래식";
 		System.out.println(type);
 		
-		if(type=="1"){
+		if(type.equals("1")){
 		posters=playDao.getChange(pType1);
-		System.out.println(posters.toString());
+		//System.out.println(posters.toString());
 		}
-		else if(type=="2"){
+		else if(type.equals("2")){
 		posters=playDao.getChange(pType2);
-		System.out.println(posters.toString());
+		//System.out.println(posters.toString());
 		}
 		else {}
 				
