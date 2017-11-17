@@ -37,49 +37,18 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/appServlet/admin-context.xml</param-value>
+			<param-value>
+				classpath:spring/appServlet/admin-context.xml
+				classpath:spring/appServlet/play-context.xml
+				classpath:spring/appServlet/common-context.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>adminServlet</servlet-name>
-		<url-pattern>/admin/*</url-pattern>
-	</servlet-mapping>
-	
-	
-	
-	<servlet>
-		<servlet-name>playServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/appServlet/play-context.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-		
-	<servlet-mapping>
-		<servlet-name>playServlet</servlet-name>
-		<url-pattern>/play/*</url-pattern>
-	</servlet-mapping>
-	
-	
-	
-	
-	<servlet>
-		<servlet-name>commonServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/appServlet/common-context.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-		
-	<servlet-mapping>
-		<servlet-name>commonServlet</servlet-name>
-		<url-pattern>/common/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	

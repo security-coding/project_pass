@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -35,8 +36,9 @@
 	function change(url,value) {
 		$.ajax({
 			type:"POST",
+			dataType:"JSON",
 			url:url,
-			data:({ type : value }),
+			data:({ "type" : value }),
 			success: function(data) {
 				let str ="";
 				alert("2");
@@ -56,8 +58,8 @@
 			complete: function(){ 
 				alert("3");
 			},
-			error: function(e) {
-				alert(e.responseText);
+			error: function(xhr) {
+				alert(xhr.status);
 			}
 		})	
 	}

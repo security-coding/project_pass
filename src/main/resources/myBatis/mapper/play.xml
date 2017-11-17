@@ -18,7 +18,6 @@
           where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1
 	</select>
 	
-	
 </mapper>
 	
 	

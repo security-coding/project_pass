@@ -23,7 +23,7 @@ public class AdminController {
 
 	@RequestMapping
 	public String adminMain() {
-		return "admin";
+		return "admin/admin";
 	}
 
 	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
