@@ -61,27 +61,57 @@
 	</insert>
 
 	<insert id="insertPlaceInf" parameterType="place">
-			MERGE INTO PLACE
-				USING DUAL
-				ON (mt10id = #{mt10id})
-				WHEN MATCHED THEN
-					UPDATE SET
-						fcltynm = #{fcltynm},
-						telno = #{telno},
-						relateurl = #{relateurl}
-				WHEN NOT MATCHED THEN
-					INSERT VALUES
-					(
-						#{fcltynm},
-						#{mt10id},
-						#{telno},
-						#{relateurl},
-						#{adres},
-						#{sidonm},
-						#{la},
-						#{lo}
-					)
+		MERGE INTO PLACE
+			USING DUAL
+			ON (mt10id = #{mt10id})
+			WHEN MATCHED THEN
+				UPDATE SET
+					fcltynm = #{fcltynm},
+					telno = #{telno},
+					relateurl = #{relateurl}
+			WHEN NOT MATCHED THEN
+				INSERT VALUES
+				(
+					#{fcltynm},
+					#{mt10id},
+					#{telno},
+					#{relateurl},
+					#{adres},
+					#{sidonm},
+					#{la},
+					#{lo}
+				)
 	</insert>
+	
+	<insert id="insertBoxofInf" parameterType="boxof">
+		MERGE INTO BOXOFFICE
+			USING DUAL
+			ON (cate = #{cate} AND rnum = #{rnum})
+			WHEN MATCHED THEN
+				UPDATE SET
+					area = #{area},
+					prfdtcnt = #{prfdtcnt},
+					nmrs = #{nmrs}, 
+					prfpd = #{prfpd},    
+					prfplcnm = #{prfplcnm},
+					prfnm = #{prfnm},
+					mt20id = #{mt20id}
+			WHEN NOT MATCHED THEN
+				INSERT VALUES
+				(
+					#{area},     
+  					#{prfdtcnt}, 
+					#{nmrs},
+					#{prfpd},   
+					#{cate},   
+					#{prfplcnm}, 
+					#{prfnm},    
+					#{rnum},
+					#{mt20id}
+				)
+	</insert>
+	
+	
 </mapper>
 	
 	

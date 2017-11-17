@@ -4,15 +4,15 @@
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+
 	<!-- DB Setting -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:db.properties" />
 	</bean>
-	
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${driverClassName}" />
@@ -20,8 +20,8 @@
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
 	</bean>
-	
-	<!-- myBatis Setting  -->
+
+	<!-- myBatis Setting -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/myBatis/config/mybatisConfig.xml" />
@@ -30,10 +30,8 @@
 
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
-	</bean>
-	
-	<mybatis-spring:scan base-package="com.pknu.pass.*.dao "/>
-	
-	
-	
+	</bean>	
+
+	<mybatis-spring:scan base-package="com.pknu.pass.*.dao " />
+
 </beans>

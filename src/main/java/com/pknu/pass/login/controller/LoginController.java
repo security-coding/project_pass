@@ -29,7 +29,7 @@ public class LoginController {
 	@RequestMapping("/main")
 	public String mainForm() {
 		logger.info("Login Main page");
-		return "main";
+		return "loginPage/main";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
@@ -45,7 +45,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/joinForm")
 	public String joinForm() {
-		return "joinForm";
+		return "loginPage/joinForm";
 	}
 	
 	@RequestMapping(value="/insertuser")
@@ -53,7 +53,7 @@ public class LoginController {
 		
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
 		loginService.insertuser(logindto);
-		return "main";
+		return "loginPage/main";
 	}
 	
 	@RequestMapping(value="/joinIdCheck")
@@ -76,7 +76,7 @@ public class LoginController {
 	@RequestMapping(value="/mypage")
 	public String mypageForm(HttpSession session,String myemail,Model model,LoginDto loginDto) {
 		loginService.mypageId(session,model,myemail,loginDto); 
-		return "mypage";
+		return "loginPage/mypage";
 	}
 	@RequestMapping(value="/updateuser")
 	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam("str_email")String stremail) {
@@ -85,14 +85,14 @@ public class LoginController {
 		loginService.logout(session);
 		
 		
-		return "main";
+		return "loginPage/main";
 	}
 	
 	@RequestMapping(value="/checkJoin")
 	public String checkJoin(@RequestParam("certKey") String certKey,Model model ) {
 		loginService.checkJoin(certKey,model);
 		
-		return "emailAlertPage";
+		return "loginPage/emailAlertPage";
 	}
 
 }
