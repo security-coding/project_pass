@@ -36,15 +36,7 @@
 	<button  onclick="change('/pass/play/change',8);" >복합</button>
 	</div>
 	<br>
-	<br>
-
-<!--   <div class="view overlay hm-blue-light"> -->
-<!--     <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="img-fluid " alt=""> -->
-<!--     <div class="mask flex-center"> -->
-<!--         <p class="white-text">Light overlay</p> -->
-<!--     </div> -->
-<!--    </div> -->
-	
+	<br>	
 	
 <div class="container">	
   <div class="row text-center text-lg-left">
@@ -89,8 +81,8 @@
 // 				alert(data);
 				$(".poster").empty(); 
 			    $.each(data,function(index, fileName){					  					 				 
-			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='${pageContext.request.contextPath}/resources/upload/poster/"+fileName+"' class='d-block mb-4 h-100'>"
-							       +"<img class='img-fluid img-thumbnail' src='${pageContext.request.contextPath}/resources/upload/poster/"+fileName+"' style='width:200; height:280;' alt=''/></a></div>" 
+			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='${pageContext.request.contextPath}/resources/upload/poster/"+fileName+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
+							       +"<img class='img-fluid img-thumbnail' src='${pageContext.request.contextPath}/resources/upload/poster/"+fileName+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+fileName+"</p></div></div></a></div>" 
 					  		       
 					  $(".poster").append(str);
 				  });			
