@@ -10,7 +10,6 @@
 		
 <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
-
 </script>
 </head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -19,87 +18,63 @@
 		<!-- 부가적인 테마 -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <body>
-	
+	<div>
 	<article class="container-fluid">
 	<div class="page-header">
-		<h1>
-			마이페이지
-		</h1>
+		<h1>아이디/비밀번호찾기</h1>
 	</div>
-	
+	<h2>아이디찾기</h2>
 	<div class="col-xs-8 col-sm-6">
-		<form id="loginForm" class="form-horizontal" role="form" action="/pass/member/updateuser" method="post"><!-- form -->
-			
+		<form id="idForm" class="form-horizontal" role="form"
+			action="/pass/member/userlossid" method="post" onsubmit="availabilityEmail()">
+			<!-- form -->
 			<div class="form-group">
-				<label for="id" id="id" name="id">ID:${id}
-				<div id="idcheck"></div>
-			</div>
-			
-			<div class="form-group">
-				<label for="pass">변경할비밀번호</label> <input type="password"
-					class="form-control" id="pass" name="pass" placeholder="변경할비밀번호">
-			</div>
-			
-			<div class="form-group">
-				<label>변경한 비밀번호 확인</label> <input type="password"
-					class="form-control" id="pass2" placeholder="변경할비밀번호 확인" >
-<!-- 				<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p> -->
-			</div>
-			
-			<div class="form-group">
-
-				<table>
-					<tr>
-						<label for="email">Email:
-							<td><div>
-									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"  value="${email}"></td>
-							<td>@</td>
-							<td><input type="text" name="str_email" id="str_email" class="form-control"
-								style="width: 100px" disabled value="naver.com">
-								</div></td>
-						<td><select style="width: 120px" name="str_email"
-								id="selectEmail" class="form-control">
-									<option value="1">직접입력</option>
-									<option value="naver.com" selected>naver.com</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="hanmail.net">hanmail.net</option>
-									<option value="nate.com">nate.com</option>
-									<option value="gmail.com">gmail.com</option>
-							</select>
-						</label>
-						</td>
-					</tr>
-				</table>
-
+				<label for="email1">이메일</label> <input type="text"
+					class="form-control" id="email1" name="email1"
+					placeholder="회원가입할때 입력하신 이메일 입력" oninput="checkemail()">
 			</div>
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="username">이름</label> <input type="text" -->
-<!-- 					class="form-control" id="username" placeholder="이름을 입력해 주세요"> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="usernumber">휴대전화번호</label> -->
-<!-- 				<div class="input-group"> -->
-<!-- 					<input type="tel" class="form-control" id="usernumber" -->
-<!-- 						placeholder="- 없이 입력해 주세요"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-	
 			<div class="form-group text-center">
-				<button id="signupbtn" type="submit" class="btn btn-info" >
-					수정하기<i class="fa fa-check spaceLeft"></i>
-				</button>
-				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">
-					수정취소<i class="fa fa-times spaceLeft"></i>
+				<button id="signupbtn" type="submit" class="btn btn-info">
+					아이디찾기<i class="fa fa-check spaceLeft"></i>
 				</button>
 			</div>
 		</form>
 	</div>
-
-	
 	</article>
+	</div>
+	
+	<div>
+	<article class="container-fluid">
+	<h2>비밀번호 찾기</h2>
+	<div class="col-xs-8 col-sm-6">
+		<form id="idForm" class="form-horizontal" role="form"
+			action="/pass/member/userlosspass" method="post">
+			<!-- form -->
+			<div class="form-group">
+				<label for="email2">이메일</label> <input type="text"
+					class="form-control" id="email2" name="email2"
+					placeholder="회원가입할때 입력하신 이메일 입력">
+			</div>
+
+			<div class="form-group">
+				<label for="id">아이디</label> <input type="text" class="form-control"
+					id="id" name="id" placeholder="회원가입할때 입력하신 아이디 입력">
+			</div>
+
+			<div class="form-group text-center">
+				<button id="signupbtn" type="submit" class="btn btn-info">
+					비밀번호찾기<i class="fa fa-check spaceLeft"></i>
+				</button>
+				<!-- 				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)"> -->
+				<!-- 					수정취소<i class="fa fa-times spaceLeft"></i> -->
+				<!-- 				</button> -->
+			</div>
+		</form>
+	</div>
+	</article>
+	</div>
+
 </body>
 
 <!-- /container -->

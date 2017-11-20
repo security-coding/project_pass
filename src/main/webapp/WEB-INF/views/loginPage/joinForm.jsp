@@ -10,8 +10,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		
 <script>
-	var idcheck = false;
-	var emailcheck = false;
+	let idcheck = false;
+	let emailcheck = false;
 	function checkId() {
 		$("#id").on("blur", function() {
 			$.ajax({
@@ -89,7 +89,7 @@
 	
 	function availability(){
 		if(idcheck==true&&emailcheck==true){
-			alert("가입되었습니다.");
+			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
 			return true;
 		}else if(!idcheck || !emailcheck){
 			alert("확인해주세요");
@@ -164,20 +164,7 @@
 					</tr>
 				</table>
 
-			</div>
-
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="username">이름</label> <input type="text" -->
-<!-- 					class="form-control" id="username" placeholder="이름을 입력해 주세요"> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="usernumber">휴대전화번호</label> -->
-<!-- 				<div class="input-group"> -->
-<!-- 					<input type="tel" class="form-control" id="usernumber" -->
-<!-- 						placeholder="- 없이 입력해 주세요"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
+			</div>			
 	
 			<div class="form-group text-center">
 				<button id="signupbtn" type="submit" class="btn btn-info">
@@ -254,9 +241,7 @@
 			 	$("#pass2").focus();
 				 return false;
 			 }
-			 
 			 $("#joinForm").submit();
-			 alert("이메일이 전송되었습니다.\n인증을거쳐주세요.");
 		 })
 	 });
  	

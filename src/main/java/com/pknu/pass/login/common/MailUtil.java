@@ -29,6 +29,13 @@ public class MailUtil {
 		System.out.println("*************************************************");
 	}
 	
+	public void sendPass(String pass,String email) {
+		String subject="비밀번호 찾기 관련 메일입니다.";
+		StringBuffer sb=new StringBuffer();
+		sb.append(pass);		
+		send(subject, sb.toString(),"su3468@gmail.com", email);
+	}
+	
 	public boolean send(final String subject, final String text, final String from, final String to) {
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 			

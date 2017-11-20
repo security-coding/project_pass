@@ -11,15 +11,17 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
       <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
+
 $(document).ready(function(){
 	let Certify=${dbCertify};
-	let html;
 	if(Certify == 0) {
 		alert("회원가입 이메일 인증을 안하셨습니다.");
 	}
 	document.location.href="./main";
 });
+
 </script>                          
+
 </head>
 
 <body>
@@ -80,7 +82,7 @@ $(document).ready(function(){
 										<button id="reset" type="button" class="btn btn-default"
 											data-dismiss="modal">닫기</button>
 										<button id="login" type="submit" class="btn btn-primary">로그인</button>
-										<a href=""></a>
+										<td><p><a href="/pass/member/userloss">아이디/비밀번호찾기</p><td>
 									</div>
 									</form>
 

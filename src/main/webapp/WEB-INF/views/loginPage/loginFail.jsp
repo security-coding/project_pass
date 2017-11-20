@@ -5,26 +5,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
 <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
-<script type="text/javascript">
-
+<script>
 $(document).ready(function(){
-	let certKey=${certKey};
-	let html;
-	if(certKey == "1") {
-		alert("이미 가입");
-		
-	} else if(certKey == "2") {
-		alert("가입 완료");
-		
-	} else if(certKey == "3") {
-		alert("한적 없음");
+	let passFail=${passFail};
+	if(passFail == 0) {
+		alert("비밀번호가 틀렸습니다. 다시확인해주세요");
 	}
 	document.location.href="./main";
 });
 
 </script>
+<script>
+$(function(){
+	let Notmember=${Notmember};
+	if(Notmember == 0) {
+		alert("존재하지않는 아이디 입니다.\n회원가입을해주세요");
+	}
+	document.location.href="./main";
+});
+</script>
+</head>
 <body>
+
 </body>
 </html>

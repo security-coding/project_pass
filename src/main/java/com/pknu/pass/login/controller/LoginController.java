@@ -94,5 +94,25 @@ public class LoginController {
 		
 		return "loginPage/emailAlertPage";
 	}
-
+	
+	@RequestMapping(value="/userloss")
+	public String userlossForm() {
+		
+		return "loginPage/userloss";
+	}
+	@RequestMapping(value="/userlossid")
+	public String userlossid(LoginDto logindto,Model model,@RequestParam("email1")String email) {
+		logindto.setEmail(email);
+		loginService.userlossid(logindto,model);
+		return "loginPage/lossresult";
+	}
+	@RequestMapping(value="/userlosspass")
+	public String uesrlosspass(LoginDto logindto,@RequestParam("email2")String email,@RequestParam("id")String id,String pass) {
+		logindto.setEmail(email);
+		logindto.setId(id);
+		loginService.userlosspass(logindto,pass);
+		return "loginPage/main";
+	}
 }
+
+

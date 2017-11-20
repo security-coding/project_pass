@@ -39,20 +39,24 @@ public class LoginServiceImpl implements LoginService {
 		int dbCertifyCheck=logindao.certifyCheck(id);
 		String view=null;
 		int dbCertifyCheckNo=0;
-
+		int passFail=0;
+		int Notmember=0;
+		
 		if (dbPassCheck != null && dbCertifyCheck == 1) {
-			if (dbPassCheck.equals(pass)) {
+			if (dbPassCheck.equals(pass)) {//로그인성공
 				session.setAttribute("id", id);
 				model.addAttribute("id", id);
-				view = "main";
-			} else {
-				view = "passFail";
+				view = "loginPage/main";
+			} else {//비밀번호 실패
+				model.addAttribute("passFail",passFail);
+				view = "loginPage/loginFail";
 			}
-		} else if(dbPassCheck!=null&&dbCertifyCheck==0) {	
+		} else if(dbPassCheck!=null&&dbCertifyCheck==0) {//이메일인증 않함	
 			model.addAttribute("dbCertify",dbCertifyCheckNo);
-			view="main";
-		}else {
-			view = "joinForm";
+			view="loginPage/main";
+		}else if(dbPassCheck==null&&dbCertifyCheck==2) {//회원가입
+			model.addAttribute("Notmember",Notmember);
+			view = "loginPage/loginFail";
 		}
 		System.out.println(session.getAttribute("id"));
 		return view;
@@ -64,7 +68,7 @@ public class LoginServiceImpl implements LoginService {
 		session.invalidate();
 		
 		
-		return "main";
+		return "loginPage/main";
 	}
 
 	
@@ -140,7 +144,35 @@ public class LoginServiceImpl implements LoginService {
 			
 	}
 
+	@Override
+	public String userlossid(LoginDto logindto,Model model) {
+		String result=logindao.userlossid(logindto);
+		model.addAttribute("resultid",result);
+		
+		return null;
+		
+	}
 
+	
+	@Override
+	public String userlosspass(LoginDto logindto,String pass) {
+		pass="";
+		for(int i=0; i<8;i++) {
+		char lowerStr=(char)(Math.random()*26+65);
+			if(i%2==0) {
+				pass=pass+(int)(Math.random()*10);
+			}else {
+				pass=pass+lowerStr;
+			}
+		}
+		System.out.println(pass);
+		logindto.setPass(pass);
+		logindao.updatePass(logindto);
+		mailUtil.sendPass(pass,logindto.getEmail());
+		return null;
+	}
+
+	
 	
 	
 	

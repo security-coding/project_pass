@@ -20,6 +20,10 @@ public interface LoginDao {
 
 	public void checkJoinUpdate(String certKey);
 
+	public String userlossid(LoginDto logindto);
+
+	public void updatePass(LoginDto logindto);
+
 	
 
 	

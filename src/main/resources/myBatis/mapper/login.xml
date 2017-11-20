@@ -12,7 +12,7 @@
  </select>
  
  <select id="certifyCheck" resultType="int" parameterType="String">
- SELECT CERTIFY FROM MEMBER WHERE ID=#{id}
+ SELECT NVL(MAX(CERTIFY),'2') FROM MEMBER WHERE ID=#{id}
  </select>
  
  <insert id="insertuser" parameterType="String">
@@ -30,6 +30,13 @@
 
 <update id="checkJoinUpdate" parameterType="String">
 	UPDATE MEMBER set certify=1 where CERTKEY=#{certkey}
+</update>
+
+<select id="userlossid" parameterType="String" resultType="String">
+	SELECT ID FROM MEMBER where email=#{email}
+</select>
+<update id="updatePass" parameterType="String">
+	UPDATE MEMBER set password=#{pass} where EMAIL=#{email} AND ID=#{id}
 </update>
  
  </mapper>

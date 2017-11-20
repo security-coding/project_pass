@@ -23,6 +23,8 @@ public interface LoginService {
 	public String mypageupdate(HttpSession session, LoginDto logindto);
 
 	public int checkJoin(String certKey,Model model);
-
-
+	
+	public String userlossid(LoginDto logindto,Model model);
+	
+	public String userlosspass(LoginDto logindto,String pass);
 }
