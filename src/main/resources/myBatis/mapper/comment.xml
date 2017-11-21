@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis map 선언 표시 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+              "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.pknu.pass.comment.dao.CommentDao">
+	
+	<select id="getComments" parameterType="HashMap" resultType="comment">
+		select *
+		from (select id,commentContent,commentDate, mt20id
+		      from comments2 
+		     	where mt20id=#{mt20id} 
+		     	order by commentNum desc ) human 
+		where rownum between 1 and #{commentRow}
+	</select>
+	
+	<insert id="insertComment" parameterType="comment">
+		insert into comments2 values(comment2_seq.nextval,#{id},
+									#{commentContent},sysdate,#{mt20id})
+	</insert>
+	
+	
+	 
+</mapper>
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
