@@ -14,18 +14,20 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/root-context.xml</param-value>
 	</context-param>
-	
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -41,16 +43,16 @@
 				classpath:spring/appServlet/admin-context.xml
 				classpath:spring/appServlet/play-context.xml
 				classpath:spring/appServlet/common-context.xml
+				classpath:spring/appServlet/member-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
+
 	<servlet-mapping>
 		<servlet-name>adminServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
 	
 <!--
 	
@@ -94,6 +96,5 @@
 		<location>/common/error/503</location>
 	</error-page>
  -->
-	
 	
 </web-app>
