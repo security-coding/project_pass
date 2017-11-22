@@ -46,17 +46,19 @@
 	<insert id="insertImageInf" parameterType="image">
 			MERGE INTO IMAGE
 				USING DUAL
-				ON (fileName = #{fileName})
+				ON (mt20id = #{mt20id} AND imageUrl = #{imageUrl})
 				WHEN MATCHED THEN
 					UPDATE SET
-						mt20id = #{mt20id},
-						imageType = #{imageType}
+						imageType = #{imageType},
+						uploadDate = #{uploadDate}
 				WHEN NOT MATCHED THEN
 					INSERT VALUES
 					(
+						IMG_SEQ.NEXTVAL,
 						#{mt20id},
-						#{fileName},
-						#{imageType}
+						#{imageUrl},
+						#{imageType},
+						#{uploadDate}
 					)
 	</insert>
 
@@ -111,7 +113,30 @@
 				)
 	</insert>
 	
+	<select id="getImageName" parameterType="HashMap" resultType="String">
+		SELECT 
+			FILENAME
+		FROM 
+			IMAGE 
+		WHERE 
+			(FILENAME = #{FILENAME} AND IMAGETYPE = #{IMGAETYPE})
+	</select>
 	
+	<select id="imgUpdateCheck" parameterType="String" resultType="image" >
+		SELECT * FROM image WHERE MT20ID = #{mt20id} and IMAGETYPE = 1
+	</select>
+	
+	<select id="getImageList" parameterType="String" resultType="image">
+		SELECT * FROM IMAGE WHERE MT20ID = #{mt20id}
+	</select>
+	
+	<delete id="deleteImageInf" parameterType="String">
+		DELETE IMAGE WHERE mt20id = #{mt20id}
+	</delete>
+	
+	<delete id="deleteBoxofInf">
+		DELETE BOXOFFICE
+	</delete>
 </mapper>
 	
 	

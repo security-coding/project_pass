@@ -1,6 +1,11 @@
 package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> 365ef04d10f434d9d395611536da7003a5041568
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.play.dto.MainDto;
+
 import com.pknu.pass.play.service.PlayService;
 
 @Controller

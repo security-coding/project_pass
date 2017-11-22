@@ -54,7 +54,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-
+		<!-- jackson-core -->
+		<dependency>
+ -			<groupId>com.fasterxml.jackson.core</groupId>
+ -			<artifactId>jackson-core</artifactId>
+ -			<version>2.9.1</version>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 
 		<dependency>
@@ -63,12 +69,28 @@
 			<version>2.9.1</version>
 		</dependency>
 
+<<<<<<< HEAD
         <dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>2.9.1</version>
 		</dependency>
         
+=======
+		<!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-core -->
+		<dependency>
+			<groupId>com.twelvemonkeys.imageio</groupId>
+			<artifactId>imageio-core</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.twelvemonkeys.imageio</groupId>
+			<artifactId>imageio-jpeg</artifactId>
+			<version>3.3.2</version> <!-- Alternatively, build your own version -->
+		</dependency>
+
+>>>>>>> 365ef04d10f434d9d395611536da7003a5041568
 		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

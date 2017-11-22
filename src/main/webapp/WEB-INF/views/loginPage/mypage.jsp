@@ -28,7 +28,7 @@
 	</div>
 	
 	<div class="col-xs-8 col-sm-6">
-		<form id="loginForm" class="form-horizontal" role="form" action="/pass/member/updateuser" method="post"><!-- form -->
+		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
 			
 			<div class="form-group">
 				<label for="id" id="id" name="id">ID:${id}
@@ -150,9 +150,6 @@
 			 $("#loginForm").submit();
 		 })
 		 
-//	 	 $("input[type=button]").on("click",function(){
-//	 		 document.location.href='';
-//	 	 })
 	 });
  	
 	 

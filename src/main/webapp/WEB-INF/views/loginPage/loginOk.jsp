@@ -27,9 +27,8 @@
 
 <body>
 	
-	<form class="navbar-form navbar-right" action="/pass/member/logout" method="post">
-<!-- <input type="button" value="로그아웃"> -->
-		<p class="user"><a href="/pass/member/mypage" class="user_a">${id}</a>님...환영합니다</p><button class="btn btn-primary" id="logout">로그아웃</button> 
+	<form class="navbar-form navbar-right" action="/member/logout" method="post">
+		<p class="user"><a href="/member/mypage" class="user_a">${id}</a>님...환영합니다</p><button class="btn btn-primary" id="logout">로그아웃</button> 
 		<!-- 버튼태그가 form태그안에 선언되면 해당되는  form이 submit이 선언된다 -->
 	</form>
 	

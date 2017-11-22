@@ -26,7 +26,7 @@
 	<h2>아이디찾기</h2>
 	<div class="col-xs-8 col-sm-6">
 		<form id="idForm" class="form-horizontal" role="form"
-			action="/pass/member/userlossid" method="post" onsubmit="availabilityEmail()">
+			action="/member/userlossid" method="post" onsubmit="availabilityEmail()">
 			<!-- form -->
 			<div class="form-group">
 				<label for="email1">이메일</label> <input type="text"
@@ -49,7 +49,7 @@
 	<h2>비밀번호 찾기</h2>
 	<div class="col-xs-8 col-sm-6">
 		<form id="idForm" class="form-horizontal" role="form"
-			action="/pass/member/userlosspass" method="post">
+			action="/member/userlosspass" method="post">
 			<!-- form -->
 			<div class="form-group">
 				<label for="email2">이메일</label> <input type="text"
