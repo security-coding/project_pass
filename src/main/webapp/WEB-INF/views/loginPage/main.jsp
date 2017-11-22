@@ -22,6 +22,9 @@ $(document).ready(function(){
 
 </script>                          
 
+<style>
+
+</style>
 </head>
 
 <body>
@@ -40,14 +43,7 @@ $(document).ready(function(){
 				<a class="navbar-brand" href="#">Project name</a> <a
 					class="navbar-brand" href="#">사이트</a>
 			</div>
-<!-- 			<div id="navbar" class="navbar-collapse collapse"> -->
-<!-- 				<form class="navbar-form navbar-right" role="form"> -->
-<!-- 					<div class="form-group"> -->
-<!-- 					modal 구동 버튼 (trigger) -->
-<!-- 					<button type="button" class="btn btn-primary" data-toggle="modal" -->
-<!-- 						data-target="#myModal">로그인</button> -->
-<!-- 					<button type="button" class="btn btn-primary" onclick="document.location.href='joinForm.bbs'">회원가입</button> -->
-<!-- 					</div> -->
+			
 					 <!--로그인 안할시 로그인버튼리아 회원가입버튼을 나타나게함-->
 					 <c:if test="${id==null}">
 					 	<%@include file="login.jsp" %>
@@ -82,7 +78,7 @@ $(document).ready(function(){
 										<button id="reset" type="button" class="btn btn-default"
 											data-dismiss="modal">닫기</button>
 										<button id="login" type="submit" class="btn btn-primary">로그인</button>
-										<td><p><a href="/pass/member/userloss">아이디/비밀번호찾기</p><td>
+										<td><p><a href="/member/userloss">아이디/비밀번호찾기</p><td>
 									</div>
 									</form>
 

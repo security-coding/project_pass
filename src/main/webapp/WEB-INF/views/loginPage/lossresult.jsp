@@ -9,9 +9,12 @@
 
 		
 <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
-<script>
-
-</script>
+<style>
+	.fail{
+		color: #c91a6e;
+		
+	}
+</style>
 </head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -25,11 +28,12 @@
 		<h1>아이디찾기 결과</h1>
 	</div>
 	<div class="col-xs-8 col-sm-6">
-		<form id="idForm" class="form-horizontal" role="form"
-			action="/pass/member/userlossid" method="post">
+		<form id="idForm" class="form-horizontal" role="form" method="post">
 			<!-- form -->
 			<div class="form-group text-center">
 				<p class="user">당신의아이디는:${resultid} 입니다.</p>
+				<p class="fail">존재하지 않을 시 아이디가 띄워지지 않습니다.</p>
+			<input type="button" value="비밀번호찾기" class="btn btn-info" onclick="document.location.href='./userloss'">
 			</div>
 		</form>
 	</div>

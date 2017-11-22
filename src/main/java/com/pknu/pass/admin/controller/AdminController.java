@@ -28,9 +28,9 @@ public class AdminController {
 
 	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
 	@ResponseBody
-	public void getConertInf(HttpSession session) throws Exception {
+	public void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
 		logger.info("Concert Info Update Service");
-		adminService.getConertInf(session);
+		adminService.getConertInf(session,stdate, eddate, prfstate);
 	}
 
 	@RequestMapping(value = "/update/place", method = RequestMethod.POST)
