@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
@@ -22,14 +23,14 @@ public class AdminController {
 
 	@RequestMapping
 	public String adminMain() {
-		return "admin";
+		return "admin/admin";
 	}
 
 	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
 	@ResponseBody
-	public void getConertInf(HttpSession session) throws Exception {
+	public void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
 		logger.info("Concert Info Update Service");
-		adminService.getConertInf(session);
+		adminService.getConertInf(session,stdate, eddate, prfstate);
 	}
 
 	@RequestMapping(value = "/update/place", method = RequestMethod.POST)
@@ -39,7 +40,7 @@ public class AdminController {
 		adminService.getPlaceInf();
 	}
 
-	@RequestMapping("/update/boxoffice")
+	@RequestMapping(value = "/update/boxoffice", method= RequestMethod.POST)
 	@ResponseBody
 	public void getBoxofficeInf() {
 		logger.info("BoxOffice Update Service");

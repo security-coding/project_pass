@@ -6,4 +6,6 @@ public interface PlayDao {
 
 	public ArrayList<String> getPoster();
 	
+	public ArrayList<String> getChange(String pType);
+	
 }

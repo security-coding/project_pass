@@ -12,6 +12,11 @@
           where e.mt20id = a.mt20id  and e.imagetype = 1
 	</select>
 	
+	<select id="getChange"  parameterType="String" resultType="String">
+		select filename
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1
+	</select>
 	
 </mapper>
 	
