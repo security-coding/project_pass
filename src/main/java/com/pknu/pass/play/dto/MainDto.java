@@ -1,7 +1,7 @@
 package com.pknu.pass.play.dto;
 
 public class MainDto {
-	private String filename;
+	private String imageUrl;
 	private String prfnm;
 	private String prfpdfrom;
 	private String prfpdto;
@@ -9,15 +9,18 @@ public class MainDto {
 	private	String genrenm;
 	@Override
 	public String toString() {
-		return "MainDto [filename=" + filename + ", prfnm=" + prfnm + ", prfpdfrom=" + prfpdfrom + ", prfpdto="
+		return "MainDto [imageUrl=" + imageUrl + ", prfnm=" + prfnm + ", prfpdfrom=" + prfpdfrom + ", prfpdto="
 				+ prfpdto + ", fcltynm=" + fcltynm + ", genrenm=" + genrenm + "]";
 	}
-	public String getFilename() {
-		return filename;
+	
+	public String getImageUrl() {
+		return imageUrl;
 	}
-	public void setFilename(String filename) {
-		this.filename = filename;
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
+
 	public String getPrfnm() {
 		return prfnm;
 	}
