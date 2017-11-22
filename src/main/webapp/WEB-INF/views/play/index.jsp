@@ -61,10 +61,10 @@
 		    
 		      <div class="col-lg-3 col-md-4 col-xs-6" > 
 		      		      
-		        <a href="/resources/upload/poster/${play.filename}" class="d-block mb-4 h-100" >
+		        <a href="${play.imageUrl}" class="d-block mb-4 h-100" >
 		           <div class="view overlay hm-black-strong" style="width:250; height:370;">
 		             <img class="img-fluid img-thumbnail"
-				     src="/resources/upload/poster/${play.filename}" style="width:250; height:370;" alt="" />  
+				     src="${play.imageUrl}" style="width:250; height:370;" alt="" />  
 		            <div class="mask flex-center">
                       <p class="white-text">                      
                       ${play.prfnm}<br>
@@ -98,8 +98,8 @@
 				let str ="";
 				$(".poster").empty(); 
 			    $.each(data,function(index, item){					  					 				 
-			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='/resources/upload/poster/"+item.filename+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
-							       +"<img class='img-fluid img-thumbnail' src='/resources/upload/poster/"+item.filename+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
+			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
+							       +"<img class='img-fluid img-thumbnail' src='"+item.imageUrl+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
 					  		       
 					  $(".poster").append(str);
 				  });			
