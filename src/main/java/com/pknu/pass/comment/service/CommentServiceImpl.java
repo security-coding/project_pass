@@ -16,9 +16,11 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<CommentDto> getComments(int mt20id, int commentRow) {
+		
 		HashMap<String, Integer> commentMap = new HashMap<>();
 		commentMap.put("mt20id", mt20id);
-		commentMap.put("commentRow", commentRow);		
+		commentMap.put("commentRow", commentRow);	
+		
 		return commentDao.getComments(commentMap);
 	}
 
