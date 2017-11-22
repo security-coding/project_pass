@@ -6,26 +6,17 @@
 <mapper namespace="com.pknu.pass.play.dao.PlayDao">
 	
 	
-<!-- 	<select id="getPoster" resultType="String"> -->
-<!-- 		select filename -->
-<!--           from image e, concert a -->
-<!--           where e.mt20id = a.mt20id  and e.imagetype = 1 -->
-<!-- 	</select> -->
-	
-	<select id="getPoster" resultType="predto">
-		select filename, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm
+	<select id="getPoster" resultType="String">
+		select filename
           from image e, concert a
           where e.mt20id = a.mt20id  and e.imagetype = 1
 	</select>
 	
-	
-	<select id="getChange"  parameterType="String" resultType="predto">
-		select filename, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm
+	<select id="getChange"  parameterType="String" resultType="String">
+		select filename
           from image e, concert a
           where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1
 	</select>
-	
-	
 	
 </mapper>
 	

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.pknu.pass.admin.service.AdminService;
-import com.pknu.pass.play.dto.MainDto;
 import com.pknu.pass.play.service.PlayService;
 
 @Controller
@@ -35,26 +34,15 @@ public class PlayController {
 	public String playMain(Model model) {
 
 		playService.playMain(model);
-       
+
 		return "play/index";
 	}
 
-//	@ResponseBody
-//	@RequestMapping(value = "/change")
-//	public List<String> getChange(String type) throws Exception {
-//		List<String> fileNames = new ArrayList<>(); 
-//				
-//		fileNames = playService.getChange(type);
-//		
-//		return fileNames;
-//
-//	}
 	@ResponseBody
 	@RequestMapping(value = "/change")
-	public List<MainDto> getChange(String type) throws Exception {
-		
-		List<MainDto> fileNames = new ArrayList<>(); 
-		
+	public List<String> getChange(String type) throws Exception {
+		List<String> fileNames = new ArrayList<>(); 
+				
 		fileNames = playService.getChange(type);
 		
 		return fileNames;

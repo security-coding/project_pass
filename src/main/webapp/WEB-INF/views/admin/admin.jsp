@@ -9,9 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-	<button onclick="setDB('/admin/update/concert');">공연 정보 가져오기</button>
-	<button onclick="setDB('/admin/update/place');">공연 시설 정보 가져오기</button>
-	<button onclick="setDB('/admin/update/boxoffice');">박스오피스 정보 가져오기</button>
+	<button onclick="setDB('/pass/admin/update/concert');">공연 정보 가져오기</button>
+	<button onclick="setDB('/pass/admin/update/place');">공연 시설 정보 가져오기</button>
+	<button onclick="setDB('/pass/admin/update/boxoffice');">박스오피스 정보 가져오기</button>
 </body>
 
 <script>
