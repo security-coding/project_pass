@@ -18,7 +18,7 @@
 				type : "POST",
 				async : true,
 				dataType : 'json',
-				url : "/pass/member/joinIdCheck",
+				url : "/member/joinIdCheck",
 				data : {
 					inputId : $("#id").val()
 				},
@@ -56,7 +56,7 @@
 				type : "POST",
 				async : true,
 				dataType : 'json',
-				url : "/pass/member/joinemailCheck",
+				url : "/member/joinemailCheck",
 				data : {
 					inputemail : $("#email").val(),
 					str_email:$("#str_email").val()
@@ -117,7 +117,7 @@
 	</div>
 	
 	<div class="col-xs-8 col-sm-6">
-		<form id="joinForm" name="" class="form-horizontal" role="form" action="/pass/member/insertuser" method="post" onsubmit="return availability()"><!-- form -->
+		<form id="joinForm" name="" class="form-horizontal" role="form" action="/member/insertuser" method="post" onsubmit="return availability()"><!-- form -->
 			
 			<div class="form-group">
 				<label for="id">ID:</label> <input type="text"
