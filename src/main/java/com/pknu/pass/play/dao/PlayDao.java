@@ -1,5 +1,11 @@
 package com.pknu.pass.play.dao;
 
-public class PlayDao {
+import java.util.ArrayList;
 
+public interface PlayDao {
+
+	public ArrayList<String> getPoster();
+	
+	public ArrayList<String> getChange(String pType);
+	
 }

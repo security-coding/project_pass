@@ -7,7 +7,12 @@
 <title>Error Page</title>
 </head>
 <body>
-	<div>${errCode}</div>
-	<div>${msg}</div>
+	<div>
+		<h1 class="error-code">${errCode}</h1>
+		<h3 class="error-msg">${msg}</h3>
+		<a href="/">Back to Main</a>
+	</div>
+	
+	
 </body>
 </html>
