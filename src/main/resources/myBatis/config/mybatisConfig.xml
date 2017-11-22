@@ -20,6 +20,7 @@
 		<typeAlias alias="image" type="com.pknu.pass.play.dto.ImageDto" />
 		<typeAlias alias="concert" type="com.pknu.pass.play.dto.ConcertDto" />
 		<typeAlias alias="place" type="com.pknu.pass.play.dto.PlaceDto" />
+		<typeAlias alias="login" type="com.pknu.pass.login.dto.LoginDto"/>
 		<typeAlias alias="boxof" type="com.pknu.pass.play.dto.BoxofficeDto" />
 		<typeAlias alias="predto" type="com.pknu.pass.play.dto.MainDto" />
 	</typeAliases>
