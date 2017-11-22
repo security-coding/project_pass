@@ -15,14 +15,14 @@
 	<select id="getPoster" resultType="predto">
 		select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm
           from image e, concert a
-          where e.mt20id = a.mt20id  and e.imagetype = 1
+          where e.mt20id = a.mt20id  and e.imagetype = 1 and a.prfpdfrom > sysdate
 	</select>
 	
 	
 	<select id="getChange"  parameterType="String" resultType="predto">
 		select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm
           from image e, concert a
-          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
 	</select>
 	
 	

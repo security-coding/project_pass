@@ -26,7 +26,7 @@ create table PLACE
 	FCLTYNM VARCHAR2(150) default NULL not null,
 	MT10ID VARCHAR2(10) not null
 		primary key,
-	TELNO VARCHAR2(15),
+	TELNO VARCHAR2(20),
 	RELATEURL VARCHAR2(200) default NULL,
 	ADRES VARCHAR2(200) default NULL not null,
 	SIDONM VARCHAR2(20) not null,
@@ -47,8 +47,8 @@ create table MEMBER
 		primary key,
 	PASSWORD VARCHAR2(20) not null,
 	EMAIL VARCHAR2(100) not null,
-	CERT_KEY VARCHAR2(36) not null,
-	CERTIFY NUMBER(1) not null
+	CERTKEY VARCHAR2(36) not null,
+	CERTIFY NUMBER(1) default 0 not null
 )
 /
 
