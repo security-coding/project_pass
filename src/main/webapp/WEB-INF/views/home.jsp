@@ -9,9 +9,10 @@
 
 	<P>The time on the server is ${serverTime}.</P>
 	<a
-		href="${pageContext.request.contextPath}/resources/upload/poster/PF_PF140315_171109_114524.gif">h</a>
-	<img
-		src="${pageContext.request.contextPath}/resources/upload/poster/PF_PF140315_171109_114524.gif" />
+		href="/resources/upload/poster/PF_PF140315_171109_114524.gif">h</a>
+	<img src="/resources/upload/poster/PF_PF138723_170724_115743.gif" />
+		
+		<img src="http://localhost:8080/resources/upload/poster/PF_PF140315_171109_114524.gif" />
 
 
 	<script type="text/javascript"
