@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.ImageDto;
+import com.pknu.pass.play.dto.MainDto;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -20,17 +21,17 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public void playMain(Model model) {
 
-		ArrayList<String> posters = new ArrayList<>();
+		ArrayList<MainDto> posters = new ArrayList<>();
 		posters = playDao.getPoster();
-
-		// System.out.println(posters.toString());
-
+//		System.out.println("제목 :"+posters.get(0).getPrfnm());
+//		System.out.println("제목 :"+posters.get(1).getPrfnm());
+//		System.out.println("제목 :"+posters.get(2).getPrfnm());
 		model.addAttribute("playList", posters);
 	}
 
 	@Override
-	public ArrayList<String> getChange(String type) {
-		ArrayList<String> posters = new ArrayList<>();
+	public ArrayList<MainDto> getChange(String type) {
+		ArrayList<MainDto> posters = new ArrayList<>();
 		String pType1 = "연극";
 		String pType2 = "뮤지컬";
 		String pType3 = "클래식";
