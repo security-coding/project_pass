@@ -53,6 +53,19 @@
 			<version>2.9.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-core -->
+		<dependency>
+			<groupId>com.twelvemonkeys.imageio</groupId>
+			<artifactId>imageio-core</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.twelvemonkeys.imageio</groupId>
+			<artifactId>imageio-jpeg</artifactId>
+			<version>3.3.2</version> <!-- Alternatively, build your own version -->
+		</dependency>
+
 		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

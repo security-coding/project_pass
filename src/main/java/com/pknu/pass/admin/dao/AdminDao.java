@@ -13,4 +13,14 @@ public interface AdminDao {
 	void insertImageInf(ImageDto image);
 	void insertPlaceInf(PlaceDto place);
 	void insertBoxofInf(BoxofficeDto boxoffice);
+	
+	void deleteImageInf(String string);
+	void deleteBoxofInf();
+	
+	String getImageName(Map<String, String> map);
+	ArrayList<ImageDto> imgUpdateCheck(String mt20id);
+	ArrayList<ImageDto> getImageList(String mt20id);
+	
+	
 }
+
