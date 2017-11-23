@@ -18,12 +18,13 @@ import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.comment.service.CommentService;
 
 @Controller
+@RequestMapping("/comment")
 public class CommentController {
 	@Autowired
 	CommentService commentService;
 	List<CommentDto> commentList=null;
 
-	@RequestMapping(value="/commentRead.comment")
+	@RequestMapping(value="/read")
 	@ResponseBody
 	public List<CommentDto> commentRead(@RequestParam int mt20id, 
 										@RequestParam int commentRow){							
@@ -31,7 +32,7 @@ public class CommentController {
 		
 	}
 	 
-	@RequestMapping(value="/commentWrite.comment")
+	@RequestMapping(value="/write")
 	public @ResponseBody HashMap<String, Object> commentWrite(CommentDto comment, 
 															   HttpSession session){
 		comment.setId((String)session.getAttribute("id"));

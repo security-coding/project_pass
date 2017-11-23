@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>글읽기</title>
+<title>상세페이지 게시글 글쓰기 </title>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 $.ajaxSetup({
@@ -21,11 +21,11 @@ $.ajaxSetup({
 $(document).ready(function(){
 	$("#commentWrite").on("click",function(){		
 		$.ajax({	
-			url:"commentWrite.comment",
+			url:"comment/write",
 // 			data{}에서는 EL을 ""로 감싸야함..그외에는 그냥 사용
 			data:{				
 				commentContent:$("#commentContent").val(),
-				articleNum:"${article.articleNum}"
+				mt20id:"${play.mt20id}"    
 			},
 			success:function(data){
 				if(data.result==1){
@@ -41,9 +41,9 @@ $(document).ready(function(){
 function getComment(commPageNum, event){
 // 	event.preventDefault();
 	$.ajax({			
-		url:"commentRead.comment",	
+		url:"comment/read",	
 		data:{
-			articleNum:"${article.articleNum}",
+			mt20id:"${play.mt20id}",     
 // 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
 			commentRow:commPageNum*10
 		},
@@ -66,7 +66,7 @@ function showHtml(data,commPageNum){
 	});		
 	html +="</table>";
 	commPageNum=parseInt(commPageNum);
-	if("${article.commentCount}">commPageNum*10){			
+	if("${play.commentCount}">commPageNum*10){			
 		nextPageNum=commPageNum+1;				
 		html +="<br /><input type='button' onclick='getComment(nextPageNum,event)' value='다음comment보기'><br>";
 	}
@@ -77,13 +77,7 @@ function showHtml(data,commPageNum){
 </script>
 </head>
 <body>   
-   <form action="replyForm.bbs" method="post">      
-    <input type="hidden" name="pageNum" value="${pageNum}">                 
-    <input type="hidden" name="depth" value="${article.depth}">    
-<!--     계층형 쿼리 사용을 위해서 부모글의 글 번호가 답글의 groupId가 되어야 함 -->
-    <input type="hidden" name="groupId" value="${article.articleNum}">
-	<table border="1" width="500" align="center">       
-	
+	<table border="1" width="500" align="center">  
 	     <tr>
 		     <td colspan="4">
 		   	   <textarea rows="5" cols="70" id="commentContent"></textarea><br><br>
@@ -93,16 +87,15 @@ function showHtml(data,commPageNum){
 		       <c:if test="${id !=null}">
 	    	 	 <input type="button" value="comment 쓰기" id="commentWrite">
 	     	   </c:if>	     	  
-	     	   <input type="button" value="comment 읽기(${article.commentCount })" onclick="getComment(1,event)" id="commentRead">	     	       
+	     	   <input type="button" value="comment 읽기 [${play.commentCount }]" onclick="getComment(1,event)" id="commentRead">	     	       
 		   </td> 
-		 </tr> 	
-		 	
-		 </table>	
-	</form>
+		 </tr> 		
+	 </table>	
+
 	
 	<form>
 	<div>
-		<div id="showComment" align="center">
+		<div id="showComment" align="center">  
 		</div>
 		<input type="hidden" id="commPageNum" value="1">
 	</div>	
