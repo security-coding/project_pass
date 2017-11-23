@@ -1,15 +1,12 @@
 package com.pknu.pass.play.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.play.dao.PlayDao;
-import com.pknu.pass.play.dto.ImageDto;
 import com.pknu.pass.play.dto.MainDto;
 
 @Service

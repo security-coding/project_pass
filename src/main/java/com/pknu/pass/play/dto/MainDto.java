@@ -7,12 +7,23 @@ public class MainDto {
 	private String prfpdto;
 	private String fcltynm;	
 	private	String genrenm;
+	private String mt20id;
+	
+	
 	@Override
 	public String toString() {
 		return "MainDto [imageUrl=" + imageUrl + ", prfnm=" + prfnm + ", prfpdfrom=" + prfpdfrom + ", prfpdto="
-				+ prfpdto + ", fcltynm=" + fcltynm + ", genrenm=" + genrenm + "]";
+				+ prfpdto + ", fcltynm=" + fcltynm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + "]";
 	}
-	
+
+	public String getMt20id() {
+		return mt20id;
+	}
+
+	public void setMt20id(String mt20id) {
+		this.mt20id = mt20id;
+	}
+
 	public String getImageUrl() {
 		return imageUrl;
 	}
