@@ -26,6 +26,9 @@ public class AdminController {
 		return "admin/admin";
 	}
 
+	/*
+	 * DB Update 부분
+	 * */
 	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
 	@ResponseBody
 	public void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
@@ -46,4 +49,5 @@ public class AdminController {
 		logger.info("BoxOffice Update Service");
 		adminService.getBoxofficeInf();
 	}
+	
 }

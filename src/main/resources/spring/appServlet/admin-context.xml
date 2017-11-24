@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -14,13 +13,17 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
-	
-	<task:annotation-driven/>
-	
-	<mvc:default-servlet-handler/>
+
+	<task:annotation-driven />
+
+	<mvc:default-servlet-handler />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/css/**" location="/resources/css/" />
+	<mvc:resources mapping="/images/**" location="/resources/images/" />
+	<mvc:resources mapping="/js/**" location="/resources/js/" />
+	<mvc:resources mapping="/fonts/**" location="/resources/fonts/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -36,6 +39,6 @@
 	</bean>
 
 	<context:component-scan base-package="com.pknu.pass.admin" />
-	
+
 
 </beans>

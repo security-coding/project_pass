@@ -52,7 +52,7 @@ public class LoginController {
 	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail) {
 		
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
-		loginService.insertuser(logindto);
+		loginService.insertUser(logindto);
 		return "loginPage/main";
 	}
 	
@@ -69,7 +69,7 @@ public class LoginController {
 	@ResponseBody
 	public ResponseEntity<String> joinemailCheck(@RequestParam("inputemail")String inputemail,@RequestParam("str_email")String selectaddress) {
 			
-		int result =loginService.joinemailCheck(inputemail,selectaddress);
+		int result =loginService.joinEmailCheck(inputemail,selectaddress);
 		return new ResponseEntity<String>(String.valueOf(result),HttpStatus.OK);
 	}
 	
@@ -81,7 +81,7 @@ public class LoginController {
 	@RequestMapping(value="/updateuser")
 	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam("str_email")String stremail) {
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
-		loginService.mypageupdate(session,logindto);
+		loginService.mypageUpdate(session,logindto);
 		loginService.logout(session);
 		
 		
