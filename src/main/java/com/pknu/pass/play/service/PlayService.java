@@ -10,6 +10,5 @@ public interface PlayService {
 
 	public void playMain(Model model);
 	public ArrayList<MainDto> getChange(String type);
-	public ArrayList<MainDto> getNextPoster(String stNum, String pType);
 	
 }

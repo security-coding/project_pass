@@ -16,7 +16,7 @@ import com.pknu.pass.play.service.PlayService;
 
 @Controller
 @RequestMapping("/play")
-public class PlayController { 
+public class PlayController {
 
 	@Autowired
 	PlayService playService;
@@ -26,8 +26,19 @@ public class PlayController {
 
 		playService.playMain(model);
        
-		return "play/playlist";
+		return "play/index";
 	}
+
+//	@ResponseBody
+//	@RequestMapping(value = "/change")
+//	public List<String> getChange(String type) throws Exception {
+//		List<String> fileNames = new ArrayList<>(); 
+//				
+//		fileNames = playService.getChange(type);
+//		
+//		return fileNames;
+//
+//	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/change" )
@@ -36,21 +47,22 @@ public class PlayController {
 		ArrayList<MainDto> fileNames = new ArrayList<>(); 
 		
 		fileNames = playService.getChange(type);
-
+//		for(int i=0;i<fileNames.size();i++){
+//			System.out.println(fileNames.get(i).toString());
+//		}
 		return fileNames;
 
 	}
 
 	
-	@ResponseBody
-	@RequestMapping(value = "/getNextPoster" )
-	public ArrayList<MainDto> getNextPoster(String stNum, String index) throws Exception {
+	@RequestMapping(value = "/detail" , method=RequestMethod.GET)
+	public String getDetail(String mt20id) throws Exception {
 		
 		ArrayList<MainDto> fileNames = new ArrayList<>(); 
-		
-		fileNames = playService.getNextPoster(stNum,index);
+		System.out.println(mt20id);
+	//	playService.getDetail(mt20id);
 
-		return fileNames;
+		return null;
 
 	}
 	

@@ -8,28 +8,12 @@ public class MainDto {
 	private String fcltynm;	
 	private	String genrenm;
 	private String mt20id;
-	private String pType;
 	
 	
-	
-	
-	
-
-	
-
 	@Override
 	public String toString() {
 		return "MainDto [imageUrl=" + imageUrl + ", prfnm=" + prfnm + ", prfpdfrom=" + prfpdfrom + ", prfpdto="
-				+ prfpdto + ", fcltynm=" + fcltynm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + ", pType=" + pType
-				+ "]";
-	}
-
-	public String getpType() {
-		return pType;
-	}
-
-	public void setpType(String pType) {
-		this.pType = pType;
+				+ prfpdto + ", fcltynm=" + fcltynm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + "]";
 	}
 
 	public String getMt20id() {
