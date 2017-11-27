@@ -117,10 +117,10 @@ public class AdminServiceImpl implements AdminService {
 				}
 			}
 
-			// 공연 상세정보 DB 업로드
+			// 怨듭뿰 긽�꽭�젙蹂� DB �뾽濡쒕뱶
 			adminDao.insertConcertInf(concert);
 
-			// 사진 업로드 부분
+			// �궗吏� �뾽濡쒕뱶 遺�遺�
 			if (!poster.contains("kopis") || imgUpdateCheck(mt20id, poster, session)) {
 				imageList = fileUtil.uploadImageFile(mt20id, imageUrlList, session);
 
@@ -137,9 +137,9 @@ public class AdminServiceImpl implements AdminService {
 
 		ArrayList<ImageDto> imageList = adminDao.imgUpdateCheck(mt20id);
 
-		// 존재하는 경우 Insert가 한번이라도 이루어진 정보
+		// 議댁옱�븯�뒗 寃쎌슦 Insert媛� �븳踰덉씠�씪�룄 �씠猷⑥뼱吏� �젙蹂�
 		if (imageList.size() > 0) {
-			// 최신 정보와 DB 정보가 동일 할 경우 false Return , 동일하지 않을 경우 기존 DB 파일 삭제후 true Return
+			// 理쒖떊 �젙蹂댁� DB �젙蹂닿� �룞�씪 �븷 寃쎌슦 false Return , �룞�씪�븯吏� �븡�쓣 寃쎌슦 湲곗〈 DB �뙆�씪 �궘�젣�썑 true Return
 			if (uploadDate.equals(imageList.get(0).getUploadDate()))
 				return false;
 			else {
@@ -215,14 +215,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Scheduled(cron="0 00 01 * * *")
-	// 오전 1시에 박스오피스 정보 업데이트 되도록 스케쥴러 설정
+	// �삤�쟾 1�떆�뿉 諛뺤뒪�삤�뵾�뒪 �젙蹂� �뾽�뜲�씠�듃 �릺�룄濡� �뒪耳�伊대윭 �꽕�젙
 	public void getBoxofficeInf() {
-		// {연극, 뮤지컬, 클래식&오페라, 무용&발레, 국악&복합}
+		// {�뿰洹�, 裕ㅼ�而�, �겢�옒�떇&�삤�럹�씪, 臾댁슜&諛쒕젅, 援��븙&蹂듯빀}
 		String[] catecodeArr = { "YK", "MU", "CCO", "MMB", "KKB" };
 		String ststype = "week";
 
 		try {
-			// 주간 오피스 최대 순위 20위 But. 분야에 따라 20위까지 안뜨는 경우가 있음.
+			// 二쇨컙 �삤�뵾�뒪 理쒕� �닚�쐞 20�쐞 But. 遺꾩빞�뿉 �뵲�씪 20�쐞源뚯� �븞�쑉�뒗 寃쎌슦媛� �엳�쓬.
 			adminDao.deleteBoxofInf();
 			for (String catecode : catecodeArr) {
 				StringBuffer url = new StringBuffer("http://www.kopis.or.kr/openApi/restful/boxWeekMonthly");
@@ -257,7 +257,7 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
-	// XML File 파싱하는 작업
+	// XML File �뙆�떛�븯�뒗 �옉�뾽
 	private Document getXMLInf(String url) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
