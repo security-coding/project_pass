@@ -144,11 +144,5 @@ public class DetailDto {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
-	}
-
-
-	
-	
-	
-	
+	}	
 }

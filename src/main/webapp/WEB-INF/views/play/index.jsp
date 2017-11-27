@@ -31,7 +31,8 @@
 
 </head>
 <body>
-		
+	
+
 	<ul>
 		<li><a class="butn" href = "#" onclick="change(11);">전체</a></li>
 		<li><a class="butn" href = "#" onclick="change(1);">연극</a></li>
@@ -60,8 +61,8 @@
 	     
 		    
 		      <div class="col-lg-3 col-md-4 col-xs-6" > 
-		      		      
-		        <a href="${play.imageUrl}" class="d-block mb-4 h-100" >
+<%-- 		      	/play/detail?mt20id=${play.mt20id}	       --%>
+		        <a href="/play/detail?mt20id=${play.mt20id}" class="d-block mb-4 h-100" >
 		           <div class="view overlay hm-black-strong" style="width:250; height:370;">
 		             <img class="img-fluid img-thumbnail"
 				     src="${play.imageUrl}" style="width:250; height:370;" alt="" />  
@@ -98,8 +99,14 @@
 				let str ="";
 				$(".poster").empty(); 
 			    $.each(data,function(index, item){					  					 				 
+<<<<<<< HEAD
 			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
 							       +"<img class='img-fluid img-thumbnail' src='"+item.imageUrl+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
+=======
+
+			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+ item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
+							       +"<img class='img-fluid img-thumbnail' src= '"+ item.imageUrl+"'  style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
+>>>>>>> jongmin
 					  		       
 					  $(".poster").append(str);
 				  });			

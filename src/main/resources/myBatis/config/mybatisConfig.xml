@@ -24,6 +24,7 @@
 		<typeAlias alias="boxof" type="com.pknu.pass.play.dto.BoxofficeDto" />
 		<typeAlias alias="predto" type="com.pknu.pass.play.dto.MainDto" />
 		<typeAlias alias="paging" type="com.pknu.pass.common.dto.PagingDto" />
+		<typeAlias alias="detail" type="com.pknu.pass.play.dto.DetailDto"/>
 	</typeAliases>
 </configuration>
 	

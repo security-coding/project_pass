@@ -52,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
 			Document xmlDoc = getXMLInf(url.toString());
 			Element root = xmlDoc.getDocumentElement();
 
-			NodeList nodeList = root.getElementsByTagName("db");
+			NodeList nodeList = root.getElementsByTagName("db");//"db"??
 
 			if (nodeList.getLength() == 0)
 				return;
@@ -122,7 +122,7 @@ public class AdminServiceImpl implements AdminService {
 			// 공연 상세정보 DB 업로드
 			adminDao.insertConcertInf(concert);
 
-			// 사진 업로드 부분
+			// 사진 업로드 부분(!poster.contains("kopis")??
 			if (!poster.contains("kopis") || imgUpdateCheck(mt20id, poster, session)) {
 				imageList = fileUtil.uploadImageFile(mt20id, imageUrlList, session);
 

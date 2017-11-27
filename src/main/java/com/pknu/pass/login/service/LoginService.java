@@ -27,4 +27,6 @@ public interface LoginService {
 	public String userlossid(LoginDto logindto,Model model);
 	
 	public String userlosspass(LoginDto logindto,String pass);
+	
+	public void updateprofile(HttpSession session,String srcinput,LoginDto logindto);
 }

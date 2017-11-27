@@ -31,18 +31,21 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String login(String id, String pass, HttpSession session, Model model) {
-		String dbPassCheck = logindao.loginCheck(id);
-		int dbCertifyCheck = logindao.certifyCheck(id);
-		String view = null;
-		int dbCertifyCheckNo = 0;
-		int passFail = 0;
-		int Notmember = 0;
 
+	public String login(String id, String pass,HttpSession session, Model model) {
+		String imageUrl=logindao.getimageUrl(id);
+		String dbPassCheck=logindao.loginCheck(id);
+		int dbCertifyCheck=logindao.certifyCheck(id);
+		String view=null;
+		int dbCertifyCheckNo=0;
+		int passFail=0;
+		int Notmember=0;
+		
 		if (dbPassCheck != null && dbCertifyCheck == 1) {
 			if (dbPassCheck.equals(pass)) {// 로그인성공
 				session.setAttribute("id", id);
 				model.addAttribute("id", id);
+				model.addAttribute("imageUrl", imageUrl);
 				view = "loginPage/main";
 			} else {// 비밀번호 실패
 				model.addAttribute("passFail", passFail);
@@ -91,16 +94,19 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String mypageId(HttpSession session, Model model, String myemail, LoginDto loginDto) {
-		// session.setAttribute("id",session.getAttribute("id"));
-		loginDto.setId((String) session.getAttribute("id"));
-
-		String mail = logindao.myemail(loginDto);
-		int idx = mail.indexOf("@");
-		String mailid = mail.substring(0, idx);
-
-		model.addAttribute("id", session.getAttribute("id"));
-		model.addAttribute("email", mailid);
+	public String mypageId(HttpSession session,Model model,String myemail,LoginDto loginDto) {
+//		session.setAttribute("id",session.getAttribute("id"));
+		String imageUrl;
+		loginDto.setId((String)session.getAttribute("id"));
+		String id=loginDto.getId();
+		String mail=logindao.myemail(loginDto);
+		int idx=mail.indexOf("@");
+		String mailid=mail.substring(0,idx);
+		imageUrl=logindao.getimageUrl(id);
+		
+		model.addAttribute("imageUrl",imageUrl);
+		model.addAttribute("id",session.getAttribute("id"));
+		model.addAttribute("email",mailid);
 		return null;
 	}
 
@@ -110,6 +116,14 @@ public class LoginServiceImpl implements LoginService {
 		logindao.mypageUpdate(logindto);
 		return null;
 	}
+	
+	@Override
+	public void updateprofile(HttpSession session, String srcinput, LoginDto logindto) {
+		logindto.setId((String)session.getAttribute("id"));
+		logindto.setImageUrl(srcinput);
+		logindao.updateprofile(logindto);
+	}
+
 
 	@Override
 	public int checkJoin(String certKey, Model model) {
@@ -162,5 +176,4 @@ public class LoginServiceImpl implements LoginService {
 		mailUtil.sendPass(pass, logindto.getEmail());
 		return null;
 	}
-
 }
