@@ -283,4 +283,11 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectTotalConcert();
 	}
 
+	@Override
+	public ConcertDto selectOneConcert(String mt20id) {
+		return adminDao.selectOneConcert(mt20id);
+	}
+	
+	
+
 }

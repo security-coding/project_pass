@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,4 +67,14 @@ public class AdminController {
 		
 		return "admin/concert";
 	}
+	
+	@RequestMapping(value = "/select/concert/{mt20id}")
+	public String selectOneConcert(Model model,@PathVariable String mt20id) {
+		ConcertDto concert = adminService.selectOneConcert(mt20id);
+		
+		model.addAttribute("concert",concert);
+		
+		return "admin/concertDetail";
+	}
+	
 }

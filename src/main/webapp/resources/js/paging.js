@@ -11,7 +11,7 @@ function frmPaging() {
 function pagePre(index, pageCnt) {
 	if( 0 < index - pageCnt) {
 		index -= pageCnt;
-		document.getElementById("pageStarNum").value = index;
+		document.getElementById("pageStartNum").value = index;
 		document.getElementById("index").value = index - 1;
 		frmPaging();
 	}

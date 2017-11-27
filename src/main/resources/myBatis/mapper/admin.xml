@@ -19,6 +19,13 @@
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
 
+	<select id="selectOneConcert" parameterType="String" resultType="concert">
+		SELECT *
+		FROM 
+		
+		
+	</select>
+
 	<insert id="insertConcertInf" parameterType="concert">
 		MERGE INTO CONCERT
 				USING DUAL

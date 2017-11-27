@@ -14,5 +14,6 @@ public interface AdminService {
 	
 	List<ConcertDto> selectConcert(PagingDto paging);
 	int selectTotalConcert();
+	ConcertDto selectOneConcert(String mt20id);
 
 }
