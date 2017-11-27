@@ -23,23 +23,23 @@ public class PlayServiceImpl implements PlayService {
 
 		ArrayList<MainDto> posters = new ArrayList<>();
 		posters = playDao.getPoster();
-//		System.out.println("ì œëª© :"+posters.get(0).getPrfnm());
-//		System.out.println("ì œëª© :"+posters.get(1).getPrfnm());
-//		System.out.println("ì œëª© :"+posters.get(2).getPrfnm());
+//		System.out.println("Á¦¸ñ :"+posters.get(0).getPrfnm());
+//		System.out.println("Á¦¸ñ :"+posters.get(1).getPrfnm());
+//		System.out.println("Á¦¸ñ :"+posters.get(2).getPrfnm());
 		model.addAttribute("playList", posters);
 	}
 
 	@Override
 	public ArrayList<MainDto> getChange(String type) {
 		ArrayList<MainDto> posters = new ArrayList<>();
-		String pType1 = "ì—°ê·¹";
-		String pType2 = "ë®¤ì§€ì»¬";
-		String pType3 = "í´ë˜ì‹";
-		String pType4 = "ì˜¤í˜ë¼";
-		String pType5 = "ë¬´ìš©";
-		String pType6 = "ë°œë˜";
-		String pType7 = "êµ­ì•…";
-		String pType8 = "ë³µí•©";
+		String pType1 = "¿¬±Ø";
+		String pType2 = "¹ÂÁöÄÃ";
+		String pType3 = "Å¬·¡½Ä";
+		String pType4 = "¿ÀÆä¶ó";
+		String pType5 = "¹«¿ë";
+		String pType6 = "¹ß·¡";
+		String pType7 = "±¹¾Ç";
+		String pType8 = "º¹ÇÕ";
 
 		if (type.equals("11")) {
 			posters = playDao.getPoster();
