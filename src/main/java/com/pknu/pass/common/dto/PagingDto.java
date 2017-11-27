@@ -9,10 +9,10 @@ public class PagingDto {
 
 	// 값 초기화(default 값)
 	{
-		pageCnt = 5;
+		pageCnt = 10;
 		index = 0;
 		pageStartNum = 1;
-		listCnt = 5;
+		listCnt = 10;
 	}
 
 	public PagingDto() {

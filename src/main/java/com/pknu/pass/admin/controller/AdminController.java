@@ -1,17 +1,22 @@
 package com.pknu.pass.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
+import com.pknu.pass.common.dto.PagingDto;
+import com.pknu.pass.play.dto.ConcertDto;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,7 +28,7 @@ public class AdminController {
 
 	@RequestMapping
 	public String adminMain() {
-		return "admin/admin";
+		return "admin/main";
 	}
 
 	/*
@@ -31,7 +36,7 @@ public class AdminController {
 	 * */
 	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
 	@ResponseBody
-	public void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
+	public void getConcertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
 		logger.info("Concert Info Update Service");
 		adminService.getConertInf(session,stdate, eddate, prfstate);
 	}
@@ -50,4 +55,15 @@ public class AdminController {
 		adminService.getBoxofficeInf();
 	}
 	
+	@RequestMapping(value = "/select/concert")
+	public String selectConcert(Model model, PagingDto paging) {
+		logger.info("paging : " + paging);
+		List<ConcertDto> concertList = adminService.selectConcert(paging);
+		paging.setTotal(adminService.selectTotalConcert());
+		
+		model.addAttribute("concertList", concertList);
+		model.addAttribute("paging",paging);
+		
+		return "admin/concert";
+	}
 }

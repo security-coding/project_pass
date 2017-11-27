@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Page</title>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+    <title>관리자 페이지(메인)</title>
+    <script src='<c:url value="js/bootstrap-datepicker.js"/>'></script>
+    <script src='<c:url value="js/bootstrap-datepicker.kr.js"/>'charset="UTF-8"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -69,7 +70,7 @@
             <ul class="nav nav-sidebar">
                 <li><p>공연 관련 정보 관리</p></li>
                 <li class="active"><a href="#">정보 업데이트<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">공연 목록</a></li>
+                <li><a href="/admin/select/concert">공연 목록</a></li>
                 <li><a href="#">공연 시설 목록</a></li>
                 <li><a href="#">주간 박스오피스</a></li>
             </ul>

@@ -1,6 +1,7 @@
 package com.pknu.pass.admin.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.pknu.pass.admin.dao.AdminDao;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
@@ -268,6 +270,17 @@ public class AdminServiceImpl implements AdminService {
 
 		}
 		return null;
+	}
+
+	
+	@Override
+	public List<ConcertDto> selectConcert(PagingDto paging) {
+		return adminDao.selectConcert(paging);
+	}
+
+	@Override
+	public int selectTotalConcert() {
+		return adminDao.selectTotalConcert();
 	}
 
 }
