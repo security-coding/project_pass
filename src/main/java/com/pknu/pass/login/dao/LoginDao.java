@@ -14,6 +14,8 @@ public interface LoginDao {
 
 	public void mypageupdate(LoginDto logindto);
 
+	public void updateprofile(LoginDto logindto);
+	
 	public String myemail(LoginDto logindto);
 
 	public LoginDto checkJoin(String certKey);
@@ -23,6 +25,10 @@ public interface LoginDao {
 	public String userlossid(LoginDto logindto);
 
 	public void updatePass(LoginDto logindto);
+
+	public String getimageUrl(String id);
+
+	
 
 	
 

@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainDto;
-
 import com.pknu.pass.play.service.PlayService;
 
 @Controller
 @RequestMapping("/play")
 public class PlayController {
-
+	
 	@Autowired
 	PlayService playService;
 
@@ -25,7 +25,6 @@ public class PlayController {
 	public String playMain(Model model) {
 
 		playService.playMain(model);
-       
 		return "play/index";
 	}
 
@@ -56,14 +55,26 @@ public class PlayController {
 
 	
 	@RequestMapping(value = "/detail" , method=RequestMethod.GET)
-	public String getDetail(String mt20id) throws Exception {
+	public String getDetail(String mt20id,Model model,DetailDto detailDto) throws Exception {
+		ArrayList<DetailDto> detail = new ArrayList<>(); 
+
+		detail=playService.getDetail(mt20id,model,detailDto);
 		
-		ArrayList<MainDto> fileNames = new ArrayList<>(); 
-		System.out.println(mt20id);
-	//	playService.getDetail(mt20id);
+		return "play/detailpage" ;
 
-		return null;
-
+	}
+	
+	@RequestMapping(value="/searchform")
+	public String searchform() {
+		return "play/serchform";
+	}
+	
+	@RequestMapping(value="/search")
+	public String search(@RequestParam("keyword")String keyword,Model model,DetailDto detailDto) {
+		ArrayList<DetailDto> searchvalue=new ArrayList<>();
+		searchvalue=playService.getsearch(keyword,model,detailDto);
+		
+		return "play/serch";
 	}
 	
 }

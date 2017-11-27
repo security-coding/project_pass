@@ -9,9 +9,46 @@
 
 		
 <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+
 <script>
 
+function setMyimage(imgsrc){
+	let myimage=document.getElementById('myimage');
+	let img = imgsrc.getAttribute('src');
+	myimage.setAttribute('src',img);
+	console.log(myimage.getAttribute('src') );
+	$.ajax({
+		type:"POST",
+		async : true,
+		dataType : 'json',
+		url:'/member/updateprofile',
+		data : {
+			srcinput :myimage.getAttribute('src') 
+		},
+		success:function(data){
+			console.log(data);
+		}
+	});
+}
+
+// $(function (){
+	
+// 	$("#img2").on("click",function(){
+// 		let myimage=document.getElementById('myimage');
+// 		let img2=document.getElementById('img2').src;
+// 		myimage.setAttribute('src',img2);
+
+// 	});
+	
+// 	$("#img3").on('click',function(){
+// 		let myimage=document.getElementById('myimage');
+// 		let img3=document.getElementById('img3').src;
+// 		myimage.setAttribute('src',img3);
+// 	});
+
+// });
 </script>
+
 </head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -85,8 +122,16 @@
 <!-- 						placeholder="- 없이 입력해 주세요"> -->
 <!-- 				</div> -->
 <!-- 			</div> -->
+				
+		<div>
+				<a>현재이미지:<img id="myimage" src="${imageUrl}"></a></br>
+				<div class="chimage">
+					<img id="img1" class="img" src="/resources/images/profile/img1.png" onclick="setMyimage(this)">
+					<img id="img2" class="img" src="/resources/images/profile/img2.png" onclick="setMyimage(this)">
+					<img id="img3" class="img" src="/resources/images/profile/img3.png" onclick="setMyimage(this)">
+				</div>
+		</div>
 			
-	
 			<div class="form-group text-center">
 				<button id="signupbtn" type="submit" class="btn btn-info" >
 					수정하기<i class="fa fa-check spaceLeft"></i>
@@ -96,6 +141,10 @@
 				</button>
 			</div>
 		</form>
+		
+
+	
+		
 	</div>
 
 	
@@ -151,8 +200,7 @@
 		 })
 		 
 	 });
- 	
-	 
-		
-	</script>
+
+</script>
+
 </html>

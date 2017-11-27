@@ -15,15 +15,40 @@
 	<select id="getPoster" resultType="predto">
 		select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm, a.mt20id
           from image e, concert a
-          where e.mt20id = a.mt20id  and e.imagetype = 1 and a.prfpdfrom > sysdate
+          where e.mt20id = a.mt20id   and e.imagetype = 1 and a.prfpdfrom > sysdate
 	</select>
 	
 	
 	<select id="getChange"  parameterType="String" resultType="predto">
-		select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm, a.mt20id
-          from image e, concert a
-          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
+		select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm, mt20id
+          from image natural join concert
+          where  genrenm=#{pType} and imagetype = 1 and prfpdfrom > sysdate
 	</select>
+	
+	<select id="getDetailPoster" parameterType="String" resultType="detail">
+	select imageUrl, genrenm, prfnm , mt20id
+	from image natural join concert
+	where mt20id = #{mt20id} AND imagetype = 1
+	</select>
+	
+	<select id="getDetailintroImage" parameterType="String" resultType="detail">
+	select imageUrl, genrenm, prfnm, mt20id
+	from image natural join concert
+	where mt20id=#{mt20id} and imagetype = 2
+	</select>
+	
+	<select id="getDetailInf" parameterType="String" resultType="detail">
+	select  prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime, prfage, entrpsnm, pcseguidance, dtguidance,mt20id 
+	from concert
+	where mt20id=#{mt20id}
+	</select>
+	
+	<select id="getsearch" parameterType="String" resultType="detail">
+		select prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl
+		from concert c ,image i
+		where  i.mt20id=c.mt20id and i.imagetype=1 and prfnm like '%'||#{keyword}||'%'
+	</select>
+	
 	
 <!-- 	<select id="getChange"  parameterType="String" resultType="predto"> -->
 <!-- 	SELECT * -->

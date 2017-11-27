@@ -9,6 +9,7 @@ public class LoginDto {
 	String email;
 	String certKey;
 	int certify;
+	String imageUrl;
 	public String getId() {
 		return id;
 	}
@@ -39,11 +40,21 @@ public class LoginDto {
 	public void setCertify(int certify) {
 		this.certify = certify;
 	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	@Override
 	public String toString() {
 		return "LoginDto [id=" + id + ", pass=" + pass + ", email=" + email + ", certKey=" + certKey + ", certify="
-				+ certify + "]";
+				+ certify + ", imageUrl=" + imageUrl + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

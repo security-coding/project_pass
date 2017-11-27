@@ -26,29 +26,29 @@ public class LoginController {
 	@Autowired
 	LoginServiceImpl loginService;
 	
-	@RequestMapping("/main")
+	@RequestMapping("/main")//메인 모달버튼및 회원가입 버튼있는곳으로 이동
 	public String mainForm() {
 		logger.info("Login Main page");
 		return "loginPage/main";
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.POST)
+	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
 	public String login(@RequestParam("id")String id,@RequestParam("pass")String pass,HttpSession session,Model model) {
 
 		return loginService.login(id,pass,session,model);
 	}
-	@RequestMapping(value="/logout",method=RequestMethod.POST)
+	@RequestMapping(value="/logout",method=RequestMethod.POST)//로그아웃기능
 	public String logout(HttpSession session) {
 		return loginService.logout(session);
 	}
 	
 	
-	@RequestMapping(value="/joinForm")
+	@RequestMapping(value="/joinForm")//회원가입 페이지로 이동
 	public String joinForm() {
 		return "loginPage/joinForm";
 	}
 	
-	@RequestMapping(value="/insertuser")
+	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
 	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail) {
 		
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
@@ -56,7 +56,7 @@ public class LoginController {
 		return "loginPage/main";
 	}
 	
-	@RequestMapping(value="/joinIdCheck")
+	@RequestMapping(value="/joinIdCheck")//아이디 중복 비동기로 확인
 	@ResponseBody
 	 public ResponseEntity<String> joinIdCheck(@RequestParam("inputId")String inputId, HttpServletRequest request) {
 
@@ -65,7 +65,7 @@ public class LoginController {
 		return new ResponseEntity<String>(String.valueOf(result), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/joinemailCheck")
+	@RequestMapping(value="/joinemailCheck")//이메일 중복 비동기로 확인
 	@ResponseBody
 	public ResponseEntity<String> joinemailCheck(@RequestParam("inputemail")String inputemail,@RequestParam("str_email")String selectaddress) {
 			
@@ -73,19 +73,25 @@ public class LoginController {
 		return new ResponseEntity<String>(String.valueOf(result),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/mypage")
+	@RequestMapping(value="/mypage")//마이페이지 페이지로 가는것
 	public String mypageForm(HttpSession session,String myemail,Model model,LoginDto loginDto) {
 		loginService.mypageId(session,model,myemail,loginDto); 
 		return "loginPage/mypage";
 	}
-	@RequestMapping(value="/updateuser")
-	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam("str_email")String stremail) {
+	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
+	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="str_email",required=true)String stremail) {
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
 		loginService.mypageupdate(session,logindto);
 		loginService.logout(session);
 		
 		
 		return "loginPage/main";
+	}
+	
+	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경
+	@ResponseBody
+	public void updateprofile(HttpSession session,LoginDto logindto,@RequestParam(value="srcinput",required=true)String srcinput) {
+		loginService.updateprofile(session,srcinput,logindto);
 	}
 	
 	@RequestMapping(value="/checkJoin")
