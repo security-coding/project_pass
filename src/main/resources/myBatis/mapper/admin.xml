@@ -4,6 +4,28 @@
               "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pknu.pass.admin.dao.AdminDao">
+	<select id="selectTotalConcert" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CONCERT
+	</select>
+	
+	<!-- ROWNUM Query(Paging) -->
+	<select id="selectConcert" parameterType="paging" resultType="concert">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, P.*
+				FROM ( SELECT * 
+						FROM CONCERT
+						ORDER BY MT20ID) P )
+		WHERE RNUM BETWEEN #{start} AND #{last}
+	</select>
+
+	<select id="selectOneConcert" parameterType="String" resultType="concert">
+		SELECT *
+		FROM 
+		
+		
+	</select>
+
 	<insert id="insertConcertInf" parameterType="concert">
 		MERGE INTO CONCERT
 				USING DUAL
@@ -137,6 +159,7 @@
 	<delete id="deleteBoxofInf">
 		DELETE BOXOFFICE
 	</delete>
+	
 </mapper>
 	
 	

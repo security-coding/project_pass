@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pknu.pass.play.dao.PlayDao;
+import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainDto;
 
 @Service
@@ -22,6 +23,7 @@ public class PlayServiceImpl implements PlayService {
 		ArrayList<MainDto> posters = new ArrayList<>();
 		posters = playDao.getPoster();
 		model.addAttribute("playList", posters);
+		System.out.println(posters+"+++++++++++++++++++++++++++++++");
 	}
 
 	
@@ -59,6 +61,36 @@ public class PlayServiceImpl implements PlayService {
 		
 		
 		return posters;
+	}
+
+	@Override
+	public ArrayList<DetailDto> getDetail(String mt20id,Model model,DetailDto detailDto) {
+		
+		DetailDto detailInf=new DetailDto();
+		DetailDto poster = new DetailDto();
+		ArrayList<DetailDto> introImages=new ArrayList<>();
+
+		poster=playDao.getDetailPoster(mt20id);
+		introImages=playDao.getDetailintroImage(mt20id);
+		detailInf=playDao.getDetailInf(mt20id);
+		
+		System.out.println(poster+"+++++++++++detailposters");
+		System.out.println(introImages+"+++++++++++detailIntroImage");
+		System.out.println(detailInf+"++++++++++++++++++++++++++detailInf");
+		model.addAttribute("poster",poster);
+		model.addAttribute("introImages",introImages);
+		model.addAttribute("detailInf",detailInf);
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<DetailDto> getsearch(String keyword, Model model,DetailDto detailDto) {
+		ArrayList<DetailDto> value=new ArrayList<>();
+		value=playDao.getsearch(keyword);
+		System.out.println(value);
+		model.addAttribute("keyword",value);
+		return null;
 	}
 	
 }

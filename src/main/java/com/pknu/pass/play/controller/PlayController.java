@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainDto;
-
 import com.pknu.pass.play.service.PlayService;
 
 @Controller
 @RequestMapping("/play")
-public class PlayController { 
-
+public class PlayController {
+	
 	@Autowired
 	PlayService playService;
 
@@ -25,8 +25,8 @@ public class PlayController {
 	public String playMain(Model model) {
 
 		playService.playMain(model);
-       
 		return "play/playlist";
+
 	}
 	
 	@ResponseBody
@@ -51,7 +51,19 @@ public class PlayController {
 		fileNames = playService.getNextPoster(stNum,index);
 
 		return fileNames;
-
+	}
+	
+	@RequestMapping(value="/searchform")
+	public String searchform() {
+		return "play/serchform";
+	}
+	
+	@RequestMapping(value="/search")
+	public String search(@RequestParam("keyword")String keyword,Model model,DetailDto detailDto) {
+		ArrayList<DetailDto> searchvalue=new ArrayList<>();
+		searchvalue=playService.getsearch(keyword,model,detailDto);
+		
+		return "play/serch";
 	}
 	
 }

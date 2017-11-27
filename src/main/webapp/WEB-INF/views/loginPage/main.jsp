@@ -23,7 +23,7 @@ $(document).ready(function(){
 </script>                          
 
 <style>
-
+	
 </style>
 </head>
 
@@ -40,8 +40,10 @@ $(document).ready(function(){
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a> <a
-					class="navbar-brand" href="#">사이트</a>
+				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="#">공연정보</a>
+					<img src="/resources/images/devil.png">
+				<a class="navbar-brand" href="#">시설정보</a>
 			</div>
 			
 					 <!--로그인 안할시 로그인버튼리아 회원가입버튼을 나타나게함-->
@@ -99,7 +101,7 @@ $(document).ready(function(){
 			<!--/.navbar-collapse -->
 		</div>
 	</nav><!-- 제일 상단에 있는 네이게션 바 검은색배경부분 -->
-	
+
 	
 	<!-- /container -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

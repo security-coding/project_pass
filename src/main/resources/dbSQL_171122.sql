@@ -35,6 +35,7 @@ create table PLACE
 )
 /
 
+
 alter table CONCERT
 	add constraint FK_CONCERT_MT10ID
 		foreign key (MT10ID) references PLACE
@@ -48,9 +49,14 @@ create table MEMBER
 	PASSWORD VARCHAR2(20) not null,
 	EMAIL VARCHAR2(100) not null,
 	CERTKEY VARCHAR2(36) not null,
+<<<<<<< HEAD
+	CERTIFY NUMBER(1) not null
+=======
 	CERTIFY NUMBER(1) default 0 not null
+>>>>>>> jongmin
 )
 /
+
 
 create table BOXOFFICE
 (

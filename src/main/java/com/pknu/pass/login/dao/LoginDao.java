@@ -4,7 +4,7 @@ import com.pknu.pass.login.dto.LoginDto;
 
 public interface LoginDao {
 
-	public void insertuser(LoginDto logindto);
+	public void insertUser(LoginDto logindto);
 
 	public String loginCheck(String id);
 	
@@ -12,8 +12,10 @@ public interface LoginDao {
 	
 	public int certifyCheck(String id);
 
-	public void mypageupdate(LoginDto logindto);
+	public void mypageUpdate(LoginDto logindto);
 
+	public void updateprofile(LoginDto logindto);
+	
 	public String myemail(LoginDto logindto);
 
 	public LoginDto checkJoin(String certKey);
@@ -23,6 +25,10 @@ public interface LoginDao {
 	public String userlossid(LoginDto logindto);
 
 	public void updatePass(LoginDto logindto);
+
+	public String getimageUrl(String id);
+
+	
 
 	
 
