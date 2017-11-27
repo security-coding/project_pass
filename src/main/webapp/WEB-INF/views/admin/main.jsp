@@ -7,13 +7,15 @@
     <meta charset="UTF-8">
     <title>관리자 페이지(메인)</title>
 	
-	<script src='<c:url value="js/bootstrap-datepicker.js"/>'></script>
-	<script src='<c:url value="js/bootstrap-datepicker.kr.js"/>' charset="UTF-8"></script>    
-
-    <link rel="stylesheet" href='<c:url value="css/bootstrap.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="css/bootstrap-theme.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="css/dashboard.css"/>'>
-    <link rel="stylesheet" href='<c:url value="css/datepicker3.css"/>'>
+	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap-datepicker.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap-datepicker.kr.js"/>' charset="UTF-8"></script>
+	    
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/datepicker3.css"/>'>
 
     <style type="text/css">
 
@@ -244,7 +246,6 @@
     }
 
 </script>
-<script src='<c:url value="js/jquery_1.12.4_jquery.js"/>'></script>
-<script src='<c:url value="js/bootstrap.min.js"/>'></script>	
+	
 </body>
 </html>
