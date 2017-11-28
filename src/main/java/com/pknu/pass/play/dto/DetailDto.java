@@ -2,7 +2,6 @@ package com.pknu.pass.play.dto;
 
 public class DetailDto {
 
-	private String imageUrl;
 	private String prfpdfrom;
 	private String prfpdto;
 	private String fcltynm;
@@ -16,23 +15,6 @@ public class DetailDto {
 	private String prfnm;
 	private	String genrenm;
 	private String mt20id;
-	private String keyword;
-	
-	@Override
-	public String toString() {
-		return "DetailDto [imageUrl=" + imageUrl + ", prfpdfrom=" + prfpdfrom + ", prfpdto=" + prfpdto + ", fcltynm="
-				+ fcltynm + ", prfcast=" + prfcast + ", prfcrew=" + prfcrew + ", prfruntime=" + prfruntime + ", prfage="
-				+ prfage + ", entrpsnm=" + entrpsnm + ", pcseguidance=" + pcseguidance + ", dtguidance=" + dtguidance
-				+ ", prfnm=" + prfnm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + ", keyword=" + keyword + "]";
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
 
 	public String getPrfpdfrom() {
 		return prfpdfrom;
@@ -137,12 +119,4 @@ public class DetailDto {
 	public void setMt20id(String mt20id) {
 		this.mt20id = mt20id;
 	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}	
 }

@@ -118,7 +118,8 @@
                     <h4>공연 시설 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>
                     <div>
-                        <button class="btn btn-sm btn-primary">
+                        <button class="btn btn-sm btn-primary" onclick="updateInf('/admin/update/place');">
+                        
                             업데이트
                         </button>
                     </div>
@@ -129,7 +130,7 @@
                     <h4>주간 박스오피스 정보 업데이트</h4>
                     <span class="text-muted">매일 오전 1시에 자동 업데이트 됩니다</span>
                     <div>
-                        <button class="btn btn-sm btn-primary">
+                        <button class="btn btn-sm btn-primary" onclick="updateInf('/admin/update/boxoffice');">
                             업데이트
                         </button>
                     </div>
@@ -226,7 +227,7 @@
         });
     });
 
-    function setDB(url) {
+    function updateInf(url) {
         $.ajax({
             type : "POST",
             url : url,
