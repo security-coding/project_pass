@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Page(Concert)</title>
+    <title>Admin Page(Place)</title>
     
 	<script src='<c:url value="/js/paging.js"/>'></script>
 
@@ -43,9 +43,9 @@
         <ul class="nav nav-sidebar">
             <li><p>공연 관련 정보 관리</p></li>
             <li><a href="/admin">정보 업데이트</a></li>
-            <li class="active"><a href="#">공연 목록<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">공연 시설 목록</a></li>
-            <li><a href="#">주간 박스오피스</a></li>
+            <li><a href="/admin/select/concert">공연 목록</a></li>
+            <li class="active"><a href="#">공연 시설 목록<span class="sr-only">(current)</span></a></li>
+            <li><a href="/admin/select/boxoffice">주간 박스오피스</a></li>
         </ul>
 
         <ul class="nav nav-sidebar">
@@ -68,11 +68,11 @@
     <div id="content" class="container-fluid">
         <!-- page Content 부분 -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">공연 목록</h1>
+            <h1 class="page-header">공연 시설 목록</h1>
 
             <div class="placeholders">
                 <div class="pull-right">
-                    <span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
+                    <span>공연 시설 DB 갯수 <span class="badge">${paging.total}</span></span>
                 </div>
                 <div class="clearfix"></div>
                 <div class="placeholder">
@@ -80,8 +80,8 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>공연 ID</th>
-                                <th>공연명</th>
+                                <th>공연시설 ID</th>
+                                <th>공연시설 명</th>
                                 <th>공연시작일</th>
                                 <th>공연종료일</th>
                                 <th>공연시설명</th>

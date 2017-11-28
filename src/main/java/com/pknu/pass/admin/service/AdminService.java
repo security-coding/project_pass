@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.play.dto.ConcertDto;
+import com.pknu.pass.play.dto.ImageDto;
 
 public interface AdminService {
 	void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception;
@@ -15,5 +16,6 @@ public interface AdminService {
 	List<ConcertDto> selectConcert(PagingDto paging);
 	int selectTotalConcert();
 	ConcertDto selectOneConcert(String mt20id);
+	List<ImageDto> selectImageList(String mt20id);
 
 }

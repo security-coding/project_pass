@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,6 +26,7 @@ import com.pknu.pass.play.dto.ImageDto;
 import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminDao adminDao;
@@ -201,14 +203,18 @@ public class AdminServiceImpl implements AdminService {
 				Element root = xmlDoc.getDocumentElement();
 
 				Element dbElement = (Element) root.getElementsByTagName("db").item(0);
-
+	
+				String mt13cnt = dbElement.getElementsByTagName("mt13cnt").item(0).getTextContent();
+				String fcltychartr = dbElement.getElementsByTagName("fcltychartr").item(0).getTextContent();
+				String opende = dbElement.getElementsByTagName("opende").item(0).getTextContent();
+				String seatscale = dbElement.getElementsByTagName("seatscale").item(0).getTextContent();
 				String telno = dbElement.getElementsByTagName("telno").item(0).getTextContent();
 				String relateurl = dbElement.getElementsByTagName("relateurl").item(0).getTextContent();
 				String adres = dbElement.getElementsByTagName("adres").item(0).getTextContent();
 				String la = dbElement.getElementsByTagName("la").item(0).getTextContent();
 				String lo = dbElement.getElementsByTagName("lo").item(0).getTextContent();
 
-				place.setDetail(telno, relateurl, adres, la, lo);
+				place.setDetail(mt13cnt, fcltychartr, opende, seatscale, telno, relateurl, adres, la, lo);
 				adminDao.insertPlaceInf(place);
 			} catch (Exception e) {
 			}
@@ -286,6 +292,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ConcertDto selectOneConcert(String mt20id) {
 		return adminDao.selectOneConcert(mt20id);
+	}
+
+	@Override
+	public List<ImageDto> selectImageList(String mt20id) {
+		return adminDao.selectImageList(mt20id);
 	}
 	
 	

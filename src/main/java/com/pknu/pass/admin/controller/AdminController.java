@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pknu.pass.admin.service.AdminService;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.play.dto.ConcertDto;
+import com.pknu.pass.play.dto.ImageDto;
 
 @Controller
 @RequestMapping("/admin")
@@ -70,7 +71,10 @@ public class AdminController {
 	
 	@RequestMapping(value = "/select/concert/{mt20id}")
 	public String selectOneConcert(Model model,@PathVariable String mt20id) {
+		System.out.println(mt20id);
+		
 		ConcertDto concert = adminService.selectOneConcert(mt20id);
+		List<ImageDto> imageList = adminService.selectImageList(mt20id);
 		
 		model.addAttribute("concert",concert);
 		

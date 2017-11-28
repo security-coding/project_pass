@@ -7,13 +7,15 @@
     <meta charset="UTF-8">
     <title>관리자 페이지(메인)</title>
 	
-	<script src='<c:url value="js/bootstrap-datepicker.js"/>'></script>
-	<script src='<c:url value="js/bootstrap-datepicker.kr.js"/>' charset="UTF-8"></script>    
-
-    <link rel="stylesheet" href='<c:url value="css/bootstrap.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="css/bootstrap-theme.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="css/dashboard.css"/>'>
-    <link rel="stylesheet" href='<c:url value="css/datepicker3.css"/>'>
+	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap-datepicker.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap-datepicker.kr.js"/>' charset="UTF-8"></script>
+	    
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/datepicker3.css"/>'>
 
     <style type="text/css">
 
@@ -116,7 +118,8 @@
                     <h4>공연 시설 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>
                     <div>
-                        <button class="btn btn-sm btn-primary">
+                        <button class="btn btn-sm btn-primary" onclick="updateInf('/admin/update/place');">
+                        
                             업데이트
                         </button>
                     </div>
@@ -127,7 +130,7 @@
                     <h4>주간 박스오피스 정보 업데이트</h4>
                     <span class="text-muted">매일 오전 1시에 자동 업데이트 됩니다</span>
                     <div>
-                        <button class="btn btn-sm btn-primary">
+                        <button class="btn btn-sm btn-primary" onclick="updateInf('/admin/update/boxoffice');">
                             업데이트
                         </button>
                     </div>
@@ -224,7 +227,7 @@
         });
     });
 
-    function setDB(url) {
+    function updateInf(url) {
         $.ajax({
             type : "POST",
             url : url,
@@ -244,7 +247,6 @@
     }
 
 </script>
-<script src='<c:url value="js/jquery_1.12.4_jquery.js"/>'></script>
-<script src='<c:url value="js/bootstrap.min.js"/>'></script>	
+	
 </body>
 </html>
