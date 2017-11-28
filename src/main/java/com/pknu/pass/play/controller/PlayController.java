@@ -22,7 +22,7 @@ public class PlayController {
 	PlayService playService;
 
 	
-	// 상영예정작	
+	// 현재공연	
 		@RequestMapping(value = "/now")
 		public String playNowMain(Model model) {
 
@@ -66,10 +66,22 @@ public class PlayController {
 
 	}
 	
+//	@ResponseBody
+//	@RequestMapping(value = "come/change" )
+//	public ArrayList<MainDto> getChange(String type) throws Exception {
+//		
+//		ArrayList<MainDto> fileNames = new ArrayList<>(); 
+//		
+//		fileNames = playService.getChange(type);
+//
+//		return fileNames;
+//
+//	}
+
 	@ResponseBody
 	@RequestMapping(value = "come/change" )
 	public ArrayList<MainDto> getChange(String type) throws Exception {
-		
+	   
 		ArrayList<MainDto> fileNames = new ArrayList<>(); 
 		
 		fileNames = playService.getChange(type);
@@ -77,7 +89,7 @@ public class PlayController {
 		return fileNames;
 
 	}
-
+	
 	@ResponseBody
 	@RequestMapping(value = "come/getNextPoster" )
 	public ArrayList<MainDto> getNextPoster(String stNum, String index) throws Exception {
