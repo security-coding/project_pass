@@ -4,6 +4,27 @@
               "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pknu.pass.admin.dao.AdminDao">
+	<select id="selectTotalConcert" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CONCERT
+	</select>
+	
+	<!-- ROWNUM Query(Paging) -->
+	<select id="selectConcert" parameterType="paging" resultType="concert">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, P.*
+				FROM ( SELECT * 
+						FROM CONCERT
+						ORDER BY MT20ID) P )
+		WHERE RNUM BETWEEN #{start} AND #{last}
+	</select>
+
+	<select id="selectOneConcert" parameterType="String" resultType="concert">
+		SELECT *
+		FROM CONCERT
+	 	WHERE mt20id = #{mt20id}
+	</select>
+
 	<insert id="insertConcertInf" parameterType="concert">
 		MERGE INTO CONCERT
 				USING DUAL
@@ -69,6 +90,8 @@
 			WHEN MATCHED THEN
 				UPDATE SET
 					fcltynm = #{fcltynm},
+					mt13cnt = #{mt13cnt},
+					seatscale = #{seatscale},
 					telno = #{telno},
 					relateurl = #{relateurl}
 			WHEN NOT MATCHED THEN
@@ -76,6 +99,10 @@
 				(
 					#{fcltynm},
 					#{mt10id},
+					#{mt13cnt},
+					#{fcltychartr},
+					#{opende},
+					#{seatscale},
 					#{telno},
 					#{relateurl},
 					#{adres},
@@ -126,17 +153,18 @@
 		SELECT * FROM image WHERE MT20ID = #{mt20id} and IMAGETYPE = 1
 	</select>
 	
-	<select id="getImageList" parameterType="String" resultType="image">
-		SELECT * FROM IMAGE WHERE MT20ID = #{mt20id}
+	<select id="selectImageList" parameterType="String" resultType="image">
+		SELECT * FROM IMAGE WHERE MT20ID = #{mt20id} ORDER BY imageType ASC, imageUrl ASC
 	</select>
 	
 	<delete id="deleteImageInf" parameterType="String">
-		DELETE IMAGE WHERE mt20id = #{mt20id}
+		DELETE IMAGE WHERE mt20id = #{mt20id} 
 	</delete>
 	
 	<delete id="deleteBoxofInf">
 		DELETE BOXOFFICE
 	</delete>
+	
 </mapper>
 	
 	
