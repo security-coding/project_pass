@@ -21,7 +21,44 @@ public class PlayController {
 	@Autowired
 	PlayService playService;
 
-	@RequestMapping
+	
+	// 상영예정작	
+		@RequestMapping(value = "/now")
+		public String playNowMain(Model model) {
+
+			playService.playNowMain(model);
+			return "play/playinglist";
+
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "now/change" )
+		public ArrayList<MainDto> getNowChange(String type) throws Exception {
+			
+			ArrayList<MainDto> fileNames = new ArrayList<>(); 
+			
+			fileNames = playService.getNowChange(type);
+
+			return fileNames;
+
+		}
+
+		@ResponseBody
+		@RequestMapping(value = "now/getNextPoster" )
+		public ArrayList<MainDto> getNowNextPoster(String stNum, String index) throws Exception {
+			
+			ArrayList<MainDto> fileNames = new ArrayList<>(); 
+			
+			fileNames = playService.getNowNextPoster(stNum,index);
+
+			return fileNames;
+		}
+	
+	
+	
+	
+// 상영예정작	
+	@RequestMapping(value = "/come")
 	public String playMain(Model model) {
 
 		playService.playMain(model);
@@ -30,7 +67,7 @@ public class PlayController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/change" )
+	@RequestMapping(value = "come/change" )
 	public ArrayList<MainDto> getChange(String type) throws Exception {
 		
 		ArrayList<MainDto> fileNames = new ArrayList<>(); 
@@ -41,9 +78,8 @@ public class PlayController {
 
 	}
 
-	
 	@ResponseBody
-	@RequestMapping(value = "/getNextPoster" )
+	@RequestMapping(value = "come/getNextPoster" )
 	public ArrayList<MainDto> getNextPoster(String stNum, String index) throws Exception {
 		
 		ArrayList<MainDto> fileNames = new ArrayList<>(); 
@@ -53,15 +89,29 @@ public class PlayController {
 		return fileNames;
 	}
 	
+	
+//	상세페이지
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	public String getDetail(String mt20id, Model model) throws Exception {
+		
+		playService.getDetail(mt20id, model);
+		
+		return "play/detailpage";
+	}
+	
+	
+	
+//	검색	
 	@RequestMapping(value="/searchform")
 	public String searchform() {
 		return "play/serchform";
 	}
 	
+	
 	@RequestMapping(value="/search")
-	public String search(@RequestParam("keyword")String keyword,Model model,DetailDto detailDto) {
-		ArrayList<DetailDto> searchvalue=new ArrayList<>();
-		searchvalue=playService.getsearch(keyword,model,detailDto);
+	public String search(@RequestParam("keyword")String keyword,Model model) {
+		
+		playService.getsearch(keyword,model);
 		
 		return "play/serch";
 	}

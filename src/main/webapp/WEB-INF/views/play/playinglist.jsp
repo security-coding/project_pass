@@ -42,25 +42,21 @@
 </header>
 <body>
 	
-
+	<h1>현재 공연작</h1>
+	
 	<ul>
-		<li><a class="butn" href = "#" onclick="change(11);">전체</a></li>
-		<li><a class="butn" href = "#" onclick="change(1);">연극</a></li>
-		<li><a class="butn" href = "#" onclick="change(2);">뮤지컬</a></li>
-		<li><a class="butn" href = "#" onclick="change(3);">클레식</a></li>
-		<li><a class="butn" href = "#" onclick="change(4);">오페라</a></li>
-	    <li><a class="butn" href = "#" onclick="change(5);">무용</a></li>
-	    <li><a class="butn" href = "#" onclick="change(6);">발래</a></li>
-	    <li><a class="butn" href = "#" onclick="change(7);">국악</a></li>
-        <li><a class="butn" href = "#" onclick="change(8);">복합</a></li>
+		<li><a class="butn" href = "#" onclick="change('전체');">전체</a></li>
+		<li><a class="butn" href = "#" onclick="change('연극');">연극</a></li>
+		<li><a class="butn" href = "#" onclick="change('뮤지컬');">뮤지컬</a></li>
+		<li><a class="butn" href = "#" onclick="change('클래식');">클래식</a></li>
+		<li><a class="butn" href = "#" onclick="change('오페라');">오페라</a></li>
+	    <li><a class="butn" href = "#" onclick="change('무용');">무용</a></li>
+	    <li><a class="butn" href = "#" onclick="change('발래');">발래</a></li>
+	    <li><a class="butn" href = "#" onclick="change('국악');">국악</a></li>
+        <li><a class="butn" href = "#" onclick="change('복합');">복합</a></li>
 	</ul>
 	
-<!-- 	버튼방식 -->
-<!-- 	<div align="center" vertical-align="middle">		 -->
-<!-- 	<button  onclick="change('/pass/play/change',11);">전체</button> -->
-<!-- 	</div> -->
-<!-- 	<br> -->
-<!-- 	<br>	 -->
+
 	
 <div class="container">	
   <div class="row text-center text-lg-left">
@@ -107,7 +103,7 @@
 		$.ajax({
 			type:"POST",
 			dataType:"JSON",
-			url:"/play/change",
+			url:"/play/now/change",
 			data:({ "type" : value }),
 			success: function(data) {
 				let str ="";
@@ -149,7 +145,7 @@
 						$.ajax({
 				type:"POST",
 				dataType:"JSON",
-				url:"/play/getNextPoster",
+				url:"/play/now/getNextPoster",
 				data:({ "stNum" : stNum , "index" : index}),
 				success: function(data) {
 					let str =""; 

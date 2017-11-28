@@ -40,6 +40,7 @@
 
 </header>
 <body>
+	<h1>공연 예정작</h1>
 	
 	<ul>
 		<li><a class="butn" href = "#" onclick="change('전체');">전체</a></li>
@@ -99,7 +100,7 @@
 		$.ajax({
 			type:"POST",
 			dataType:"JSON",
-			url:"/play/change",
+			url:"/play/come/change",
 			data:({ "type" : value }),
 			success: function(data) {
 				let str ="";
@@ -140,7 +141,7 @@
 						$.ajax({
 				type:"POST",
 				dataType:"JSON",
-				url:"/play/getNextPoster",
+				url:"/play/come/getNextPoster",
 				data:({ "stNum" : stNum , "index" : index}),
 				success: function(data) {
 					let str =""; 

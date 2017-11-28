@@ -6,8 +6,50 @@
 <mapper namespace="com.pknu.pass.play.dao.PlayDao">
 	
 	
+<!-- 	현재상영작 -->
+	<select id="getNowChange"  parameterType="String" resultType="predto">
+		SELECT *
+      from(SELECT rownum rum, human.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) human )
+          where rum BETWEEN 1 and 20
+	</select>
+		
+	<select id="getNowPoster"  resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, human.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) human )
+          where rum BETWEEN 1 and 20
+	</select>
 	
-	<select id="getChange"  parameterType="String" resultType="predto">
+    <select id="getNowNextPoster" parameterType="hashMap" resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, human.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) human )
+          where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+	</select>
+	
+	<select id="getNowAllNextPoster" parameterType="String" resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, human.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) human )
+          where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+	</select>
+	
+
+<!-- 상영예정		 -->	
+		<select id="getChange"  parameterType="String" resultType="predto">
 		SELECT *
       from(SELECT rownum rum, human.*
       FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
@@ -16,7 +58,7 @@
           order by prfpdfrom asc) human )
           where rum BETWEEN 1 and 20
 	</select>
-		
+
 	<select id="getPoster"  resultType="predto">
 	SELECT *
       from(SELECT rownum rum, human.*
@@ -47,42 +89,31 @@
           where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
 	</select>
 	
-	<select id="getDetailPoster" parameterType="String" resultType="detail">
-	select imageUrl, genrenm, prfnm , mt20id
-	from image natural join concert
-	where mt20id = #{mt20id} AND imagetype = 1
+	
+	
+<!-- 	상세페이지 -->
+    <select id="getDetailPoster" parameterType="String" resultType="String" >
+	    select imageUrl
+	     from image natural join concert
+	     where mt20id = #{mt20id} 
+         order by imagetype, imagenum
 	</select>
 	
-	<select id="getDetailintroImage" parameterType="String" resultType="detail">
-	select imageUrl, genrenm, prfnm, mt20id
-	from image natural join concert
-	where mt20id=#{mt20id} and imagetype = 2
-	</select>
 	
 	<select id="getDetailInf" parameterType="String" resultType="detail">
-	select  prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime, prfage, entrpsnm, pcseguidance, dtguidance,mt20id 
-	from concert
-	where mt20id=#{mt20id}
+	   select prfnm ,prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime, prfage, entrpsnm, pcseguidance, dtguidance, la, lo
+	     from concert natural join place
+	     where mt20id=#{mt20id}
 	</select>
-	
+
+
+<!-- 	검색 -->
 	<select id="getsearch" parameterType="String" resultType="detail">
 		select prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl
 		from concert c ,image i
 		where  i.mt20id=c.mt20id and i.imagetype=1 and prfnm like '%'||#{keyword}||'%'
 	</select>
 	
-	
-<!-- 	<select id="getChange"  parameterType="String" resultType="predto"> -->
-<!-- 	SELECT * -->
-<!--       from(SELECT rownum rum, human.* -->
-<!--       FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm -->
-<!--           from image e, concert a -->
-<!--           where e.mt20id = a.mt20id and e.imagetype = 1 and a.prfpdfrom > sysdate -->
-<!--           order by prfpdfrom asc) human ) -->
-<!--           where rum BETWEEN ? and ? -->
-<!-- 	</select> -->
-
-
 
 	 
 </mapper>

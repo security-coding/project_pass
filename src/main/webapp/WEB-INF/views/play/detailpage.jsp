@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -53,7 +53,7 @@
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4">${poster.prfnm}</h1>
+          <h1 class="mt-4">${detailInf.prfnm}</h1>
 
           <!-- Author -->
 <!--          <p class="lead">
@@ -67,11 +67,11 @@
           <hr>
 
 				<div >
-					<img class="img-fluid img-thumbnail" src="${poster.imageUrl}"
-						style="width: 450; height: 372; float: left" alt=""/>
+					<img class="img-fluid img-thumbnail" src="${detailImages[0]}"
+						style="width: 300; height: 380; float: left" alt=""/>
 						<ul>
 
-
+<%--                         <li>공연명 : ${detailInf.prfnm}</li> --%>
 						<li>공연시작일 : ${detailInf.prfpdfrom} ~ 공연종료일 : ${detailInf.prfpdto}</li>
 						<li>공연시설명(공연장명) : ${detailInf.fcltynm}</li>
 						<li>공연출연진 : ${detailInf.prfcast}</li>
@@ -90,8 +90,8 @@
 		<hr>
      
       <div>
-		<c:forEach var="introImages" items="${introImages}">
-			<img class="img-fluid img-thumbnail" src="${introImages.imageUrl}" />
+		<c:forEach var="detailImage" items="${detailImages}" begin="1">
+			<img class="img-fluid img-thumbnail" src="${detailImage}" />
 
 		</c:forEach>
 	</div>
@@ -231,7 +231,7 @@
         </div>
 
       </div>
-      <!-- /.row -->
+      <!-- /.row -->  
 
     </div>
     <!-- /.container -->
