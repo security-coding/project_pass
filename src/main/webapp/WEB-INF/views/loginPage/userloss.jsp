@@ -9,8 +9,98 @@
 
 		
 <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+
 <script>
+
+let idCheck=false;
+let emailCheck = false;
+
+$(function() {
+	$("#email1").on("click", function() {
+		$.ajax({
+			type : "POST",
+			async : true,
+			dataType : 'json',
+			url : "/member/standlossid",
+			data : {
+				email1 : $("#email1").val()
+			},
+			success : function(data) {
+				let html;
+				if ($("#email1").val() != "") {
+					if (data == 1) {
+ 						$("#emailCheck").css("display","none");
+						 emailCheck=true;
+						 
+					} else{
+ 						$("#emailCheck").css("display","none");
+						 emailCheck=false;
+						 
+					}
+				} else if($("#email1").val() == ""){	
+					html = "<b>이메일을입력해주세요</b>"
+					$("#emailCheck").html(html).css("color", "red");
+					 emailCheck=false; 
+				}
+			}
+		});
+	});
+});
+
+$(function() {
+	$("#email2").on("blur", function() {
+		$.ajax({
+			type : "POST",
+			async : true,
+			dataType : 'json',
+			url : "/member/reSetPassCheck",
+			data : {
+				email2 : $("#email2").val(),
+				id:$("#id").val()
+			},
+			success : function(data) {
+				let emailHtml;
+				let idHtml;
+				if ($("#email2").val() != "" && $("#id").val() !="") {
+					if (data == 1) {
+						 idCheck=true;
+						 emailCheck=true;
+						 
+					} else{
+						idCheck=false; 
+						emailCheck=false;
+						 
+					}
+				} else if($("#email1").val() == "" && $("#id").val() ==""){	
+					idCheck=false; 
+					emailCheck=false; 
+				}
+			}
+		});
+	});
+});
+
+
+function idSearchSubmit(){
+	if(emailCheck==true){
+		return true;
+	}else if(!emailCheck){
+		alert("존재하지 않는 이메일입니다.\n다시 확인해주세요.");
+		return false;
+	}
+}
+
+function passSearchSubmit(){
+	if(emailCheck==true && idCheck==true){
+		return true;
+	}else if(emailCheck==false||idCheck==false){
+		alert("아이디 혹은 이메일이 일치하지 않습니다.");
+		return false;
+	}
+}
+
 </script>
+
 </head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -26,12 +116,13 @@
 	<h2>아이디찾기</h2>
 	<div class="col-xs-8 col-sm-6">
 		<form id="idForm" class="form-horizontal" role="form"
-			action="/member/userlossid" method="post" onsubmit="availabilityEmail()">
+			action="/member/userlossid" method="post" onsubmit="return idSearchSubmit()">
 			<!-- form -->
 			<div class="form-group">
 				<label for="email1">이메일</label> <input type="text"
 					class="form-control" id="email1" name="email1"
-					placeholder="회원가입할때 입력하신 이메일 입력" oninput="checkemail()">
+					placeholder="회원가입할때 입력하신 이메일 입력">
+				<div id="emailCheck"></div>
 			</div>
 
 			<div class="form-group text-center">
@@ -49,26 +140,25 @@
 	<h2>비밀번호 찾기</h2>
 	<div class="col-xs-8 col-sm-6">
 		<form id="idForm" class="form-horizontal" role="form"
-			action="/member/userlosspass" method="post">
+			action="/member/userlosspass" method="post" onsubmit="return passSearchSubmit()">
 			<!-- form -->
 			<div class="form-group">
 				<label for="email2">이메일</label> <input type="text"
 					class="form-control" id="email2" name="email2"
 					placeholder="회원가입할때 입력하신 이메일 입력">
+					<div id="emailCheck"></div>
 			</div>
 
 			<div class="form-group">
 				<label for="id">아이디</label> <input type="text" class="form-control"
 					id="id" name="id" placeholder="회원가입할때 입력하신 아이디 입력">
+					<div id="emailCheck"></div>
 			</div>
 
 			<div class="form-group text-center">
 				<button id="signupbtn" type="submit" class="btn btn-info">
 					비밀번호찾기<i class="fa fa-check spaceLeft"></i>
 				</button>
-				<!-- 				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)"> -->
-				<!-- 					수정취소<i class="fa fa-times spaceLeft"></i> -->
-				<!-- 				</button> -->
 			</div>
 		</form>
 	</div>
@@ -87,50 +177,5 @@
 
 <!-- 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
-	<script type="text/javascript">
-	//이메일 입력방식 선택
-	$('#selectEmail').change(function() {
-		$("#selectEmail option:selected").each(function() {
 
-			if ($(this).val() == '1') { //직접입력일 경우
-				$("#str_email").val(''); //값 초기화
-				$("#str_email").attr("disabled", false); //활성화
-			} else { //직접입력이 아닐경우
-				$("#str_email").val($(this).text()); //선택값 입력
-				$("#str_email").attr("disabled", true); //비활성화
-			}
-		});
-	});
-	
-	 $(function(){
-//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
-		 $("#loginForm").on("submit", function(){
-//	 		 event.preventDefault();
-
-			 var pass=$("#pass").val(); 
-			 var passcheck=$("#pass2").val();
-			 
-
-			 if(pass==""){
-			 	alert("패스워스를 입력하세요");
-			 	$("#pass").focus();
-			 	return false;
-			 }
-			 if(pass!=passcheck){
-				 alert("패스워드가 일치하지 않습니다")
-			 	$("#pass2").focus();
-				 return false;
-			 }
-			 
-			 $("#loginForm").submit();
-		 })
-		 
-//	 	 $("input[type=button]").on("click",function(){
-//	 		 document.location.href='';
-//	 	 })
-	 });
- 	
-	 
-		
-	</script>
 </html>

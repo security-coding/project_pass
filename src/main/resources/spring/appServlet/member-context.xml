@@ -45,5 +45,5 @@
 		</property>
 	</bean>
 	<bean id="mailService" class="com.pknu.pass.login.common.MailUtil"/>
-
+	<bean id="securityService" class="com.pknu.pass.login.common.SecurityUtil"/>
 </beans>

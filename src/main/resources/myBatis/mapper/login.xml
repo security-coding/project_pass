@@ -8,11 +8,11 @@
  SELECT PASSWORD FROM MEMBER WHERE ID=#{id}
  </select>
  
- <select id="getimageUrl" resultType="String" parameterType="String">
+ <select id="getImageUrl" resultType="String" parameterType="String">
  select imageurl from member where ID=#{id}
  </select>
  
-  <select id="loginemailCheck" resultType="String" parameterType="String">
+  <select id="logineMailCheck" resultType="String" parameterType="String">
  SELECT EMAIL FROM MEMBER WHERE email=#{email}
  </select>
  
@@ -20,19 +20,19 @@
  SELECT NVL(MAX(CERTIFY),'2') FROM MEMBER WHERE ID=#{id}
  </select>
  
- <insert id="insertuser" parameterType="String">
+ <insert id="insertUser" parameterType="String">
  	insert into MEMBER(id,password,email,certkey) values(#{id},#{pass},#{email},#{certKey})
  </insert>
  
- <update id="mypageupdate" parameterType="String">
+ <update id="myPageUpdate" parameterType="String">
  	UPDATE MEMBER set password=#{pass},email=#{email} WHERE ID=#{id}
  </update>
  
- <update id="updateprofile" parameterType="String">
+ <update id="updateProfile" parameterType="String">
  	UPDATE MEMBER set imageurl=#{imageUrl} WHERE ID=#{id}
  </update>
  
- <select id="myemail" resultType="String" parameterType="String">
+ <select id="myEmail" resultType="String" parameterType="String">
  	SELECT email FROM MEMBER WHERE ID=#{id}
  </select>
  <select id="checkJoin" resultType="login" parameterType="String">
@@ -43,7 +43,7 @@
 	UPDATE MEMBER set certify=1 where CERTKEY=#{certkey}
 </update>
 
-<select id="userlossid" parameterType="String" resultType="String">
+<select id="userLossId" parameterType="String" resultType="String">
 	SELECT ID FROM MEMBER where email=#{email}
 </select>
 <update id="updatePass" parameterType="String">
