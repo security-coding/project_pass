@@ -8,4 +8,6 @@ public interface CommentService {
 	
 	public List<CommentDto> getComments(int mt20id, int commentRow);
 	public void insertComment(CommentDto comment);
+	public void replyComment(CommentDto article);
+
 }

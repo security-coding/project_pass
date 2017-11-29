@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pknu.pass.comment.dao.CommentDao;
 import com.pknu.pass.comment.dto.CommentDto;
@@ -26,7 +27,13 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public void insertComment(CommentDto comment) {
+		System.out.println(comment.getMt20id());
 		commentDao.insertComment(comment);			
+	}
+
+	@Override
+	public void replyComment(CommentDto mt20id) {
+		commentDao.replyComment(mt20id);
 	}
 	
 	

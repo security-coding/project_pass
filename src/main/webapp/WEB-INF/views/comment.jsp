@@ -15,6 +15,7 @@ $.ajaxSetup({
 	dataType : "json",
 	error : function(xhr){
 		alert("error html = " + xhr.statusText);
+		console.log($("#commentContent").val());
 	}
 });
 
@@ -25,7 +26,8 @@ $(document).ready(function(){
 // 			data{}에서는 EL을 ""로 감싸야함..그외에는 그냥 사용
 			data:{				
 				commentContent:$("#commentContent").val(),
-				mt20id:"${play.mt20id}"    
+// 				mt20id:"${play.mt20id}"    
+				mt20id:"PF140536"    
 			},
 			success:function(data){
 				if(data.result==1){
@@ -81,13 +83,13 @@ function showHtml(data,commPageNum){
 	     <tr>
 		     <td colspan="4">
 		   	   <textarea rows="5" cols="70" id="commentContent"></textarea><br><br>
-			   <c:if test="${id ==null}">
+			   <c:if test="${id !=null}">
 		    	  <input type="button" value="comment 쓰기" disabled="disabled">    	  
 		       </c:if> 
-		       <c:if test="${id !=null}">
+		       <c:if test="${id ==null}">
 	    	 	 <input type="button" value="comment 쓰기" id="commentWrite">
 	     	   </c:if>	     	  
-	     	   <input type="button" value="comment 읽기 [${play.commentCount }]" onclick="getComment(1,event)" id="commentRead">	     	       
+	     	   <input type="button" value="comment 읽기 [${ commentCount }]" onclick="getComment(1,event)" id="commentRead">	     	       
 		   </td> 
 		 </tr> 		
 	 </table>	
@@ -100,5 +102,41 @@ function showHtml(data,commPageNum){
 		<input type="hidden" id="commPageNum" value="1">
 	</div>	
 	</form>
+	
+<table border="1" width="700" cellpadding="2" cellspacing="2" align="center"> 
+    <tr height="30" > 
+      <td align="center"  width="100"  >작성자 </td> 
+      <td align="center"  width="400" >댓글내용 </td> 
+      <td align="center"  width="150" >작성일</td> 
+      <td align="center"  width="50" >삭제 </td>          
+    </tr>
+    
+   <c:forEach var="comment" items="${commentList}">  <!--변수와 콜렉션객체  -->
+   <tr height="20"> <!-- 테이블 row 높이  -->
+    <td align="center"  width="100" > <!-- 테이블 가로 한칸 센터 너비:100 -->
+	  <c:out value="${comment.mt20id}"/>	   <!-- 그 안에 데이터출력 아직 설정안한 comment.mt20id -->
+	</td>
+    <td  width="400" >  <!-- 테이블 가로 한칸 너비 :400 -->
+      <c:if test="${comment.depth > 0}"> <!-- 그 안에 if문 comment dto 안에 있는 depth를 꺼내와서 0보다 크다면 -->
+	  	<img src="images/image3.png" width="${10 * comment.depth}"  height="16"> <!-- 밑에 요놈을 이미지파일 부르고 너비는 10*depth인걸로 봐서는 대댓글이다. 높이는 16 -->
+	    <img src="images/cut.gif"> <!-- 이미지 불러서 위에꺼 옆 붙인다? -->
+	  </c:if>
+	  <c:if test="${comment.depth == 0}"> <!-- 만약 depth가 0 이면  -->
+	    <img src="images/image3.png" width="0"  height="16"> <!-- image3.png부르고 너비는 0이므로 상위 댓글을 추가한다. -->
+	  </c:if>         
+      <a href="/comment?mt20id=${comment.mt20id}&pageNum=${pageNum}"> <!-- a태그를 추가한다. 여기는 게시판리스트 글 선택할때 이동하는 부분이니까 댓글기능에서는 필요없어보인다.  -->
+          ${comment.title}<c:if test="${comment.commentCount != 0}">(${comment.commentCount})</c:if></a> 
+ 
+	</td>
+    <td align="center"  width="150">${comment.writeDate}</td>
+    <td align="center"  width="50"><a href=""></td>
+  </tr>
+  </c:forEach>
+  <tr>	  
+      <td colspan="5" align="center" height="40">	 
+	  ${pageCode}
+	  </td>
+  </tr>
+</table>
 </body>
 </html>

@@ -1,11 +1,14 @@
 package com.pknu.pass.comment.dto;
 
 public class CommentDto {
-	private int commentNum;
-	private String id;
-	private String commentContent;
-	private String commentDate;
+
+	private int commentNum; 
+	private String id;    
+	private String commentContent;  
+	private String commentDate ;  
 	private int mt20id;
+	private int groupId;
+	private int depth;
 	
 	public int getCommentNum() {
 		return commentNum;
@@ -25,26 +28,42 @@ public class CommentDto {
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
-	
 	public String getCommentDate() {
 		return commentDate;
 	}
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
 	}
+	
 	public int getMt20id() {
 		return mt20id;
 	}
 	public void setMt20id(int mt20id) {
 		this.mt20id = mt20id;
 	}
+	public int getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "CommentDto [commentNum=" + commentNum + ", id=" + id + ", commentContent=" + commentContent
-				+ ", commentDate=" + commentDate + ", mt20id=" + mt20id + "]";
+				+ ", commentDate=" + commentDate + ", mt20id=" + mt20id + ", groupId=" + groupId + ", depth="
+				+ depth + "]";
 	}
-	
-	
 
+	
+	
+	
+	
 }
