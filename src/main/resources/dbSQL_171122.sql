@@ -26,7 +26,11 @@ create table PLACE
 	FCLTYNM VARCHAR2(150) default NULL not null,
 	MT10ID VARCHAR2(10) not null
 		primary key,
-	TELNO VARCHAR2(15),
+	MT13CNT VARCHAR2(10) NOT NULL ,
+	FCLTYCHARTR VARCHAR2(20) NOT NULL ,
+	OPENDE VARCHAR2(4) NOT NULL ,
+	SEATSCALE VARCHAR2(10),
+	TELNO VARCHAR2(20),
 	RELATEURL VARCHAR2(200) default NULL,
 	ADRES VARCHAR2(200) default NULL not null,
 	SIDONM VARCHAR2(20) not null,
@@ -34,6 +38,7 @@ create table PLACE
 	LO VARCHAR2(100) default NULL not null
 )
 /
+
 
 alter table CONCERT
 	add constraint FK_CONCERT_MT10ID
@@ -45,12 +50,14 @@ create table MEMBER
 (
 	ID VARCHAR2(20) not null
 		primary key,
-	PASSWORD VARCHAR2(20) not null,
+	PASSWORD VARCHAR2(65) not null,
 	EMAIL VARCHAR2(100) not null,
-	CERT_KEY VARCHAR2(36) not null,
-	CERTIFY NUMBER(1) not null
+	CERTKEY VARCHAR2(36) not null,
+	CERTIFY NUMBER(1) default 0 not null,
+	GRADE NUMBER(1) DEFAULT 1 NOT NULL
 )
 /
+
 
 create table BOXOFFICE
 (

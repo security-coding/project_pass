@@ -1,6 +1,9 @@
 package com.pknu.pass.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -10,12 +13,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.pknu.pass.admin.dao.AdminDao;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
@@ -23,6 +28,7 @@ import com.pknu.pass.play.dto.ImageDto;
 import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminDao adminDao;
@@ -50,7 +56,7 @@ public class AdminServiceImpl implements AdminService {
 			Document xmlDoc = getXMLInf(url.toString());
 			Element root = xmlDoc.getDocumentElement();
 
-			NodeList nodeList = root.getElementsByTagName("db");
+			NodeList nodeList = root.getElementsByTagName("db");//"db"??
 
 			if (nodeList.getLength() == 0)
 				return;
@@ -117,10 +123,10 @@ public class AdminServiceImpl implements AdminService {
 				}
 			}
 
-			// 怨듭뿰 긽�꽭�젙蹂� DB �뾽濡쒕뱶
+			// 공연 상세정보 DB 업로드
 			adminDao.insertConcertInf(concert);
 
-			// �궗吏� �뾽濡쒕뱶 遺�遺�
+			// 사진 업로드 부분(!poster.contains("kopis")??
 			if (!poster.contains("kopis") || imgUpdateCheck(mt20id, poster, session)) {
 				imageList = fileUtil.uploadImageFile(mt20id, imageUrlList, session);
 
@@ -137,9 +143,9 @@ public class AdminServiceImpl implements AdminService {
 
 		ArrayList<ImageDto> imageList = adminDao.imgUpdateCheck(mt20id);
 
-		// 議댁옱�븯�뒗 寃쎌슦 Insert媛� �븳踰덉씠�씪�룄 �씠猷⑥뼱吏� �젙蹂�
+		// 존재하는 경우 Insert가 한번이라도 이루어진 정보
 		if (imageList.size() > 0) {
-			// 理쒖떊 �젙蹂댁� DB �젙蹂닿� �룞�씪 �븷 寃쎌슦 false Return , �룞�씪�븯吏� �븡�쓣 寃쎌슦 湲곗〈 DB �뙆�씪 �궘�젣�썑 true Return
+			// 최신 정보와 DB 정보가 동일 할 경우 false Return , 동일하지 않을 경우 기존 DB 파일 삭제후 true Return
 			if (uploadDate.equals(imageList.get(0).getUploadDate()))
 				return false;
 			else {
@@ -199,14 +205,18 @@ public class AdminServiceImpl implements AdminService {
 				Element root = xmlDoc.getDocumentElement();
 
 				Element dbElement = (Element) root.getElementsByTagName("db").item(0);
-
+	
+				String mt13cnt = dbElement.getElementsByTagName("mt13cnt").item(0).getTextContent();
+				String fcltychartr = dbElement.getElementsByTagName("fcltychartr").item(0).getTextContent();
+				String opende = dbElement.getElementsByTagName("opende").item(0).getTextContent();
+				String seatscale = dbElement.getElementsByTagName("seatscale").item(0).getTextContent();
 				String telno = dbElement.getElementsByTagName("telno").item(0).getTextContent();
 				String relateurl = dbElement.getElementsByTagName("relateurl").item(0).getTextContent();
 				String adres = dbElement.getElementsByTagName("adres").item(0).getTextContent();
 				String la = dbElement.getElementsByTagName("la").item(0).getTextContent();
 				String lo = dbElement.getElementsByTagName("lo").item(0).getTextContent();
 
-				place.setDetail(telno, relateurl, adres, la, lo);
+				place.setDetail(mt13cnt, fcltychartr, opende, seatscale, telno, relateurl, adres, la, lo);
 				adminDao.insertPlaceInf(place);
 			} catch (Exception e) {
 			}
@@ -215,14 +225,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Scheduled(cron="0 00 01 * * *")
-	// �삤�쟾 1�떆�뿉 諛뺤뒪�삤�뵾�뒪 �젙蹂� �뾽�뜲�씠�듃 �릺�룄濡� �뒪耳�伊대윭 �꽕�젙
+	// 오전 1시에 박스오피스 정보 업데이트 되도록 스케쥴러 설정
 	public void getBoxofficeInf() {
-		// {�뿰洹�, 裕ㅼ�而�, �겢�옒�떇&�삤�럹�씪, 臾댁슜&諛쒕젅, 援��븙&蹂듯빀}
+		// {연극, 뮤지컬, 클래식&오페라, 무용&발레, 국악&복합}
 		String[] catecodeArr = { "YK", "MU", "CCO", "MMB", "KKB" };
 		String ststype = "week";
 
 		try {
-			// 二쇨컙 �삤�뵾�뒪 理쒕� �닚�쐞 20�쐞 But. 遺꾩빞�뿉 �뵲�씪 20�쐞源뚯� �븞�쑉�뒗 寃쎌슦媛� �엳�쓬.
+			// 주간 오피스 최대 순위 20위 But. 분야에 따라 20위까지 안뜨는 경우가 있음.
 			adminDao.deleteBoxofInf();
 			for (String catecode : catecodeArr) {
 				StringBuffer url = new StringBuffer("http://www.kopis.or.kr/openApi/restful/boxWeekMonthly");
@@ -257,7 +267,7 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
-	// XML File �뙆�떛�븯�뒗 �옉�뾽
+	// XML File 파싱하는 작업
 	private Document getXMLInf(String url) {
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -269,5 +279,36 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return null;
 	}
+
+	
+	@Override
+	public List<ConcertDto> selectConcert(PagingDto paging) {
+		return adminDao.selectConcert(paging);
+	}
+
+	@Override
+	public int selectTotalConcert() {
+		return adminDao.selectTotalConcert();
+	}
+
+	@Override
+	public ConcertDto selectOneConcert(String mt20id) {
+		return adminDao.selectOneConcert(mt20id);
+	}
+
+	@Override
+	public List<ImageDto> selectImageList(String mt20id) {
+		return adminDao.selectImageList(mt20id);
+	}
+
+	@Override
+	public List<PlaceDto> selectPlace(PagingDto paging) {
+		return adminDao.selectPlace(paging);
+	}
+
+	@Override
+	public int selectTotalPlace(PagingDto paging) {
+		return adminDao.selectTotalPlace(paging);
+	}	
 
 }

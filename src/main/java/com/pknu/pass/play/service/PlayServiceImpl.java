@@ -1,15 +1,13 @@
 package com.pknu.pass.play.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.play.dao.PlayDao;
-import com.pknu.pass.play.dto.ImageDto;
+import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainDto;
 
 @Service
@@ -23,23 +21,24 @@ public class PlayServiceImpl implements PlayService {
 
 		ArrayList<MainDto> posters = new ArrayList<>();
 		posters = playDao.getPoster();
-//		System.out.println("Á¦¸ñ :"+posters.get(0).getPrfnm());
-//		System.out.println("Á¦¸ñ :"+posters.get(1).getPrfnm());
-//		System.out.println("Á¦¸ñ :"+posters.get(2).getPrfnm());
+//		System.out.println("ì œëª© :"+posters.get(0).getPrfnm());
+//		System.out.println("ì œëª© :"+posters.get(1).getPrfnm());
+//		System.out.println("ì œëª© :"+posters.get(2).getPrfnm());
 		model.addAttribute("playList", posters);
+		System.out.println(posters+"+++++++++++++++++++++++++++++++");
 	}
 
 	@Override
 	public ArrayList<MainDto> getChange(String type) {
 		ArrayList<MainDto> posters = new ArrayList<>();
-		String pType1 = "¿¬±Ø";
-		String pType2 = "¹ÂÁöÄÃ";
-		String pType3 = "Å¬·¡½Ä";
-		String pType4 = "¿ÀÆä¶ó";
-		String pType5 = "¹«¿ë";
-		String pType6 = "¹ß·¡";
-		String pType7 = "±¹¾Ç";
-		String pType8 = "º¹ÇÕ";
+		String pType1 = "ì—°ê·¹";
+		String pType2 = "ë®¤ì§€ì»¬";
+		String pType3 = "í´ë˜ì‹";
+		String pType4 = "ì˜¤í˜ë¼";
+		String pType5 = "ë¬´ìš©";
+		String pType6 = "ë°œë˜";
+		String pType7 = "êµ­ì•…";
+		String pType8 = "ë³µí•©";
 
 		if (type.equals("11")) {
 			posters = playDao.getPoster();
@@ -71,4 +70,37 @@ public class PlayServiceImpl implements PlayService {
 		}
 		return posters;
 	}
+
+	@Override
+	public ArrayList<DetailDto> getDetail(String mt20id,Model model,DetailDto detailDto) {
+		
+		DetailDto detailInf=new DetailDto();
+		DetailDto poster = new DetailDto();
+		ArrayList<DetailDto> introImages=new ArrayList<>();
+
+		poster=playDao.getDetailPoster(mt20id);
+		introImages=playDao.getDetailintroImage(mt20id);
+		detailInf=playDao.getDetailInf(mt20id);
+		
+		System.out.println(poster+"+++++++++++detailposters");
+		System.out.println(introImages+"+++++++++++detailIntroImage");
+		System.out.println(detailInf+"++++++++++++++++++++++++++detailInf");
+		model.addAttribute("poster",poster);
+		model.addAttribute("introImages",introImages);
+		model.addAttribute("detailInf",detailInf);
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<DetailDto> getsearch(String keyword, Model model,DetailDto detailDto) {
+		ArrayList<DetailDto> value=new ArrayList<>();
+		value=playDao.getsearch(keyword);
+		System.out.println(value);
+		model.addAttribute("keyword",value);
+		return null;
+	}
+	
+	
+	
 }
