@@ -27,5 +27,8 @@ public interface AdminDao {
 	ConcertDto selectOneConcert(String mt20id);
 	List<ImageDto> selectImageList(String mt20id);
 	
+	List<PlaceDto> selectPlace(PagingDto paging);
+	int selectTotalPlace(PagingDto paging);
+	
 }
 

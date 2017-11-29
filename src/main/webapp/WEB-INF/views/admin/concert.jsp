@@ -12,6 +12,59 @@
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
+    
+    <style>
+    		.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
+}
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -71,8 +124,20 @@
             <h1 class="page-header">공연 목록</h1>
 
             <div class="placeholders">
-                <div class="pull-right">
-                    <span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
+                <div>
+                		<div class="col-md-2 col-md-offset-2">
+                			</br>
+                			<span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
+                		</div>		
+                		<div class="col-md-5 col-md-offset-5">
+            				<form action="" class="search-form">
+              			 	 <div class="form-group has-feedback">
+            						<label for="search" class="sr-only">Search</label>
+            						<input type="text" class="form-control" name="search" id="search" placeholder="search">
+              					<span class="glyphicon glyphicon-search form-control-feedback"></span>
+           		 			</div>
+           				</form>
+        				</div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="placeholder">

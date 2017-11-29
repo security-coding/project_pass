@@ -1,7 +1,9 @@
 package com.pknu.pass.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -298,7 +300,15 @@ public class AdminServiceImpl implements AdminService {
 	public List<ImageDto> selectImageList(String mt20id) {
 		return adminDao.selectImageList(mt20id);
 	}
-	
-	
+
+	@Override
+	public List<PlaceDto> selectPlace(PagingDto paging) {
+		return adminDao.selectPlace(paging);
+	}
+
+	@Override
+	public int selectTotalPlace(PagingDto paging) {
+		return adminDao.selectTotalPlace(paging);
+	}	
 
 }
