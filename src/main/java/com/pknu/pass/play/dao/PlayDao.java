@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainDto;
+import com.pknu.pass.play.dto.PlaceDto;
 
 public interface PlayDao {
 
@@ -36,5 +37,6 @@ public interface PlayDao {
 	//검색
 	public ArrayList<DetailDto> getsearch(String keyword);
 
-	
+	//지도
+	public ArrayList<PlaceDto> getNearMap(HashMap<String, String> lalo);
 }

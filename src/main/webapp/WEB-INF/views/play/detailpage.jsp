@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
 <!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 
 </head>
 <body>
@@ -245,8 +245,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
   </body>
 </html>

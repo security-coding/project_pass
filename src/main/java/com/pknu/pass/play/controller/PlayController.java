@@ -2,6 +2,8 @@ package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,6 +128,35 @@ public class PlayController {
 		playService.getsearch(keyword,model);
 		
 		return "play/serch";
+	}
+	
+	//지도 테스트
+	@RequestMapping(value = "/address")
+	public String playAddressTest() {
+
+		
+		return "play/addresstest";
+
+	}
+	
+	
+	@RequestMapping(value = "/result")
+    public String MovieJSONMain(String la, String lo, Model model) {
+         
+            System.out.println("위도"+la);
+            System.out.println("경도"+lo);
+            playService.getNearMap(la,lo,model);
+            
+	return "play/nearmap";
+	}
+	
+//	테스트뷰
+	@RequestMapping(value = "/listtest")
+	public String listTest() {
+
+		
+		return "play/playingtest";
+
 	}
 	
 }

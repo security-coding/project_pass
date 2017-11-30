@@ -25,4 +25,7 @@ public interface PlayService {
 
 	public void getsearch(String keyword, Model model);
 	
+	public void getNearMap(String la, String lo, Model model); 
+		
+	
 }

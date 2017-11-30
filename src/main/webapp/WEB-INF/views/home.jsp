@@ -15,6 +15,8 @@
 <!-- 		<img src="http://localhost:8080/resources/upload/poster/PF_PF140315_171109_114524.gif" /> -->
 
 
+    
+
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
 
@@ -47,7 +49,19 @@
 		// marker.setMap(null);
 		
 		
-	
+	    
+		let geocoder = new daum.maps.services.Geocoder();
+
+        let callback = function(result, status) {
+      if (status === daum.maps.services.Status.OK) {
+       console.log(result);
+       console.log(status);
+       console.log(result.x);
+          }
+      };
+
+       geocoder.addressSearch('부산광역시 남구 용당동 331', callback);
+		
 		
 	</script>
 </body>

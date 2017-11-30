@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainDto;
+import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -18,7 +19,7 @@ public class PlayServiceImpl implements PlayService {
 	PlayDao playDao;
 
 	
-//현제 상영작	
+//현재 상영작	
 	@Override
 	public void playNowMain(Model model) {
 
@@ -139,6 +140,23 @@ public class PlayServiceImpl implements PlayService {
 		
 		model.addAttribute("keyword",value);
 		
+	}
+
+
+	@Override
+	public void getNearMap(String la, String lo, Model model) {
+		
+		HashMap<String, String> lalo=new HashMap<>();
+		lalo.put("la", la);
+		lalo.put("lo", lo);
+		
+		ArrayList<PlaceDto> maps=playDao.getNearMap(lalo);
+		for(int i=0; i<maps.size() ; i++){
+		System.out.println("공연시설 : "+maps.get(i).toString());
+		}
+		model.addAttribute("LA",la);
+		model.addAttribute("LO",lo);
+		model.addAttribute("maps",maps);
 	}
 	
 }
