@@ -254,11 +254,11 @@ public class AdminServiceImpl implements AdminService {
 					String cate = boxofElement.getElementsByTagName("cate").item(0).getTextContent();
 					String prfplcnm = boxofElement.getElementsByTagName("prfplcnm").item(0).getTextContent();
 					String prfnm = boxofElement.getElementsByTagName("prfnm").item(0).getTextContent();
-					String rnum = boxofElement.getElementsByTagName("rnum").item(0).getTextContent();
+					int rnum = Integer.parseInt(boxofElement.getElementsByTagName("rnum").item(0).getTextContent());
 					String mt20id = boxofElement.getElementsByTagName("mt20id").item(0).getTextContent();
 
 					adminDao.insertBoxofInf(
-							new BoxofficeDto(area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id));
+							new BoxofficeDto(area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, catecode, mt20id));
 				}
 			}
 		} catch (Exception e) {
@@ -309,6 +309,19 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int selectTotalPlace(PagingDto paging) {
 		return adminDao.selectTotalPlace(paging);
-	}	
+	}
 
+	@Override
+	public Map<String, ArrayList<BoxofficeDto>> selectBoxoffice() {
+		Map<String, ArrayList<BoxofficeDto>> map = new HashMap<>();
+		String[] catecodeArr = { "YK", "MU", "CCO", "MMB", "KKB" };
+		
+		for(String catecode : catecodeArr)
+			map.put(catecode, adminDao.selectBoxoffice(catecode));
+		
+		return map;
+	}	
+	
+	
+	
 }

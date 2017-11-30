@@ -45,6 +45,13 @@
 						) P )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
+	
+	<select id="selectBoxoffice" parameterType="String" resultType="boxof">
+		SELECT * 
+		FROM BOXOFFICE
+		WHERE catecode = #{catecode}
+		ORDER BY RNUM
+	</select>
 
 	<insert id="insertConcertInf" parameterType="concert">
 		MERGE INTO CONCERT
@@ -157,6 +164,7 @@
 					#{prfplcnm}, 
 					#{prfnm},    
 					#{rnum},
+					#{catecode},
 					#{mt20id}
 				)
 	</insert>

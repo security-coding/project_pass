@@ -1,6 +1,9 @@
 package com.pknu.pass.admin.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
 import com.pknu.pass.common.dto.PagingDto;
+import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
 import com.pknu.pass.play.dto.PlaceDto;
@@ -72,19 +76,17 @@ public class AdminController {
 	
 	@RequestMapping(value = "/select/concert/{mt20id}")
 	public String selectOneConcert(Model model,@PathVariable String mt20id) {
-		System.out.println(mt20id);
-		
 		ConcertDto concert = adminService.selectOneConcert(mt20id);
 		List<ImageDto> imageList = adminService.selectImageList(mt20id);
 		
 		model.addAttribute("concert",concert);
+		model.addAttribute("imageList", imageList);
 		
 		return "admin/concertDetail";
 	}
 	
 	@RequestMapping(value = "/select/place")
 	public String selectPlace(Model model, PagingDto paging) {
-		
 		List<PlaceDto> placeList = adminService.selectPlace(paging);
 		paging.setTotal(adminService.selectTotalPlace(paging));
 		
@@ -92,5 +94,14 @@ public class AdminController {
 		model.addAttribute("paging", paging);
 		
 		return "admin/place";
+	}
+	
+	@RequestMapping(value = "/select/boxoffice")
+	public String selectBoxoffice(Model model) {
+		Map<String,ArrayList<BoxofficeDto>> paramMap = adminService.selectBoxoffice();
+		
+		model.addAttribute("boxof",paramMap);
+		
+		return "admin/boxoffice";
 	}
 }

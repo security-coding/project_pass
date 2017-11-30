@@ -29,6 +29,7 @@ public interface AdminDao {
 	
 	List<PlaceDto> selectPlace(PagingDto paging);
 	int selectTotalPlace(PagingDto paging);
+	ArrayList<BoxofficeDto> selectBoxoffice(String catecode);
 	
 }
 
