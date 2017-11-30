@@ -66,7 +66,7 @@ public class PlayController {
 	
 	@RequestMapping(value="/searchform")
 	public String searchform() {
-		return "play/serchform";
+		return "play/searchform";
 	}
 	
 	@RequestMapping(value="/search")
@@ -74,7 +74,7 @@ public class PlayController {
 		ArrayList<DetailDto> searchvalue=new ArrayList<>();
 		searchvalue=playService.getsearch(keyword,model,detailDto);
 		
-		return "play/serch";
+		return "play/search";
 	}
 	
 }

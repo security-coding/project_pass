@@ -54,6 +54,7 @@ create table MEMBER
 	EMAIL VARCHAR2(100) not null,
 	CERTKEY VARCHAR2(36) not null,
 	CERTIFY NUMBER(1) default 0 not null,
+    profile VARCHAR(100),
 	GRADE NUMBER(1) DEFAULT 1 NOT NULL
 )
 /
@@ -93,15 +94,12 @@ create table IMAGE
 )
 /
 
-DROP TABLE BOXOFFICE;
-
--- 공연 테이블 지우기 전에
 ALTER TABLE CONCERT DROP CONSTRAINT FK_CONCERT_MT10ID;
 
 drop TABLE PLACE;
 drop TABLE MEMBER;
 
--- 공연 테이블 다시 업데이트 한 후
+-- 공연 ?��?���? ?��?�� ?��?��?��?�� ?�� ?��
 ALTER TABLE CONCERT
   ADD CONSTRAINT CONCERT_PLACE_MT10ID_FK FOREIGN KEY (mt10id)
 REFERENCES PLACE (mt10id) ON DELETE CASCADE;

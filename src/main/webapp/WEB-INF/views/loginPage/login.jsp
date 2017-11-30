@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="navbar" class="navbar-collapse collapse">
+<!-- 	<div id="navbar" class="navbar-collapse collapse"> -->
 		<form class="navbar-form navbar-right" role="form" method="post" action="/member/login">
 			<div class="form-group">
 				<!-- modal 구동 버튼 (trigger) -->
@@ -15,6 +15,6 @@
 					data-target="#myModal">로그인</button>
 				<button type="button" class="btn btn-primary"
 					onclick="document.location.href='joinForm'">회원가입</button>
-			</div>
+<!-- 			</div> -->
 </body>
 </html>

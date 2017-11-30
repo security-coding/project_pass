@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -12,8 +13,15 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
+
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/css/**" location="/resources/css/" />
+	<mvc:resources mapping="/images/**" location="/resources/images/" />
+	<mvc:resources mapping="/js/**" location="/resources/js/" />
+	<mvc:resources mapping="/fonts/**" location="/resources/fonts/" />
+	<mvc:resources mapping="/loginpack/**" location="/resources/loginpack/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -26,9 +34,10 @@
 
 	<context:component-scan base-package="com.pknu.pass.login" />
 
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
+		<property name="port" value="587"/>
 		<property name="username" value="a06729@gmail.com" />
 		<property name="password" value="aa5180292" />
 		<property name="javaMailProperties">
@@ -40,6 +49,6 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="mailService" class="com.pknu.pass.login.common.MailUtil" />
-
+	<bean id="mailService" class="com.pknu.pass.login.common.MailUtil"/>
+	<bean id="securityService" class="com.pknu.pass.login.common.SecurityUtil"/>
 </beans>

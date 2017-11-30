@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pknu.pass.login.common.MailUtil;
+import com.pknu.pass.login.common.SecurityUtil;
 import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.login.dto.LoginDto;
 
@@ -20,45 +21,82 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	LoginDao logindao;
 
+	@Autowired
+	SecurityUtil securityUtil;
+
 	@Override
 	public void insertUser(LoginDto logindto) {
+		System.out.println(logindto.getPassword());
 		String certKey = UUID.randomUUID().toString().replaceAll("-", "");
+		String SecurityPass = securityUtil.encrypt(logindto.getPassword());
 		logindto.setCertKey(certKey);
+		logindto.setPassword(SecurityPass);
 
 		logindao.insertUser(logindto);
+
+		System.out.println(logindto.getPassword() + "비밀번호");
 
 		mailUtil.sendMail(certKey, logindto.getEmail());
 	}
 
-	@Override
 
-	public String login(String id, String pass,HttpSession session, Model model) {
-		String imageUrl=logindao.getimageUrl(id);
-		String dbPassCheck=logindao.loginCheck(id);
-		int dbCertifyCheck=logindao.certifyCheck(id);
-		String view=null;
-		int dbCertifyCheckNo=0;
-		int passFail=0;
-		int Notmember=0;
+	@Override
+	public String login(String id, String pass, HttpSession session, Model model) {
+		String view = null;
+		LoginDto user = null;
 		
-		if (dbPassCheck != null && dbCertifyCheck == 1) {
-			if (dbPassCheck.equals(pass)) {// 로그인성공
-				session.setAttribute("id", id);
-				model.addAttribute("id", id);
-				model.addAttribute("imageUrl", imageUrl);
+		user = logindao.getUser(id);//id가 있으면 전부 가져온다. 
+		
+		int dbCertifyCheckNo = 0;// 메일 인증 않함.
+		int passFail = 0;// 비밀번호 실패.
+		int Notmember = 0;// 회원가입 신청안함.
+		int loginBan = 0;// 불량계정 정지.
+		
+		if(user != null) {
+			String password = user.getPassword();
+			String profile=user.getProfile();
+			int certify = user.getCertify();
+			int grade = user.getGrade();
+			
+			if(certify == 1) {
+				switch (grade) {//grade 권한: 0=밴 1=일반회원 2=관리자 
+				case 0://밴
+					model.addAttribute("loginBan", loginBan);
+					view = "loginPage/loginFail";
+					break;
+				case 1://일반 회원
+					if (password.equals(securityUtil.encrypt(pass))) {
+						session.setAttribute("id", id);
+						session.setAttribute("imageUrl", profile);
+						model.addAttribute("id",id);
+						model.addAttribute("imageUrl",profile);
+						view = "loginPage/main";
+					} else {// 비밀번호 실패
+						model.addAttribute("passFail", passFail);
+						view = "loginPage/loginFail";
+					}
+					break;
+				case 2://관리자
+					if (password.equals(securityUtil.encrypt(pass))) {
+						session.setAttribute("id", id);
+						view = "admin/main";
+					} else{// 비밀번호 실패
+						model.addAttribute("passFail", passFail);
+						view = "loginPage/loginFail";
+					}
+					break;
+				default:
+					break;
+				}
+			} else if (certify == 0) {//회원가입 인증이 되지 않았음
+				model.addAttribute("dbCertify", dbCertifyCheckNo);
 				view = "loginPage/main";
-			} else {// 비밀번호 실패
-				model.addAttribute("passFail", passFail);
-				view = "loginPage/loginFail";
 			}
-		} else if (dbPassCheck != null && dbCertifyCheck == 0) {// 이메일인증 않함
-			model.addAttribute("dbCertify", dbCertifyCheckNo);
-			view = "loginPage/main";
-		} else if (dbPassCheck == null && dbCertifyCheck == 2) {// 회원가입
+		} else {//아이디가 존재하지 않을때
 			model.addAttribute("Notmember", Notmember);
 			view = "loginPage/loginFail";
 		}
-		System.out.println(session.getAttribute("id"));
+		
 		return view;
 	}
 
@@ -83,9 +121,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public int joinEmailCheck(String inputemail, String selectaddress) {
+	public int joineMailCheck(String inputemail, String selectaddress) {
 		String result = inputemail + "@" + selectaddress;
-		String dbjoinemailCheck = logindao.loginemailCheck(result);
+		String dbjoinemailCheck = logindao.logineMailCheck(result);
 		if (dbjoinemailCheck != null) {
 			return 2;
 		} else {
@@ -94,36 +132,36 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String mypageId(HttpSession session,Model model,String myemail,LoginDto loginDto) {
-//		session.setAttribute("id",session.getAttribute("id"));
+	public void myPageId(HttpSession session, Model model, String myemail, LoginDto loginDto) {
+		// session.setAttribute("id",session.getAttribute("id"));
 		String imageUrl;
-		loginDto.setId((String)session.getAttribute("id"));
-		String id=loginDto.getId();
-		String mail=logindao.myemail(loginDto);
-		int idx=mail.indexOf("@");
-		String mailid=mail.substring(0,idx);
-		imageUrl=logindao.getimageUrl(id);
-		
-		model.addAttribute("imageUrl",imageUrl);
-		model.addAttribute("id",session.getAttribute("id"));
-		model.addAttribute("email",mailid);
-		return null;
+		loginDto.setId((String) session.getAttribute("id"));
+		String id = loginDto.getId();
+		String mail = logindao.myEmail(loginDto);
+		int idx = mail.indexOf("@");
+		String mailid = mail.substring(0, idx);
+		imageUrl = logindao.getImageUrl(id);
+
+		model.addAttribute("imageUrl", imageUrl);
+		model.addAttribute("id", session.getAttribute("id"));
+		model.addAttribute("email", mailid);
+
 	}
 
 	@Override
-	public String mypageUpdate(HttpSession session, LoginDto logindto) {
+	public void myPageUpdate(HttpSession session, LoginDto logindto) {
 		logindto.setId((String) session.getAttribute("id"));
-		logindao.mypageUpdate(logindto);
-		return null;
-	}
-	
-	@Override
-	public void updateprofile(HttpSession session, String srcinput, LoginDto logindto) {
-		logindto.setId((String)session.getAttribute("id"));
-		logindto.setImageUrl(srcinput);
-		logindao.updateprofile(logindto);
+		logindto.setPassword(securityUtil.encrypt(logindto.getPassword()));
+		logindao.myPageUpdate(logindto);
+
 	}
 
+	@Override
+	public void updateProfile(HttpSession session, String srcinput, LoginDto logindto) {
+		logindto.setId((String) session.getAttribute("id"));
+		logindto.setProfile(srcinput);
+		logindao.updateProfile(logindto);
+	}
 
 	@Override
 	public int checkJoin(String certKey, Model model) {
@@ -151,16 +189,13 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String userlossid(LoginDto logindto, Model model) {
-		String result = logindao.userlossid(logindto);
+	public void userLossId(LoginDto logindto, Model model) {
+		String result = logindao.userLossId(logindto);
 		model.addAttribute("resultid", result);
-
-		return null;
-
 	}
 
 	@Override
-	public String userlosspass(LoginDto logindto, String pass) {
+	public void userLossPass(LoginDto logindto, String pass) {
 		pass = "";
 		for (int i = 0; i < 8; i++) {
 			char lowerStr = (char) (Math.random() * 26 + 65);
@@ -171,9 +206,37 @@ public class LoginServiceImpl implements LoginService {
 			}
 		}
 		System.out.println(pass);
-		logindto.setPass(pass);
+		logindto.setPassword(securityUtil.encrypt(pass));
 		logindao.updatePass(logindto);
 		mailUtil.sendPass(pass, logindto.getEmail());
-		return null;
 	}
+
+	public int standLossId(String email) {
+		String result = email;
+		String dbJoineMailCheck = logindao.logineMailCheck(result);
+		if (dbJoineMailCheck != null) {
+			return 1;
+		} else {
+			return 2;
+		}
+
+	}
+
+	public int reSetPassCheck(String email, String id) {
+		int status = 0;
+		String result = email;
+
+		String dbmailCheck = logindao.logineMailCheck(result);
+		String dbidCheck = logindao.loginCheck(id);
+
+		if (dbmailCheck != null && dbidCheck != null) {
+			status = 1;
+
+		} else if (dbmailCheck == null || dbidCheck != null) {
+			status = 2;
+		}
+
+		return status;
+	}
+
 }
