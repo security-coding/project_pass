@@ -138,7 +138,21 @@
 	</select>
 	 
 	
-	 
+	    <select id="getBoxOffice"  resultType="mainbox">
+	
+	      select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
+          from boxoffice natural join image 
+          where catecode = 'YK' and imagetype = 1  
+          order by rnum 
+	    </select>
+	   
+	    <select id="getBoxChange" parameterType="String" resultType="mainbox">
+	
+	      select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
+          from boxoffice natural join image 
+          where catecode = #{cateCode} and imagetype = 1  
+          order by rnum 
+	    </select>
 	 
 </mapper>
 	

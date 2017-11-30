@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.pknu.pass.play.dto.DetailDto;
+import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 import com.pknu.pass.play.dto.PlaceDto;
 
@@ -39,4 +40,9 @@ public interface PlayDao {
 
 	//지도
 	public ArrayList<PlaceDto> getNearMap(HashMap<String, String> lalo);
+	
+	//박스오피스
+    public ArrayList<MainBoxofficeDto> getBoxOffice();
+    
+    public ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
 }

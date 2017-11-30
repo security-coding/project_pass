@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.play.dto.DetailDto;
+import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 import com.pknu.pass.play.service.PlayService;
 
@@ -150,6 +151,20 @@ public class PlayController {
 	return "play/nearmap";
 	}
 	
+
+	
+//	박스오피스 테스트뷰
+	@RequestMapping(value = "/boxtest")
+	public String boxOfficeMain(Model model) {
+
+		playService.boxTest(model);
+		
+		return "play/boxtest";
+
+	}
+	
+
+	
 //	테스트뷰
 	@RequestMapping(value = "/listtest")
 	public String listTest() {
@@ -159,4 +174,16 @@ public class PlayController {
 
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value = "listtest/change" )
+	public ArrayList<MainBoxofficeDto> getBoxChange(String type) throws Exception {
+		
+		ArrayList<MainBoxofficeDto> boxPosters = new ArrayList<>(); 
+		
+		boxPosters = playService.getBoxChange(type);
+
+		return boxPosters;
+
+	}
 }

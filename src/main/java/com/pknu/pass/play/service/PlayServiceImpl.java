@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.DetailDto;
+import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 import com.pknu.pass.play.dto.PlaceDto;
 
@@ -157,6 +158,25 @@ public class PlayServiceImpl implements PlayService {
 		model.addAttribute("LA",la);
 		model.addAttribute("LO",lo);
 		model.addAttribute("maps",maps);
+	}
+
+
+	@Override
+	public void boxTest(Model model) {
+		
+		ArrayList<MainBoxofficeDto> mbf=playDao.getBoxOffice();
+		model.addAttribute("boxList",mbf);
+	}
+
+
+	@Override
+	public ArrayList<MainBoxofficeDto> getBoxChange(String type) {
+		
+		ArrayList<MainBoxofficeDto> boxPosters = new ArrayList<>(); 
+		
+		boxPosters = playDao.getBoxChange(type);
+		//System.out.println(posters.toString());
+		return boxPosters;
 	}
 	
 }
