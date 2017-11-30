@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Page(Concert)</title>
+<title>Admin Page(member)</title>
 
 <script src='<c:url value="/js/paging.js"/>'></script>
 
@@ -36,13 +36,13 @@
 		<div id="navbar" class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
 				<li><a href="/admin">공연 정보 업데이트</a></li>
-				<li class="active"><a href="#">공연 목록<span class="sr-only">(current)</span></a></li>
+				<li><a href="/admin/select/concert">공연 목록<span class="sr-only">(current)</span></a></li>
 				<li><a href="/admin/select/place">공연 시설 목록</a></li>
 				<li><a href="/admin/select/boxoffice">주간 박스오피스</a></li>
 			</ul>
 
 			<ul class="nav nav-sidebar">
-				<li><a href="">사용자 정보 관리</a></li>
+				<li class="active"><a href="#">사용자 정보 관리</a></li>
 				<li><a href="">코멘트 관리</a>
 			</ul>
 		</div>
@@ -50,7 +50,7 @@
 		<div id="content" class="container-fluid">
 			<!-- page Content 부분 -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">공연 목록</h1>
+				<h1 class="page-header">사용자 정보 관리</h1>
 
 				<div class="placeholders">
 					<div>
@@ -81,25 +81,19 @@
 								<table class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th>공연 ID</th>
-											<th>공연명</th>
-											<th>공연시작일</th>
-											<th>공연종료일</th>
-											<th>공연시설명</th>
-											<th>공연 장르</th>
-											<th>공연 런타임</th>
+											<th>ID</th>
+											<th>E-Mail</th>
+											<th>Certify</th>
+											<th>Grade</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="concert" items="${concertList}">
+										<c:forEach var="member" items="${memberList}">
 											<tr>
-												<td><a href="/admin/select/concert/${concert.mt20id}">${concert.mt20id }</a></td>
-												<td>${concert.prfnm }</td>
-												<td>${concert.prfpdfrom }</td>
-												<td>${concert.prfpdto }</td>
-												<td>${concert.fcltynm }</td>
-												<td>${concert.genrenm }</td>
-												<td>${concert.prfruntime }</td>
+												<td>${member.id}</td>
+												<td>${member.email}</td>
+												<td>${member.certify}</td>
+												<td>${Grade}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

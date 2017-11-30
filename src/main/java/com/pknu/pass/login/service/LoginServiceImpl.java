@@ -16,13 +16,13 @@ import com.pknu.pass.login.dto.LoginDto;
 @Service
 public class LoginServiceImpl implements LoginService {
 	@Autowired
-	MailUtil mailUtil;
+	private MailUtil mailUtil;
 
 	@Autowired
-	LoginDao logindao;
+	private LoginDao logindao;
 
 	@Autowired
-	SecurityUtil securityUtil;
+	private SecurityUtil securityUtil;
 
 	@Override
 	public void insertUser(LoginDto logindto) {

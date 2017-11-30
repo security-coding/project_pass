@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
 import com.pknu.pass.common.dto.PagingDto;
+import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
@@ -66,7 +67,7 @@ public class AdminController {
 	public String selectConcert(Model model, PagingDto paging) {
 		logger.info("paging : " + paging);
 		List<ConcertDto> concertList = adminService.selectConcert(paging);
-		paging.setTotal(adminService.selectTotalConcert());
+		paging.setTotal(adminService.selectTotalConcert(paging));
 		
 		model.addAttribute("concertList", concertList);
 		model.addAttribute("paging",paging);
@@ -98,10 +99,20 @@ public class AdminController {
 	
 	@RequestMapping(value = "/select/boxoffice")
 	public String selectBoxoffice(Model model) {
-		Map<String,ArrayList<BoxofficeDto>> paramMap = adminService.selectBoxoffice();
+		Map<String, List<BoxofficeDto>> paramMap = adminService.selectBoxoffice();
 		
 		model.addAttribute("boxof",paramMap);
 		
 		return "admin/boxoffice";
+	}
+	
+	@RequestMapping(value = "/member")
+	public String selectMember(Model model, PagingDto paging) {
+		List<LoginDto> memberList = adminService.selectMember(paging);
+		paging.setTotal(adminService.selectTotalMember(paging));
+		
+		model.addAttribute("memberList", memberList);
+		
+		return "admin/member";
 	}
 }
