@@ -93,8 +93,8 @@ public class LoginController {
 	
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경
 	@ResponseBody
-	public void updateprofile(HttpSession session,LoginDto logindto,@RequestParam(value="srcinput",required=true)String srcinput) {
-		loginService.updateProfile(session,srcinput,logindto);
+	public void updateprofile(HttpSession session,LoginDto logindto,@RequestParam(value="srcinput")String srcinput,Model model) {
+		loginService.updateProfile(session,srcinput,logindto,model);
 	}
 	
 	@RequestMapping(value="/checkJoin")//이메일 인증 체크 

@@ -157,7 +157,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void updateProfile(HttpSession session, String srcinput, LoginDto logindto) {
+	public void updateProfile(HttpSession session, String srcinput, LoginDto logindto,Model model) {
 		logindto.setId((String) session.getAttribute("id"));
 		logindto.setProfile(srcinput);
 		logindao.updateProfile(logindto);

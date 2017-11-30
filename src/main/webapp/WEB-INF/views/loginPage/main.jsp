@@ -29,16 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<script>
-	$(document).ready(function() {
-		let Certify = ${dbCertify};
-		if (Certify == 0) {
-			alert("회원가입 이메일 인증을 안하셨습니다.");
-		}
-		document.location.href = "./main";
-	});
-	
-</script>
+
 
 <script>
 function blank(){
@@ -49,6 +40,17 @@ function blank(){
 		return true;
 	}
 }
+</script>
+
+<script>
+	function CertifyCheck(){
+		let Certify = ${dbCertify};
+		if (Certify == 0) {
+			alert("회원가입 이메일 인증을 안하셨습니다.");
+		}
+		document.location.href = "./main";
+	}
+	
 </script>
 
 </head>
