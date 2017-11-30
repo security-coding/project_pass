@@ -10,7 +10,7 @@ public interface LoginService {
 
 	public void insertUser(LoginDto logindto);
 
-	public String login(String id, String pass,HttpSession session, Model model);
+	public String login(String id, String password,HttpSession session, Model model);
 
 	public String logout(HttpSession session);
 

@@ -10,8 +10,6 @@ public interface LoginDao {
 	
 	public String logineMailCheck(String result);
 	
-	public int certifyCheck(String id);
-
 	public void myPageUpdate(LoginDto logindto);
 
 	public void updateProfile(LoginDto logindto);
@@ -28,7 +26,12 @@ public interface LoginDao {
 
 	public String getImageUrl(String id);
 
-	
+	public LoginDto getUser(String id);
+
+
+
+
+		
 
 	
 

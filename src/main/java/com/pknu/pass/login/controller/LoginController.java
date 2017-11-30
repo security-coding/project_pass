@@ -33,10 +33,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
-	public String login(@RequestParam("id")String id,@RequestParam("pass")String pass,HttpSession session,Model model) {
-
-		return loginService.login(id,pass,session,model);
+	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
+		
+		return loginService.login(id,password,session,model);
 	}
+
+	
 	@RequestMapping(value="/logout",method=RequestMethod.POST)//로그아웃기능
 	public String logout(HttpSession session) {
 		return loginService.logout(session);
@@ -78,6 +80,7 @@ public class LoginController {
 		loginService.myPageId(session,model,myemail,loginDto); 
 		return "loginPage/mypage";
 	}
+	
 	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
 	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="str_email",required=true)String stremail) {
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
@@ -113,6 +116,7 @@ public class LoginController {
 		loginService.userLossId(logindto,model);
 		return "loginPage/lossresult";
 	}
+	
 	@RequestMapping(value="/userlosspass")//임시비밀번호 발송 
 	public String uesrlosspass(LoginDto logindto,@RequestParam("email2")String email,@RequestParam("id")String id,String pass) {
 		logindto.setEmail(email);
