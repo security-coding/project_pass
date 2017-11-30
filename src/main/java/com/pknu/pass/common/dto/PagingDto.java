@@ -6,6 +6,8 @@ public class PagingDto {
 	private int pageStartNum; // 출력할 페이지 시작 번호
 	private int listCnt; // 출력할 리스트 갯수
 	private int total; // 리스트 총 갯수
+	private String searchFilter;
+	private String searchValue;
 
 	// 값 초기화(default 값)
 	{
@@ -88,6 +90,22 @@ public class PagingDto {
 
 	public void setTotal(int total) {
 		this.total = total;
+	}
+
+	public String getSearchFilter() {
+		return searchFilter;
+	}
+
+	public void setSearchFilter(String searchFilter) {
+		this.searchFilter = searchFilter;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
 	}
 
 	@Override
