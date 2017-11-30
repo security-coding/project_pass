@@ -25,6 +25,17 @@ $(function(){
 	document.location.href="./main";
 });
 </script>
+
+<script>
+$(function(){
+	let loginBan=${loginBan};
+	if(loginBan==0){
+		alert("정지된 아이디 입니다.");
+	}
+	document.location.href="./main";
+});
+</script>
+
 </head>
 <body>
 

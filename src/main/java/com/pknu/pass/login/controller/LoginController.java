@@ -33,10 +33,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
-	public String login(@RequestParam("id")String id,@RequestParam("pass")String pass,HttpSession session,Model model) {
-
-		return loginService.login(id,pass,session,model);
+	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
+		
+		return loginService.login(id,password,session,model);
 	}
+
+	
 	@RequestMapping(value="/logout",method=RequestMethod.POST)//로그아웃기능
 	public String logout(HttpSession session) {
 		return loginService.logout(session);
@@ -56,7 +58,7 @@ public class LoginController {
 		return "loginPage/main";
 	}
 	
-	@RequestMapping(value="/joinIdCheck")//아이디 중복 비동기로 확인
+	@RequestMapping(value="/joinIdCheck")//회원가입 아이디 중복 비동기로 확인
 	@ResponseBody
 	 public ResponseEntity<String> joinIdCheck(@RequestParam("inputId")String inputId, HttpServletRequest request) {
 
@@ -65,23 +67,24 @@ public class LoginController {
 		return new ResponseEntity<String>(String.valueOf(result), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/joinemailCheck")//이메일 중복 비동기로 확인
+	@RequestMapping(value="/joinemailCheck")//회원가입 이메일 중복 비동기로 확인
 	@ResponseBody
 	public ResponseEntity<String> joinemailCheck(@RequestParam("inputemail")String inputemail,@RequestParam("str_email")String selectaddress) {
 			
-		int result =loginService.joinEmailCheck(inputemail,selectaddress);
+		int result =loginService.joineMailCheck(inputemail,selectaddress);
 		return new ResponseEntity<String>(String.valueOf(result),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/mypage")//마이페이지 페이지로 가는것
 	public String mypageForm(HttpSession session,String myemail,Model model,LoginDto loginDto) {
-		loginService.mypageId(session,model,myemail,loginDto); 
+		loginService.myPageId(session,model,myemail,loginDto); 
 		return "loginPage/mypage";
 	}
+	
 	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
 	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="str_email",required=true)String stremail) {
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
-		loginService.mypageUpdate(session,logindto);
+		loginService.myPageUpdate(session,logindto);
 		loginService.logout(session);
 		
 		
@@ -91,33 +94,47 @@ public class LoginController {
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경
 	@ResponseBody
 	public void updateprofile(HttpSession session,LoginDto logindto,@RequestParam(value="srcinput",required=true)String srcinput) {
-		loginService.updateprofile(session,srcinput,logindto);
+		loginService.updateProfile(session,srcinput,logindto);
 	}
 	
-	@RequestMapping(value="/checkJoin")
+	@RequestMapping(value="/checkJoin")//이메일 인증 체크 
 	public String checkJoin(@RequestParam("certKey") String certKey,Model model ) {
 		loginService.checkJoin(certKey,model);
 		
 		return "loginPage/emailAlertPage";
 	}
 	
-	@RequestMapping(value="/userloss")
+	@RequestMapping(value="/userloss")//아이디 and 비밀번호 찾기 폼
 	public String userlossForm() {
 		
 		return "loginPage/userloss";
 	}
-	@RequestMapping(value="/userlossid")
+	
+	@RequestMapping(value="/userlossid")//아이디 찾고 결과페이지 이동
 	public String userlossid(LoginDto logindto,Model model,@RequestParam("email1")String email) {
 		logindto.setEmail(email);
-		loginService.userlossid(logindto,model);
+		loginService.userLossId(logindto,model);
 		return "loginPage/lossresult";
 	}
-	@RequestMapping(value="/userlosspass")
+	
+	@RequestMapping(value="/userlosspass")//임시비밀번호 발송 
 	public String uesrlosspass(LoginDto logindto,@RequestParam("email2")String email,@RequestParam("id")String id,String pass) {
 		logindto.setEmail(email);
 		logindto.setId(id);
-		loginService.userlosspass(logindto,pass);
+		loginService.userLossPass(logindto,pass);
 		return "loginPage/main";
+	}
+	
+	@RequestMapping(value="/standlossid")//아이디 찾기할때 ajax로 찾는아이디에 이메일이 있는지 없는지 확인
+	@ResponseBody
+	public int standlossid(@RequestParam("email1")String email) {
+		return loginService.standLossId(email);
+	}
+	
+	@RequestMapping(value="/reSetPassCheck")//비밀번호 찾기할때 ajax로 아이디와 이메일이 존재하는지 확인
+	@ResponseBody
+	public int reSetPassCheck(@RequestParam("email2")String email,@RequestParam("id")String id) {
+		return loginService.reSetPassCheck(email,id);
 	}
 }
 

@@ -19,7 +19,6 @@ import com.pknu.pass.admin.service.AdminService;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
-import com.pknu.pass.play.dto.PlaceDto;
 
 @Controller
 @RequestMapping("/admin")
@@ -82,15 +81,4 @@ public class AdminController {
 		return "admin/concertDetail";
 	}
 	
-	@RequestMapping(value = "/select/place")
-	public String selectPlace(Model model, PagingDto paging) {
-		
-		List<PlaceDto> placeList = adminService.selectPlace(paging);
-		paging.setTotal(adminService.selectTotalPlace(paging));
-		
-		model.addAttribute("placeList",placeList);
-		model.addAttribute("paging", paging);
-		
-		return "admin/place";
-	}
 }

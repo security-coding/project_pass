@@ -12,10 +12,10 @@
 	<!-- ROWNUM Query(Paging) -->
 	<select id="selectConcert" parameterType="paging" resultType="concert">
 		SELECT *
-		FROM ( SELECT ROWNUM RNUM, C.*
+		FROM ( SELECT ROWNUM RNUM, P.*
 				FROM ( SELECT * 
 						FROM CONCERT
-						ORDER BY MT20ID) C )
+						ORDER BY MT20ID) P )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
 
@@ -23,27 +23,6 @@
 		SELECT *
 		FROM CONCERT
 	 	WHERE mt20id = #{mt20id}
-	</select>
-	
-	<select id="selectTotalPlace" parameterType="paging" resultType="Integer">
-		SELECT COUNT(*)
-		FROM PLACE
-		<if test="searchFilter != null and searchValue !=''">
-			WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
-		</if>
-	</select>
-	
-	<select id="selectPlace" parameterType="paging" resultType="place">
-		SELECT *
-		FROM ( SELECT ROWNUM RNUM, P.*
-				FROM ( SELECT *
-						FROM PLACE
-						<if test="searchFilter != null and searchValue != ''">
-							WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
-						</if>
-						ORDER BY MT10ID
-						) P )
-		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
 
 	<insert id="insertConcertInf" parameterType="concert">
@@ -187,19 +166,3 @@
 	</delete>
 	
 </mapper>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

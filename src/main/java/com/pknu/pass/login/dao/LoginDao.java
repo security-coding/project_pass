@@ -8,27 +8,30 @@ public interface LoginDao {
 
 	public String loginCheck(String id);
 	
-	public String loginemailCheck(String result);
+	public String logineMailCheck(String result);
 	
-	public int certifyCheck(String id);
+	public void myPageUpdate(LoginDto logindto);
 
-	public void mypageUpdate(LoginDto logindto);
-
-	public void updateprofile(LoginDto logindto);
+	public void updateProfile(LoginDto logindto);
 	
-	public String myemail(LoginDto logindto);
+	public String myEmail(LoginDto logindto);
 
 	public LoginDto checkJoin(String certKey);
 
 	public void checkJoinUpdate(String certKey);
 
-	public String userlossid(LoginDto logindto);
+	public String userLossId(LoginDto logindto);
 
 	public void updatePass(LoginDto logindto);
 
-	public String getimageUrl(String id);
+	public String getImageUrl(String id);
 
-	
+	public LoginDto getUser(String id);
+
+
+
+
+		
 
 	
 

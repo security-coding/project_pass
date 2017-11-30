@@ -71,34 +71,8 @@
             <h1 class="page-header">공연 시설 목록</h1>
 
             <div class="placeholders">
-                <div>
-                		
-                		        <div class="col-xs-8 col-xs-offset-2">
-		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">공연 명</a></li>
-                      <li><a href="#its_equal">지역</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-        </div>
-        <div class="pull-right">
-                			</br>
-                			<span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
-                		</div>		
+                <div class="pull-right">
+                    <span>공연 시설 DB 갯수 <span class="badge">${paging.total}</span></span>
                 </div>
                 <div class="clearfix"></div>
                 <div class="placeholder">
@@ -108,23 +82,23 @@
                             <tr>
                                 <th>공연시설 ID</th>
                                 <th>공연시설 명</th>
-                                <th>공연장 수</th>
-                                <th>객석 수</th>
-                                <th>시설특성</th>
-                                <th>지역</th>
-                                <th>개관연도</th>
+                                <th>공연시작일</th>
+                                <th>공연종료일</th>
+                                <th>공연시설명</th>
+                                <th>공연 장르</th>
+                                <th>공연 런타임</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="place" items="${placeList}">
+                            <c:forEach var="concert" items="${concertList}">
                             <tr>
-                              	<td><a href="/admin/select/concert/${place.mt10id}">${place.mt10id }</a></td>
-                              	<td>${place.fcltynm }</td>
-                              	<td>${place.mt13cnt }</td>
-                              	<td>${place.seatscale }</td>
-                              	<td>${place.fcltychartr }</td>
-                              	<td>${place.sidonm }</td>
-                              	<td>${place.opende }</td>
+                              	<td><a href="/admin/select/concert/${concert.mt20id}">${concert.mt20id }</a></td>
+                              	<td>${concert.prfnm }</td>
+                              	<td>${concert.prfpdfrom }</td>
+                              	<td>${concert.prfpdto }</td>
+                              	<td>${concert.fcltynm }</td>
+                              	<td>${concert.genrenm }</td>
+                              	<td>${concert.prfruntime }</td>
                             </tr>
                             </c:forEach>
                             </tbody>
@@ -148,12 +122,10 @@
                             </c:if>
                         </ul>
                     </nav>
-                    <form action="/admin/select/place" method="post" id="frmPaging">
+                    <form action="/admin/select/concert" method="post" id="frmPaging">
                     		<input type="hidden" name="index" id="index" value="${paging.index}">
                     		<input type="hidden" name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
                     		<input type="hidden" name="listCnt" id="listCnt" value="${paging.listCnt}">
-                    		<input type="hidden" name="searchFilter" id="searchFilter" value="">
-                    		<input type="hidden" name="searchValue" id="searchValue" value="">           
                     </form>
                     
                     <div class="pull-right">
@@ -166,17 +138,6 @@
     </div>
 </div>
 
-<script>
-$(document).ready(function(e){
-    $('.search-panel .dropdown-menu').find('a').click(function(e) {
-		e.preventDefault();
-		var param = $(this).attr("href").replace("#","");
-		var concept = $(this).text();
-		$('.search-panel span#search_concept').text(concept);
-		$('.input-group #search_param').val(param);
-	});
-});
-</script>
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </body>

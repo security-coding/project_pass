@@ -3,76 +3,94 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concert Information</title>
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
 
 </head>
+
 <body>
 
-    <!-- Navigation -->
- <!--   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>-->
-
-    <!-- Page Content -->
-    <div class="container">
-
-      <div class="row">
-
-        <!-- Post Content Column -->
-        <div class="col-lg-8">
-
-          <!-- Title -->
-          <h1 class="mt-4">${poster.prfnm}</h1>
-
-          <!-- Author -->
-<!--          <p class="lead">
-            by
-            <a href="#">Start Bootstrap</a>
-          </p>-->
-
-          <!-- Date/Time -->
-<!--          <p>Posted on January 1, 2017 at 12:00 PM</p>-->
-
-          <hr>
-
-				<div >
-					<img class="img-fluid img-thumbnail" src="${poster.imageUrl}"
-						style="width: 450; height: 372; float: left" alt=""/>
-						<ul>
 
 
-						<li>공연시작일 : ${detailInf.prfpdfrom} ~ 공연종료일 : ${detailInf.prfpdto}</li>
+	<!-- Header content -->
+	<header>
+		<div class="profileLogo">
+			<!-- Profile logo. Add a img tag in place of <span>. -->
+			<p class="logoPlaceholder">
+				<!-- <img src="logoImage.png" alt="sample logo"> -->
+				<span>처음 페이지</span>
+			</p>
+		</div>
+		<div class="profilePhoto">
+			<!-- Profile photo -->
+
+			<img src="${poster.imageUrl}" style="width: 200; height: 280;" alt="concert-image" />
+		</div>
+			<!-- Identity details -->
+			<section class="profileHeader">
+
+       		    <h1>${poster.prfnm}</h1>
+				<h3>${poster.genrenm} , ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
+				
+				<hr>
+
+				<p>
+					<li><span>공연 시작일 :</span> ${detailInf.prfpdfrom}</li><p></p>
+					<li><span>공연 종료일 :</span> ${detailInf.prfpdto}</li><p></p>
+					<li><span>공연 시　간 :</span> ${detailInf.dtguidance}</li><p></p>
+					<li><span>공연 시설명 :</span> ${detailInf.fcltynm}</li><p></p>
+				</p>
+
+			</section>
+			<!-- Links to Social network accounts -->
+			<aside class="socialNetworkNavBar">
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="/social.png" alt="sample">
+				</div>
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="AboutPageAssets/images/social.png" alt="sample">
+				</div>
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="AboutPageAssets/images/social.png" alt="sample">
+				</div>
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="AboutPageAssets/images/social.png" alt="sample">
+				</div>
+			</aside>
+	</header>
+	<!-- content -->
+	<section class="mainContent">
+		<!-- Contact details -->
+		<section class="section1">
+			<h2 class="sectionTitle">해당 공연의 기본 정보</h2>
+			<hr class="sectionTitleRule">
+			<hr class="sectionTitleRule2">
+			<div class="section1Content">
+				<p>
+					<span>공연 시작일 :</span> ${detailInf.prfpdfrom}</p>
+				<p>
+					<span>공연 종료일 :</span> ${detailInf.prfpdto}</p>
+				<p>
+					<span>Phone :</span> (123)456 - 789000
+				</p>
+				<p>
+					<span>Address :</span> Anytown, Anycountry
+				</p>
+				
+										<li>공연시작일 : ${detailInf.prfpdfrom} ~ 공연종료일 : ${detailInf.prfpdto}</li>
 						<li>공연시설명(공연장명) : ${detailInf.fcltynm}</li>
 						<li>공연출연진 : ${detailInf.prfcast}</li>
 			<!-- 						prfcrew = 출연진, but 나타나지 않는 공연들도 있음. 어떻게 뿌릴건지 상의 -->						
@@ -83,91 +101,49 @@
 						<li>제작사 : ${detailInf.entrpsnm}</li>
 						<li>티켓 가격 : ${detailInf.pcseguidance}</li>
 						<li>공연 시간 : ${detailInf.dtguidance}</li>
-											
-						</ul>
-				</div>
-
-		<hr>
-     
-      <div>
-		<c:forEach var="introImages" items="${introImages}">
-			<img class="img-fluid img-thumbnail" src="${introImages.imageUrl}" />
-
+				
+			</div>
+		</section>
+		<!-- Previous experience details -->
+		<section class="section2">
+			<h2 class="sectionTitle">해당 공연의 소개</h2>
+			<hr class="sectionTitleRule">
+			<hr class="sectionTitleRule2">
+			<!-- First Title & company details  -->
+			      <div>
+		<c:forEach var="detailImage" items="${detailImages}" begin="1">
+			<img class="img-fluid img-thumbnail" src="${detailImage}" />
 		</c:forEach>
 	</div>
-          
-
-          <!-- Post Content -->
-        <!--  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>-->
-
-<!--          <blockquote class="blockquote">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in
-              <cite title="Source Title">Source Title</cite>
-            </footer>
-          </blockquote>-->
-
-<!--          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>-->
-
-          <hr>
-
-          <!-- Comments Form -->
-          <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-          </div>
-
-          <!-- Single Comment -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
-
-          <!-- Comment with nested comments -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Sidebar Widgets Column -->
+			</article>
+			<!-- Replicate the above Div block to add more title and company details -->
+		</section>
+		<!-- Links to expore your past projects and download your CV -->
+		<aside class="externalResourcesNav">
+			<div class="externalResources">
+				<a href="#" title="Download CV Link">DOWNLOAD CV</a>
+			</div>
+			<span class="stretch"></span>
+			<div class="externalResources">
+				<a href="#" title="Behance Link">BEHANCE</a>
+			</div>
+			<span class="stretch"></span>
+			<div class="externalResources">
+				<a href="#" title="Github Link">GITHUB</a>
+			</div>
+		</aside>
+	</section>	
+	<footer>
+		<hr>
+		<p class="footerDisclaimer">
+			2014 Copyrights - <span>All Rights Reserved</span>
+		</p>
+		<p class="footerNote">
+			John Doe - <span>Email me</span>
+		</p>
+	</footer>
+		
+	        <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
           <!-- Search Widget -->
@@ -229,24 +205,5 @@
           </div>
 
         </div>
-
-      </div>
-      <!-- /.row -->
-
-    </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  </body>
+</body>
 </html>

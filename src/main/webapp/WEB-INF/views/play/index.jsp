@@ -29,6 +29,14 @@
 	 a{font-size:15px;color:white;font-weight:bold;text-decoration:none}
 	</style> 
 
+<style>
+@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
+
+body, table, div, p {
+	font-family: 'Jeju Gothic'
+}
+</style>
+
 </head>
 <body>
 	
@@ -99,14 +107,14 @@
 				let str ="";
 				$(".poster").empty(); 
 			    $.each(data,function(index, item){					  					 				 
-<<<<<<< HEAD
-			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
-							       +"<img class='img-fluid img-thumbnail' src='"+item.imageUrl+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
-=======
+// <<<<<<< HEAD
+// 			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
+// 							       +"<img class='img-fluid img-thumbnail' src='"+item.imageUrl+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
+// =======
 
-			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+ item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
-							       +"<img class='img-fluid img-thumbnail' src= '"+ item.imageUrl+"'  style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
->>>>>>> jongmin
+// 			    	str ="<div class='col-lg-3 col-md-4 col-xs-6' ><a href='"+ item.imageUrl+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:250; height:370;'>"
+// 							       +"<img class='img-fluid img-thumbnail' src= '"+ item.imageUrl+"'  style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'>"+item.prfnm+"<br>"+item.prfpdfrom+"~"+item.prfpdto+"<br>"+item.fcltynm+"<br>"+item.genrenm+"</p></div></div></a></div>" 
+// >>>>>>> jongmin
 					  		       
 					  $(".poster").append(str);
 				  });			
