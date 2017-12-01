@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,53 +9,38 @@
 <title>Insert title here</title>
 
 		
-<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+
+<!-- <script src="/js/loginjs/profilechange.js"></script> -->
 
 <script>
-
 function setMyimage(imgsrc){
 	let myimage=document.getElementById('myimage');
+	let nowProfile=document.getElementById('Profile');
 	let img = imgsrc.getAttribute('src');
 	myimage.setAttribute('src',img);
-	console.log(myimage.getAttribute('src') );
+	nowProfile.setAttribute('src',img);
 	$.ajax({
 		type:"POST",
 		async : true,
-		dataType : 'json',
+		dataType : 'String',
 		url:'/member/updateprofile',
 		data : {
 			srcinput :myimage.getAttribute('src') 
 		},
 		success:function(data){
+			
 			console.log(data);
 		}
 	});
 }
-
-// $(function (){
-	
-// 	$("#img2").on("click",function(){
-// 		let myimage=document.getElementById('myimage');
-// 		let img2=document.getElementById('img2').src;
-// 		myimage.setAttribute('src',img2);
-
-// 	});
-	
-// 	$("#img3").on('click',function(){
-// 		let myimage=document.getElementById('myimage');
-// 		let img3=document.getElementById('img3').src;
-// 		myimage.setAttribute('src',img3);
-// 	});
-
-// });
 </script>
 
 </head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+ <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+ <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
 	<article class="container-fluid">
@@ -73,14 +59,13 @@ function setMyimage(imgsrc){
 			</div>
 			
 			<div class="form-group">
-				<label for="pass">변경할비밀번호</label> <input type="password"
-					class="form-control" id="pass" name="pass" placeholder="변경할비밀번호">
+				<label for="password">변경할비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="변경할비밀번호">
 			</div>
 			
 			<div class="form-group">
 				<label>변경한 비밀번호 확인</label> <input type="password"
 					class="form-control" id="pass2" placeholder="변경할비밀번호 확인" >
-<!-- 				<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p> -->
 			</div>
 			
 			<div class="form-group">
@@ -123,15 +108,35 @@ function setMyimage(imgsrc){
 <!-- 				</div> -->
 <!-- 			</div> -->
 				
-		<div>
-				<a>현재이미지:<img id="myimage" src="${imageUrl}"></a></br>
-				<div class="chimage">
-					<img id="img1" class="img" src="/resources/images/profile/img1.png" onclick="setMyimage(this)">
-					<img id="img2" class="img" src="/resources/images/profile/img2.png" onclick="setMyimage(this)">
-					<img id="img3" class="img" src="/resources/images/profile/img3.png" onclick="setMyimage(this)">
-				</div>
-		</div>
-			
+<!-- 		<div> -->
+<%-- 				<a>현재이미지:<img id="myimage" src="${imageUrl}"></a></br> --%>
+<!-- 				<div class="chimage"> -->
+<!-- 					<img id="img1" class="img" src="/resources/images/profile/img1.png" onclick="setMyimage(this)"> -->
+<!-- 					<img id="img2" class="img" src="/resources/images/profile/img2.png" onclick="setMyimage(this)"> -->
+<!-- 					<img id="img3" class="img" src="/resources/images/profile/img3.png" onclick="setMyimage(this)"> -->
+<!-- 				</div> -->
+<!-- 		</div> -->
+			<div>
+			<img src="${imageUrl}" alt="..." id="Profile" class="img-thumbnail">
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-default btn-lg dropdown-toggle"
+					data-toggle="dropdown" aria-expanded="false">
+					<img id="myimage" src="${imageUrl}"> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><img id="img1" class="img"
+						src="/resources/images/profile/img1.png"
+						onclick="setMyimage(this)">악마</li>
+					<li><img id="img2" class="img"
+						src="/resources/images/profile/img2.png"
+						onclick="setMyimage(this)">판다</li>
+					<li><img id="img3" class="img"
+						src="/resources/images/profile/img3.png"
+						onclick="setMyimage(this)">스파이더맨</li>
+				</ul>
+			</div>
+
 			<div class="form-group text-center">
 				<button id="signupbtn" type="submit" class="btn btn-info" >
 					수정하기<i class="fa fa-check spaceLeft"></i>
@@ -152,16 +157,10 @@ function setMyimage(imgsrc){
 </body>
 
 <!-- /container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-	<!--부트스트랩-->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	//이메일 입력방식 선택
 	$('#selectEmail').change(function() {
 		$("#selectEmail option:selected").each(function() {
@@ -181,13 +180,13 @@ function setMyimage(imgsrc){
 		 $("#loginForm").on("submit", function(){
 //	 		 event.preventDefault();
 
-			 var pass=$("#pass").val(); 
+			 var pass=$("#password").val(); 
 			 var passcheck=$("#pass2").val();
 			 
 
 			 if(pass==""){
 			 	alert("패스워스를 입력하세요");
-			 	$("#pass").focus();
+			 	$("#password").focus();
 			 	return false;
 			 }
 			 if(pass!=passcheck){

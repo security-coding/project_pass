@@ -1,0 +1,111 @@
+@charset "UTF-8";
+.boxContent {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 11px;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: rgba(0,0,0,0.65);
+}
+
+.boxContent:hover .overlay {
+	opacity: 1;
+}
+
+.text {
+	color: white;
+	font-size: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+}
+
+.typeNav {
+	width: 100%;
+	height: 70px;
+	background: black;
+	opacity: 0.8;
+	list-style: none;
+	padding-top: 20px;
+}
+
+.typeNav li {
+	float: left;
+	margin-right: 50px
+}
+
+.butn {
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none
+}
+
+a {
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none
+}
+
+.imageUrl {
+	width: 235px;
+	height: 373px;
+}
+
+.col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.col-xs-15 {
+	width: 20%;
+	float: left;
+}
+
+@media ( min-width : 768px) {
+	.col-sm-15 {
+		width: 20%;
+		float: left;
+	}
+}
+
+@media ( min-width : 992px) {
+	.col-md-15 {
+		width: 20%;
+		float: left;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.col-lg-15 {
+		width: 20%;
+		float: left;
+	}
+}
+
+.boxoffice {
+	width: 16%;
+	height: 5%;
+	margin: 40px auto;
+
+}

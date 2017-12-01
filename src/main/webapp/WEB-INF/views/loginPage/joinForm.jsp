@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,11 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 		
 <script>
-	let idcheck = false;
-	let emailcheck = false;
+	let idCheck = false;
+	let emailCheck = false;
 	function checkId() {
 		$("#id").on("blur", function() {
 			$.ajax({
@@ -27,19 +28,19 @@
 					if ($("#id").val() != "") {
 						if (data == "1") {
 							html = "<b>사용 가능한 아이디입니다.</b>"
-							$("#idcheck").html(html).css("color", "blue");
-							idcheck=true;
+							$("#idCheck").html(html).css("color", "blue");
+							idCheck=true;
 							
 						} else {
 							html = "<b>중복된 아이디입니다.<b>";
-							$("#idcheck").html(html).css("color", "red");
-							idcheck=false;
+							$("#idCheck").html(html).css("color", "red");
+							idCheck=false;
 							
 						}
 					} else {
 						html = "<b>아이디를 입력해 주세요</b>"
-						$("#idcheck").html(html).css("color", "red");
-						idcheck=false;
+						$("#idCheck").html(html).css("color", "red");
+						idCheck=false;
 						
 					}
 				},
@@ -66,19 +67,19 @@
 					if ($("#email").val() != ""&&$("#str_email").val()!="") {
 						if (data == "1") {
 							html = "<b>사용 가능한 이메일입니다.</b>"
-							$("#emailcheck").html(html).css("color", "blue");
-							 emailcheck=true;
+							$("#emailCheck").html(html).css("color", "blue");
+							 emailCheck=true;
 							 
 						} else {
 							html = "<b>중복된 이메일입니다.<b>";
-							$("#emailcheck").html(html).css("color", "red");
-							 emailcheck=false;
+							$("#emailCheck").html(html).css("color", "red");
+							 emailCheck=false;
 							 
 						}
 					} else if($("#email").val() != ""||$("#str_email").val()!=""){	
 						html = "<b>이메일을입력해주세요</b>"
-						$("#emailcheck").html(html).css("color", "red");
-						 emailcheck=false;
+						$("#emailCheck").html(html).css("color", "red");
+						 emailCheck=false;
 						 
 					}
 				}
@@ -88,10 +89,12 @@
 	
 	
 	function availability(){
-		if(idcheck==true&&emailcheck==true){
+		let html;
+		if(idCheck==true&&emailCheck==true){
 			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
+			html="<img src='/resources/images/'>"
 			return true;
-		}else if(!idcheck || !emailcheck){
+		}else if(!idCheck || !emailCheck){
 			alert("확인해주세요");
 			return false;
 		}
@@ -102,11 +105,9 @@
 </script>
 
 </head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    	<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
 	<article class="container-fluid">
@@ -122,20 +123,19 @@
 			<div class="form-group">
 				<label for="id">ID:</label> <input type="text"
 					class="form-control" id="id" name="id" placeholder="ID" oninput="checkId()">
-				<div id="idcheck"></div>
+				<div id="idCheck"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="pass">비밀번호</label> <input type="password"
-					class="form-control" id="pass" name="pass" placeholder="비밀번호">
+				<label for="password">비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="비밀번호">
 					<div id="passcheck"></div>
 			</div>
 			
 			<div class="form-group">
 				<label>비밀번호 확인</label> <input type="password"
 					class="form-control" id="pass2" placeholder="비밀번호 확인" >
-<!-- 				<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p> -->
-					<div id="passcheck2"></div>
+					<div id="passCheck2"></div>
 			</div>
 			
 			<div class="form-group">
@@ -158,7 +158,7 @@
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="nate.com">nate.com</option>
 									<option value="gmail.com">gmail.com</option>
-							</select><td><div id="emailcheck"></div></td>
+							</select><td><div id="emailCheck"></div></td>
 						</label>
 						</td>
 					</tr>
@@ -183,16 +183,13 @@
 </body>
 	
 <!-- /container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 	<!--부트스트랩-->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 
 <!-- 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
-<script type="text/javascript">
+
+<script>
 	//이메일 입력방식 선택
 	$('#selectEmail').change(function() {
 		$("#selectEmail option:selected").each(function() {
@@ -212,8 +209,8 @@
 		 $("#joinForm").on("submit", function(){
 //	 		 event.preventDefault();
 			 var id=$("#id").val();
-			 var pass=$("#pass").val(); 
-			 var passcheck=$("#pass2").val();
+			 var pass=$("#password").val(); 
+			 var passCheck=$("#pass2").val();
 			 var email=$("#email").val();
 			 var str_email=$("#str_email").val();
 			 
@@ -224,7 +221,7 @@
 			 }
 			 if(pass==""){
 			 	alert("패스워드를 입력하세요");
-			 	$("#pass").focus();
+			 	$("#password").focus();
 			 	return false;
 			 }
 			 if(email==""){
@@ -237,7 +234,7 @@
 				 $("#str_email").focus();
 				 return false;
 			 }
-			 if(pass!=passcheck){
+			 if(pass!=passCheck){
 				 alert("패스워드가 일치하지 않습니다")
 			 	$("#pass2").focus();
 				 return false;
@@ -247,25 +244,25 @@
 	 });
  	
 	 
-		$("#pass").blur(function(){
+		$("#password").blur(function(){
 			let html;
-			if($("#pass").val()==""){
+			if($("#password").val()==""){
 				html="<b>암호를 입력해주세요</b>"
-				$("#passcheck").html(html).css("color","red");
+				$("#passCheck").html(html).css("color","red");
 			}else{
 				html=""
-				$("#passcheck").html(html).css("color","white");
+				$("#passCheck").html(html).css("color","white");
 			}
 		});
 		 
 	 	$("#pass2").blur(function(){
 	 		let html;
-	 		if($("#pass").val()!=$("#pass2").val()){
+	 		if($("#password").val()!=$("#pass2").val()){
 				html="<b>암호가 일치하지 않습니다.</b>"
-				$("#passcheck2").html(html).css("color","red");
-	 		}else if($("#pass").val()==$("#pass2").val()&&$("#pass").val()!=""&&$("#pass2").val()!=""){
+				$("#passCheck2").html(html).css("color","red");
+	 		}else if($("#password").val()==$("#pass2").val()&&$("#password").val()!=""&&$("#pass2").val()!=""){
 				html="<b>암호가 일치합니다.</b>"
-				$("#passcheck2").html(html).css("color","blue");
+				$("#passCheck2").html(html).css("color","blue");
 	 		}
 	 	});
 

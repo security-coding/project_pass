@@ -1,9 +1,6 @@
 package com.pknu.pass.play.dto;
 
-import java.util.Arrays;
-
 public class DetailDto {
-
 
 	private String prfpdfrom;
 	private String prfpdto;
@@ -46,6 +43,7 @@ public class DetailDto {
 
 	public void setLo(String lo) {
 		this.lo = lo;
+		
 	}
 
 	public String getPrfpdfrom() {
@@ -143,5 +141,4 @@ public class DetailDto {
 	public void setGenrenm(String genrenm) {
 		this.genrenm = genrenm;
 	}
-
 }

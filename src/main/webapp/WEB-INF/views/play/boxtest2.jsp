@@ -16,21 +16,11 @@
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href='<c:url value="/css/landing-page.css"/>'><!-- banner-bg,intro-bg의 경로는 여기서 변경 -->
-    
+	
     <!-- Custom Fonts -->
     <link rel="stylesheet" href='<c:url value="/css/font-awesome/css/font-awesome.min.css"/>'>
-      
-    <!--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
--->
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-
+	<link rel="stylesheet" href='<c:url value="/css/boxoffice.css"/>'>
+	
 <script>
 function blank(){
 	if($('#keyword').val()==""){
@@ -84,10 +74,10 @@ function blank(){
                     </li>
                     <li>
                     <c:if test="${id==null}">
-						<%@include file="login.jsp"%>
+						<%@include file="../loginPage/login.jsp"%>
 					</c:if> 
 					<c:if test="${id!=null}">
-						<%@include file="loginOk.jsp"%>
+						<%@include file="../loginPage/loginOk.jsp"%>
 					</c:if>
 					</li>
                 </ul>
@@ -191,104 +181,53 @@ function blank(){
     <!-- /.intro-header -->
 
     <!-- Page Content -->
-
-	<a  name="services"></a>
-    <div class="content-section-a">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Death to the Stock Photo:<br>Special Thanks</h2>
-                    <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="/images/templateimg/ipad.png" alt="">
-                </div>
-            </div>
-
+    <div>
+    	<div class="text-center">
+         	<h1>BOX OFFICE</h1>
+		</div>
+		
+		
+		<ul class="typeNav">
+					<li><a class="butn" href = "#" onclick="change('YK');">연극</a></li>
+					<li><a class="butn" href = "#" onclick="change('MU');">뮤지컬</a></li>
+					<li><a class="butn" href = "#" onclick="change('CCO');">클래식/오페라</a></li>
+	   				<li><a class="butn" href = "#" onclick="change('MMB');">무용/발래</a></li>
+	    			<li><a class="butn" href = "#" onclick="change('KKB');">국악/복합</a></li>
+				</ul>
+	<div class="container">
+	 <div class="row text-center">
+		<div class="poster">
+    
+    	<div id="type" class="test row" data-index="전체"></div>
+	   <c:forEach var="play" items="${boxList}">
+		      <div class="col-lg-15 col-md-3 col-xs-3 boxContent" > 
+		        <a href="/play/detail?mt20id=${play.mt20id}">
+		           
+		           <div class="imageUrl">
+		             <img class="img-fluid img-thumbnail imageUrl" src="${play.imageurl}" alt="" />  
+		              <div class="img-fluid img-thumbnail overlay">            
+	                      <div class="text">
+	                      <p>RANK ${play.rnum}</p><br>
+	                      <p>${play.prfnm}</p><br>
+	                      <p>${play.prfpd}</p><br>
+	                      <p>${play.prfplcnm}</p><br>
+	                      <p>${play.cate}</p>
+	                      </div>
+                    </div>
+                 
+		           </div>   
+		         </a> 
+			</div>
+       </c:forEach>
+       </div>
+    </div>
+    </div>
+</div>
         </div>
         <!-- /.container -->
 
     </div>
-    <!-- /.content-section-a -->
 
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="/images/templateimg/dog.png" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
-
-    <div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="/images/templateimg/phones.png" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-a -->
-
-	<a  name="contact"></a>
-    <div class="banner">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2>Connect to Start Bootstrap:</h2>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.banner -->
-
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -320,8 +259,35 @@ function blank(){
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
     <!-- Bootstrap Core JavaScript -->
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+    <!-- 마우스 오버 요소 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js"></script>
     
 		
 </body>
+
+
+<script>		
+	function change(value) {
+		
+		$.ajax({
+			type:"POST",
+			dataType:"JSON",
+			url:"/play/listtest/change",
+			data:({ "type" : value }),
+			success: function(data) {
+				let str ="";
+				let typ ="";
+				$(".poster").empty(); 
+			    $.each(data,function(index, item){					  					 				 
+			    	str ="<div class='col-lg-15 col-md-3 col-xs-3' ><a href='/play/detail?mt20id="+ item.mt20id+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:233; height:373;'>"
+							       +"<img class='img-fluid img-thumbnail' src= '"+ item.imageurl+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'> RANK"+ item.rnum+"<br>"+item.prfnm+"<br>"+item.prfpd+"<br>"+item.prfplcnm+"<br>"+item.cate+"</p></div></div></a></div>" 
+					  		       
+					  $(".poster").append(str);
+				  });
+			          
+			}					 						
+		})	
+	}
+</script>
 
 </html>
