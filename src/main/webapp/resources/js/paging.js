@@ -7,6 +7,12 @@ function frmPaging() {
 	document.getElementById("frmPaging").submit();
 }
 
+function searchPaging() {
+	document.getElementById("searchFilter").value = $("#searchBox").val();
+	document.getElementById("searchValue").value = $("#searchVal").val();
+	frmPaging();
+}
+
 // 이전 페이지 index
 function pagePre(index, pageCnt) {
 	if( 0 < index - pageCnt) {

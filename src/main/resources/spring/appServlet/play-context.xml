@@ -22,6 +22,7 @@
 	<mvc:resources mapping="/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/fonts/**" location="/resources/fonts/" />
 	<mvc:resources mapping="/images/**" location="/resources/images/" />
+	<mvc:resources mapping="/playingsoce/**" location="/resources/playingsoce/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 

@@ -44,7 +44,7 @@
             <li><p>공연 관련 정보 관리</p></li>
             <li><a href="/admin">정보 업데이트</a></li>
             <li class="active"><a href="#">공연 목록<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">공연 시설 목록</a></li>
+            <li><a href="/admin/select/place">공연 시설 목록</a></li>
             <li><a href="#">주간 박스오피스</a></li>
         </ul>
 

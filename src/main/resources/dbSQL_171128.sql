@@ -69,7 +69,8 @@ create table BOXOFFICE
 	CATE VARCHAR2(50) not null,
 	PRFPLCNM VARCHAR2(50) not null,
 	PRFNM VARCHAR2(100) not null,
-	RNUM VARCHAR2(10) not null,
+	RNUM NUMBER not null,
+	CATECODE VARCHAR2(5) NOT NULL ,
 	MT20ID VARCHAR2(15) not null
 		constraint FK_BOXOFFICE_MT20ID
 			references CONCERT
@@ -93,13 +94,14 @@ create table IMAGE
 )
 /
 
--- Í≥µÏó∞ ?Öå?ù¥Î∏? Ïß??ö∞Í∏? ?†Ñ?óê
+
+DROP TABLE BOXOFFICE;
+
 ALTER TABLE CONCERT DROP CONSTRAINT FK_CONCERT_MT10ID;
 
 drop TABLE PLACE;
 drop TABLE MEMBER;
 
--- Í≥µÏó∞ ?Öå?ù¥Î∏? ?ã§?ãú ?óÖ?ç∞?ù¥?ä∏ ?ïú ?õÑ
 ALTER TABLE CONCERT
   ADD CONSTRAINT CONCERT_PLACE_MT10ID_FK FOREIGN KEY (mt10id)
 REFERENCES PLACE (mt10id) ON DELETE CASCADE;

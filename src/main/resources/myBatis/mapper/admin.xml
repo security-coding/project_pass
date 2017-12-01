@@ -12,10 +12,10 @@
 	<!-- ROWNUM Query(Paging) -->
 	<select id="selectConcert" parameterType="paging" resultType="concert">
 		SELECT *
-		FROM ( SELECT ROWNUM RNUM, P.*
+		FROM ( SELECT ROWNUM RNUM, C.*
 				FROM ( SELECT * 
 						FROM CONCERT
-						ORDER BY MT20ID) P )
+						ORDER BY MT20ID) C )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
 
@@ -23,6 +23,34 @@
 		SELECT *
 		FROM CONCERT
 	 	WHERE mt20id = #{mt20id}
+	</select>
+	
+	<select id="selectTotalPlace" parameterType="paging" resultType="Integer">
+		SELECT COUNT(*)
+		FROM PLACE
+		<if test="searchFilter != null and searchValue !=''">
+			WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+		</if>
+	</select>
+	
+	<select id="selectPlace" parameterType="paging" resultType="place">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, P.*
+				FROM ( SELECT *
+						FROM PLACE
+						<if test="searchFilter != null and searchValue != ''">
+							WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+						</if>
+						ORDER BY MT10ID
+						) P )
+		WHERE RNUM BETWEEN #{start} AND #{last}
+	</select>
+	
+	<select id="selectBoxoffice" parameterType="String" resultType="boxof">
+		SELECT * 
+		FROM BOXOFFICE
+		WHERE catecode = #{catecode}
+		ORDER BY RNUM
 	</select>
 
 	<insert id="insertConcertInf" parameterType="concert">
@@ -136,6 +164,7 @@
 					#{prfplcnm}, 
 					#{prfnm},    
 					#{rnum},
+					#{catecode},
 					#{mt20id}
 				)
 	</insert>

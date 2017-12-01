@@ -2,7 +2,6 @@ package com.pknu.pass.play.dto;
 
 public class DetailDto {
 
-	private String imageUrl;
 	private String prfpdfrom;
 	private String prfpdto;
 	private String fcltynm;
@@ -15,29 +14,42 @@ public class DetailDto {
 	private String dtguidance;
 	private String prfnm;
 	private	String genrenm;
-	private String mt20id;
-	private String keyword;
+	private String la;
+	private String lo;
 	
+
 	@Override
 	public String toString() {
-		return "DetailDto [imageUrl=" + imageUrl + ", prfpdfrom=" + prfpdfrom + ", prfpdto=" + prfpdto + ", fcltynm="
-				+ fcltynm + ", prfcast=" + prfcast + ", prfcrew=" + prfcrew + ", prfruntime=" + prfruntime + ", prfage="
-				+ prfage + ", entrpsnm=" + entrpsnm + ", pcseguidance=" + pcseguidance + ", dtguidance=" + dtguidance
-				+ ", prfnm=" + prfnm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + ", keyword=" + keyword + "]";
+		return "DetailDto [prfpdfrom=" + prfpdfrom + ", prfpdto=" + prfpdto + ", fcltynm=" + fcltynm + ", prfcast="
+				+ prfcast + ", prfcrew=" + prfcrew + ", prfruntime=" + prfruntime + ", prfage=" + prfage + ", entrpsnm="
+				+ entrpsnm + ", pcseguidance=" + pcseguidance + ", dtguidance=" + dtguidance + ", prfnm=" + prfnm
+				+ ", genrenm=" + genrenm + ", la=" + la + ", lo=" + lo + "]";
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+
+	public String getLa() {
+		return la;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+
+	public void setLa(String la) {
+		this.la = la;
+	}
+
+
+	public String getLo() {
+		return lo;
+	}
+
+	public void setLo(String lo) {
+		this.lo = lo;
+		
 	}
 
 	public String getPrfpdfrom() {
 		return prfpdfrom;
 	}
-
+	
 	public void setPrfpdfrom(String prfpdfrom) {
 		this.prfpdfrom = prfpdfrom;
 	}
@@ -129,26 +141,4 @@ public class DetailDto {
 	public void setGenrenm(String genrenm) {
 		this.genrenm = genrenm;
 	}
-
-	public String getMt20id() {
-		return mt20id;
-	}
-
-	public void setMt20id(String mt20id) {
-		this.mt20id = mt20id;
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-
-	
-	
-	
-	
 }
