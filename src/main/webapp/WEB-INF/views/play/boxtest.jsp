@@ -109,7 +109,8 @@
 		      <div class="col-lg-15 col-md-3 col-xs-3" > 
 
 		        <a href="/play/detail?mt20id=${play.mt20id}" class="d-block mb-4 h-100" >
-		           <div class="view overlay hm-black-strong" style="width:233; height:373;">
+		           <div class="view overlay hm-black-strong">
+<!-- 		            style="width:233; height:373;" -->
 		             <img class="img-fluid img-thumbnail"
 				     src="${play.imageurl}" style="width:250; height:370;" alt="" />  
 		            <div class="mask flex-center">
