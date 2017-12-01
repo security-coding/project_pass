@@ -14,6 +14,26 @@
 	href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
 
+<style>
+ .table th {
+	color : white;
+ 	background-color: #428BCA;
+ 	text-align: center;
+ }
+ button {
+ 	width: 100%;
+ }
+ 
+ a {
+ 	color : black;
+ }
+ 
+ a:focus, a:hover {
+ 	color : black;
+ 	text-decoration: none;
+ }
+</style>
+
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -54,26 +74,19 @@
 
 				<div class="placeholders">
 					<div>
-						<div class="col-md-4 col-md-offset-4">
-							<select class="form-control" id="searchBox">
-								<option selected>-- 검색 설정 --</option>
-								<option value="fcltynm">공연명</option>
-								<option value="GENRENM">공연 장르</option>
-							</select>
-
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="Search..."
-									id="searchVal"> <span class="input-group-btn">
-									<button class="btn btn-primary" type="button"
-										onclick="searchPaging();">
-										<i>search</i>
-									</button>
-								</span>
-							</div>
+						<div class="pull-left">
+							<label class="radio-inline">
+								<input type="radio" name="searchVal" value="" onclick="btn_type();"><span>전체</span>
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="searchVal" value="1" onclick="btn_type();"><span>활성 회원</span>
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="searchVal" value="0" onclick="btn_type();"><span>비활성 회원</span>
+							</label>
 						</div>
-						<br> <br>
 						<div class="pull-right">
-							<br> <span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
+							<span>유저 DB 갯수 <span class="badge">${paging.total}</span></span>
 						</div>
 						<div class="clearfix"></div>
 						<div class="placeholder">
@@ -84,20 +97,39 @@
 											<th>ID</th>
 											<th>E-Mail</th>
 											<th>Certify</th>
+											<th>Addr1</th>
+											<th>Addr2</th>
 											<th>Grade</th>
+											<th>Comment</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="member" items="${memberList}">
 											<tr>
-												<td>${member.id}</td>
-												<td>${member.email}</td>
-												<td>${member.certify}</td>
-												<td>${Grade}</td>
+												<td id="id">${member.id}</td>
+												<td id="email">${member.email}</td>
+												<td id="addr1">부산시 북구 효열로220번길</td>
+												<td id="addr2">누구누구아파트</td>
+												<c:choose>
+													<c:when test="${member.certify eq 0}"> 
+														<td>이메일 미인증</td>
+													</c:when>
+													<c:when test="${member.certify eq 1}">
+														<td>이메일 인증</td>
+													</c:when>
+												</c:choose>
+												<c:choose>
+													<c:when test="${member.grade eq 0}">
+														<td><button class="btn-sm btn-danger grade" value=0 onclick="changeGrade(this);">Block</button></td>
+													</c:when>
+													<c:when test="${member.grade eq 1}">
+														<td><button class="btn-sm btn-primary grade" value=1 onclick="changeGrade(this);">Active</button></td>
+													</c:when>
+												</c:choose>
+												<td><button class="btn-sm btn-default"><a href="/admin/user/comment?id=${member.id}">confirm</a></button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
-
 								</table>
 							</div>
 							<nav aria-label="Page navigation">
@@ -125,11 +157,11 @@
 									</c:if>
 								</ul>
 							</nav>
-							<form action="/admin/select/concert" method="post" id="frmPaging">
+							<form action="/admin/member" method="post" id="frmPaging">
 								<input type="hidden" name="index" id="index" value="${paging.index}"> 
 								<input type="hidden"name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
 								<input type="hidden" name="listCnt" id="listCnt" value="${paging.listCnt}">
-								<input type="hidden" name="searchFilter" id="searchFilter" value="${paging.searchFilter}"> 
+								<input type="hidden" name="searchFilter" id="searchFilter" value="grade"> 
 								<input type="hidden" name="searchValue" id="searchValue" value="${paging.searchValue}">
 							</form>
 						</div>
@@ -140,5 +172,45 @@
 	</div>
 	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	
+		<script>
+			function changeGrade(obj) {
+				var id = $(obj).parents().prevAll("#id").text();
+				var grade = 1 - $(obj).val();
+				if(confirm("회원 상태를 변경하시겠습니까?") == true) {
+	 				$.ajax({
+	 					type : "POST",
+	 					url : "/admin/member/changeGrade",
+	 					data : {
+	 						id : id,
+	 						grade : grade
+	 					},
+	 					success : function() {
+	 						if(grade == 0){
+	 							$(obj).html('Block');
+	 							$(obj).removeClass("btn-primary").addClass("btn-danger");
+	 							$(obj).attr('value',grade);
+	 						}
+	 						else{
+	 							$(obj).html('Active');
+	 							$(obj).removeClass("btn-danger").addClass("btn-primary");
+	 							$(obj).attr('value',grade);
+	 						}
+	 						alert("회원 상태 변경이 완료되었습니다");
+	 					},
+	 					error : function(e) {
+	 						alert(e.responseText);
+	 					}
+	 				});		
+				console.log(id);
+			}
+		}
+			
+		function btn_type() {
+			var active = $('input[type="radio"]:checked').val();
+			document.getElementById("searchValue").value = active;
+			frmPaging();
+		}
+	</script>
 </body>
 </html>

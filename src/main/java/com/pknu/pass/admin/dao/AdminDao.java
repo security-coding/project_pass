@@ -36,6 +36,7 @@ public interface AdminDao {
 	
 	List<LoginDto> selectMember(PagingDto paging);
 	int selectTotalMember(PagingDto paging);
+	void changeGrade(LoginDto member);
 	
 }
 

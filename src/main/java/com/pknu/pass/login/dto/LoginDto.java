@@ -12,6 +12,7 @@ public class LoginDto {
 	String profile;
 	int grade;
 	int loginfailcount;
+	
 	public String getId() {
 		return id;
 	}

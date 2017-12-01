@@ -42,7 +42,7 @@
 			</ul>
 
 			<ul class="nav nav-sidebar">
-				<li><a href="">사용자 정보 관리</a></li>
+				<li><a href="/admin/member">사용자 정보 관리</a></li>
 				<li><a href="">코멘트 관리</a>
 			</ul>
 		</div>

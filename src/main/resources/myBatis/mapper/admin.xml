@@ -62,8 +62,9 @@
 	<select id="selectTotalMember" parameterType="paging" resultType="Integer">
 		SELECT COUNT(*)
 		FROM MEMBER
+		WHERE grade != 2
 		<if test="searchFilter != null and searchValue !=''">
-			WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+			AND ${searchFilter} = #{searchValue}
 		</if>
 	</select>
 	
@@ -72,8 +73,9 @@
 		FROM ( SELECT ROWNUM RNUM, M.*
 				FROM ( SELECT ID,EMAIL,CERTIFY,GRADE 
 						FROM MEMBER
-						<if test="searchFilter != null and serachValue !=''">
-							WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+						WHERE grade != 2 <!-- admin 계정은 select에서 제외 -->
+						<if test="searchFilter != null and searchValue !=''">
+							AND ${searchFilter} = #{searchValue}
 						</if>
 						ORDER BY GRADE DESC
 						) M )
@@ -221,6 +223,11 @@
 		DELETE BOXOFFICE
 	</delete>
 	
+	<update id="changeGrade" parameterType="login">
+		UPDATE MEMBER SET
+			grade = #{grade}
+		WHERE ID = #{id}
+	</update>
 </mapper>
 	
 	

@@ -108,11 +108,19 @@ public class AdminController {
 	
 	@RequestMapping(value = "/member")
 	public String selectMember(Model model, PagingDto paging) {
+		logger.info(paging.toString());
 		List<LoginDto> memberList = adminService.selectMember(paging);
 		paging.setTotal(adminService.selectTotalMember(paging));
 		
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("paging",paging);
 		
 		return "admin/member";
+	}
+	
+	@RequestMapping(value = "/member/changeGrade")
+	@ResponseBody
+	public void changeGrade(LoginDto member) {
+		adminService.changeGrade(member);
 	}
 }

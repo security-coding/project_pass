@@ -32,14 +32,6 @@
 				</button>
 				<a class="navbar-brand" href="#">Pass Admin Page</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Settings</a></li>
-					<li><a href="#">Profile</a></li>
-					<li><a href="#">Help</a></li>
-				</ul>
-			</div>
 		</div>
 	</nav>
 
@@ -54,7 +46,7 @@
 			</ul>
 
 			<ul class="nav nav-sidebar">
-				<li><a href="">사용자 정보 관리</a></li>
+				<li><a href="/admin/member">사용자 정보 관리</a></li>
 				<li><a href="">코멘트 관리</a>
 			</ul>
 

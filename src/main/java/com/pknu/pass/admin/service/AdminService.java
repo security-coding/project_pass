@@ -1,6 +1,5 @@
 package com.pknu.pass.admin.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,5 +30,6 @@ public interface AdminService {
 	
 	List<LoginDto> selectMember(PagingDto paging);
 	int selectTotalMember(PagingDto paging);
+	void changeGrade(LoginDto member);
 
 }

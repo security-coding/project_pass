@@ -331,6 +331,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int selectTotalMember(PagingDto paging) {
 		return adminDao.selectTotalMember(paging);
+	}
+
+	@Override
+	public void changeGrade(LoginDto member) {
+		adminDao.changeGrade(member);
 	}	
 
 }
