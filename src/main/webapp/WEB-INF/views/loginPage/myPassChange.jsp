@@ -52,14 +52,14 @@ $(function() {
 });
 
 
-// function passwordSubmit(){
-// 	if(passCheck==true){
-// 		return true;
-// 	}else if(passCheck==false){
-// 		alert("현재 비밀번호가 틀렸습니다.");
-// 		return false;
-// 	}
-// }
+function passwordSubmit(){
+	if(passCheck==true){
+		return true;
+	}else if(passCheck==false){
+		alert("현재 비밀번호가 틀렸습니다.");
+		return false;
+	}
+}
 
 function execDaumPostcode() {
     new daum.Postcode({

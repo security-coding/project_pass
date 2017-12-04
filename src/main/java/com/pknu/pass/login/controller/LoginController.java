@@ -27,9 +27,17 @@ public class LoginController {
 	LoginServiceImpl loginService;
 	
 	@RequestMapping("/main")//메인 모달버튼및 회원가입 버튼있는곳으로 이동
-	public String mainForm() {
+	public String mainForm(HttpSession session,Model model) {
+		String result = null;
 		logger.info("Login Main page");
-		return "loginPage/main";
+		if(session.getAttribute("id")!=null) {
+			result=loginService.redirectPage(session,model);
+		
+		}else {
+			result="loginPage/main";
+		}
+		
+		return result;
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
