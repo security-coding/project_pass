@@ -43,18 +43,6 @@ public class CommentController {
 		
 	}
 	
-//    @RequestMapping(value = "/write")
-//    public String commentWrite(CommentDto comment, ModelMap modelMap) {
-//        
-//        commentService.insertComment(comment);
-//        
-//        commentList = commentService.getComments(comment.getMt20id(), 10);
-//        modelMap.addAttribute("commentList", comment);
-//        
-//        return "comment";
-//    }
-	
-	
 
 	
 }

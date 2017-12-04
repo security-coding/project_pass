@@ -1,136 +1,234 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
-<!-- Bootstrap core CSS -->
-<link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>detailpage.jsp*Concert Information</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
+
+
+<style>
+@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
+
+body, table, div, p, header, hr, footer {
+   font-family: 'Jeju Gothic'
+}
+</style>
 
 </head>
+
 <body>
-
     <!-- Navigation -->
- <!--   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">Project Pass</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li>
+                     <c:if test="${id==null}">
+                  <%@include file="../loginPage/login.jsp"%>
+               </c:if> 
+               <c:if test="${id!=null}">
+                  <%@include file="../loginPage/loginOk.jsp"%>
+               </c:if>
+               </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-      </div>
-    </nav>-->
-
-    <!-- Page Content -->
-    <div class="container">
-
-      <div class="row">
-
-        <!-- Post Content Column -->
-        <div class="col-lg-8">
-
-          <!-- Title -->
-          <h1 class="mt-4">${detailInf.prfnm}</h1>
-
-          <!-- Author -->
-<!--          <p class="lead">
-            by
-            <a href="#">Start Bootstrap</a>
-          </p>-->
-
-          <!-- Date/Time -->
-<!--          <p>Posted on January 1, 2017 at 12:00 PM</p>-->
-
-          <hr>
-
-				<div >
-					<img class="img-fluid img-thumbnail" src="${detailImages[0]}"
-						style="width: 300; height: 380; float: left" alt=""/>
-						<ul>
-
-<%--                         <li>공연명 : ${detailInf.prfnm}</li> --%>
-						<li>공연시작일 : ${detailInf.prfpdfrom} ~ 공연종료일 : ${detailInf.prfpdto}</li>
-						<li>공연시설명(공연장명) : ${detailInf.fcltynm}</li>
-						<li>공연출연진 : ${detailInf.prfcast}</li>
-			<!-- 						prfcrew = 출연진, but 나타나지 않는 공연들도 있음. 어떻게 뿌릴건지 상의 -->						
-						<li>공연제작진 : ${detailInf.prfcrew}</li>
-			<!-- 						prfcrew = 제작진, but 나타나지 않는 공연들도 있음. 어떻게 뿌릴건지 상의 -->
-						<li>공연 런타임 : ${detailInf.prfruntime}</li>
-						<li>공연 관람 연령 : ${detailInf.prfage}</li>
-						<li>제작사 : ${detailInf.entrpsnm}</li>
-						<li>티켓 가격 : ${detailInf.pcseguidance}</li>
-						<li>공연 시간 : ${detailInf.dtguidance}</li>
-											
-						</ul>
-				</div>
-
-		<hr>
-     
+        <!-- /.container -->
+    </nav>
+    
       <div>
-		<c:forEach var="detailImage" items="${detailImages}" begin="1">
-			<img class="img-fluid img-thumbnail" src="${detailImage}" />
+   <!-- Modal -->
+   <form>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
 
-		</c:forEach>
-	</div>
-          
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"
+                     aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">로그인</h4>
+               </div>
+               <form class="signform" name="signupform">
+                  <div name="inputform" class="modal-body container-fluid">
+                     <label for="id">ID:<input type="text" id="id" name="id"
+                        class="form-control" placeholder="id"></label><br> <label
+                        for="pass">password:<input type="password"
+                        id="password" name="password" class="form-control"
+                        placeholder="password"></label><br>
+                  </div>
 
-          <!-- Post Content -->
-        <!--  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+                  <div class="modal-footer">
+                     <button id="reset" type="button" class="btn btn-default"
+                        data-dismiss="modal">닫기</button>
+                     <button id="login" type="submit" class="btn btn-primary">로그인</button>
+                     <td><p>
+                           <a href="/member/userloss">아이디/비밀번호찾기></a>
+                        </p>
+                     <td>
+                  </div>
+               </form>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+            </div>
+            <!-- modal-content의 div끝 -->
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>-->
+         </div>
+         <!-- modal-dialog의 div끝 -->
 
-<!--          <blockquote class="blockquote">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in
-              <cite title="Source Title">Source Title</cite>
-            </footer>
-          </blockquote>-->
+      </div>
+   </form>
+   <!--모달 내용 서브밋form-->
+   </form>
+   <!--모달 부르는 버튼 form-->
+   <!--모달 끝-->
+</div>
+<div style="height: 100px;"></div>
+   <div class="row">
+   <div class="col-md-7 col-md-offset-1">
+   <!-- Header content -->
+   <header>
+      <div class="profilePhoto">
+         <!-- Profile photo -->
+         <img src="${detailImages[0]}" style="width: 500; height: 100%; "alt="concert-image" />
+      </div>
+         <!-- Identity details -->
+         <section class="profileHeader">
 
-<!--          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+                 <h1>${detailInf.prfnm}</h1>
+            <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
+            <hr>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>-->
+            
+            <p />
+            공연 시작일 : ${detailInf.prfpdfrom}<p />
+            공연 종료일 : ${detailInf.prfpdto}<p />   
+            공연 시　간 : ${detailInf.dtguidance}<p />
+            공연 시설명 : ${detailInf.fcltynm}<p />
+            공연 출연진 : ${detailInf.prfcast}<p />
+            공연 제작진 : ${detailInf.prfcrew}<p />         
+            공연 런타임 : ${detailInf.prfruntime}<p />
+            공연 관람 연령 : ${detailInf.prfage}<p />
+            공연 제작사 : ${detailInf.entrpsnm}<p />
+            티켓 가격 : ${detailInf.pcseguidance}<p />
+            <p />
+         </section>
+   </header>
+   <hr />
+   <!-- content -->   
+   <section class="mainContent">
+      <!-- Contact details -->
+      <section class="section1">
+         <h2 class="sectionTitle">해당 공연의 기본 정보</h2>
 
-          <hr>
+         <hr class="sectionTitleRule2">
+         <div class="section1Content">
+                        <div>
+               <c:forEach var="detailImage" items="${detailImages}" begin="1">
+                  <img class="img-fluid img-thumbnail" src="${detailImage}" />
+               </c:forEach>
+            </div>
+         </div>
+      </section>
+   </section>
+</div>
+<div class="col-md-4">
 
-          <!-- Comments Form -->
+   <h3>본 공연의 지도 위치는 다음과 같습니다.</h3><p />
+      <script type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
+
+   <script type="text/javascript" 
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
+
+   <div id="map" style="width: 100%; height: 350px;"></div>
+   <script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = {
+         center : new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo}), // 지도의 중심좌표
+         level : 3
+      // 지도의 확대 레벨
+      };
+
+      var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+      // 마커가 표시될 위치입니다 
+        var markerPosition = new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo});
+
+
+      // 마커를 생성합니다
+      var marker = new daum.maps.Marker({
+         position : markerPosition
+      });
+
+
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+
+      // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+      // marker.setMap(null);
+      
+      
+       
+      let geocoder = new daum.maps.services.Geocoder();
+
+        let callback = function(result, status) {
+      if (status === daum.maps.services.Status.OK) {
+       console.log(result);
+       console.log(status);
+       console.log(result.x);
+          }
+      };
+
+       geocoder.addressSearch('부산광역시 남구 용당동 331', callback);
+      
+      
+   </script>
+   
+             <!-- Comments Form -->
           <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">본 공연에 대한 댓글 남기기 :</h5>
             <div class="card-body">
               <form>
                 <div class="form-group">
                   <textarea class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">작성</button>
               </form>
             </div>
           </div>
-
-          <!-- Single Comment -->
+   
+             <!-- Single Comment -->
           <div class="media mb-4">
             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
             <div class="media-body">
@@ -166,87 +264,23 @@
           </div>
 
         </div>
+   
+</div>
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
 
-          <!-- Search Widget -->
-          <form action="/play/search">
-          <div class="card my-4">
-            <h5 class="card-header">Search</h5>
-            <div class="card-body">
-              <div class="input-group">
-                <input id="keyword" name="keyword" type="text" class="form-control" placeholder="제목입력">
-                <span class="input-group-btn">
-                  <input class="btn btn-secondary" type="submit" value="검색"/>
-                </span>
-              </div>
-            </div>
-          </div>
-		  </form>
-		  
-          <!-- Categories Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">Web Design</a>
-                    </li>
-                    <li>
-                      <a href="#">HTML</a>
-                    </li>
-                    <li>
-                      <a href="#">Freebies</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">JavaScript</a>
-                    </li>
-                    <li>
-                      <a href="#">CSS</a>
-                    </li>
-                    <li>
-                      <a href="#">Tutorials</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
+         <!-- Replicate the above Div block to add more title and company details -->
 
         </div>
-
-      </div>
-      <!-- /.row -->  
-
-    </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
-
-  </body>
+        <div>
+   <footer>
+      <hr>
+      <p class="footerDisclaimer">
+         2014 Copyrights - <span>All Rights Reserved</span>
+      </p>
+      <p class="footerNote">
+         John Doe - <span>Email me</span>
+      </p>
+   </footer>
+</div>
+</body>
 </html>
