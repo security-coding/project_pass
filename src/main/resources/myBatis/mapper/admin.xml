@@ -7,6 +7,9 @@
 	<select id="selectTotalConcert" resultType="Integer">
 		SELECT COUNT(*)
 		FROM CONCERT
+		<if test="searchFilter != null and searchValue !=''">
+			WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+		</if>
 	</select>
 	
 	<!-- ROWNUM Query(Paging) -->
@@ -15,6 +18,9 @@
 		FROM ( SELECT ROWNUM RNUM, C.*
 				FROM ( SELECT * 
 						FROM CONCERT
+						<if test="searchFilter != null and searchValue !=''">
+						WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+						</if>
 						ORDER BY MT20ID) C )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
@@ -51,6 +57,29 @@
 		FROM BOXOFFICE
 		WHERE catecode = #{catecode}
 		ORDER BY RNUM
+	</select>
+	
+	<select id="selectTotalMember" parameterType="paging" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE grade != 2
+		<if test="searchFilter != null and searchValue !=''">
+			AND ${searchFilter} = #{searchValue}
+		</if>
+	</select>
+	
+	<select id="selectMember" parameterType="paging" resultType="login">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, M.*
+				FROM ( SELECT ID,EMAIL,CERTIFY,GRADE 
+						FROM MEMBER
+						WHERE grade != 2 <!-- admin 계정은 select에서 제외 -->
+						<if test="searchFilter != null and searchValue !=''">
+							AND ${searchFilter} = #{searchValue}
+						</if>
+						ORDER BY GRADE DESC
+						) M )
+		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
 
 	<insert id="insertConcertInf" parameterType="concert">
@@ -194,6 +223,11 @@
 		DELETE BOXOFFICE
 	</delete>
 	
+	<update id="changeGrade" parameterType="login">
+		UPDATE MEMBER SET
+			grade = #{grade}
+		WHERE ID = #{id}
+	</update>
 </mapper>
 	
 	

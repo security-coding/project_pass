@@ -17,7 +17,6 @@ public class DetailDto {
 	private String la;
 	private String lo;
 	
-
 	@Override
 	public String toString() {
 		return "DetailDto [prfpdfrom=" + prfpdfrom + ", prfpdto=" + prfpdto + ", fcltynm=" + fcltynm + ", prfcast="
@@ -25,7 +24,6 @@ public class DetailDto {
 				+ entrpsnm + ", pcseguidance=" + pcseguidance + ", dtguidance=" + dtguidance + ", prfnm=" + prfnm
 				+ ", genrenm=" + genrenm + ", la=" + la + ", lo=" + lo + "]";
 	}
-
 
 	public String getLa() {
 		return la;
@@ -43,7 +41,6 @@ public class DetailDto {
 
 	public void setLo(String lo) {
 		this.lo = lo;
-		
 	}
 
 	public String getPrfpdfrom() {
@@ -141,4 +138,5 @@ public class DetailDto {
 	public void setGenrenm(String genrenm) {
 		this.genrenm = genrenm;
 	}
+
 }

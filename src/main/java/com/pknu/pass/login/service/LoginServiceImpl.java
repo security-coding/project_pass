@@ -16,19 +16,23 @@ import com.pknu.pass.login.dto.LoginDto;
 @Service
 public class LoginServiceImpl implements LoginService {
 	@Autowired
-	MailUtil mailUtil;
+	private MailUtil mailUtil;
 
 	@Autowired
-	LoginDao logindao;
+	private LoginDao logindao;
 
 	@Autowired
-	SecurityUtil securityUtil;
+	private SecurityUtil securityUtil;
 
 	@Override
-	public void insertUser(LoginDto logindto) {
+	public void insertUser(LoginDto logindto,String stremail,String address,String detailAddress) {
 		System.out.println(logindto.getPassword());
 		String certKey = UUID.randomUUID().toString().replaceAll("-", "");
 		String SecurityPass = securityUtil.encrypt(logindto.getPassword());
+		
+		logindto.setDetailAddress(detailAddress);
+		logindto.setAddress(address);
+		logindto.setEmail(logindto.getEmail()+"@"+stremail);
 		logindto.setCertKey(certKey);
 		logindto.setPassword(SecurityPass);
 
@@ -70,7 +74,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("imageUrl", profile);
 						model.addAttribute("id",id);
 						model.addAttribute("imageUrl",profile);
-						view = "loginPage/main";
+						view = "/home";
 					} else {// 비밀번호 실패
 						model.addAttribute("passFail", passFail);
 						view = "loginPage/loginFail";
@@ -90,7 +94,7 @@ public class LoginServiceImpl implements LoginService {
 				}
 			} else if (certify == 0) {//회원가입 인증이 되지 않았음
 				model.addAttribute("dbCertify", dbCertifyCheckNo);
-				view = "loginPage/main";
+				view = "/home";
 			}
 		} else {//아이디가 존재하지 않을때
 			model.addAttribute("Notmember", Notmember);
@@ -105,7 +109,7 @@ public class LoginServiceImpl implements LoginService {
 		session.removeAttribute("id");
 		session.invalidate();
 
-		return "loginPage/main";
+		return "/home";
 	}
 
 	@Override
@@ -132,26 +136,39 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void myPageId(HttpSession session, Model model, String myemail, LoginDto loginDto) {
-		// session.setAttribute("id",session.getAttribute("id"));
+	public void myPageId(HttpSession session, Model model,LoginDto loginDto) {
+		LoginDto userInf=null;
+		String id =(String)session.getAttribute("id");
 		String imageUrl;
-		loginDto.setId((String) session.getAttribute("id"));
-		String id = loginDto.getId();
-		String mail = logindao.myEmail(loginDto);
+		String address;
+		String detailAddress;
+		
+		userInf=logindao.getUser(id);
+		imageUrl = userInf.getProfile();
+		address=userInf.getAddress();
+		detailAddress=userInf.getDetailAddress();
+		
+		
+		String mail = userInf.getEmail();
 		int idx = mail.indexOf("@");
 		String mailid = mail.substring(0, idx);
-		imageUrl = logindao.getImageUrl(id);
+		
 
 		model.addAttribute("imageUrl", imageUrl);
 		model.addAttribute("id", session.getAttribute("id"));
 		model.addAttribute("email", mailid);
-
+		model.addAttribute("address",address);
+		model.addAttribute("detailAddress",detailAddress);
+		
 	}
 
 	@Override
-	public void myPageUpdate(HttpSession session, LoginDto logindto) {
+	public void myPageUpdate(HttpSession session,String password,LoginDto logindto,String address,String detailaddress) {
+		
 		logindto.setId((String) session.getAttribute("id"));
-		logindto.setPassword(securityUtil.encrypt(logindto.getPassword()));
+		logindto.setPassword(securityUtil.encrypt(password));
+		logindto.setAddress(address);
+		logindto.setDetailAddress(detailaddress);
 		logindao.myPageUpdate(logindto);
 
 	}
@@ -237,6 +254,27 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		return status;
+	}
+
+
+	public int currentPwCheck(HttpSession session,String currentPw) {
+		String id=(String)session.getAttribute("id");
+		int result=0;
+		String defaultPw;
+		String pw=(String)securityUtil.encrypt(currentPw);
+		System.out.println(pw+"입력한 패스워드");
+		defaultPw=(String)logindao.loginCheck(id);//쿼리문이 동일함
+		System.out.println(defaultPw+"db값");
+		System.out.println(id+"id값");
+		if(pw.equals(defaultPw)) {
+			result=1;
+			System.out.println(result);			
+		}else{
+			result=2;
+			System.out.println(result);
+			
+		}
+		return result;
 	}
 
 }

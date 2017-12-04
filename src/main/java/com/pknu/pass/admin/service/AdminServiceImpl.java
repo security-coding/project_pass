@@ -22,10 +22,11 @@ import org.w3c.dom.NodeList;
 import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
+import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
-import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
 @Transactional
@@ -141,7 +142,7 @@ public class AdminServiceImpl implements AdminService {
 		int dateIdx = poster.indexOf('_', poster.indexOf('_') + 1) + 1;
 		String uploadDate = poster.substring(dateIdx, dateIdx + 6);
 
-		ArrayList<ImageDto> imageList = adminDao.imgUpdateCheck(mt20id);
+		ArrayList<ImageDto> imageList = (ArrayList<ImageDto>) adminDao.imgUpdateCheck(mt20id);
 
 		// 존재하는 경우 Insert가 한번이라도 이루어진 정보
 		if (imageList.size() > 0) {
@@ -287,8 +288,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int selectTotalConcert() {
-		return adminDao.selectTotalConcert();
+	public int selectTotalConcert(PagingDto paging) {
+		return adminDao.selectTotalConcert(paging);
 	}
 
 	@Override
@@ -312,16 +313,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Map<String, ArrayList<BoxofficeDto>> selectBoxoffice() {
-		Map<String, ArrayList<BoxofficeDto>> map = new HashMap<>();
+	public Map<String, List<BoxofficeDto>> selectBoxoffice() {
+		Map<String, List<BoxofficeDto>> map = new HashMap<>();
 		String[] catecodeArr = { "YK", "MU", "CCO", "MMB", "KKB" };
 		
 		for(String catecode : catecodeArr)
 			map.put(catecode, adminDao.selectBoxoffice(catecode));
 		
 		return map;
+	}
+
+	@Override
+	public List<LoginDto> selectMember(PagingDto paging) {
+		return adminDao.selectMember(paging);
+	}
+
+	@Override
+	public int selectTotalMember(PagingDto paging) {
+		return adminDao.selectTotalMember(paging);
+	}
+
+	@Override
+	public void changeGrade(LoginDto member) {
+		adminDao.changeGrade(member);
 	}	
-	
-	
-	
+
 }
