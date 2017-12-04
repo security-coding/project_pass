@@ -46,8 +46,8 @@
 
        let callback = function(result, status) {
          if (status === daum.maps.services.Status.OK) {
-          alert(result);
-          alert(status);
+        //  alert(result);
+       //   alert(status);
           let la=""
           let lo=""
           la=result[0].y;

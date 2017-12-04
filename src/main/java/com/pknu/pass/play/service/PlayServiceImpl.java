@@ -143,7 +143,7 @@ public class PlayServiceImpl implements PlayService {
 		
 	}
 
-
+//지도
 	@Override
 	public void getNearMap(String la, String lo, Model model) {
 		
