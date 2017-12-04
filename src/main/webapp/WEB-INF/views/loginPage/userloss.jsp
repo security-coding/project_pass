@@ -16,7 +16,7 @@ let idCheck=false;
 let emailCheck = false;
 
 $(function() {
-	$("#email1").on("click", function() {
+	$("#email1").on("change blur", function() {
 		$.ajax({
 			type : "POST",
 			async : true,
@@ -49,6 +49,7 @@ $(function() {
 
 $(function() {
 	$("#email2").on("blur", function() {
+		$("#id").on("change",function(){
 		$.ajax({
 			type : "POST",
 			async : true,
@@ -71,14 +72,18 @@ $(function() {
 						emailCheck=false;
 						 
 					}
-				} else if($("#email1").val() == "" && $("#id").val() ==""){	
+				} else if($("#email2").val() == "" && $("#id").val() ==""){	
 					idCheck=false; 
 					emailCheck=false; 
 				}
 			}
+			});//ajax
 		});
 	});
 });
+
+
+
 
 
 function idSearchSubmit(){

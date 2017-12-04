@@ -12,29 +12,33 @@
  SELECT PASSWORD FROM MEMBER WHERE ID=#{id}
  </select>
  
- <select id="getImageUrl" resultType="String" parameterType="String">
- select PROFILE from member where ID=#{id}
- </select>
- 
-  <select id="logineMailCheck" resultType="String" parameterType="String">
+ <select id="logineMailCheck" resultType="String" parameterType="String">
  SELECT EMAIL FROM MEMBER WHERE email=#{email}
  </select>
  
+ 
  <insert id="insertUser" parameterType="String">
- 	insert into MEMBER(id,password,email,certkey) values(#{id},#{password},#{email},#{certKey})
+ 	insert into MEMBER(id,password,email,certkey,address,detailaddress) values(#{id},#{password},#{email},#{certKey},#{address},#{detailAddress})
  </insert>
  
  <update id="myPageUpdate" parameterType="String">
- 	UPDATE MEMBER set password=#{password},email=#{email} WHERE ID=#{id}
+ 	UPDATE MEMBER 
+ 	<choose>
+ 	<when test="password !=null">
+ 	set password=#{password} 
+  	</when>
+  	<when test="address !='' and detailAddress !=''">
+  	set address=#{address},DETAILADDRESS=#{detailAddress}
+  	</when>
+  	</choose>
+  	WHERE ID=#{id}
  </update>
  
  <update id="updateProfile" parameterType="String">
  	UPDATE MEMBER set PROFILE=#{profile} WHERE ID=#{id}
+ 	
  </update>
  
- <select id="myEmail" resultType="String" parameterType="String">
- 	SELECT email FROM MEMBER WHERE ID=#{id}
- </select>
  <select id="checkJoin" resultType="login" parameterType="String">
  	SELECT * FROM MEMBER where CERTKEY=#{certkey}
  </select>

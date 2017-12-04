@@ -80,7 +80,6 @@ function execDaumPostcode() {
     }).open();
 }
 
-
 </script>
 
 </head>
@@ -101,8 +100,8 @@ function execDaumPostcode() {
 	<div class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
-			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
-			<li><a href="/member/myPassChange">회원정보변경</a></li>
+			<li class="active"><a href="/member/myInf">내정보<span class="sr-only">(current)</span></a></li>
+			<li><a href="">비밀번호변경</a></li>
 			<li><a href="#">공연 시설 목록</a></li>
 			<li><a href="#">주간 박스오피스</a></li>
 		</ul>
@@ -115,7 +114,17 @@ function execDaumPostcode() {
 				<label for="id" id="id" name="id">ID:${id}
 				<div id="idcheck"></div>
 			</div>
-					
+			
+			<div class="form-group">
+				<label for="password">변경할비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="변경할비밀번호">
+			</div>
+			
+			<div class="form-group">
+				<label>변경한 비밀번호 확인</label> <input type="password"
+					class="form-control" id="pass2" placeholder="변경할비밀번호 확인" >
+			</div>
+			
 			<div class="form-group">
 
 				<table>
@@ -123,13 +132,20 @@ function execDaumPostcode() {
 						<label for="email">Email:
 							<td><div>
 									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"  value="${email}" disabled="true"></td>
+										placeholder="Email" style="width: 200px"  value="${email}"></td>
 							<td>@</td>
 							<td><input type="text" name="str_email" id="str_email" class="form-control"
 								style="width: 100px" disabled value="naver.com">
 								</div></td>
-							<td>
-
+						<td><select style="width: 120px" name="str_email"
+								id="selectEmail" class="form-control">
+									<option value="1">직접입력</option>
+									<option value="naver.com" selected>naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="nate.com">nate.com</option>
+									<option value="gmail.com">gmail.com</option>
+							</select>
 						</label>
 						</td>
 					</tr>
@@ -138,10 +154,11 @@ function execDaumPostcode() {
 			<tr>
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}" disabled="disabled">
+				<input type="text" id="address" name="address" placeholder="주소" value="${address}"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
 			</div>
 			</label>
 			</tr>
+
 			</div>
 
 
@@ -165,10 +182,14 @@ function execDaumPostcode() {
 						onclick="setMyimage(this)">스파이더맨</li>
 				</ul>
 			</div>
-			<div>												   
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../member/main";'>
-					되돌아가기<i class="fa fa-times spaceLeft"></i>
-			</button>
+
+			<div class="form-group text-center">
+				<button id="signupbtn" type="submit" class="btn btn-info" >
+					수정하기<i class="fa fa-check spaceLeft"></i>
+				</button>
+				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">
+					수정취소<i class="fa fa-times spaceLeft"></i>
+				</button>
 			</div>
 		</form>
 		
@@ -181,5 +202,47 @@ function execDaumPostcode() {
 <!-- /container -->
 
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+<script type="text/javascript">
+	//이메일 입력방식 선택
+	$('#selectEmail').change(function() {
+		$("#selectEmail option:selected").each(function() {
+
+			if ($(this).val() == '1') { //직접입력일 경우
+				$("#str_email").val(''); //값 초기화
+				$("#str_email").attr("disabled", false); //활성화
+			} else { //직접입력이 아닐경우
+				$("#str_email").val($(this).text()); //선택값 입력
+				$("#str_email").attr("disabled", true); //비활성화
+			}
+		});
+	});
+	
+	 $(function(){
+//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
+		 $("#loginForm").on("submit", function(){
+//	 		 event.preventDefault();
+
+			 var pass=$("#password").val(); 
+			 var passcheck=$("#pass2").val();
+			 
+
+			 if(pass==""){
+			 	alert("패스워스를 입력하세요");
+			 	$("#password").focus();
+			 	return false;
+			 }
+			 if(pass!=passcheck){
+				 alert("패스워드가 일치하지 않습니다")
+			 	$("#pass2").focus();
+				 return false;
+			 }
+			 
+			 $("#loginForm").submit();
+		 })
+		 
+	 });
+
+</script>
 
 </html>

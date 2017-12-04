@@ -15,28 +15,51 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 지도 api -->		
 
 <script>
-function setMyimage(imgsrc){
-	let myimage=document.getElementById('myimage');
-	let nowProfile=document.getElementById('Profile');
-	let img = imgsrc.getAttribute('src');
-	myimage.setAttribute('src',img);
-	nowProfile.setAttribute('src',img);
-	$.ajax({
-		type:"POST",
-		async : true,
-		dataType : 'String',
-		url:'/member/updateprofile',
-		data : {
-			srcinput :myimage.getAttribute('src') 
-		},
-		success:function(data){
-			
-			console.log(data);
-		}
-	});
-}
+let passCheck=false;
 
-/*지도 스크립트 */
+$(function() {
+	$("#currentPw").on("blur", function() {
+		$.ajax({
+			type : "POST",
+			async : true,
+			dataType : 'json',
+			url : "/member/currentPwCheck",
+			data : {
+				currentPw : $("#currentPw").val()
+			},
+			success : function(data) {
+				let html;
+				if ($("#currentPw").val() != "") {
+					if (data == 1) {
+						passCheck=true;
+						console.log("허용");
+					} else {
+						html = "<b>현재 비밀번호 틀림<b>";
+						passCheck=false;
+						console.log("비밀번호 틀림");
+					}
+				} else {
+					html = "<b>현재비밀번호를 입력해 주세요</b>"
+					passCheck=false;
+					console.log("비밀번호 입력");
+				}
+			},
+			error : function(xhr) {
+				alert("error html=" + xhr.statusText);
+			}
+		});
+	});
+});
+
+
+function passwordSubmit(){
+	if(passCheck==true){
+		return true;
+	}else if(passCheck==false){
+		alert("현재 비밀번호가 틀렸습니다.");
+		return false;
+	}
+}
 
 function execDaumPostcode() {
     new daum.Postcode({
@@ -94,7 +117,7 @@ function execDaumPostcode() {
 	
 	<div class="page-header">
 		<h1>
-			마이페이지
+			비밀번호번경
 		</h1>
 	</div>
 	
@@ -102,84 +125,85 @@ function execDaumPostcode() {
 		<ul class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
-			<li><a href="/member/myPassChange">회원정보변경</a></li>
-			<li><a href="#">공연 시설 목록</a></li>
-			<li><a href="#">주간 박스오피스</a></li>
+			<li><a href="/member/myPassChange">회원정보 변경</a></li>
 		</ul>
 	</div>
 
 	<div class="col-xs-8 col-sm-6">		
-		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
+		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return passwordSubmit()"><!-- form -->
 			
 			<div class="form-group">
-				<label for="id" id="id" name="id">ID:${id}
-				<div id="idcheck"></div>
+				<label for="id" id="id" name="id" >ID:${id}</label>
 			</div>
-					
+			
 			<div class="form-group">
-
-				<table>
-					<tr>
-						<label for="email">Email:
-							<td><div>
-									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"  value="${email}" disabled="true"></td>
-							<td>@</td>
-							<td><input type="text" name="str_email" id="str_email" class="form-control"
-								style="width: 100px" disabled value="naver.com">
-								</div></td>
-							<td>
-
-						</label>
-						</td>
-					</tr>
-				</table>
-				
-			<tr>
+				<label for="currentPw">현재비밀번호</label> <input type="password"
+					class="form-control" id="currentPw" name="currentPw" placeholder="현재비밀번호">
+			</div>
+			
+			<div class="form-group">
+				<label for="password">변경할비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="변경할비밀번호">
+			</div>
+			
+			<div class="form-group">
+				<label>변경한 비밀번호 확인</label> <input type="password"
+					class="form-control" id="pass2" placeholder="변경할비밀번호 확인" >
+			</div>
+			
+			<div class="form-group">
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}" disabled="disabled">
+				<input type="text" id="address" name="address" placeholder="주소" value="${address}"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
 			</div>
 			</label>
-			</tr>
 			</div>
-
-
-			<div>
-			<img src="${imageUrl}" alt="..." id="Profile" class="img-thumbnail">
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-lg dropdown-toggle"
-					data-toggle="dropdown" aria-expanded="false">
-					<img id="myimage" src="${imageUrl}"> <span class="caret"></span>
+			
+			<div class="form-group text-center">
+				<button id="passUpbtn" type="submit" class="btn btn-info" >
+					비밀번호변경<i class="fa fa-check spaceLeft"></i>
 				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><img id="img1" class="img"
-						src="/resources/images/profile/img1.png"
-						onclick="setMyimage(this)">악마</li>
-					<li><img id="img2" class="img"
-						src="/resources/images/profile/img2.png"
-						onclick="setMyimage(this)">판다</li>
-					<li><img id="img3" class="img"
-						src="/resources/images/profile/img3.png"
-						onclick="setMyimage(this)">스파이더맨</li>
-				</ul>
-			</div>
-			<div>												   
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../member/main";'>
-					되돌아가기<i class="fa fa-times spaceLeft"></i>
-			</button>
+				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">
+					되돌아기<i class="fa fa-times spaceLeft"></i>
+				</button>
 			</div>
 		</form>
 		
-	</div>
-
-	
-	</article>
+	</div>	
+</article>
 </body>
 
 <!-- /container -->
 
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+<script type="text/javascript">
+
+// 	 $(function(){
+// //	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
+// 		 $("#loginForm").on("submit", function(){
+// //	 		 event.preventDefault();
+
+// 			 var pass=$("#password").val(); 
+// 			 var passcheck=$("#pass2").val();
+			 
+
+// 			 if(pass==""){
+// 			 	alert("패스워스를 입력하세요");
+// 			 	$("#password").focus();
+// 			 	return false;
+// 			 }
+// 			 if(pass!=passcheck){
+// 				 alert("패스워드가 일치하지 않습니다")
+// 			 	$("#pass2").focus();
+// 				 return false;
+// 			 }
+			 
+// 			 $("#loginForm").submit();
+// 		 })
+		 
+// 	 });
+
+</script>
 
 </html>
