@@ -88,7 +88,7 @@ body, table, div, p, header, hr, footer {
 		var html="<table border='1' width='500' align='center'>";
 		$.each(data, function(index,item){
 			html +="<tr>";	
-	//			html +="<td>"+item.id+"</td>";
+			html +="<td>"+item.id+"</td>";
 			html +="<td>"+item.commentNum+"</td>";
 			html +="<td>"+item.mt20id+"</td>";
 			html +="<td>"+item.commentContent+"</td>";
