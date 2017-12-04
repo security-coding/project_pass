@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.pknu.pass.login.dao.LoginDao;
+import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
@@ -18,7 +20,9 @@ public class PlayServiceImpl implements PlayService {
 
 	@Autowired
 	PlayDao playDao;
-
+	
+	@Autowired
+	LoginDao loginDao;
 	
 //현재 상영작	
 	@Override
@@ -166,6 +170,15 @@ public class PlayServiceImpl implements PlayService {
 		
 		ArrayList<MainBoxofficeDto> mbf=playDao.getBoxOffice();
 		model.addAttribute("boxList",mbf);
+	}
+	
+	
+
+	@Override
+	public void reMemberInf(String id,Model model) {
+		LoginDto user=null;
+		user=loginDao.getUser(id);
+		model.addAttribute("imageUrl",user.getProfile());
 	}
 
 

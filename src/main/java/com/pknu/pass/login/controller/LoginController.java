@@ -27,22 +27,14 @@ public class LoginController {
 	LoginServiceImpl loginService;
 	
 	@RequestMapping("/main")//메인 모달버튼및 회원가입 버튼있는곳으로 이동
-	public String mainForm(HttpSession session,Model model) {
-		String result = null;
+	public String mainForm() {
 		logger.info("Login Main page");
-		if(session.getAttribute("id")!=null) {
-			result=loginService.redirectPage(session,model);
-		
-		}else {
-			result="loginPage/main";
-		}
-		
-		return result;
+		return "loginPage/main";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
 	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
-		
+		System.out.println(id);
 		return loginService.login(id,password,session,model);
 	}
 
@@ -59,10 +51,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
-	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail) {
+	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail,
+							@RequestParam("address")String address,
+							@RequestParam("detailaddress")String detailAddress) {
 		
-		logindto.setEmail(logindto.getEmail()+"@"+stremail);
-		loginService.insertUser(logindto);
+		
+		loginService.insertUser(logindto,stremail,address,detailAddress);
 		return "loginPage/main";
 	}
 	
@@ -83,16 +77,29 @@ public class LoginController {
 		return new ResponseEntity<String>(String.valueOf(result),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/mypage")//마이페이지 페이지로 가는것
-	public String mypageForm(HttpSession session,String myemail,Model model,LoginDto loginDto) {
-		loginService.myPageId(session,model,myemail,loginDto); 
+	@RequestMapping(value="/mypage")//회원정보 페이지로 가는것
+	public String mypageInf(HttpSession session,Model model,LoginDto loginDto) {
+		loginService.myPageId(session,model,loginDto); 
 		return "loginPage/mypage";
+	}
+	@RequestMapping(value="/myPassChange")//비밀번호 변경 페이지
+	public String myPassChengeForm() {
+		return "loginPage/myPassChange";
+	}
+	
+	@RequestMapping(value="/currentPwCheck")
+	@ResponseBody
+	public int currentPwCheck(HttpSession session,@RequestParam("currentPw")String currentPw) {
+		System.out.println(currentPw+"currentPw");
+		int result=loginService.currentPwCheck(session,currentPw);
+		return result;
 	}
 	
 	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
-	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="str_email",required=true)String stremail) {
-		logindto.setEmail(logindto.getEmail()+"@"+stremail);
-		loginService.myPageUpdate(session,logindto);
+	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="password")String password,
+							   @RequestParam("address")String address,@RequestParam("detailaddress")String detailaddress) {
+		
+		loginService.myPageUpdate(session,password,logindto,address,detailaddress);
 		loginService.logout(session);
 		
 		

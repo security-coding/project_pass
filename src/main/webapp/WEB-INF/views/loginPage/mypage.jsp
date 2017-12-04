@@ -166,7 +166,7 @@ function execDaumPostcode() {
 				</ul>
 			</div>
 			<div>												   
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../member/main";'>
+			<button type="button" class="btn btn-primary" onclick='document.location.href="../play/boxtest";'>
 					되돌아가기<i class="fa fa-times spaceLeft"></i>
 			</button>
 			</div>

@@ -2,6 +2,8 @@ package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +62,6 @@ public class PlayController {
 // 상영예정작	
 	@RequestMapping(value = "/come")
 	public String playMain(Model model) {
-
 		playService.playMain(model);
 		return "play/playlist";
 
@@ -152,9 +153,15 @@ public class PlayController {
 	
 //	박스오피스 테스트뷰
 	@RequestMapping(value = "/boxtest")
-	public String boxOfficeMain(Model model) {
-
-		playService.boxTest(model);
+	public String boxOfficeMain(Model model,HttpSession session) {
+		if(session.getAttribute("id")!=null) {
+			String id=(String)session.getAttribute("id");
+			playService.reMemberInf(id,model);
+			playService.boxTest(model);
+		}else {
+			playService.boxTest(model);
+		}
+		
 		
 		return "play/boxtest2";
 

@@ -77,7 +77,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("imageUrl", profile);
 						model.addAttribute("id",id);
 						model.addAttribute("imageUrl",profile);
-						view = "loginPage/main";
+						view = "play/boxtest2";
 					} else {// 비밀번호 실패
 						model.addAttribute("passFail", Fail);
 						view = "loginPage/loginFail";
@@ -112,17 +112,16 @@ public class LoginServiceImpl implements LoginService {
 		session.removeAttribute("id");
 		session.invalidate();
 
-		return "loginPage/main";
+		return "play/boxtest2";
 	}
 
 	@Override
 	public int joinIdCheck(String inputId) {
 		String dbjoinIdCheck = logindao.loginCheck(inputId);
-		System.out.println(dbjoinIdCheck);
 		if (dbjoinIdCheck != null) {
-			return 2;
+			return Fail;
 		} else {
-			return 1;
+			return Success;
 		}
 
 	}
@@ -132,9 +131,9 @@ public class LoginServiceImpl implements LoginService {
 		String result = inputemail + "@" + selectaddress;
 		String dbjoinemailCheck = logindao.logineMailCheck(result);
 		if (dbjoinemailCheck != null) {
-			return 2;
+			return Fail;
 		} else {
-			return 1;
+			return Success;
 		}
 	}
 
