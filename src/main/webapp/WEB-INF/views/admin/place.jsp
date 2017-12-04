@@ -10,8 +10,7 @@
 <script src='<c:url value="/js/paging.js"/>'></script>
 
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-<link rel="stylesheet"
-	href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
 </head>
 <body>

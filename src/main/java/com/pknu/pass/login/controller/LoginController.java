@@ -51,7 +51,7 @@ public class LoginController {
 		
 		
 		loginService.insertUser(logindto,stremail,address,detailAddress);
-		return "loginPage/main";
+		return "/home";
 	}
 	
 	@RequestMapping(value="/joinIdCheck")//회원가입 아이디 중복 비동기로 확인
@@ -97,7 +97,7 @@ public class LoginController {
 		loginService.logout(session);
 		
 		
-		return "loginPage/main";
+		return "loginPage/mypage";
 	}
 	
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경

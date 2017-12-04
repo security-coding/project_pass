@@ -5,10 +5,10 @@ import java.util.Map;
 
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
-import com.pknu.pass.play.dto.PlaceDto;
 
 public interface AdminDao {
 	/*

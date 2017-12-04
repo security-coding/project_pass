@@ -23,10 +23,10 @@ import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
 import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
-import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
 @Transactional

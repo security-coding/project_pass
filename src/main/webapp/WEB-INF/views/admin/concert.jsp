@@ -54,6 +54,12 @@
 
 				<div class="placeholders">
 					<div>
+						<div class="btn-group">
+							<button type="button" class="btn-sm btn-default">공연 완료</button>
+							<button type="button" class="btn-sm btn-default">공연 중</button>
+							<button type="button" class="btn-sm btn-default">공연 예정</button>
+						</div>
+						
 						<div class="col-md-4 col-md-offset-4">
 							<select class="form-control" id="searchBox">
 								<option selected>-- 검색 설정 --</option>

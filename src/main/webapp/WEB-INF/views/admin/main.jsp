@@ -81,7 +81,7 @@
 
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-4 placeholder">
-                    <img src="images/audience-868074_640.jpg" width="200" height="200" class="img-circle"
+                    <img src='<c:url value="images/audience-868074_640.jpg"/>' width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>공연 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-4 placeholder">
-                    <img src="images/walt-disney-center-1629173_1280.jpg" width="200" height="200" class="img-circle"
+                    <img src='<c:url value="/images/walt-disney-center-1629173_1280.jpg"/>' width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>공연 시설 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 placeholder">
-                    <img src="images/service-1186371_640.png" width="200" height="200" class="img-circle"
+                    <img src='<c:url value="/images/service-1186371_640.png"/>' width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>주간 박스오피스 정보 업데이트</h4>
                     <span class="text-muted">매일 오전 1시에 자동 업데이트 됩니다</span>
