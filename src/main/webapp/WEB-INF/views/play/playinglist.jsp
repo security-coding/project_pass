@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>현재 공연작</title>
+<title>현재공연중</title>
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PASS MAIN</title>
+    <title>Landing Page - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
@@ -199,26 +199,21 @@ function blank(){
 		<div class="poster">
     
     	<div id="type" class="test row" data-index="전체"></div>
-	   <c:forEach var="play" items="${boxList}" varStatus="status">
+	   <c:forEach var="play" items="${boxList}">
 		      <div class="col-lg-15 col-md-3 col-xs-3 boxContent" > 
 		        <a href="/play/detail?mt20id=${play.mt20id}">
 		           
-		           
-		           <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
-		           <div style="position: relative; z-index: 1;" class="imageUrl">
-		         
-		             <div><img class="img-fluid img-thumbnail imageUrl" src="${play.imageurl}" alt="" /></div> 
-
-		              
+		           <div class="imageUrl">
+		             <img class="img-fluid img-thumbnail imageUrl" src="${play.imageurl}" alt="" />  
 		              <div class="img-fluid img-thumbnail overlay">            
 	                      <div class="text">
-<%-- 	                      <p>RANK ${play.rnum}</p><br> --%>
+	                      <p>RANK ${play.rnum}</p><br>
 	                      <p>${play.prfnm}</p><br>
 	                      <p>${play.prfpd}</p><br>
 	                      <p>${play.prfplcnm}</p><br>
 	                      <p>${play.cate}</p>
 	                      </div>
-                      </div>
+                    </div>
                  
 		           </div>   
 		         </a> 
@@ -232,13 +227,7 @@ function blank(){
         <!-- /.container -->
 
     </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
     <footer>
         <div class="container">
             <div class="row">
@@ -305,12 +294,11 @@ function blank(){
 			    $.each(data,function(index, item){					  					 				 
 			    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
 							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
-							         +"<div style='position: absolute; z-index: 2;'><img src='/resources/images/rank/poster_rank_"+(index+1)+".png'/></div>"
-							          +"<div style='position: relative; z-index: 1;' class='imageUrl'>"
+							         +"<div class='imageUrl'>"
 							           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageurl+"' alt=''/>"
 							              +"<div class='img-fluid img-thumbnail overlay'>"
 							                 +"<div class='text'>"
-// 							                    +"<p> RANK"+ item.rnum+"</p><br>"
+							                    +"<p> RANK"+ item.rnum+"</p><br>"
 							                    +"<p>"+item.prfnm+"</p><br>"
 							                    +"<p>"+item.prfpd+"</p><br>"
 							                    +"<p>"+item.prfplcnm+"</p><br>"
