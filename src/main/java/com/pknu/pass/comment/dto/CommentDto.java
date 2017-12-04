@@ -7,8 +7,7 @@ public class CommentDto {
 	private String commentContent;  
 	private String commentDate ;  
 	private String mt20id;
-	private int groupId;
-	private int depth;
+
 	
 	public int getCommentNum() {
 		return commentNum;
@@ -41,26 +40,17 @@ public class CommentDto {
 	public void setMt20id(String mt20id) {
 		this.mt20id = mt20id;
 	}
-	public int getGroupId() {
-		return groupId;
-	}
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
-	}
-	public int getDepth() {
-		return depth;
-	}
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
+	
 	
 	
 	@Override
 	public String toString() {
 		return "CommentDto [commentNum=" + commentNum + ", id=" + id + ", commentContent=" + commentContent
-				+ ", commentDate=" + commentDate + ", mt20id=" + mt20id + ", groupId=" + groupId + ", depth="
-				+ depth + "]";
+				+ ", commentDate=" + commentDate + ", mt20id=" + mt20id + "]";
 	}
+
+	
+
 
 	
 	
