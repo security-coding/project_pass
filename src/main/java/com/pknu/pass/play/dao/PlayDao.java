@@ -19,7 +19,7 @@ public interface PlayDao {
 	
 	public ArrayList<MainDto> getAllNextPoster(String stNum);
 	
-	//상영중
+	//상영중	
     public ArrayList<MainDto> getNowPoster();
 	
 	public ArrayList<MainDto> getNowChange(String pType);

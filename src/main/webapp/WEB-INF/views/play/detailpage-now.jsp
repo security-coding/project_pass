@@ -14,13 +14,7 @@
 <link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
 
 
-<style>
-@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
 
-body, table, div, p, header, hr, footer {
-	font-family: 'Jeju Gothic'
-}
-</style>
 
 </head>
 
@@ -113,14 +107,21 @@ body, table, div, p, header, hr, footer {
 	<!--모달 부르는 버튼 form-->
 	<!--모달 끝-->
 </div>
-<div style="height: 100px;"></div>
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
+<div class="-" style="height: 100px;"></div>
+
+
 	<!-- Header content -->
 	<header>
+		<div class="profileLogo">
+			<!-- Profile logo. Add a img tag in place of <span>. -->
+			<p class="logoPlaceholder">
+				<!-- <img src="logoImage.png" alt="sample logo"> -->
+				<span>처음 페이지</span>
+			</p>
+		</div>
 		<div class="profilePhoto">
 			<!-- Profile photo -->
-			<img src="${detailImages[0]}" style="width: 500; height: 580; "alt="concert-image" />
+			<img src="${detailImages[0]}" style="width: 200; height: 259;" alt="concert-image" />
 		</div>
 			<!-- Identity details -->
 			<section class="profileHeader">
@@ -129,55 +130,67 @@ body, table, div, p, header, hr, footer {
 				<h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
 				<hr>
 
-				
-				<p />
-				공연 시작일 : ${detailInf.prfpdfrom}<p />
-				공연 종료일 : ${detailInf.prfpdto}<p />	
-				공연 시　간 : ${detailInf.dtguidance}<p />
-				공연 시설명 : ${detailInf.fcltynm}<p />
-				공연 출연진 : ${detailInf.prfcast}<p />
-				공연 제작진 : ${detailInf.prfcrew}<p />			
-				공연 런타임 : ${detailInf.prfruntime}<p />
-				공연 관람 연령 : ${detailInf.prfage}<p />
-				공연 제작사 : ${detailInf.entrpsnm}<p />
-				티켓 가격 : ${detailInf.pcseguidance}<p />
-				<p />
+				<p>
+					<li><span>공연 시작일 :</span> ${detailInf.prfpdfrom}</li><p></p>
+					<li><span>공연 종료일 :</span> ${detailInf.prfpdto}</li><p></p>
+					<li><span>공연 시　간 :</span> ${detailInf.dtguidance}</li><p></p>
+					<li><span>공연 시설명 :</span> ${detailInf.fcltynm}</li><p></p>
+				</p>
+
 			</section>
+			<!-- Links to Social network accounts -->
+			<aside class="socialNetworkNavBar">
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="webapp/resources/images/social.png" alt="">
+				</div>
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="AboutPageAssets/images/social.png" alt="">
+				</div>
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="AboutPageAssets/images/social.png" alt="">
+				</div>
+				<div class="socialNetworkNav">
+					<!-- Add a Anchor tag with nested img tag here -->
+					<img src="AboutPageAssets/images/social.png" alt="">
+				</div>
+			</aside>
 	</header>
-	<hr />
-	<!-- content -->	
+	<!-- content -->
 	<section class="mainContent">
 		<!-- Contact details -->
 		<section class="section1">
 			<h2 class="sectionTitle">해당 공연의 기본 정보</h2>
-
+			<hr class="sectionTitleRule">
 			<hr class="sectionTitleRule2">
 			<div class="section1Content">
-						      <div>
-					<c:forEach var="detailImage" items="${detailImages}" begin="1">
-						<img class="img-fluid img-thumbnail" src="${detailImage}" />
-					</c:forEach>
-				</div>
+				<p><span>공연 시작일 :</span> ${detailInf.prfpdfrom}</p>
+				<p><span>공연 종료일 :</span> ${detailInf.prfpdto}</p>
+				<p><span>공연시설명(공연장명) :</span> ${detailInf.fcltynm}</p>
+				<p><span>공연출연진 :</span> ${detailInf.prfcast}</p>
+				<p><span>공연제작진 :</span> ${detailInf.prfcrew}</p>			
+				<p><span>공연 런타임 :</span> ${detailInf.prfruntime}</p>
+				<p><span>공연 관람 연령 :</span> ${detailInf.prfage}</p>
+				<p><span>제작사 :</span> ${detailInf.entrpsnm}</p>
+				<p><span>티켓 가격 :</span> ${detailInf.pcseguidance}</p>
+				<p><span>공연 시간 :</span> ${detailInf.dtguidance}</p>				
 			</div>
 		</section>
-	</section>
-</div>
-<div class="col-md-4">
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>Test</th>
-				<th>Test</th>
-				<th>Test</th>
-				<th>Test</th>
-			</tr>
-		</thead>
-	</table>
-</div>
+		<!-- Previous experience details -->
+		<section class="section2">
+			<h2 class="sectionTitle">해당 공연의 소개</h2>
+			<hr class="sectionTitleRule">
+			<hr class="sectionTitleRule2">
+			<!-- First Title & company details  -->
+			      <div>
+		<c:forEach var="detailImage" items="${detailImages}" begin="1">
+			<img class="img-fluid img-thumbnail" src="${detailImage}" />
+		</c:forEach>
+	</div>
 			<!-- Replicate the above Div block to add more title and company details -->
-
-        </div>
-        <div>
+			
 	<footer>
 		<hr>
 		<p class="footerDisclaimer">
@@ -187,6 +200,7 @@ body, table, div, p, header, hr, footer {
 			John Doe - <span>Email me</span>
 		</p>
 	</footer>
-</div>
+
+        </div>
 </body>
 </html>

@@ -16,14 +16,38 @@ public class DetailDto {
 	private	String genrenm;
 	private String la;
 	private String lo;
-	
+	private String mt20id;
+	private String imageUrl;
+
+
 
 	@Override
 	public String toString() {
 		return "DetailDto [prfpdfrom=" + prfpdfrom + ", prfpdto=" + prfpdto + ", fcltynm=" + fcltynm + ", prfcast="
 				+ prfcast + ", prfcrew=" + prfcrew + ", prfruntime=" + prfruntime + ", prfage=" + prfage + ", entrpsnm="
 				+ entrpsnm + ", pcseguidance=" + pcseguidance + ", dtguidance=" + dtguidance + ", prfnm=" + prfnm
-				+ ", genrenm=" + genrenm + ", la=" + la + ", lo=" + lo + "]";
+				+ ", genrenm=" + genrenm + ", la=" + la + ", lo=" + lo + ", mt20id=" + mt20id + ", imageUrl=" + imageUrl
+				+ "]";
+	}
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
+	public String getMt20id() {
+		return mt20id;
+	}
+
+
+	public void setMt20id(String mt20id) {
+		this.mt20id = mt20id;
 	}
 
 
