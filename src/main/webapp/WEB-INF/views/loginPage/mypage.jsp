@@ -138,7 +138,7 @@ function execDaumPostcode() {
 			<tr>
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}" disabled="disabled">
+				<input type="text" id="address" name="address" placeholder="주소" value="${address}"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}">
 			</div>
 			</label>
 			</tr>
@@ -165,9 +165,9 @@ function execDaumPostcode() {
 						onclick="setMyimage(this)">스파이더맨</li>
 				</ul>
 			</div>
-			<div>												   
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../member/main";'>
-					되돌아가기<i class="fa fa-times spaceLeft"></i>
+			<div>
+			<button type="button" class="btn btn-primary" onclick="javascript:history.back(-1)">
+					수정취소<i class="fa fa-times spaceLeft"></i>
 			</button>
 			</div>
 		</form>
