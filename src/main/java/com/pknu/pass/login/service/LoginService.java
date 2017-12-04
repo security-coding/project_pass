@@ -8,7 +8,7 @@ import com.pknu.pass.login.dto.LoginDto;
 
 public interface LoginService {
 
-	public void insertUser(LoginDto logindto,String stremail,String address,String detailAddress);
+	public void insertUser(LoginDto logindto);
 
 	public String login(String id, String password,HttpSession session, Model model);
 
@@ -18,9 +18,9 @@ public interface LoginService {
 	
 	public int joineMailCheck(String inputemail,String selectaddress);
 
-	public void myPageId(HttpSession session,Model model,LoginDto logindto);
+	public void myPageId(HttpSession session,Model model,String myemail,LoginDto logindto);
 
-	public void myPageUpdate(HttpSession session,String password,LoginDto logindto,String address,String detailaddress);
+	public void myPageUpdate(HttpSession session, LoginDto logindto);
 
 	public int checkJoin(String certKey,Model model);
 	
@@ -33,7 +33,5 @@ public interface LoginService {
 	public int standLossId(String email);
 	
 	public int reSetPassCheck(String email, String id);
-	
-	public int currentPwCheck(HttpSession session,String currentPw);
 	
 }

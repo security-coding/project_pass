@@ -55,9 +55,7 @@ create table MEMBER
 	CERTKEY VARCHAR2(36) not null,
 	CERTIFY NUMBER(1) default 0 not null,
     profile VARCHAR(100),
-	GRADE NUMBER(1) DEFAULT 1 NOT NULL,
-	ADDRESS VARCHAR2(100) NOT NULL ,
-	DETAILADDRESS VARCHAR2(100) NOT NULL
+	GRADE NUMBER(1) DEFAULT 1 NOT NULL
 )
 /
 
@@ -97,24 +95,13 @@ create table IMAGE
 /
 
 
--- 지도 관련 함수
+DROP TABLE BOXOFFICE;
 
-CREATE OR REPLACE FUNCTION RADIANS(nDegrees IN NUMBER)
-RETURN NUMBER DETERMINISTIC
-IS
-BEGIN
-  RETURN nDegrees / 57.29577951308232087679815481410517033235;
-END RADIANS;
+ALTER TABLE CONCERT DROP CONSTRAINT FK_CONCERT_MT10ID;
 
+drop TABLE PLACE;
+drop TABLE MEMBER;
 
-create or replace function DISTNACE_WGS84( H_LAT in number, H_LNG in number, T_LAT in number, T_LNG in number)
-return number deterministic
-is
-begin
-  return ( 6371.0 * acos(
-          cos( radians( H_LAT ) )*cos( radians( T_LAT /* 위도 */ ) )
-          *cos( radians( T_LNG /* 경도 */ )-radians( H_LNG ) )
-          +
-          sin( radians( H_LAT ) )*sin( radians( T_LAT /* 위도 */ ) )
-         ));
-end DISTNACE_WGS84;
+ALTER TABLE CONCERT
+  ADD CONSTRAINT CONCERT_PLACE_MT10ID_FK FOREIGN KEY (mt10id)
+REFERENCES PLACE (mt10id) ON DELETE CASCADE;

@@ -26,9 +26,15 @@ public class LoginController {
 	@Autowired
 	LoginServiceImpl loginService;
 	
+	@RequestMapping("/main")//메인 모달버튼및 회원가입 버튼있는곳으로 이동
+	public String mainForm() {
+		logger.info("Login Main page");
+		return "loginPage/main";
+	}
+	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
 	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
-		System.out.println(id);
+		
 		return loginService.login(id,password,session,model);
 	}
 
@@ -45,13 +51,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
-	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail,
-							@RequestParam("address")String address,
-							@RequestParam("detailaddress")String detailAddress) {
+	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail) {
 		
-		
-		loginService.insertUser(logindto,stremail,address,detailAddress);
-		return "/home";
+		logindto.setEmail(logindto.getEmail()+"@"+stremail);
+		loginService.insertUser(logindto);
+		return "loginPage/main";
 	}
 	
 	@RequestMapping(value="/joinIdCheck")//회원가입 아이디 중복 비동기로 확인
@@ -71,33 +75,20 @@ public class LoginController {
 		return new ResponseEntity<String>(String.valueOf(result),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/mypage")//회원정보 페이지로 가는것
-	public String mypageInf(HttpSession session,Model model,LoginDto loginDto) {
-		loginService.myPageId(session,model,loginDto); 
+	@RequestMapping(value="/mypage")//마이페이지 페이지로 가는것
+	public String mypageForm(HttpSession session,String myemail,Model model,LoginDto loginDto) {
+		loginService.myPageId(session,model,myemail,loginDto); 
 		return "loginPage/mypage";
-	}
-	@RequestMapping(value="/myPassChange")//비밀번호 변경 페이지
-	public String myPassChengeForm() {
-		return "loginPage/myPassChange";
-	}
-	
-	@RequestMapping(value="/currentPwCheck")
-	@ResponseBody
-	public int currentPwCheck(HttpSession session,@RequestParam("currentPw")String currentPw) {
-		System.out.println(currentPw+"currentPw");
-		int result=loginService.currentPwCheck(session,currentPw);
-		return result;
 	}
 	
 	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
-	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="password")String password,
-							   @RequestParam("address")String address,@RequestParam("detailaddress")String detailaddress) {
-		
-		loginService.myPageUpdate(session,password,logindto,address,detailaddress);
+	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="str_email",required=true)String stremail) {
+		logindto.setEmail(logindto.getEmail()+"@"+stremail);
+		loginService.myPageUpdate(session,logindto);
 		loginService.logout(session);
 		
 		
-		return "loginPage/mypage";
+		return "loginPage/main";
 	}
 	
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경

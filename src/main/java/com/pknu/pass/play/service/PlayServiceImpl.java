@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
+import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -145,13 +145,19 @@ public class PlayServiceImpl implements PlayService {
 
 //지도
 	@Override
-	public ArrayList<PlaceDto> getNearMap(String la, String lo) {
+	public void getNearMap(String la, String lo, Model model) {
 		
 		HashMap<String, String> lalo=new HashMap<>();
 		lalo.put("la", la);
 		lalo.put("lo", lo);
 		
-		return playDao.getNearMap(lalo);
+		ArrayList<PlaceDto> maps=playDao.getNearMap(lalo);
+		for(int i=0; i<maps.size() ; i++){
+		System.out.println("공연시설 : "+maps.get(i).toString());
+		}
+		model.addAttribute("LA",la);
+		model.addAttribute("LO",lo);
+		model.addAttribute("maps",maps);
 	}
 
 
