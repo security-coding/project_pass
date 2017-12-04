@@ -6,7 +6,7 @@ public class CommentDto {
 	private String id;    
 	private String commentContent;  
 	private String commentDate ;  
-	private int mt20id;
+	private String mt20id;
 	private int groupId;
 	private int depth;
 	
@@ -35,10 +35,10 @@ public class CommentDto {
 		this.commentDate = commentDate;
 	}
 	
-	public int getMt20id() {
+	public String getMt20id() {
 		return mt20id;
 	}
-	public void setMt20id(int mt20id) {
+	public void setMt20id(String mt20id) {
 		this.mt20id = mt20id;
 	}
 	public int getGroupId() {

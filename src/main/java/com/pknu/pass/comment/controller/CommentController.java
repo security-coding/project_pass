@@ -8,8 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,23 +26,23 @@ public class CommentController {
 	CommentService commentService;
 	List<CommentDto> commentList=null;
 
+	
 	@RequestMapping(value="/read")
 	@ResponseBody
-	public List<CommentDto> commentRead(@RequestParam int mt20id, 
-										@RequestParam int commentRow){							
-		return commentService.getComments(mt20id,commentRow);	
-		
+	public List<CommentDto> commentRead(@RequestParam String mt20id ){							
+		return commentService.getComments(mt20id);	
 	}
 	 
+	
 	@RequestMapping(value="/write")
-	public @ResponseBody HashMap<String, Object> commentWrite(String commentContent,CommentDto comment, 
-													   HttpSession session){
-		System.out.println(commentContent +" "+comment.toString());
-		comment.setCommentContent(commentContent);
+	@ResponseBody
+	public HashMap<String, Object> commentWrite(CommentDto comment){
+		System.out.println(comment.toString());
+//		comment.setCommentContent();
 //		comment.setId((String)session.getAttribute("id"));
 		commentService.insertComment(comment);
-		commentList=commentService.getComments(comment.getMt20id(),10);
-		
+		commentList=commentService.getComments(comment.getMt20id());
+		System.out.println(commentList);
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("result", 1);
 		hm.put("commentList", commentList);
@@ -47,19 +50,17 @@ public class CommentController {
 		
 	}
 	
-	@RequestMapping(value = "/replyForm")
-	private String replyForm(@RequestParam String pageNum, CommentDto mt20id) {
-//		model.addAttribute("depth", mt20id.getDepth());
-//		model.addAttribute("groupId", mt20id.getGroupId());
-		return "replyForm";
-	}
-
-	@RequestMapping(value = "/reply")
-	public String reply(CommentDto mt20id, HttpSession session, @RequestParam String pageNum) {
-		mt20id.setId((String) session.getAttribute("id"));
-		commentService.replyComment(mt20id);
-		return "redirect:/list.bbs?pageNum=" + pageNum;
-	}
+//    @RequestMapping(value = "/write")
+//    public String commentWrite(CommentDto comment, ModelMap modelMap) {
+//        
+//        commentService.insertComment(comment);
+//        
+//        commentList = commentService.getComments(comment.getMt20id(), 10);
+//        modelMap.addAttribute("commentList", comment);
+//        
+//        return "comment";
+//    }
+	
 	
 
 	

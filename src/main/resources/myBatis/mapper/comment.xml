@@ -5,13 +5,22 @@
 
 <mapper namespace="com.pknu.pass.comment.dao.CommentDao">
 	
+	
+	
+<!-- 	<select id="getComments" parameterType="HashMap" resultType="comment"> -->
+<!-- 		select * -->
+<!-- 		from (select commentContent,commentDate, mt20id -->
+<!-- 		      from comments  -->
+<!-- 		     	where mt20id=#{mt20id}  -->
+<!-- 		     	order by commentNum desc ) human  -->
+<!-- 		where rownum between 1 and #{commentRow} -->
+<!-- 	</select> -->
+
 	<select id="getComments" parameterType="HashMap" resultType="comment">
-		select *
-		from (select id,commentContent,commentDate, mt20id
-		      from comments 
+		select commentContent,commentDate, mt20id
+		      from comments2 
 		     	where mt20id=#{mt20id} 
-		     	order by commentNum desc ) human 
-		where rownum between 1 and #{commentRow}
+		     	order by commentNum desc
 	</select>
 	
 	<insert id="insertComment" parameterType="comment">

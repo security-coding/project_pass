@@ -6,7 +6,6 @@ import java.util.List;
 import com.pknu.pass.comment.dto.CommentDto;
 
 public interface CommentDao {
-	public List<CommentDto> getComments(HashMap<String, Integer> commentMap);
+	public List<CommentDto> getComments(HashMap<String,String> commentMap);
 	public void insertComment(CommentDto comment);
-	public void replyComment(CommentDto mt20id);
 }
