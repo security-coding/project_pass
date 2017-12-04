@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,11 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 지도 api -->		
+
 <script>
-	let idcheck = false;
-	let emailcheck = false;
+	let idCheck = false;
+	let emailCheck = false;
 	function checkId() {
 		$("#id").on("blur", function() {
 			$.ajax({
@@ -27,19 +30,19 @@
 					if ($("#id").val() != "") {
 						if (data == "1") {
 							html = "<b>사용 가능한 아이디입니다.</b>"
-							$("#idcheck").html(html).css("color", "blue");
-							idcheck=true;
+							$("#idCheck").html(html).css("color", "blue");
+							idCheck=true;
 							
 						} else {
 							html = "<b>중복된 아이디입니다.<b>";
-							$("#idcheck").html(html).css("color", "red");
-							idcheck=false;
+							$("#idCheck").html(html).css("color", "red");
+							idCheck=false;
 							
 						}
 					} else {
 						html = "<b>아이디를 입력해 주세요</b>"
-						$("#idcheck").html(html).css("color", "red");
-						idcheck=false;
+						$("#idCheck").html(html).css("color", "red");
+						idCheck=false;
 						
 					}
 				},
@@ -66,19 +69,19 @@
 					if ($("#email").val() != ""&&$("#str_email").val()!="") {
 						if (data == "1") {
 							html = "<b>사용 가능한 이메일입니다.</b>"
-							$("#emailcheck").html(html).css("color", "blue");
-							 emailcheck=true;
+							$("#emailCheck").html(html).css("color", "blue");
+							 emailCheck=true;
 							 
 						} else {
 							html = "<b>중복된 이메일입니다.<b>";
-							$("#emailcheck").html(html).css("color", "red");
-							 emailcheck=false;
+							$("#emailCheck").html(html).css("color", "red");
+							 emailCheck=false;
 							 
 						}
 					} else if($("#email").val() != ""||$("#str_email").val()!=""){	
 						html = "<b>이메일을입력해주세요</b>"
-						$("#emailcheck").html(html).css("color", "red");
-						 emailcheck=false;
+						$("#emailCheck").html(html).css("color", "red");
+						 emailCheck=false;
 						 
 					}
 				}
@@ -88,25 +91,66 @@
 	
 	
 	function availability(){
-		if(idcheck==true&&emailcheck==true){
+		let html;
+		if(idCheck==true&&emailCheck==true){
 			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
+			html="<img src='/resources/images/'>"
 			return true;
-		}else if(!idcheck || !emailcheck){
+		}else if(!idCheck || !emailCheck){
 			alert("확인해주세요");
 			return false;
 		}
 	}
+/*지도 스크립트 */
 	
-	
-	
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('address').value = fullAddr;
+
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('detailaddress').focus();
+            }
+        }).open();
+    }
+
 </script>
 
 </head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    	<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
 	<article class="container-fluid">
@@ -122,20 +166,19 @@
 			<div class="form-group">
 				<label for="id">ID:</label> <input type="text"
 					class="form-control" id="id" name="id" placeholder="ID" oninput="checkId()">
-				<div id="idcheck"></div>
+				<div id="idCheck"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="pass">비밀번호</label> <input type="password"
-					class="form-control" id="pass" name="pass" placeholder="비밀번호">
+				<label for="password">비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="비밀번호">
 					<div id="passcheck"></div>
 			</div>
 			
 			<div class="form-group">
 				<label>비밀번호 확인</label> <input type="password"
 					class="form-control" id="pass2" placeholder="비밀번호 확인" >
-<!-- 				<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p> -->
-					<div id="passcheck2"></div>
+					<div id="passCheck2"></div>
 			</div>
 			
 			<div class="form-group">
@@ -158,13 +201,25 @@
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="nate.com">nate.com</option>
 									<option value="gmail.com">gmail.com</option>
-							</select><td><div id="emailcheck"></div></td>
+							</select><td><div id="emailCheck"></div></td>
 						</label>
 						</td>
 					</tr>
 				</table>
-
-			</div>			
+				
+			<tr>
+			<label>Address:
+			<div>
+				<p>
+				<input class="form-control" type="text" id="postcode" placeholder="우편번호" onclick="execDaumPostcode()">
+				</p>
+				<input type="text" id="address" name="address" placeholder="주소"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소">
+			</div>
+			</label>
+			</tr>
+			</div>
+			
+			
 	
 			<div class="form-group text-center">
 				<button id="signupbtn" type="submit" class="btn btn-info">
@@ -182,16 +237,13 @@
 </body>
 	
 <!-- /container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 	<!--부트스트랩-->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 
 <!-- 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
-<script type="text/javascript">
+
+<script>
 	//이메일 입력방식 선택
 	$('#selectEmail').change(function() {
 		$("#selectEmail option:selected").each(function() {
@@ -211,8 +263,8 @@
 		 $("#joinForm").on("submit", function(){
 //	 		 event.preventDefault();
 			 var id=$("#id").val();
-			 var pass=$("#pass").val(); 
-			 var passcheck=$("#pass2").val();
+			 var pass=$("#password").val(); 
+			 var passCheck=$("#pass2").val();
 			 var email=$("#email").val();
 			 var str_email=$("#str_email").val();
 			 
@@ -223,7 +275,7 @@
 			 }
 			 if(pass==""){
 			 	alert("패스워드를 입력하세요");
-			 	$("#pass").focus();
+			 	$("#password").focus();
 			 	return false;
 			 }
 			 if(email==""){
@@ -236,7 +288,7 @@
 				 $("#str_email").focus();
 				 return false;
 			 }
-			 if(pass!=passcheck){
+			 if(pass!=passCheck){
 				 alert("패스워드가 일치하지 않습니다")
 			 	$("#pass2").focus();
 				 return false;
@@ -246,25 +298,25 @@
 	 });
  	
 	 
-		$("#pass").blur(function(){
+		$("#password").blur(function(){
 			let html;
-			if($("#pass").val()==""){
+			if($("#password").val()==""){
 				html="<b>암호를 입력해주세요</b>"
-				$("#passcheck").html(html).css("color","red");
+				$("#passCheck").html(html).css("color","red");
 			}else{
 				html=""
-				$("#passcheck").html(html).css("color","white");
+				$("#passCheck").html(html).css("color","white");
 			}
 		});
 		 
 	 	$("#pass2").blur(function(){
 	 		let html;
-	 		if($("#pass").val()!=$("#pass2").val()){
+	 		if($("#password").val()!=$("#pass2").val()){
 				html="<b>암호가 일치하지 않습니다.</b>"
-				$("#passcheck2").html(html).css("color","red");
-	 		}else if($("#pass").val()==$("#pass2").val()&&$("#pass").val()!=""&&$("#pass2").val()!=""){
+				$("#passCheck2").html(html).css("color","red");
+	 		}else if($("#password").val()==$("#pass2").val()&&$("#password").val()!=""&&$("#pass2").val()!=""){
 				html="<b>암호가 일치합니다.</b>"
-				$("#passcheck2").html(html).css("color","blue");
+				$("#passCheck2").html(html).css("color","blue");
 	 		}
 	 	});
 

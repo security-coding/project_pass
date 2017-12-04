@@ -4,19 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
+
 <style type="text/css">
-	p{
-	 color: white;
-	}
 	.user{
 	float:left;
-	padding-top:5px; 
-	width: 145px;
+	padding-top:1px; 
+	width: 90px;
 	}
 	.user_a{
 		text-decoration: none;
-		color: white;
+		color: black;
 	}
 	.user_a:hover{
 		color:gray;
@@ -28,8 +27,9 @@
 <body>
 	
 	<form class="navbar-form navbar-right" action="/member/logout" method="post">
-		<p class="user"><a href="/member/mypage" class="user_a">${id}</a>님...환영합니다</p><button class="btn btn-primary" id="logout">로그아웃</button> 
+		<a href="/member/mypage" class="user_a"><p class="user"><img alt="" src="${imageUrl}">${id}</p></a><button class="btn btn-primary" id="logout">로그아웃</button> 
 		<!-- 버튼태그가 form태그안에 선언되면 해당되는  form이 submit이 선언된다 -->
+		
 	</form>
 	
 </body>

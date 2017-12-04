@@ -1,6 +1,9 @@
 package com.pknu.pass.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -10,19 +13,23 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.pknu.pass.admin.dao.AdminDao;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
+import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
 import com.pknu.pass.play.dto.PlaceDto;
 
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminDao adminDao;
@@ -50,7 +57,7 @@ public class AdminServiceImpl implements AdminService {
 			Document xmlDoc = getXMLInf(url.toString());
 			Element root = xmlDoc.getDocumentElement();
 
-			NodeList nodeList = root.getElementsByTagName("db");
+			NodeList nodeList = root.getElementsByTagName("db");//"db"??
 
 			if (nodeList.getLength() == 0)
 				return;
@@ -120,7 +127,7 @@ public class AdminServiceImpl implements AdminService {
 			// 공연 상세정보 DB 업로드
 			adminDao.insertConcertInf(concert);
 
-			// 사진 업로드 부분
+			// 사진 업로드 부분(!poster.contains("kopis")??
 			if (!poster.contains("kopis") || imgUpdateCheck(mt20id, poster, session)) {
 				imageList = fileUtil.uploadImageFile(mt20id, imageUrlList, session);
 
@@ -135,7 +142,7 @@ public class AdminServiceImpl implements AdminService {
 		int dateIdx = poster.indexOf('_', poster.indexOf('_') + 1) + 1;
 		String uploadDate = poster.substring(dateIdx, dateIdx + 6);
 
-		ArrayList<ImageDto> imageList = adminDao.imgUpdateCheck(mt20id);
+		ArrayList<ImageDto> imageList = (ArrayList<ImageDto>) adminDao.imgUpdateCheck(mt20id);
 
 		// 존재하는 경우 Insert가 한번이라도 이루어진 정보
 		if (imageList.size() > 0) {
@@ -199,14 +206,18 @@ public class AdminServiceImpl implements AdminService {
 				Element root = xmlDoc.getDocumentElement();
 
 				Element dbElement = (Element) root.getElementsByTagName("db").item(0);
-
+	
+				String mt13cnt = dbElement.getElementsByTagName("mt13cnt").item(0).getTextContent();
+				String fcltychartr = dbElement.getElementsByTagName("fcltychartr").item(0).getTextContent();
+				String opende = dbElement.getElementsByTagName("opende").item(0).getTextContent();
+				String seatscale = dbElement.getElementsByTagName("seatscale").item(0).getTextContent();
 				String telno = dbElement.getElementsByTagName("telno").item(0).getTextContent();
 				String relateurl = dbElement.getElementsByTagName("relateurl").item(0).getTextContent();
 				String adres = dbElement.getElementsByTagName("adres").item(0).getTextContent();
 				String la = dbElement.getElementsByTagName("la").item(0).getTextContent();
 				String lo = dbElement.getElementsByTagName("lo").item(0).getTextContent();
 
-				place.setDetail(telno, relateurl, adres, la, lo);
+				place.setDetail(mt13cnt, fcltychartr, opende, seatscale, telno, relateurl, adres, la, lo);
 				adminDao.insertPlaceInf(place);
 			} catch (Exception e) {
 			}
@@ -244,11 +255,11 @@ public class AdminServiceImpl implements AdminService {
 					String cate = boxofElement.getElementsByTagName("cate").item(0).getTextContent();
 					String prfplcnm = boxofElement.getElementsByTagName("prfplcnm").item(0).getTextContent();
 					String prfnm = boxofElement.getElementsByTagName("prfnm").item(0).getTextContent();
-					String rnum = boxofElement.getElementsByTagName("rnum").item(0).getTextContent();
+					int rnum = Integer.parseInt(boxofElement.getElementsByTagName("rnum").item(0).getTextContent());
 					String mt20id = boxofElement.getElementsByTagName("mt20id").item(0).getTextContent();
 
 					adminDao.insertBoxofInf(
-							new BoxofficeDto(area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id));
+							new BoxofficeDto(area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, catecode, mt20id));
 				}
 			}
 		} catch (Exception e) {
@@ -269,5 +280,62 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return null;
 	}
+
+	
+	@Override
+	public List<ConcertDto> selectConcert(PagingDto paging) {
+		return adminDao.selectConcert(paging);
+	}
+
+	@Override
+	public int selectTotalConcert(PagingDto paging) {
+		return adminDao.selectTotalConcert(paging);
+	}
+
+	@Override
+	public ConcertDto selectOneConcert(String mt20id) {
+		return adminDao.selectOneConcert(mt20id);
+	}
+
+	@Override
+	public List<ImageDto> selectImageList(String mt20id) {
+		return adminDao.selectImageList(mt20id);
+	}
+
+	@Override
+	public List<PlaceDto> selectPlace(PagingDto paging) {
+		return adminDao.selectPlace(paging);
+	}
+
+	@Override
+	public int selectTotalPlace(PagingDto paging) {
+		return adminDao.selectTotalPlace(paging);
+	}
+
+	@Override
+	public Map<String, List<BoxofficeDto>> selectBoxoffice() {
+		Map<String, List<BoxofficeDto>> map = new HashMap<>();
+		String[] catecodeArr = { "YK", "MU", "CCO", "MMB", "KKB" };
+		
+		for(String catecode : catecodeArr)
+			map.put(catecode, adminDao.selectBoxoffice(catecode));
+		
+		return map;
+	}
+
+	@Override
+	public List<LoginDto> selectMember(PagingDto paging) {
+		return adminDao.selectMember(paging);
+	}
+
+	@Override
+	public int selectTotalMember(PagingDto paging) {
+		return adminDao.selectTotalMember(paging);
+	}
+
+	@Override
+	public void changeGrade(LoginDto member) {
+		adminDao.changeGrade(member);
+	}	
 
 }
