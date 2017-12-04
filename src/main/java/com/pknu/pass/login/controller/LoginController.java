@@ -26,12 +26,6 @@ public class LoginController {
 	@Autowired
 	LoginServiceImpl loginService;
 	
-	@RequestMapping("/main")//메인 모달버튼및 회원가입 버튼있는곳으로 이동
-	public String mainForm() {
-		logger.info("Login Main page");
-		return "loginPage/main";
-	}
-	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
 	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
 		System.out.println(id);

@@ -32,7 +32,7 @@ public class PlayController {
 		}
 		
 		@ResponseBody
-		@RequestMapping(value = "now/change" )
+		@RequestMapping(value = "/now/change" )
 		public ArrayList<MainDto> getNowChange(String type) throws Exception {
 			
 			ArrayList<MainDto> fileNames = new ArrayList<>(); 
@@ -44,7 +44,7 @@ public class PlayController {
 		}
 
 		@ResponseBody
-		@RequestMapping(value = "now/getNextPoster" )
+		@RequestMapping(value = "/now/getNextPoster" )
 		public ArrayList<MainDto> getNowNextPoster(String stNum, String index) throws Exception {
 			
 			ArrayList<MainDto> fileNames = new ArrayList<>(); 
