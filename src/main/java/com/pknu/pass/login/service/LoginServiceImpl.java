@@ -23,10 +23,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	SecurityUtil securityUtil;
-	
-	int Fail=0;
-	int Success=1;
-	
+
 	@Override
 	public void insertUser(LoginDto logindto,String stremail,String address,String detailAddress) {
 		System.out.println(logindto.getPassword());
@@ -54,10 +51,10 @@ public class LoginServiceImpl implements LoginService {
 		
 		user = logindao.getUser(id);//id가 있으면 전부 가져온다. 
 		
-//		int dbCertifyCheckNo = 0;// 메일 인증 않함.
-//		int passFail = 0;// 비밀번호 실패.
-//		int Notmember = 0;// 회원가입 신청안함.
-//		int loginBan = 0;// 불량계정 정지.
+		int dbCertifyCheckNo = 0;// 메일 인증 않함.
+		int passFail = 0;// 비밀번호 실패.
+		int Notmember = 0;// 회원가입 신청안함.
+		int loginBan = 0;// 불량계정 정지.
 		
 		if(user != null) {
 			String password = user.getPassword();
@@ -68,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
 			if(certify == 1) {
 				switch (grade) {//grade 권한: 0=밴 1=일반회원 2=관리자 
 				case 0://밴
-					model.addAttribute("loginBan", Fail);
+					model.addAttribute("loginBan", loginBan);
 					view = "loginPage/loginFail";
 					break;
 				case 1://일반 회원
@@ -79,7 +76,7 @@ public class LoginServiceImpl implements LoginService {
 						model.addAttribute("imageUrl",profile);
 						view = "loginPage/main";
 					} else {// 비밀번호 실패
-						model.addAttribute("passFail", Fail);
+						model.addAttribute("passFail", passFail);
 						view = "loginPage/loginFail";
 					}
 					break;
@@ -88,7 +85,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("id", id);
 						view = "admin/main";
 					} else{// 비밀번호 실패
-						model.addAttribute("passFail", Fail);
+						model.addAttribute("passFail", passFail);
 						view = "loginPage/loginFail";
 					}
 					break;
@@ -96,11 +93,11 @@ public class LoginServiceImpl implements LoginService {
 					break;
 				}
 			} else if (certify == 0) {//회원가입 인증이 되지 않았음
-				model.addAttribute("dbCertify", Fail);
+				model.addAttribute("dbCertify", dbCertifyCheckNo);
 				view = "loginPage/main";
 			}
 		} else {//아이디가 존재하지 않을때
-			model.addAttribute("Notmember", Fail);
+			model.addAttribute("Notmember", Notmember);
 			view = "loginPage/loginFail";
 		}
 		
@@ -156,8 +153,8 @@ public class LoginServiceImpl implements LoginService {
 		int idx = mail.indexOf("@");
 		String mailid = mail.substring(0, idx);
 		
-		
-		model.addAttribute("imageUrl",imageUrl);
+
+		model.addAttribute("imageUrl", imageUrl);
 		model.addAttribute("id", session.getAttribute("id"));
 		model.addAttribute("email", mailid);
 		model.addAttribute("address",address);
@@ -187,13 +184,13 @@ public class LoginServiceImpl implements LoginService {
 	public int checkJoin(String certKey, Model model) {
 		int checkjoin;
 		LoginDto User = logindao.checkJoin(certKey);
-		if (User.getCertify() == Success) {
+		if (User.getCertify() == LoginDto.SUCCESS) {
 			// 이미 링크 클릭(가입 절차 모두완료된 상태)
 			checkjoin = 1;
 			model.addAttribute("certKey", checkjoin);
 			return checkjoin;
 
-		} else if (User.getCertify() == Fail) {
+		} else if (User.getCertify() == LoginDto.FAIL) {
 			// dto를 업데이트 해준다. (certify => 1) User의 ID값 이용
 			checkjoin = 2;
 			logindao.checkJoinUpdate(certKey);
@@ -235,9 +232,9 @@ public class LoginServiceImpl implements LoginService {
 		String result = email;
 		String dbJoineMailCheck = logindao.logineMailCheck(result);
 		if (dbJoineMailCheck != null) {
-			return Success;
+			return 1;
 		} else {
-			return Fail;
+			return 2;
 		}
 
 	}
@@ -250,10 +247,10 @@ public class LoginServiceImpl implements LoginService {
 		String dbidCheck = logindao.loginCheck(id);
 
 		if (dbmailCheck != null && dbidCheck != null) {
-			status = Success;
+			status = 1;
 
 		} else if (dbmailCheck == null || dbidCheck != null) {
-			status = Fail;
+			status = 2;
 		}
 
 		return status;
@@ -270,23 +267,14 @@ public class LoginServiceImpl implements LoginService {
 		System.out.println(defaultPw+"db값");
 		System.out.println(id+"id값");
 		if(pw.equals(defaultPw)) {
-			result=Success;//현재 비밀번호 성공
+			result=1;
 			System.out.println(result);			
 		}else{
-			result=Fail;// 현재 비밀번호 실패
+			result=2;
 			System.out.println(result);
 			
 		}
 		return result;
-	}
-
-
-	public String redirectPage(HttpSession session,Model model)  {
-		LoginDto user=null;
-		String id=(String)session.getAttribute("id");
-		user=logindao.getUser(id);
-		model.addAttribute("imageUrl",user.getProfile());
-		return "loginPage/main";
 	}
 
 }
