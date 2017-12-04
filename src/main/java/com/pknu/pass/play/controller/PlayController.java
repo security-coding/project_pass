@@ -2,8 +2,6 @@ package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 import com.pknu.pass.play.service.PlayService;
@@ -159,7 +156,7 @@ public class PlayController {
 
 		playService.boxTest(model);
 		
-		return "play/boxtest";
+		return "play/boxtest2";
 
 	}
 	
@@ -176,7 +173,7 @@ public class PlayController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "listtest/change" )
+	@RequestMapping(value = "/listtest/change" )
 	public ArrayList<MainBoxofficeDto> getBoxChange(String type) throws Exception {
 		
 		ArrayList<MainBoxofficeDto> boxPosters = new ArrayList<>(); 

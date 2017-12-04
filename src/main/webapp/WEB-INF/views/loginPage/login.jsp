@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- 	<div id="navbar" class="navbar-collapse collapse"> -->
-		<form class="navbar-form navbar-right" role="form" method="post" action="/member/login">
+		<form class="navbar-form navbar-right" role="form" method="post" action="/member/login" onsubmit="CertifyCheck()">
 			<div class="form-group">
 				<!-- modal 구동 버튼 (trigger) -->
 				<button type="button" class="btn btn-primary" data-toggle="modal"

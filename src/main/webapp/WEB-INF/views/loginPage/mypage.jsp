@@ -12,7 +12,30 @@
 <!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 
-<script src="/js/loginjs/profilechange.js"></script>
+<!-- <script src="/js/loginjs/profilechange.js"></script> -->
+
+<script>
+function setMyimage(imgsrc){
+	let myimage=document.getElementById('myimage');
+	let nowProfile=document.getElementById('Profile');
+	let img = imgsrc.getAttribute('src');
+	myimage.setAttribute('src',img);
+	nowProfile.setAttribute('src',img);
+	$.ajax({
+		type:"POST",
+		async : true,
+		dataType : 'String',
+		url:'/member/updateprofile',
+		data : {
+			srcinput :myimage.getAttribute('src') 
+		},
+		success:function(data){
+			
+			console.log(data);
+		}
+	});
+}
+</script>
 
 </head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -94,7 +117,7 @@
 <!-- 				</div> -->
 <!-- 		</div> -->
 			<div>
-			<img src="${imageUrl}" alt="..." class="img-thumbnail">
+			<img src="${imageUrl}" alt="..." id="Profile" class="img-thumbnail">
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn btn-default btn-lg dropdown-toggle"

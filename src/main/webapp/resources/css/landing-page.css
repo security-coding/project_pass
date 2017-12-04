@@ -37,6 +37,7 @@ h6 {
     color: #f8f8f8;
     background: url(../images/templateimg/intro-bg.jpg) no-repeat center center;
     background-size: cover;
+    opacity:0.7;
 }
 
 .intro-message {
@@ -118,6 +119,7 @@ h6 {
     color: #f8f8f8;
     background: url(../images/templateimg/banner-bg.jpg) no-repeat center center;
     background-size: cover;
+    opacity: 0.7;
 }
 
 .banner h2 {

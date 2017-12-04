@@ -89,8 +89,10 @@
 	
 	
 	function availability(){
+		let html;
 		if(idCheck==true&&emailCheck==true){
 			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
+			html="<img src='/resources/images/'>"
 			return true;
 		}else if(!idCheck || !emailCheck){
 			alert("확인해주세요");

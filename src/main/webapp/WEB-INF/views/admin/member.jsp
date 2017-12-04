@@ -23,15 +23,6 @@
  button {
  	width: 100%;
  }
- 
- a {
- 	color : black;
- }
- 
- a:focus, a:hover {
- 	color : black;
- 	text-decoration: none;
- }
 </style>
 
 </head>
@@ -96,9 +87,9 @@
 										<tr>
 											<th>ID</th>
 											<th>E-Mail</th>
-											<th>Certify</th>
 											<th>Addr1</th>
 											<th>Addr2</th>
+											<th>Certify</th>
 											<th>Grade</th>
 											<th>Comment</th>
 										</tr>

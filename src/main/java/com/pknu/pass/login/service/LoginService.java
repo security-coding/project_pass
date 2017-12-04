@@ -28,7 +28,7 @@ public interface LoginService {
 	
 	public void userLossPass(LoginDto logindto,String pass);
 	
-	public void updateProfile(HttpSession session,String srcinput,LoginDto logindto);
+	public void updateProfile(HttpSession session,String srcinput,LoginDto logindto,Model model);
 	
 	public int standLossId(String email);
 	
