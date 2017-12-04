@@ -16,9 +16,11 @@
 
 <body>
 <!-- 	<div id="map" style="width:500px;height:400px;"></div> -->
+	<h2>위도 : ${LA}</h2>
+	<h2>경도 : ${LO}</h2>
 	<div id="map" style="width:700px;height:500px;"></div>
 
- 
+      
 
 <script>
 		

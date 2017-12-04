@@ -107,5 +107,11 @@ a {
 	width: 16%;
 	height: 5%;
 	margin: 40px auto;
+}
 
+ .jbFixed {
+        position: fixed;
+        z-index: 5;
+        width: 100%;
+        top: 50px;
 }

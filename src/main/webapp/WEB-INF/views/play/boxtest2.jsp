@@ -140,12 +140,12 @@ function blank(){
 
     <!-- Header -->
     <a name="about"></a>
-    <div class="intro-header">
+    <div class="intro-header" >
         <div class="container">
 
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="intro-message">
+			<div class="intro-message" >
 				<h1>검색</h1>
 				<h3>A Template by Start Bootstrap</h3>
 				<!--                         <hr class="intro-divider"> -->
@@ -182,12 +182,12 @@ function blank(){
 
     <!-- Page Content -->
     <div>
-    	<div class="text-center">
+    	<div class="text-center" id="typeNav">
          	<h1>BOX OFFICE</h1>
 		</div>
 		
 		
-		<ul class="typeNav">
+		        <ul class="typeNav" >
 					<li><a class="butn" href = "#" onclick="change('YK');">연극</a></li>
 					<li><a class="butn" href = "#" onclick="change('MU');">뮤지컬</a></li>
 					<li><a class="butn" href = "#" onclick="change('CCO');">클래식/오페라</a></li>
@@ -260,13 +260,26 @@ function blank(){
     <!-- Bootstrap Core JavaScript -->
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
     <!-- 마우스 오버 요소 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js"></script> -->
     
 		
 </body>
 
 
-<script>		
+<script>
+	$(document).ready(function() {
+		var jbOffset = $( '.typeNav' ).offset();
+		
+		$(window).scroll(function() { 
+			
+			if ( $( document ).scrollTop() > jbOffset.top ) {
+	            $( '.typeNav' ).addClass( 'jbFixed' );
+	         }else {
+	             $( '.typeNav' ).removeClass( 'jbFixed' );
+	         }
+		});
+	});
+
 	function change(value) {
 		
 		$.ajax({
@@ -279,15 +292,43 @@ function blank(){
 				let typ ="";
 				$(".poster").empty(); 
 			    $.each(data,function(index, item){					  					 				 
-			    	str ="<div class='col-lg-15 col-md-3 col-xs-3' ><a href='/play/detail?mt20id="+ item.mt20id+"' class='d-block mb-4 h-100'><div class='view overlay hm-black-strong' style='width:233; height:373;'>"
-							       +"<img class='img-fluid img-thumbnail' src= '"+ item.imageurl+"' style='width:250; height:370;' alt=''/><div class='mask flex-center'><p class='white-text'> RANK"+ item.rnum+"<br>"+item.prfnm+"<br>"+item.prfpd+"<br>"+item.prfplcnm+"<br>"+item.cate+"</p></div></div></a></div>" 
-					  		       
+			    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
+							         +"<div class='imageUrl'>"
+							           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageurl+"' alt=''/>"
+							              +"<div class='img-fluid img-thumbnail overlay'>"
+							                 +"<div class='text'>"
+							                    +"<p> RANK"+ item.rnum+"</p><br>"
+							                    +"<p>"+item.prfnm+"</p><br>"
+							                    +"<p>"+item.prfpd+"</p><br>"
+							                    +"<p>"+item.prfplcnm+"</p><br>"
+							                    +"<p>"+item.cate+"</p>"
+							                    +"</div>"
+							                +"</div>"
+							                   +"</div>"
+							                       +"</a></div>"      
+							       
 					  $(".poster").append(str);
+// 					location.href="#typeNav";
+			    	window.scroll(0, getOffsetTop(document.getElementById("typeNav")));
 				  });
 			          
 			}					 						
 		})	
 	}
+	
+	
+	function getOffsetTop(el) { 
+		var top = 0; 
+		if (el.offsetParent) { 
+			do { top += el.offsetTop; } 
+			while (el = el.offsetParent); return [top]; } 
+		    } 
+// 	window.scroll(0, getOffsetTop(document.getElementById("bookmark")));
+
+	
+	
+	
 </script>
 
 </html>
