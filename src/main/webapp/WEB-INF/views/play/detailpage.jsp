@@ -22,6 +22,92 @@ body, table, div, p, header, hr, footer {
 }
 </style>
 
+<script>
+	$.ajaxSetup({
+		type : "POST",
+		async : true,
+		dataType : "json",
+		error : function(xhr) {
+			alert("error html = " + xhr.statusText);
+			console.log($("#commentContent").val());
+		}
+	});
+	
+	$(document).ready(function() {
+		$("#commentWrite").on("click", function() {
+			$.ajax({
+				url : "/comment/write",
+				data : {
+					commentContent : $("#commentContent").val(),
+					//mt20id:"${play.mt20id}"    
+					mt20id : "PF140536"
+				},
+				success : function(data) {
+					if (data.result == 1) {
+						alert("comment가 정성적으로 입력되었습니다");
+						$("#commentContent").val("");
+						showHtml(data.commentList, 1);
+					}
+				}
+			});
+		});
+	});
+	
+	//	function getComment(commPageNum, event){
+	////	 	event.preventDefault();
+	//		$.ajax({			
+	//			url:"/comment/read",	
+	//			data:{
+	//				mt20id:"${comment.mt20id}",     
+	////	 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
+	//				commentRow:commPageNum * 10
+	//			},
+	//			success:function(data){
+	//				showHtml(data,commPageNum,event);
+	//			}				
+	//		}); 	
+	//	}
+	
+	function getComment(){
+	// 	event.preventDefault();
+		$.ajax({			
+			url:"/comment/read",	
+			data:{
+				mt20id:"PF140536",     
+	// 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
+			},
+			success:function(data){
+				console.log(data);
+				console.log(data.commentContent);
+				showHtml(data,commPageNum,event);
+			}				
+		}); 	
+	}
+	
+	function showHtml(data,commPageNum){	
+		var html="<table border='1' width='500' align='center'>";
+		$.each(data, function(index,item){
+			html +="<tr>";	
+	//			html +="<td>"+item.id+"</td>";
+			html +="<td>"+item.commentNum+"</td>";
+			html +="<td>"+item.mt20id+"</td>";
+			html +="<td>"+item.commentContent+"</td>";
+			html +="<td>"+item.commentDate+"</td>";		
+			html +="</tr>";					
+		});		
+		html +="</table>";
+		commPageNum=parseInt(commPageNum);
+		if("${play.commentCount}">commPageNum*10){			
+			nextPageNum=commPageNum+1;				
+			html +="<br /><input type='button' onclick='getComment(nextPageNum,event)' value='다음comment보기'><br>";
+		}
+		$("#showComment").html(html);	
+		$("#commentContent").val("");
+		$("#commentContent").focus();
+	}
+
+</script>
+
 </head>
 
 <body>
@@ -212,6 +298,8 @@ body, table, div, p, header, hr, footer {
 
        geocoder.addressSearch('부산광역시 남구 용당동 331', callback);
       
+       
+       
       
    </script>
    
@@ -282,5 +370,11 @@ body, table, div, p, header, hr, footer {
       </p>
    </footer>
 </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+
 </body>
 </html>

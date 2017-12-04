@@ -164,5 +164,9 @@ body, table, div, p {
 						</div>
 						<!-- /.container --> </footer>
 
+    <!-- Bootstrap core JavaScript -->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
 </body>
 </html>
