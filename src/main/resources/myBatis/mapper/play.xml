@@ -133,9 +133,8 @@
          from PLACE p, concert c
           where (LA between #{la}-0.019 and #{la}+0.019)
            and (LO between #{lo}-0.022 and #{lo}+0.022)and p.mt10id=c.mt10id and sysdate > c.prfpdfrom and c.prfpdto > sysdate
-           order by DISTANCE
-		
-	</select>
+           order by DISTANCE	
+	  </select>
 	 
 	
 	    <select id="getBoxOffice"  resultType="mainbox">

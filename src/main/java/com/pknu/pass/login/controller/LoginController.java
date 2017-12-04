@@ -26,12 +26,6 @@ public class LoginController {
 	@Autowired
 	LoginServiceImpl loginService;
 	
-	@RequestMapping("/main")//메인 모달버튼및 회원가입 버튼있는곳으로 이동
-	public String mainForm() {
-		logger.info("Login Main page");
-		return "loginPage/main";
-	}
-	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
 	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
 		System.out.println(id);
@@ -57,7 +51,7 @@ public class LoginController {
 		
 		
 		loginService.insertUser(logindto,stremail,address,detailAddress);
-		return "loginPage/main";
+		return "/home";
 	}
 	
 	@RequestMapping(value="/joinIdCheck")//회원가입 아이디 중복 비동기로 확인
@@ -103,7 +97,7 @@ public class LoginController {
 		loginService.logout(session);
 		
 		
-		return "loginPage/main";
+		return "loginPage/mypage";
 	}
 	
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경

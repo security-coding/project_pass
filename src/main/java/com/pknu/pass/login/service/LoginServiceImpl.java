@@ -16,10 +16,10 @@ import com.pknu.pass.login.dto.LoginDto;
 @Service
 public class LoginServiceImpl implements LoginService {
 	@Autowired
-	MailUtil mailUtil;
+	private MailUtil mailUtil;
 
 	@Autowired
-	LoginDao logindao;
+	private LoginDao logindao;
 
 	@Autowired
 	SecurityUtil securityUtil;
@@ -77,7 +77,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("imageUrl", profile);
 						model.addAttribute("id",id);
 						model.addAttribute("imageUrl",profile);
-						view = "play/boxtest2";
+						view = "/home";
 					} else {// 비밀번호 실패
 						model.addAttribute("passFail", Fail);
 						view = "loginPage/loginFail";
@@ -97,7 +97,7 @@ public class LoginServiceImpl implements LoginService {
 				}
 			} else if (certify == 0) {//회원가입 인증이 되지 않았음
 				model.addAttribute("dbCertify", Fail);
-				view = "loginPage/main";
+				view = "/home";
 			}
 		} else {//아이디가 존재하지 않을때
 			model.addAttribute("Notmember", Fail);
@@ -112,7 +112,7 @@ public class LoginServiceImpl implements LoginService {
 		session.removeAttribute("id");
 		session.invalidate();
 
-		return "play/boxtest2";
+		return "/home";
 	}
 
 	@Override

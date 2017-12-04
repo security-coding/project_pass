@@ -32,14 +32,6 @@
 				</button>
 				<a class="navbar-brand" href="#">Pass Admin Page</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Settings</a></li>
-					<li><a href="#">Profile</a></li>
-					<li><a href="#">Help</a></li>
-				</ul>
-			</div>
 		</div>
 	</nav>
 
@@ -47,30 +39,19 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><p>공연 관련 정보 관리</p></li>
-				<li><a href="/admin">정보 업데이트</a></li>
+				<li><a href="/admin">공연 정보 업데이트</a></li>
 				<li><a href="/admin/select/concert">공연 목록</a></li>
 				<li><a href="/admin/select/place">공연 시설 목록</a></li>
 				<li class="active"><a href="#">주간 박스오피스<span class="sr-only">(current)</span></a></li>
 			</ul>
 
 			<ul class="nav nav-sidebar">
-				<li><p>사용자 정보 관리</p></li>
-				<li><a href="">Nav item</a></li>
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
-				<li><a href="">More navigation</a></li>
+				<li><a href="/admin/member">사용자 정보 관리</a></li>
+				<li><a href="">코멘트 관리</a>
 			</ul>
 
-			<ul class="nav nav-sidebar">
-				<li><p>코멘트 & 기타 관리</p></li>
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
-			</ul>
 		</div>
-
+	
 		<div id="content" class="container-fluid">
 			<!-- page Content 부분 -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -81,7 +62,7 @@
 						<div class="clearfix"></div>
 						<div class="placeholder">
 							<c:forEach items="${boxof}" var="boxoffice">
-							<div class="col-md-6">
+							<div class="col-lg-6 col-md-6">
 							<table class="table table-bordered table-hover">
 								<c:set value="${boxoffice.value[0].cate}" var="cate"/>
 								<c:choose>
@@ -125,6 +106,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 
 		<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>

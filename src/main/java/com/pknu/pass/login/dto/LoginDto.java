@@ -12,8 +12,7 @@ public class LoginDto {
 	String profile;
 	int grade;
 	String address;
-	String detailAddress ;
-	
+	String detailAddress;
 	
 	public String getId() {
 		return id;
