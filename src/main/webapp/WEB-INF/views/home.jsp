@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -14,9 +16,6 @@
 		
 <!-- 		<img src="http://localhost:8080/resources/upload/poster/PF_PF140315_171109_114524.gif" /> -->
 
-
-    
-
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
 
@@ -25,27 +24,29 @@
 
 	<div id="map" style="width: 100%; height: 350px;"></div>
 	<script>
-		var mapContainer = document.getElementById('map'), // ì§ëë¥¼ íìí  div 
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
-			center : new daum.maps.LatLng(33.450701, 126.570667), // ì§ëì ì¤ì¬ì¢í
+			center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 			level : 3
-		// ì§ëì íë ë ë²¨
+		// 지도의 확대 레벨
 		};
 
-		var map = new daum.maps.Map(mapContainer, mapOption); // ì§ëë¥¼ ìì±í©ëë¤
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-		// ë§ì»¤ê° íìë  ìì¹ìëë¤ 
+		// 마커가 표시될 위치입니다 
 		var markerPosition = new daum.maps.LatLng(33.450701, 126.570667);
 
-		// ë§ì»¤ë¥¼ ìì±í©ëë¤
+
+		// 마커를 생성합니다
 		var marker = new daum.maps.Marker({
 			position : markerPosition
 		});
 
-		// ë§ì»¤ê° ì§ë ìì íìëëë¡ ì¤ì í©ëë¤
+
+		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);
 
-		// ìë ì½ëë ì§ë ìì ë§ì»¤ë¥¼ ì ê±°íë ì½ëìëë¤
+		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
 		
 		

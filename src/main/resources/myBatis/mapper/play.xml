@@ -92,20 +92,44 @@
 	
 	
 <!-- 	상세페이지 -->
+
+<!-- 내 포스터 -->
+
     <select id="getDetailPoster" parameterType="String" resultType="String" >
 	    select imageUrl
 	     from image natural join concert
 	     where mt20id = #{mt20id} 
          order by imagetype, imagenum
 	</select>
-	
+
+<!-- 내 정보 -->
 	
 	<select id="getDetailInf" parameterType="String" resultType="detail">
 	   select prfnm, prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime,
-	   prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm
+	   prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm, mt20id
 	     from concert natural join place
 	     where mt20id=#{mt20id}
 	</select>
+
+<!-- 상세페이지 내 좋아요 기능 주입  -->
+
+	<insert id="getLikes" parameterType="hashMap">
+		insert into likes values(likes_seq.nextval,#{mt20id},#{id})
+	</insert>
+
+<!-- 상세페이지 내 좋아요 기능 판별  -->
+
+	<select id="changeLikes" resultType="String" parameterType="hashMap">
+		select mt20id from likes
+		where mt20id=#{mt20id} and id=#{id}
+	</select>
+
+<!-- 상세페이지 내 좋아요 기능 이미 된 것 삭제 (원복)  -->
+
+	<delete id="delLikes" parameterType="hashMap">
+		delete from likes
+		where mt20id=#{mt20id} and id=#{id}
+	</delete>
 
 
 <!-- 	검색 -->

@@ -2,9 +2,13 @@ package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.support.HttpAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -104,14 +108,31 @@ public class PlayController {
 	
 //	상세페이지
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String getDetail(String mt20id, Model model) throws Exception {
+	public String getDetail(String mt20id, Model model,HttpSession session) throws Exception {
 		
-		playService.getDetail(mt20id, model);
+		playService.getDetail(mt20id, model,session);
 		
 		return "play/detailpage";
 	}
 	
 	
+//	좋아요 기능 내 추가를 할 시
+	@ResponseBody
+	@RequestMapping(value="/UpdateLikes")
+	public int UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal) {
+		System.out.println(mt20id+"-----------mt20id");
+		return playService.UpdateLikes(id, mt20id, changeVal); 
+	}
+	
+//	좋아요 기능 내 다시 삭제를 할 시
+	
+	@ResponseBody
+	@RequestMapping(value="/DeleteLikes")
+	public String DeleteLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id) {
+		System.out.println(mt20id+"-----------mt20id");
+		playService.DeleteLikes(id, mt20id);
+		return "play/detailpage";
+	}
 	
 //	검색	
 	@RequestMapping(value="/searchform")

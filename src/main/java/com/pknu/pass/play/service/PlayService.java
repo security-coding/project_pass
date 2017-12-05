@@ -2,6 +2,8 @@ package com.pknu.pass.play.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 
 import com.pknu.pass.play.dto.DetailDto;
@@ -22,7 +24,7 @@ public interface PlayService {
 
 	public ArrayList<MainDto> getNowNextPoster(String stNum, String pType);
 	
-	public void getDetail(String mt20id,Model model);
+	public void getDetail(String mt20id,Model model,HttpSession session);
 
 	public void getsearch(String keyword, Model model);
 	
@@ -31,4 +33,8 @@ public interface PlayService {
 	public void boxTest(Model model);
 	
 	public ArrayList<MainBoxofficeDto> getBoxChange(String type);
+
+	public int UpdateLikes(String id, String mt20id, int changeVal);
+
+	public void DeleteLikes(String id, String mt20id);
 }
