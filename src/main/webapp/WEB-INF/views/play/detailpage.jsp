@@ -13,6 +13,10 @@
 <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
 
+    <!-- Bootstrap core JavaScript -->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
 
 <style>
 @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
@@ -40,7 +44,7 @@ body, table, div, p, header, hr, footer {
 				data : {
 					commentContent : $("#commentContent").val(),
 					//mt20id:"${play.mt20id}"    
-					mt20id : "PF140536"
+					mt20id : "PF140778"
 				},
 				success : function(data) {
 					if (data.result == 1) {
@@ -309,9 +313,9 @@ body, table, div, p, header, hr, footer {
             <div class="card-body">
               <form>
                 <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea id="commentContent" class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">작성</button>
+                <button id="commentWrite" type="submit" class="btn btn-primary">작성</button>
               </form>
             </div>
           </div>
@@ -371,9 +375,6 @@ body, table, div, p, header, hr, footer {
    </footer>
 </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
 
 </body>
