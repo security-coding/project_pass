@@ -22,6 +22,11 @@
 
 </header>
 <body>
+
+               <ul class="typeNav" >
+					<li><a class="butn" href = "/play/now" >현재상영작</a></li>
+					<li><a class="butn" href = "/play/come" >상영예정작</a></li>
+				</ul>
 <div class="text-center">
          	<h1>현재 공연작</h1>
 	</div>
@@ -47,7 +52,14 @@
 	       <c:forEach var="play" items="${playList}">	 
 		      <div class="col-lg-15 col-md-3 col-xs-3 boxContent" > 
 		        <a href="/play/detail?mt20id=${play.mt20id}">
-		           <div class="imageUrl">
+		          
+		          
+		          
+<!-- 		           <div ><img src="#"/></div> -->
+<!-- 		           <div style="position: absolute; z-index: 1;"><img src="#"/></div> -->
+		           <div  class="imageUrl">
+<!-- 		           <div style="position: relative; z-index: 2;" class="imageUrl"> -->
+<!-- 		           <div  class="imageUrl"> -->
 		             <img class="img-fluid img-thumbnail imageUrl" src="${play.imageUrl}" alt="" />  
 		           <div class="img-fluid img-thumbnail overlay">
                       <div class="text">                      

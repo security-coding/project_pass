@@ -22,6 +22,12 @@
 
 </header>
 <body>
+
+<ul class="typeNav" >
+					<li><a class="butn" href = "/play/now" >현재상영작</a></li>
+					<li><a class="butn" href = "/play/come" >상영예정작</a></li>
+				</ul>
+
 <div class="text-center">
          	<h1>공연 예정작</h1>
 	</div>
@@ -50,7 +56,7 @@
 		           <div class="imageUrl">
 		        
 		             <img class="img-fluid img-thumbnail imageUrl" src="${play.imageUrl}" alt="" />  
-		           <div class="img-fluid img-thumbnail overlay">
+		           <div  class="img-fluid img-thumbnail overlay">
                       <div class="text">                      
                     <p>${play.genrenm}</p><br>
                     <p>${play.prfnm}</p><br>

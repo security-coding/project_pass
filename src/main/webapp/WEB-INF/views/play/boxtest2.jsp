@@ -182,6 +182,7 @@ function blank(){
 
     <!-- Page Content -->
     <div>
+    	        	
     	<div class="text-center" id="typeNav">
          	<h1>BOX OFFICE</h1>
 		</div>
@@ -205,8 +206,8 @@ function blank(){
 		           
 		           
 		           <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
-		           <div style="position: relative; z-index: 1;" class="imageUrl">
-		         
+		           <div style=" z-index: 1;" class="imageUrl">
+<!-- 		         position: relative; -->
 		             <div><img class="img-fluid img-thumbnail imageUrl" src="${play.imageurl}" alt="" /></div> 
 
 		              

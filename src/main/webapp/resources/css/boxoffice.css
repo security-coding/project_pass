@@ -22,6 +22,7 @@
 	opacity: 0;
 	transition: .5s ease;
 	background-color: rgba(0,0,0,0.65);
+	
 }
 
 .boxContent:hover .overlay {
@@ -32,6 +33,7 @@
 	color: white;
 	font-size: 18px;
 	position: absolute;
+/* 	position: relative; */
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -79,7 +81,7 @@
 .imageUrl {
 	width: 235px;
 	height: 373px;
-
+    position: relative;
 }
 
 .col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
@@ -127,10 +129,4 @@
         width: 100%;
         top: 50px;
 }
-
-/* 랭킹배너 css */
-/* .ranknum { */
-/*        position: absolute;  */
-/*        z-index: 2; */
-/* } */
 
