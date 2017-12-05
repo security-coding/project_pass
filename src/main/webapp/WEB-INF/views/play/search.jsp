@@ -170,6 +170,7 @@ body, table, div, p {
 						</div>
 						<!-- /.container --> </footer>
 
+<<<<<<< HEAD
 
     <!-- jQuery 모달 불러들이기 필수요소-->
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
@@ -177,5 +178,11 @@ body, table, div, p {
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
 
+=======
+    <!-- Bootstrap core JavaScript -->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+>>>>>>> 76d036a2923ff083f1e0d3720efbb468bd21bb3b
 </body>
 </html>
