@@ -30,7 +30,7 @@
 
 .text {
 	color: white;
-	font-size: 18px;
+	font-size: 1.333em;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -76,11 +76,31 @@
 }
 
 
+.image-xs {
+	width: 180px;
+	height: 250px;
+}
 
-.imageUrl {
-	width: 235px;
-	height: 373px;
+@media ( min-width : 768px) {
+	.image-xs {
+		width: auto;
+		height: 280px;
+	}
+}
 
+@media ( min-width : 992px) {
+	.image-md {
+		width: auto;
+		height: 300px;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.image-lg {
+		width: auto;
+		height: 373px;
+	
+	}
 }
 
 .col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
