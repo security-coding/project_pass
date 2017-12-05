@@ -24,6 +24,7 @@
 				url : "/member/joinIdCheck",
 				data : {
 					inputId : $("#id").val()
+					
 				},
 				success : function(data) {
 					let html;
