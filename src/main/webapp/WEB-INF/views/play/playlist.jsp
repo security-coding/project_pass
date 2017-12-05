@@ -23,10 +23,10 @@
 </header>
 <body>
 
-<ul class="typeNav" >
-					<li><a class="butn" href = "/play/now" >현재상영작</a></li>
-					<li><a class="butn" href = "/play/come" >상영예정작</a></li>
-				</ul>
+           <ul class="listNav" >
+					<li><a class="butn" href = "/play/now" >현재공연작</a></li>
+					<li><a class="butn" href = "/play/come" >공연예정작</a></li>
+		    </ul>
 
 <div class="text-center">
          	<h1>공연 예정작</h1>
