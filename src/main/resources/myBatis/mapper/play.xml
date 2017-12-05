@@ -6,6 +6,7 @@
 <mapper namespace="com.pknu.pass.play.dao.PlayDao">
 	
 	
+<<<<<<< HEAD
 <!-- 	<select id="getPoster" resultType="String"> -->
 <!-- 		select filename -->
 <!--           from image e, concert a -->
@@ -45,10 +46,118 @@
 	
 	<select id="getsearch" parameterType="String" resultType="detail">
 		select prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl
+=======
+<!-- 	현재상영작 -->
+	<select id="getNowChange"  parameterType="String" resultType="predto">
+		SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN 1 and 20
+	</select>
+		
+	<select id="getNowPoster"  resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN 1 and 20
+	</select>
+	
+    <select id="getNowNextPoster" parameterType="hashMap" resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+	</select>
+	
+	<select id="getNowAllNextPoster" parameterType="String" resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+	</select>
+	
+
+<!-- 상영예정		 -->	
+		<select id="getChange"  parameterType="String" resultType="predto">
+		SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN 1 and 20
+	</select>
+
+	<select id="getPoster"  resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and e.imagetype = 1 and a.prfpdfrom > sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN 1 and 20
+	</select>
+	
+    <select id="getNextPoster" parameterType="hashMap" resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+	</select>
+	
+	<select id="getAllNextPoster" parameterType="String" resultType="predto">
+	SELECT *
+      from(SELECT rownum rum, project.*
+      FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm,a.mt20id
+          from image e, concert a
+          where e.mt20id = a.mt20id and e.imagetype = 1 and a.prfpdfrom > sysdate
+          order by prfpdfrom asc) project )
+          where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+	</select>
+	
+	
+	
+<!-- 	상세페이지 -->
+    <select id="getDetailPoster" parameterType="String" resultType="String" >
+	    select imageUrl
+	     from image natural join concert
+	     where mt20id = #{mt20id} 
+         order by imagetype, imagenum
+	</select>
+	
+	
+	<select id="getDetailInf" parameterType="String" resultType="detail">
+	   select prfnm, prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime,
+	   prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm
+	     from concert natural join place
+	     where mt20id=#{mt20id}
+	</select>
+
+
+<!-- 	검색 -->
+	<select id="getsearch" parameterType="String" resultType="detail">
+		select prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl,dtguidance,prfruntime
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 		from concert c ,image i
 		where  i.mt20id=c.mt20id and i.imagetype=1 and prfnm like '%'||#{keyword}||'%'
 	</select>
 	
+<<<<<<< HEAD
 	
 <!-- 	<select id="getChange"  parameterType="String" resultType="predto"> -->
 <!-- 	SELECT * -->
@@ -66,6 +175,47 @@
 <!--           from image e, concert a -->
 <!--           where e.mt20id = a.mt20id and e.imagetype = 1 and a.prfpdfrom > sysdate -->
 	<!-- 	</select> -->
+=======
+
+<!-- 지도 -->
+<!--      <select id="getNearMap" parameterType="hashMap" resultType="place"> -->
+<!-- 		select * from ( -->
+<!--           select FCLTYNM, MT10ID, LA, LO, DISTNACE_WGS84(#{la}, #{lo}, LA, LO) as DISTANCE -->
+<!--           from PLACE -->
+<!--           where (LA between #{la}-0.019 and #{la}+0.019) -->
+<!--            and (LO between #{lo}-0.022 and #{lo}+0.022) -->
+<!--             order by DISTANCE) TMP  -->
+<!-- 	</select> -->
+	 
+	 
+	 
+	  <select id="getNearMap" parameterType="hashMap" resultType="place">
+		
+		 select p.FCLTYNM, p.MT10ID, p.LA, p.LO, DISTNACE_WGS84(#{la}, #{lo}, p.LA, p.LO) as DISTANCE, c.prfnm
+         from PLACE p, concert c
+          where (LA between #{la}-0.019 and #{la}+0.019)
+           and (LO between #{lo}-0.022 and #{lo}+0.022)and p.mt10id=c.mt10id and sysdate > c.prfpdfrom and c.prfpdto > sysdate
+           order by DISTANCE
+		
+	</select>
+	 
+	
+	    <select id="getBoxOffice"  resultType="mainbox">
+	
+	      select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
+          from boxoffice natural join image 
+          where catecode = 'YK' and imagetype = 1  
+          order by rnum 
+	    </select>
+	   
+	    <select id="getBoxChange" parameterType="String" resultType="mainbox">
+	
+	      select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
+          from boxoffice natural join image 
+          where catecode = #{cateCode} and imagetype = 1  
+          order by rnum 
+	    </select>
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	 
 </mapper>
 	

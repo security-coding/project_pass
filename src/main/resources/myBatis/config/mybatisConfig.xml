@@ -25,5 +25,9 @@
 		<typeAlias alias="predto" type="com.pknu.pass.play.dto.MainDto" />
 		<typeAlias alias="paging" type="com.pknu.pass.common.dto.PagingDto" />
 		<typeAlias alias="detail" type="com.pknu.pass.play.dto.DetailDto"/>
+<<<<<<< HEAD
+=======
+		<typeAlias alias="mainbox" type="com.pknu.pass.play.dto.MainBoxofficeDto"/>
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	</typeAliases>
 </configuration>

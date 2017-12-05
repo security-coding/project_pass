@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- mybatis map 선언 표시 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -51,4 +52,63 @@
 	UPDATE MEMBER set password=#{password} where EMAIL=#{email} AND ID=#{id}
 </update>
  
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis map 선언 표시 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.pknu.pass.login.dao.LoginDao">
+  
+ <select id="getUser" resultType="login" parameterType="String">
+ SELECT * FROM MEMBER where ID=#{id}
+ </select>
+ 
+ <select id="loginCheck" resultType="String" parameterType="String">
+ SELECT PASSWORD FROM MEMBER WHERE ID=#{id}
+ </select>
+ 
+ <select id="logineMailCheck" resultType="String" parameterType="String">
+ SELECT EMAIL FROM MEMBER WHERE email=#{email}
+ </select>
+ 
+ 
+ <insert id="insertUser" parameterType="String">
+ 	insert into MEMBER(id,password,email,certkey,address,detailaddress) values(#{id},#{password},#{email},#{certKey},#{address},#{detailAddress})
+ </insert>
+ 
+ <update id="myPageUpdate" parameterType="String">
+ 	UPDATE MEMBER 
+ 	<choose>
+ 	<when test="password !=null">
+ 	set password=#{password} 
+  	</when>
+  	<when test="address !='' and detailAddress !=''">
+  	set address=#{address},DETAILADDRESS=#{detailAddress}
+  	</when>
+  	</choose>
+  	WHERE ID=#{id}
+ </update>
+ 
+ <update id="updateProfile" parameterType="String">
+ 	UPDATE MEMBER set PROFILE=#{profile} WHERE ID=#{id}
+ 	
+ </update>
+ 
+ <select id="checkJoin" resultType="login" parameterType="String">
+ 	SELECT * FROM MEMBER where CERTKEY=#{certkey}
+ </select>
+
+<update id="checkJoinUpdate" parameterType="String">
+	UPDATE MEMBER set certify=1 where CERTKEY=#{certkey}
+</update>
+
+<select id="userLossId" parameterType="String" resultType="String">
+	SELECT ID FROM MEMBER where email=#{email}
+</select>
+
+<update id="updatePass" parameterType="String">
+	UPDATE MEMBER set password=#{password} where EMAIL=#{email} AND ID=#{id}
+</update>
+ 
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
  </mapper>

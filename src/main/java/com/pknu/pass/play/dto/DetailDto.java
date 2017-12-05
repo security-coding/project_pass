@@ -2,7 +2,10 @@ package com.pknu.pass.play.dto;
 
 public class DetailDto {
 
+<<<<<<< HEAD
 	private String imageUrl;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	private String prfpdfrom;
 	private String prfpdto;
 	private String fcltynm;
@@ -15,6 +18,7 @@ public class DetailDto {
 	private String dtguidance;
 	private String prfnm;
 	private	String genrenm;
+<<<<<<< HEAD
 	private String mt20id;
 	private String keyword;
 	
@@ -26,18 +30,78 @@ public class DetailDto {
 				+ ", prfnm=" + prfnm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + ", keyword=" + keyword + "]";
 	}
 
+=======
+	private String la;
+	private String lo;
+	private String mt20id;
+	private String imageUrl;
+
+
+
+	@Override
+	public String toString() {
+		return "DetailDto [prfpdfrom=" + prfpdfrom + ", prfpdto=" + prfpdto + ", fcltynm=" + fcltynm + ", prfcast="
+				+ prfcast + ", prfcrew=" + prfcrew + ", prfruntime=" + prfruntime + ", prfage=" + prfage + ", entrpsnm="
+				+ entrpsnm + ", pcseguidance=" + pcseguidance + ", dtguidance=" + dtguidance + ", prfnm=" + prfnm
+				+ ", genrenm=" + genrenm + ", la=" + la + ", lo=" + lo + ", mt20id=" + mt20id + ", imageUrl=" + imageUrl
+				+ "]";
+	}
+
+
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+<<<<<<< HEAD
+	public String getPrfpdfrom() {
+		return prfpdfrom;
+	}
+
+=======
+
+	public String getMt20id() {
+		return mt20id;
+	}
+
+
+	public void setMt20id(String mt20id) {
+		this.mt20id = mt20id;
+	}
+
+
+	public String getLa() {
+		return la;
+	}
+
+
+	public void setLa(String la) {
+		this.la = la;
+	}
+
+
+	public String getLo() {
+		return lo;
+	}
+
+	public void setLo(String lo) {
+		this.lo = lo;
+		
 	}
 
 	public String getPrfpdfrom() {
 		return prfpdfrom;
 	}
-
+	
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	public void setPrfpdfrom(String prfpdfrom) {
 		this.prfpdfrom = prfpdfrom;
 	}
@@ -129,6 +193,7 @@ public class DetailDto {
 	public void setGenrenm(String genrenm) {
 		this.genrenm = genrenm;
 	}
+<<<<<<< HEAD
 
 	public String getMt20id() {
 		return mt20id;
@@ -151,4 +216,6 @@ public class DetailDto {
 	
 	
 	
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }

@@ -138,17 +138,30 @@ body, table, div, p {
 									<a href="/play/detail?mt20id=${keyword.mt20id}"> <img
 										class="img-fluid rounded mb-3 mb-md-0"
 										src="${keyword.imageUrl}" width="250" height="370"
+<<<<<<< HEAD
 										alt="keyword's imageurl" />
+=======
+										alt="poster's imageurl" />
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 									</a>
 								</div>
 
 								<div class="col-md-5" align="left">
 									<h3>${keyword.prfnm}</h3>
 									<hr>
+<<<<<<< HEAD
 				<p>
 					<li><span>공연 시작일 :</span> ${keyword.prfpdfrom}</li><p></p>
 					<li><span>공연 종료일 :</span> ${keyword.prfpdto}</li><p></p>
 					<li><span>공연 시간 :</span> ${keyword.dtguidance}</li><p></p>
+=======
+									
+				<p>
+					<li><span>공연 시작일 :</span> ${keyword.prfpdfrom}</li><p></p>
+					<li><span>공연 종료일 :</span> ${keyword.prfpdto}</li><p></p>
+					<li><span>공연 총시간 :</span> ${keyword.dtguidance}</li><p></p>
+					<li><span>공연 총시간 :</span> ${keyword.prfruntime}</li><p></p>
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 					<li><span>공연 시설명 :</span> ${keyword.fcltynm}</li><p></p>
 				</p>
 									<hr>
@@ -158,11 +171,35 @@ body, table, div, p {
 						<!-- Footer -->
 						<footer class="py-5 bg-dark">
 						<div class="container">
+<<<<<<< HEAD
 						</div>
 						<!-- /.container --> </footer>
 
 						<!-- Bootstrap core JavaScript -->
 						<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 						<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+=======
+						<hr>
+						</div>
+						<!-- /.container --> </footer>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+    <!-- jQuery 모달 불러들이기 필수요소-->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+
+=======
+    <!-- Bootstrap core JavaScript -->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+>>>>>>> 76d036a2923ff083f1e0d3720efbb468bd21bb3b
+=======
+>>>>>>> parent of 6f03a53... 123
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 </body>
 </html>

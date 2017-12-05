@@ -2,10 +2,13 @@
 /* Global Styles */
 
 body {
+<<<<<<< HEAD
 	margin-left: auto;
 	margin-right: auto;
 	width: 92%;
 	max-width: 960px;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	padding-left: 2.275%;
 	padding-right: 2.275%;
 }
@@ -22,7 +25,10 @@ header .profileLogo .logoPlaceholder {
 header .logoPlaceholder span {
 	width: 80px;
 	height: 22px;
+<<<<<<< HEAD
 	font-family: 'Montserrat', sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(255,255,255,1.00);
 	font-size: 30px;
 	font-weight: 700;
@@ -30,6 +36,7 @@ header .logoPlaceholder span {
 }
 header .profilePhoto {
 	background-color: rgba(237,237,237,1.00);
+<<<<<<< HEAD
 	width: 259px;
 	border-radius: 50%;
 	height: 259px;
@@ -47,6 +54,22 @@ header .profileHeader h3 {
 	color: rgba(146,146,146,1.00);
 	font-size: 16px;
 	font-weight: 700;
+=======
+	width: 500px;
+	border-radius: 50%;
+	height: 580px;
+	clear: both;
+}
+header .profileHeader h1 {
+	color: rgba(146,146,146,1.00);
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 35px;
+}
+header .profileHeader h3 {
+	color: rgba(146,146,146,1.00);
+	font-size: 16px;
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	line-height: 24px;
 }
 hr {
@@ -54,7 +77,10 @@ hr {
 	height: 1px;
 }
 header .profileHeader p {
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(146,146,146,1.00);
 	font-size: 14px;
 	font-weight: 400;
@@ -79,7 +105,10 @@ header .socialNetworkNavBar .socialNetworkNav img:hover {
 	display: block;
 }
 .section1 .sectionTitle, .section2 .sectionTitle {
+<<<<<<< HEAD
 	font-family: 'Montserrat', sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(146,146,146,1.00);
 	font-size: 18px;
 	font-weight: 700;
@@ -88,37 +117,57 @@ header .socialNetworkNavBar .socialNetworkNav img:hover {
 .section1 .sectionTitleRule, .section2 .sectionTitleRule {
 	margin: 0 3% 0 0;
 	float: left;
+<<<<<<< HEAD
 	clear: both;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 .section1 .sectionTitleRule2, .section2 .sectionTitleRule2 {
 	background-color: rgba(208,207,207,1.00);
 	height: 1px;
+<<<<<<< HEAD
 	padding: 0px;
 }
 .mainContent .section1 .section1Content {
 	font-family: ProximaNova;
+=======
+
+}
+.mainContent .section1 .section1Content {
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	font-size: 14px;
 	font-weight: 100;
 	color: rgba(208,207,207,1.00);
 }
 .mainContent .section1 .section1Content span {
 	color: rgba(146,146,146,1.00);
+<<<<<<< HEAD
 	font-family: sans-serif;
 }
 .section2 .sectionContentTitle {
 	font-family: sans-serif;
+=======
+}
+.section2 .sectionContentTitle {
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(146,146,146,1.00);
 	font-size: 18px;
 	font-weight: 700;
 }
 .section2 .sectionContentSubTitle {
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(68,67,67,1.00);
 	font-size: 14px;
 	font-weight: 400;
 }
 .section2 .sectionContent {
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(146,146,146,1.00);
 	font-size: 14px;
 	font-weight: 400;
@@ -139,7 +188,10 @@ header .socialNetworkNavBar .socialNetworkNav img:hover {
 	background-color: rgba(153,153,153,1.00);
 }
 .externalResourcesNav .externalResources a {
+<<<<<<< HEAD
 	font-family: 'Montserrat', sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	color: rgba(255,255,255,1.00);
 	font-size: 14px;
 	font-weight: 400;
@@ -154,7 +206,10 @@ header .socialNetworkNavBar .socialNetworkNav img:hover {
 }
 /* Footer */
 footer .footerDisclaimer {
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	font-size: 14px;
 	line-height: 18px;
 	color: rgba(104,103,103,1.00);
@@ -165,7 +220,10 @@ footer .footerDisclaimer span {
 	font-weight: 400;
 }
 footer .footerNote {
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	font-size: 14px;
 	line-height: 18px;
 	color: rgba(104,103,103,1.00);
@@ -215,6 +273,10 @@ header .socialNetworkNavBar .socialNetworkNav {
 	margin-bottom: 10%;
 }
 .section1 .section1Title, .section2 .section1Title {
+<<<<<<< HEAD
+=======
+	margin-top: 100px;
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	text-align: center;
 }
 .section1 .sectionTitleRule, .section2 .sectionTitleRule {
@@ -226,7 +288,10 @@ header .socialNetworkNavBar .socialNetworkNav {
 .mainContent .section1 .section1Content {
 	display: inline-block;
 	text-align: left;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	text-align: justify;
 }
 .mainContent .section2 {
@@ -249,7 +314,10 @@ header .socialNetworkNavBar .socialNetworkNav {
 footer {
 	display: block;
 	text-align: center;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 }
 
@@ -262,7 +330,11 @@ header {
 }
 header .profileLogo .logoPlaceholder {
 	display: inline-block;
+<<<<<<< HEAD
 	font-family: 'Montserrat', sans-serif;
+=======
+	: 'Montserrat', sans-serif;
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 header .profilePhoto {
 	float: left;
@@ -293,7 +365,10 @@ header .socialNetworkNavBar .socialNetworkNav {
 .mainContent .section1 .section1Content {
 	display: block;
 	margin: 0% 0% 0% 20%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	margin-top: 5%;
 	margin-bottom: 5%;
 }
@@ -303,7 +378,10 @@ header .socialNetworkNavBar .socialNetworkNav {
 .section2 .section2Content {
 	padding: 0px;
 	margin-left: 20%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 	margin-top: 5%;
 	margin-bottom: 5%;
 }
@@ -324,12 +402,18 @@ header .socialNetworkNavBar .socialNetworkNav {
 footer .footerDisclaimer {
 	float: left;
 	margin-left: 3%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 footer .footerNote {
 	float: right;
 	margin-right: 3%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 }
 
@@ -338,6 +422,7 @@ footer .footerNote {
 /* Header */
 header .profileLogo .logoPlaceholder {
 	float: left;
+<<<<<<< HEAD
 	margin-bottom: 50px;
 }
 header .profilePhoto {
@@ -348,6 +433,18 @@ header .profilePhoto {
 header .profileHeader {
 	text-align: left;
 	padding-top: 10%;
+=======
+}
+/* 상세페이지 포스터 이미지 가로 세로 조절부분 */
+header .profilePhoto {
+	float: left;
+	margin-right: 3%;
+	width: 500px;
+	height: 580px;
+}
+header .profileHeader {
+	text-align: left;
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 header .socialNetworkNavBar .socialNetworkNav {
 	width: 74px;
@@ -365,7 +462,11 @@ header .socialNetworkNavBar .socialNetworkNav {
 	margin-right: 0%;
 	margin-left: 26%;
 	margin-bottom: 0%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 .mainContent .section2 {
 	clear: both;
@@ -373,7 +474,11 @@ header .socialNetworkNavBar .socialNetworkNav {
 .section2 .section2Content {
 	padding: 0px;
 	margin-left: 26%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+	: sans-serif;
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 .mainContent .externalResourcesNav {
 	margin-top: 40px;
@@ -390,11 +495,17 @@ header .socialNetworkNavBar .socialNetworkNav {
 footer .footerDisclaimer {
 	float: left;
 	margin-left: 3%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 footer .footerNote {
 	float: right;
 	margin-right: 3%;
+<<<<<<< HEAD
 	font-family: sans-serif;
+=======
+>>>>>>> 9f188dada92f082683093830b08a07836a675393
 }
 }
