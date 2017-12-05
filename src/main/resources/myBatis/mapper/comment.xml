@@ -16,11 +16,13 @@
 <!-- 		where rownum between 1 and #{commentRow} -->
 <!-- 	</select> -->
 
-	<select id="getComments" parameterType="HashMap" resultType="comment">
-		select id, commentContent,commentDate, mt20id
+	<select id="getComments" parameterType="String" resultType="comment">
+		select *
 		      from comments 
 		     	where mt20id=#{mt20id} 
-		     	order by commentNum desc
+		     	order by commentNum desc 
+		     
+		     	
 	</select>
 	
 	<insert id="insertComment" parameterType="comment">

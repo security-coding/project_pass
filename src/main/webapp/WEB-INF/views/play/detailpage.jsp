@@ -13,9 +13,9 @@
 <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+<!-- Bootstrap core JavaScript -->
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
 
 <style>
@@ -43,15 +43,14 @@ body, table, div, p, header, hr, footer {
 				url : "/comment/write",
 				data : {
 					commentContent : $("#commentContent").val(),
-					//mt20id:"${play.mt20id}"    
-					mt20id : "PF140778"
+					//mt20id:"${play.mt20id}   mt20id는 play/dto/DetailDto 안에 있는 공연번호()
+					mt20id : "PF140778" 
 				},
 				success : function(data) {
-					if (data.result == 1) {
+					
 						alert("comment가 정성적으로 입력되었습니다");
 						$("#commentContent").val("");
-						showHtml(data.commentList, 1);
-					}
+					 $.each()
 				}
 			});
 		});
@@ -77,7 +76,7 @@ body, table, div, p, header, hr, footer {
 		$.ajax({			
 			url:"/comment/read",	
 			data:{
-				mt20id:"PF140536",     
+				mt20id:"${mt20id}",     
 	// 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
 			},
 			success:function(data){
@@ -306,17 +305,25 @@ body, table, div, p, header, hr, footer {
        
       
    </script>
+   	 <input type="button" value="comment 읽기(${article.commentCount })" onclick="getComment(1,event)" id="commentRead">	     	       
    
+   	<form>
+	<div>
+		<div id="showComment" align="center">
+		</div>
+		<input type="hidden" id="commPageNum" value="1">
+	</div>	
+	</form>
              <!-- Comments Form -->
           <div class="card my-4">
             <h5 class="card-header">본 공연에 대한 댓글 남기기 :</h5>
             <div class="card-body">
-              <form>
+              
                 <div class="form-group">
                   <textarea id="commentContent" class="form-control" rows="3"></textarea>
                 </div>
-                <button id="commentWrite" type="submit" class="btn btn-primary">작성</button>
-              </form>
+                <button id="commentWrite" class="btn btn-primary">작성</button>
+              
             </div>
           </div>
    

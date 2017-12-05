@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pknu.pass.comment.dao.CommentDao;
@@ -26,16 +27,13 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Override
 	public List<CommentDto> getComments(String mt20id) {
-		
-		HashMap<String, String> commentMap = new HashMap<>();
-		commentMap.put("mt20id", mt20id);
-		System.out.println(commentDao.getComments(commentMap));
-		return commentDao.getComments(commentMap);
+	
+
+		return commentDao.getComments(mt20id);
 	}
 
 	@Override
 	public void insertComment(CommentDto comment) {
-		System.out.println(comment.getMt20id());
 		commentDao.insertComment(comment);			
 	}
 
