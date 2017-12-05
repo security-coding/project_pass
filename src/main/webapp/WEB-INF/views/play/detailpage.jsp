@@ -50,7 +50,20 @@ body, table, div, p, header, hr, footer {
 					
 						alert("comment가 정성적으로 입력되었습니다");
 						$("#commentContent").val("");
-					 $.each()
+						
+						let str="";						
+						$.each(data, function(index,item){
+							
+						str = "<div class='media mb-4'>"	
+							 	+"<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>"
+							 		+"<div class='media-body'>"
+							 		+"<h5 class='mt-0'>"+item.id+"</h5>"
+									 +item.commentContent
+							 	+"</div>"		
+							 +"</div>"
+							 
+							 $("#appendWrite").append(str);
+						});	
 				}
 			});
 		});
@@ -82,31 +95,16 @@ body, table, div, p, header, hr, footer {
 			success:function(data){
 				console.log(data);
 				console.log(data.commentContent);
-				showHtml(data,commPageNum,event);
+				showHtml(data,event);
 			}				
 		}); 	
 	}
 	
-	function showHtml(data,commPageNum){	
-		var html="<table border='1' width='500' align='center'>";
-		$.each(data, function(index,item){
-			html +="<tr>";	
-			html +="<td>"+item.id+"</td>";
-			html +="<td>"+item.commentNum+"</td>";
-			html +="<td>"+item.mt20id+"</td>";
-			html +="<td>"+item.commentContent+"</td>";
-			html +="<td>"+item.commentDate+"</td>";		
-			html +="</tr>";					
-		});		
-		html +="</table>";
-		commPageNum=parseInt(commPageNum);
-		if("${play.commentCount}">commPageNum*10){			
-			nextPageNum=commPageNum+1;				
-			html +="<br /><input type='button' onclick='getComment(nextPageNum,event)' value='다음comment보기'><br>";
-		}
-		$("#showComment").html(html);	
-		$("#commentContent").val("");
-		$("#commentContent").focus();
+
+	
+	function showHtml(data){	
+
+
 	}
 
 </script>
@@ -305,7 +303,6 @@ body, table, div, p, header, hr, footer {
        
       
    </script>
-   	 <input type="button" value="comment 읽기(${article.commentCount })" onclick="getComment(1,event)" id="commentRead">	     	       
    
    	<form>
 	<div>
@@ -323,9 +320,11 @@ body, table, div, p, header, hr, footer {
                   <textarea id="commentContent" class="form-control" rows="3"></textarea>
                 </div>
                 <button id="commentWrite" class="btn btn-primary">작성</button>
-              
+       
             </div>
           </div>
+   		
+   		  <div id="appendWrite"></div>
    
              <!-- Single Comment -->
           <div class="media mb-4">
@@ -337,27 +336,27 @@ body, table, div, p, header, hr, footer {
           </div>
 
           <!-- Comment with nested comments -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+<!--           <div class="media mb-4"> -->
+<!--             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
+<!--             <div class="media-body"> -->
+<!--               <h5 class="mt-0">Commenter Name</h5> -->
+<!--               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. -->
 
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
+<!--               <div class="media mt-4"> -->
+<!--                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
+<!--                 <div class="media-body"> -->
+<!--                   <h5 class="mt-0">Commenter Name</h5> -->
+<!--                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. -->
+<!--                 </div> -->
+<!--               </div> -->
 
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
+<!--               <div class="media mt-4"> -->
+<!--                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
+<!--                 <div class="media-body"> -->
+<!--                   <h5 class="mt-0">Commenter Name</h5> -->
+<!--                   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. -->
+<!--                 </div> -->
+<!--               </div> -->
 
             </div>
           </div>

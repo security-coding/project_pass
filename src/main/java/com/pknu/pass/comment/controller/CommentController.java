@@ -40,8 +40,8 @@ public class CommentController {
 //		HashMap<String, Object> hm = new HashMap<>();
 //		hm.put("result", 1);
 //		hm.put("commentList", commentList);
-		System.out.println(commentService.getComments(comment.getMt20id()).toString());
-		return null;//
+//		System.out.println(commentService.getComments(comment.getMt20id()).toString());
+		return commentService.getComments(comment.getMt20id());//
 		
 	}
 	
