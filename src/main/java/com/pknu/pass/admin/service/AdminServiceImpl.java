@@ -230,6 +230,8 @@ public class AdminServiceImpl implements AdminService {
 		// {연극, 뮤지컬, 클래식&오페라, 무용&발레, 국악&복합}
 		String[] catecodeArr = { "YK", "MU", "CCO", "MMB", "KKB" };
 		String ststype = "week";
+
+
 		
 
 		try {
