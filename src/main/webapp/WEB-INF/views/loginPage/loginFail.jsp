@@ -12,7 +12,7 @@ $(document).ready(function(){
 	if(passFail == 0) {
 		alert("비밀번호가 틀렸습니다. 다시확인해주세요");
 	}
-	document.location.href="../play/boxtest";
+	document.location.href="../";
 });
 
 </script>
@@ -22,7 +22,7 @@ $(function(){
 	if(Notmember == 0) {
 		alert("존재하지않는 아이디 입니다.\n회원가입을해주세요");
 	}
-	document.location.href="../play/boxtest";
+	document.location.href="../";
 });
 </script>
 

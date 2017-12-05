@@ -33,4 +33,6 @@ public interface PlayService {
 	public ArrayList<MainBoxofficeDto> getBoxChange(String type);
 
 	public void reMemberInf(String id,Model model);
+
+	public void Refresh(String id, Model model);
 }

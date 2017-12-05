@@ -94,7 +94,7 @@ public class LoginController {
 							   @RequestParam("address")String address,@RequestParam("detailaddress")String detailaddress) {
 		
 		loginService.myPageUpdate(session,password,logindto,address,detailaddress);
-		loginService.logout(session);
+//		loginService.logout(session);
 		
 		
 		return "loginPage/mypage";

@@ -2,6 +2,8 @@ package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,15 @@ public class PlayController {
 
 	// 메인 화면
 	@RequestMapping
-	public String boxOfficeMain(Model model) {
-		playService.boxTest(model);
+	public String boxOfficeMain(Model model,HttpSession session) {
+		if(session.getAttribute("id")!=null) {
+		   String id=(String)session.getAttribute("id");
+		   playService.Refresh(id,model);
+		   playService.boxTest(model);
+		}else {
+			playService.boxTest(model);
+		}
+		
 
 		return "play/main";
 	}

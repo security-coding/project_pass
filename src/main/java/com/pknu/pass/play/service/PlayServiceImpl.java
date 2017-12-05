@@ -167,6 +167,16 @@ public class PlayServiceImpl implements PlayService {
 	}
 	
 	
+	
+	//새로고침
+	@Override
+	public void Refresh(String id,Model model) {
+		// TODO Auto-generated method stub
+		LoginDto user=null;
+		user=loginDao.getUser(id);
+		model.addAttribute("imageUrl",user.getProfile()) ;
+	}
+
 
 	@Override
 	public void reMemberInf(String id,Model model) {
