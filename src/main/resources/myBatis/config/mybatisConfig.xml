@@ -26,6 +26,7 @@
 		<typeAlias alias="paging" type="com.pknu.pass.common.dto.PagingDto" />
 		<typeAlias alias="detail" type="com.pknu.pass.play.dto.DetailDto"/>
 		<typeAlias alias="mainbox" type="com.pknu.pass.play.dto.MainBoxofficeDto"/>
+		<typeAlias alias="comment" type="com.pknu.pass.comment.dto.CommentDto"/>
 	</typeAliases>
 </configuration>
 	
