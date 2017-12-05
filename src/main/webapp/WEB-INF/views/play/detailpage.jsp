@@ -324,7 +324,8 @@ body, table, div, p, header, hr, footer {
             </div>
           </div>
    		
-   		  <div id="appendWrite"></div>
+   		  <div id="appendWrite" style="overflow-x:hidden; width:450px; height:600px;"></div>
+   		  
    
              <!-- Single Comment -->
           <div class="media mb-4">
