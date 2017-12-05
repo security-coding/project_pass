@@ -13,10 +13,6 @@
 <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
 
-    <!-- jQuery 모달 불러들이기 필수요소-->
-    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
 <style>
 @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
@@ -26,6 +22,7 @@ body, table, div, p, header, hr, footer {
 }
 </style>
 
+<<<<<<< HEAD
 <script>
 <<<<<<< HEAD
 let id='${id}';
@@ -199,6 +196,8 @@ function changeImg(changeStat){
 >>>>>>> 76d036a2923ff083f1e0d3720efbb468bd21bb3b
 </script>
 
+=======
+>>>>>>> parent of 6f03a53... 123
 </head>
 
 <body>
@@ -247,7 +246,7 @@ function changeImg(changeStat){
 	<!-- Modal -->
 	<form>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myMosdalLabel">
+			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 
@@ -298,26 +297,11 @@ function changeImg(changeStat){
 	<header>
 		<div class="profilePhoto">
 			<!-- Profile photo -->
-			<img src="${detailImages[0]}" style="width: 500; height: 100%; "alt="concert-image" />
+			<img src="${detailImages[0]}" style="width: 500; height: 580; "alt="concert-image" />
 		</div>
 			<!-- Identity details -->
 			<section class="profileHeader">
-	<!-- 제목은 h1 tag in, 밑줄에 종류, 그리고 공연 시작기간 ~ 공연 종료기간 부분은 h3 tag in -->
-		<!-- 제목 h1 앞에 ajax 통신을 통하여 좋아요 기능 구현 -->
 
-				<!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
-				<img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
- 				-->
-				<c:choose> 
-				<c:when test="${fullHeart eq 0}">				
- 				<img id="empty-heart" src="/images/likes/empty-heart.png" value=0 style="width:20px;, height:20px;" onclick="changeImg(this)">
-				</c:when>
-				<c:when test="${fullHeart eq 1}">
-				<img id="full-heart" src="/images/likes/full-heart.png" value=1 style="width:20px;, height:20px;" onclick="changeImg(this)">
- 				</c:when>
- 				</c:choose>
-				
-				
        		    <h1>${detailInf.prfnm}</h1>
 				<h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
 				<hr>
@@ -335,7 +319,6 @@ function changeImg(changeStat){
 				공연 제작사 : ${detailInf.entrpsnm}<p />
 				티켓 가격 : ${detailInf.pcseguidance}<p />
 				<p />
-				<p />
 			</section>
 	</header>
 	<hr />
@@ -346,7 +329,7 @@ function changeImg(changeStat){
 			<h2 class="sectionTitle">해당 공연의 기본 정보</h2>
 
 			<hr class="sectionTitleRule2">
-			<div class="section1Content" align="left;">
+			<div class="section1Content">
 						      <div>
 					<c:forEach var="detailImage" items="${detailImages}" begin="1">
 						<img class="img-fluid img-thumbnail" src="${detailImage}" />
@@ -357,6 +340,7 @@ function changeImg(changeStat){
 	</section>
 </div>
 <div class="col-md-4">
+<<<<<<< HEAD
 	<h3>본 공연의 지도 위치는 다음과 같습니다.</h3><p />
 		<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
@@ -614,9 +598,19 @@ function changeImg(changeStat){
         </div>
 <<<<<<< HEAD
 	
+=======
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Test</th>
+				<th>Test</th>
+				<th>Test</th>
+				<th>Test</th>
+			</tr>
+		</thead>
+	</table>
+>>>>>>> parent of 6f03a53... 123
 </div>
-
-
 			<!-- Replicate the above Div block to add more title and company details -->
 =======
    
@@ -638,6 +632,7 @@ function changeImg(changeStat){
       </p>
    </footer>
 </div>
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -647,5 +642,7 @@ function changeImg(changeStat){
 >>>>>>> 76d036a2923ff083f1e0d3720efbb468bd21bb3b
 
 
+=======
+>>>>>>> parent of 6f03a53... 123
 </body>
 </html>

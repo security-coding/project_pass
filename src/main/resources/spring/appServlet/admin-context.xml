@@ -35,7 +35,7 @@
 	</bean>
 
 	<bean id="API_KEY" class="java.lang.String">
-		<constructor-arg value="aaf259e270d74b30a4cdd98d37b3d9fb" />
+		<constructor-arg value="47ada5583c08472ca6e324cb319cfac7" />
 	</bean>
 
 	<context:component-scan base-package="com.pknu.pass.admin" />

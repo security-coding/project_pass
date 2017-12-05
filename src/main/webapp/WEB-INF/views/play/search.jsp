@@ -91,7 +91,7 @@ body, table, div, p {
 								data-dismiss="modal">닫기</button>
 							<button id="login" type="submit" class="btn btn-primary">로그인</button>
 							<td><p>
-									<a href="../member/userloss">아이디/비밀번호찾기></a>
+									<a href="/member/userloss">아이디/비밀번호찾기></a>
 								</p>
 							<td>
 						</div>
@@ -133,9 +133,6 @@ body, table, div, p {
 						<!-- Search Result Value -->
 						<c:forEach var="keyword" items="${keyword}">
 							<!--뿌리는값 -->
-							<div class="col-md-11">
-								<hr>
-								</div>
 							<div class="row">
 								<div class="col-md-7" style="width: 30%; height: 50%;">
 									<a href="/play/detail?mt20id=${keyword.mt20id}"> <img
@@ -156,10 +153,7 @@ body, table, div, p {
 					<li><span>공연 총시간 :</span> ${keyword.prfruntime}</li><p></p>
 					<li><span>공연 시설명 :</span> ${keyword.fcltynm}</li><p></p>
 				</p>
-									<hr />
-								</div>
-								<div class="col-md-11">
-								<hr>
+									<hr>
 								</div>
 							</div>
 						</c:forEach>
@@ -170,6 +164,7 @@ body, table, div, p {
 						</div>
 						<!-- /.container --> </footer>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     <!-- jQuery 모달 불러들이기 필수요소-->
@@ -184,5 +179,7 @@ body, table, div, p {
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
 >>>>>>> 76d036a2923ff083f1e0d3720efbb468bd21bb3b
+=======
+>>>>>>> parent of 6f03a53... 123
 </body>
 </html>
