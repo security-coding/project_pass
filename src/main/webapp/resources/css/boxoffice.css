@@ -80,7 +80,7 @@
 .imageUrl {
 	width: 235px;
 	height: 373px;
-
+    position: relative;
 }
 
 .col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
