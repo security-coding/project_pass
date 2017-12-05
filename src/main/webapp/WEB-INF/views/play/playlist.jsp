@@ -22,6 +22,127 @@
 
 </header>
 <body>
+<script>
+function blank(){
+	if($('#keyword').val()==""){
+		alert("검색어를 입력해주세요");
+		return false;
+	}else{
+		return true;
+	}
+}
+</script>
+
+<script>
+	function CertifyCheck(){
+		let Certify = ${dbCertify};
+		if (Certify == 0) {
+			alert("회원가입 이메일 인증을 안하셨습니다.");
+		}
+		document.location.href = "./main";
+	}
+	
+</script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="/member/main">Project Pass</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li>
+                    <c:if test="${id==null}">
+						<%@include file="../loginPage/login.jsp"%>
+					</c:if> 
+					<c:if test="${id!=null}">
+						<%@include file="../loginPage/loginOk.jsp"%>
+					</c:if>
+					</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+   	<div>
+	<!-- Modal -->
+	<form>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">로그인</h4>
+					</div>
+					<form class="signform" name="signupform">
+						<div name="inputform" class="modal-body container-fluid">
+							<label for="id">ID:<input type="text" id="id" name="id"
+								class="form-control" placeholder="id"></label><br> <label
+								for="pass">password:<input type="password"
+								id="password" name="password" class="form-control"
+								placeholder="password"></label><br>
+						</div>
+
+						<div class="modal-footer">
+							<button id="reset" type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button>
+							<button id="login" type="submit" class="btn btn-primary">로그인</button>
+							<td><p>
+									<a href="/member/userloss">아이디/비밀번호찾기
+								</p>
+							<td>
+						</div>
+					</form>
+
+				</div>
+				<!-- modal-content의 div끝 -->
+
+			</div>
+			<!-- modal-dialog의 div끝 -->
+
+		</div>
+	</form>
+	<!--모달 내용 서브밋form-->
+	</form>
+	<!--모달 부르는 버튼 form-->
+	<!--모달 끝-->
+</div>
+
+
+<br>
+<br>
+<br>
+
+
 
            <ul class="listNav" >
 					<li><a class="butn" href = "/play/now" >현재공연작</a></li>
@@ -78,7 +199,7 @@
 <br>
            	
 </div>
-
+ <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 <script>
 	$(document).ready(function() {
 		var jbOffset = $( '.typeNav' ).offset();
@@ -176,6 +297,5 @@
 
 	
 </script>
-
 </body>
 </html>
