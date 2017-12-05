@@ -124,5 +124,7 @@ public class ConcertDto {
 	public void setDtguidance(String dtguidance) {
 		this.dtguidance = dtguidance;
 	}
+
+
 	
 }

@@ -35,8 +35,8 @@ public class ErrorController {
 	public String pageError400(HttpServletRequest request, Model model) {
 		logger.error("page Error Code 400");
 		pageErrorLog(request);
-		model.addAttribute("errCode","400 Bad Request");
-		model.addAttribute("msg", "잘못된 요청입니다");
+		model.addAttribute("errCode","400");
+		model.addAttribute("msg", "Bad Request");
 
 		return "error";
 	}
@@ -45,8 +45,8 @@ public class ErrorController {
 	public String pageError403(HttpServletRequest request, Model model) {
 		logger.error("page Error Code 403");
 		pageErrorLog(request);
-		model.addAttribute("errCode","403 Forbidden");
-		model.addAttribute("msg", "접근이 금지되었습니다");
+		model.addAttribute("errCode","403");
+		model.addAttribute("msg", "Forbidden");
 
 		return "error";
 	}
@@ -55,8 +55,8 @@ public class ErrorController {
 	public String pageError404(HttpServletRequest request, Model model) {
 		logger.error("page Error Code 404");
 		pageErrorLog(request);
-		model.addAttribute("errCode","404 Not Found");
-		model.addAttribute("msg", "요청하신 페이지는 존재하지 않습니다");
+		model.addAttribute("errCode","404");
+		model.addAttribute("msg", "Not Found");
 
 		return "error";
 	}
@@ -65,8 +65,8 @@ public class ErrorController {
 	public String pageError405(HttpServletRequest request, Model model) {
 		logger.error("page Error Code 405");
 		pageErrorLog(request);
-		model.addAttribute("errCode","405 Method Not Allowed");
-		model.addAttribute("msg", "요청된 메소드가 허용되지 않습니다");
+		model.addAttribute("errCode","405");
+		model.addAttribute("msg", "Method Not Allowed");
 
 		return "error";
 	}
@@ -75,8 +75,8 @@ public class ErrorController {
 	public String pageError500(HttpServletRequest request, Model model) {
 		logger.error("page Error Code 500");
 		pageErrorLog(request);
-		model.addAttribute("errCode","500 internal server error");
-		model.addAttribute("msg", "서버에 오류가 발생하였습니다");
+		model.addAttribute("errCode","500");
+		model.addAttribute("msg", "internal server error");
 
 		return "error";
 	}
@@ -85,8 +85,8 @@ public class ErrorController {
 	public String pageError503(HttpServletRequest request, Model model) {
 		logger.error("page Error Code 503");
 		pageErrorLog(request);
-		model.addAttribute("errCode","503 service unavailable");
-		model.addAttribute("msg", "서비스를 사용할 수 없습니다");
+		model.addAttribute("errCode","503");
+		model.addAttribute("msg", "service unavailable");
 
 		return "error";
 	}

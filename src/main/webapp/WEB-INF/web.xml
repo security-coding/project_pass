@@ -44,6 +44,7 @@
 				classpath:spring/appServlet/play-context.xml
 				classpath:spring/appServlet/common-context.xml
 				classpath:spring/appServlet/member-context.xml
+				classpath:spring/appServlet/place-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -53,8 +54,6 @@
 		<servlet-name>adminServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-<!--
 	
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
@@ -95,6 +94,5 @@
 		<error-code>503</error-code>
 		<location>/common/error/503</location>
 	</error-page>
- -->
 	
 </web-app>

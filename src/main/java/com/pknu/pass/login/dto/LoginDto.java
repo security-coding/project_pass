@@ -5,21 +5,26 @@ public class LoginDto {
 	public static final int FAIL = 0;
 	
 	String id;
-	String pass;
+	String password;
 	String email;
 	String certKey;
 	int certify;
+	String profile;
+	int grade;
+	String address;
+	String detailAddress;
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getEmail() {
 		return email;
@@ -39,13 +44,38 @@ public class LoginDto {
 	public void setCertify(int certify) {
 		this.certify = certify;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	
 	@Override
 	public String toString() {
-		return "LoginDto [id=" + id + ", pass=" + pass + ", email=" + email + ", certKey=" + certKey + ", certify="
-				+ certify + "]";
+		return "LoginDto [id=" + id + ", password=" + password + ", email=" + email + ", certKey=" + certKey
+				+ ", certify=" + certify + ", profile=" + profile + ", grade=" + grade + ", address=" + address
+				+ ", detailAddress=" + detailAddress + "]";
 	}
 	
 	
-	
-	
 }
+	

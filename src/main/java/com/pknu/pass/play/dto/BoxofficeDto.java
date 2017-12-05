@@ -8,13 +8,14 @@ public class BoxofficeDto {
 	private String cate;
 	private String prfplcnm;
 	private String prfnm;
-	private String rnum;
+	private int rnum;
+	private String catecode;
 	private String mt20id;
 	
 	public BoxofficeDto() {}
 	
 	public BoxofficeDto(String area, String prfdtcnt, String nmrs, String prfpd, String cate, String prfplcnm,
-			String prfnm, String rnum, String mt20id) {
+			String prfnm, int rnum, String catecode ,String mt20id) {
 		this.area = area;
 		this.prfdtcnt = prfdtcnt;
 		this.nmrs = nmrs;
@@ -23,6 +24,7 @@ public class BoxofficeDto {
 		this.prfplcnm = prfplcnm;
 		this.prfnm = prfnm;
 		this.rnum = rnum;
+		this.catecode = catecode;
 		this.mt20id = mt20id;
 	}
 	
@@ -68,24 +70,34 @@ public class BoxofficeDto {
 	public void setPrfnm(String prfnm) {
 		this.prfnm = prfnm;
 	}
-	public String getRnum() {
+	public int getRnum() {
 		return rnum;
 	}
-	public void setRnum(String rnum) {
+	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
+	
+	public String getCatecode() {
+		return catecode;
+	}
+
+	public void setCatecode(String catecode) {
+		this.catecode = catecode;
+	}
+
 	public String getMt20id() {
 		return mt20id;
 	}
 	public void setMt20id(String mt20id) {
 		this.mt20id = mt20id;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "BoxofficeDto [area=" + area + ", prfdtcnt=" + prfdtcnt + ", nmrs=" + nmrs + ", prfpd=" + prfpd
-				+ ", cate=" + cate + ", prfplcnm=" + prfplcnm + ", prfnm=" + prfnm + ", rnum=" + rnum + ", mt20id="
-				+ mt20id + "]";
+				+ ", cate=" + cate + ", prfplcnm=" + prfplcnm + ", prfnm=" + prfnm + ", rnum=" + rnum + ", catecode="
+				+ catecode + ", mt20id=" + mt20id + "]";
 	}
+	
 	
 }
