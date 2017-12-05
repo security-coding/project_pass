@@ -5,11 +5,22 @@
 
 <mapper namespace="com.pknu.pass.place.dao.PlaceDao">
 	<select id="getTitles" parameterType="String" resultType="predto">
-		SELECT mt20id
-		FROM CONCERT
-		WHERE mt10id = #{mt10id} AND sysdate > prfpdfrom AND prfpdto > sysdate
+		SELECT
+		 imageUrl, prfnm, prfpdfrom, prfpdto, genrenm
+		FROM CONCERT NATURAL JOIN IMAGE
+		WHERE mt10id = #{mt10id} AND sysdate > prfpdfrom AND imageType = 1 AND
+		prfpdto > sysdate
 	</select>
-	
+
+	<select id="selectPlace" parameterType="HashMap" resultType="place">
+		select p.FCLTYNM, p.MT10ID, p.relateurl,p.telno, p.LA, p.LO, DISTNACE_WGS84(#{la}, #{lo},
+		p.LA, p.LO) as DISTANCE, c.prfnm
+		from PLACE p, concert c
+		where (LA between #{la}-0.019 and #{la}+0.019)
+		and (LO between #{lo}-0.022 and #{lo}+0.022)and p.mt10id=c.mt10id and
+		sysdate > c.prfpdfrom and c.prfpdto > sysdate
+		order by DISTANCE
+	</select>
 
 </mapper>
 	

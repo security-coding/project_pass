@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.place.service.PlaceService;
 import com.pknu.pass.play.dto.MainDto;
 
@@ -19,6 +20,12 @@ public class PlaceController {
 	@RequestMapping
 	public String placeMain() {
 		return "place/placeMain";
+	}
+	
+	@RequestMapping(value="/select")
+	@ResponseBody
+	public List<PlaceDto> selectPlace(String la, String lo) {
+		return placeService.selectPlace(la,lo);
 	}
 	
 	@RequestMapping(value = "/titles")

@@ -19,7 +19,29 @@
 	}
 	.content {
 		margin: 100px 30px 0 30px;
-	 	
+	}
+	
+	.label {
+		margin-bottom: 96px;
+		background-color : gary;
+	}
+	.label * {display: inline-block;vertical-align: top;}
+	.label .center { 
+		color : gray;
+	}
+	
+	.imgBox {
+		width : 30%;
+		height: auto;
+	}
+	
+	.contentBox {
+		margin-bottom: 15px;
+		display: inline-flex;
+	}
+	
+	.titleInf {
+		margin-left: 15px;
 	}
 </style>
 <title>주변 공연 위치</title>
@@ -28,14 +50,20 @@
 	<div>
 		<%@include file="../loginPage/header.jsp"%>
 	</div>
-	<div class="content">
+	<div class="container-fluid content">
 	<h2 class="text-center">주변 공연 위치 찾기</h2>
-	<form class="form-group col-md-4 col-md-offset-1">
-	<input class="form-control" type="text" id="address" onclick="execDaumPostcode()" placeholder="주소 검색">
-	</form>
-	<div class="clearfix"></div>
-	<div id="map" style="width:600px;height:500px;margin-top:10px;display:none"></div>
-	<div id="resultTitles"></div>
+	<div class="col-md-4">
+		<div class="well">
+			<h4>주소 검색창</h4>
+			<p>
+			<input class="form-control" type="text" id="address" onclick="execDaumPostcode()" placeholder="클릭하여 주소 검색">
+			</p>
+			<div id="resultTitles"></div>
+		</div>
+	</div>
+	<div id="mapContainer" class="col-md-8">
+		<div id="map" style="width:100%;height:500px;"></div>
+	</div>
 	</div>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
@@ -45,20 +73,27 @@
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-            level: 7 // 지도의 확대 레벨
+            level: 7, // 지도의 확대 레벨
+            draggable : false,	//드래그 여부
+            scrollwheel : false,
+            disableDoubleClick : false,
+            disableDoubleClickZoom : false
         };
 
-    //지도를 미리 생성
+    //지도를 미리 생
     var map = new daum.maps.Map(mapContainer, mapOption);
     //주소-좌표 변환 객체를 생성
     var geocoder = new daum.maps.services.Geocoder();
-    //마커를 미리 생성
-    var marker = new daum.maps.Marker({
+
+    var content = '<div class="label"><h3 class="center">주소 입력창에 주소를 검색하면 지도에 공연 정보가 나타납니다. </h3><span class="right"></span></div>';
+
+    var customOverlay = new daum.maps.CustomOverlay({
         position: new daum.maps.LatLng(37.537187, 127.005476),
-        map: map
+        content: content      
     });
-
-
+    
+    customOverlay.setMap(map);
+    
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -87,7 +122,7 @@
                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
                     if (status === daum.maps.services.Status.OK) {
-
+						$(".label").css("display","none");
                         var result = results[0]; //첫번째 결과의 값을 활용
 
                         // 해당 주소에 대한 좌표를 받아서
@@ -95,7 +130,7 @@
                         
                         var data = $.ajax({
                         		type: 'POST',	
-							url : '/play/result',
+							url : '/place/select',
 							data: {
                         		la : result.y,
                         		lo : result.x
@@ -103,7 +138,12 @@
 							success : function(data) {
 								var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 								$.each(data, function(index, item) {
-									var mt10id = item.mt10id;
+									var	place = {
+										mt10id :	 item.mt10id,
+										fcltynm : item.fcltynm,
+										relateurl : item.relateurl,
+										telno : item.telno
+									};
 									
 									var imageSize = new daum.maps.Size(24, 35);
 						  	        var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
@@ -123,12 +163,13 @@
 									});
 						 		    
 						 		   
-						 		   (function(marker, mt10id) {
+						 		   (function(marker, place) {
 						 		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
 						 		        daum.maps.event.addListener(marker, 'click', function() {
-						 		            getTitles(mt10id);
+						 		        		$("#resultTitles").empty();
+						 		            getTitles(place);
 						 		        });
-						 		    })(marker,mt10id);
+						 		    })(marker,place);
 
 								});
 							},
@@ -148,19 +189,27 @@
         }).open();
     }
  
-  	function getTitles(mt10id) {
+  	function getTitles(place) {
+  		var str = "<div><h4 class='text-center'><a href='"+place.relateurl+"'>"+place.fcltynm+"</a></h4>";
 		$.ajax({
 			url: '/place/titles',
 			type: 'post',
 			data: {
-				mt10id : mt10id
+				mt10id : place.mt10id
 			},
 			success: function(data) {
+				
 				$.each(data, function(index, item) {
-					console.log(item);
-					var str = "<div><p>"+item.mt20id+"</p></div>";
-					$("#resultTitles").append(str);
+					str += "<div class='contentBox'><div class='imgBox'><img class='img-responsive' src='<c:url value='"+item.imageUrl+"'/>'></div>";
+					str += "<div class='titleInf'><p>"+item.prfnm+"</p>";
+					str += "<p>"+item.prfpdfrom+"<span>~</span>"+item.prfpdto+"</p>";
+					str += "<p>"+item.genrenm+"</p>";
+					str += "</div></div>";
+					str += "<div class='clearfix'></div>";
 				});
+				str +="</div>";
+				str +="<a href='tel:"+place.telno+"'><p>문의 전화 : "+place.telno+"</p></a>";
+				$("#resultTitles").append(str);
 			},
 			error: function(e) {
 				alert(e.responseText);

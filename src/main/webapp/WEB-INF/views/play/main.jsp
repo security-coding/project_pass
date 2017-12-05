@@ -36,7 +36,11 @@ function blank(){
 		document.location.href = "./main";
 	}
 </script>
-
+<style>
+	#searchHeader {
+		font-size: 4.5rem;
+	}
+</style>
 </head>
 
 <body>
@@ -101,7 +105,7 @@ function blank(){
     
     	<div id="type" class="test row" data-index="전체"></div>
 	   <c:forEach var="play" items="${boxList}" varStatus="status">
-		      <div class="col-lg-15 col-md-3 col-xs-3 boxContent" > 
+		      <div class="col-lg-15 boxContent" > 
 		        <a href="/play/detail?mt20id=${play.mt20id}">
 		           
 		           
