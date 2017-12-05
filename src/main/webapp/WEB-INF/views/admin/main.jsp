@@ -45,34 +45,54 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Pass Admin Page</a>
-			</div>
-		</div>
-	</nav>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Pass Admin Page</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">공연 정보 업데이트<span class="sr-only">(current)</span></a></li>
+                <li><p>공연 관련 정보 관리</p></li>
+                <li class="active"><a href="#">정보 업데이트<span class="sr-only">(current)</span></a></li>
                 <li><a href="/admin/select/concert">공연 목록</a></li>
-                <li><a href="/admin/select/place">공연 시설 목록</a></li>
-                <li><a href="/admin/select/boxoffice">주간 박스오피스</a></li>
+                <li><a href="#">공연 시설 목록</a></li>
+                <li><a href="#">주간 박스오피스</a></li>
             </ul>
 
             <ul class="nav nav-sidebar">
-				<li><a href="/admin/member">사용자 정보 관리</a></li>
-				<li><a href="">코멘트 관리</a>
-			</ul>
+                <li><p>사용자 정보 관리</p></li>
+                <li><a href="">Nav item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+                <li><p>코멘트 & 기타 관리</p></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+            </ul>
         </div>
 
         <!-- page Content 부분 -->
@@ -81,7 +101,7 @@
 
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-4 placeholder">
-                    <img src='<c:url value="images/audience-868074_640.jpg"/>' width="200" height="200" class="img-circle"
+                    <img src="images/audience-868074_640.jpg" width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>공연 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>
@@ -93,7 +113,7 @@
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-4 placeholder">
-                    <img src='<c:url value="/images/walt-disney-center-1629173_1280.jpg"/>' width="200" height="200" class="img-circle"
+                    <img src="images/walt-disney-center-1629173_1280.jpg" width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>공연 시설 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>
@@ -105,7 +125,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 placeholder">
-                    <img src='<c:url value="/images/service-1186371_640.png"/>' width="200" height="200" class="img-circle"
+                    <img src="images/service-1186371_640.png" width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>주간 박스오피스 정보 업데이트</h4>
                     <span class="text-muted">매일 오전 1시에 자동 업데이트 됩니다</span>

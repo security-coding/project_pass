@@ -10,7 +10,8 @@
 <script src='<c:url value="/js/paging.js"/>'></script>
 
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+<link rel="stylesheet"
+	href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
 </head>
 <body>
@@ -26,6 +27,14 @@
 				</button>
 				<a class="navbar-brand" href="#">Pass Admin Page</a>
 			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Settings</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
@@ -33,7 +42,8 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><a href="/admin">공연 정보 업데이트</a></li>
+				<li><p>공연 관련 정보 관리</p></li>
+				<li><a href="/admin">정보 업데이트</a></li>
 				<li><a href="/admin/select/concert">공연 목록</a></li>
 				<li class="active"><a href="#">공연 시설 목록<span
 						class="sr-only">(current)</span></a></li>
@@ -41,8 +51,19 @@
 			</ul>
 
 			<ul class="nav nav-sidebar">
-				<li><a href="/admin/member">사용자 정보 관리</a></li>
-				<li><a href="">코멘트 관리</a>
+				<li><p>사용자 정보 관리</p></li>
+				<li><a href="">Nav item</a></li>
+				<li><a href="">Nav item again</a></li>
+				<li><a href="">One more nav</a></li>
+				<li><a href="">Another nav item</a></li>
+				<li><a href="">More navigation</a></li>
+			</ul>
+
+			<ul class="nav nav-sidebar">
+				<li><p>코멘트 & 기타 관리</p></li>
+				<li><a href="">Nav item again</a></li>
+				<li><a href="">One more nav</a></li>
+				<li><a href="">Another nav item</a></li>
 			</ul>
 		</div>
 

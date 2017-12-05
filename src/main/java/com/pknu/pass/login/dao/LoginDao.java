@@ -14,6 +14,8 @@ public interface LoginDao {
 
 	public void updateProfile(LoginDto logindto);
 	
+	public String myEmail(LoginDto logindto);
+
 	public LoginDto checkJoin(String certKey);
 
 	public void checkJoinUpdate(String certKey);
@@ -22,9 +24,9 @@ public interface LoginDao {
 
 	public void updatePass(LoginDto logindto);
 
-	public LoginDto getUser(String id);
+	public String getImageUrl(String id);
 
-	public String currentPwCheck(String id);
+	public LoginDto getUser(String id);
 
 
 

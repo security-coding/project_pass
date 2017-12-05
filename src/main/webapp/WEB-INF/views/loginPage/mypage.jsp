@@ -12,7 +12,7 @@
 <!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 지도 api -->		
+<!-- <script src="/js/loginjs/profilechange.js"></script> -->
 
 <script>
 function setMyimage(imgsrc){
@@ -35,52 +35,6 @@ function setMyimage(imgsrc){
 		}
 	});
 }
-
-/*지도 스크립트 */
-
-function execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var fullAddr = ''; // 최종 주소 변수
-            var extraAddr = ''; // 조합형 주소 변수
-
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                fullAddr = data.roadAddress;
-
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                fullAddr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-            if(data.userSelectedType === 'R'){
-                //법정동명이 있을 경우 추가한다.
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있을 경우 추가한다.
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-//          document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
-            document.getElementById('address').value = fullAddr;
-
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById('detailaddress').focus();
-        }
-    }).open();
-}
-
-
 </script>
 
 </head>
@@ -90,32 +44,30 @@ function execDaumPostcode() {
 <body>
 	
 	<article class="container-fluid">
-
-	
 	<div class="page-header">
 		<h1>
 			마이페이지
 		</h1>
 	</div>
 	
-	<div class="col-sm-3 col-md-2 sidebar">
-		<ul class="nav nav-sidebar">
-			<li><p>메뉴</p></li>
-			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
-			<li><a href="/member/myPassChange">회원정보변경</a></li>
-			<li><a href="#">공연 시설 목록</a></li>
-			<li><a href="#">주간 박스오피스</a></li>
-		</ul>
-	</div>
-
-	<div class="col-xs-8 col-sm-6">		
+	<div class="col-xs-8 col-sm-6">
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
 			
 			<div class="form-group">
 				<label for="id" id="id" name="id">ID:${id}
 				<div id="idcheck"></div>
 			</div>
-					
+			
+			<div class="form-group">
+				<label for="password">변경할비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="변경할비밀번호">
+			</div>
+			
+			<div class="form-group">
+				<label>변경한 비밀번호 확인</label> <input type="password"
+					class="form-control" id="pass2" placeholder="변경할비밀번호 확인" >
+			</div>
+			
 			<div class="form-group">
 
 				<table>
@@ -123,28 +75,47 @@ function execDaumPostcode() {
 						<label for="email">Email:
 							<td><div>
 									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"  value="${email}" disabled="true"></td>
+										placeholder="Email" style="width: 200px"  value="${email}"></td>
 							<td>@</td>
 							<td><input type="text" name="str_email" id="str_email" class="form-control"
 								style="width: 100px" disabled value="naver.com">
 								</div></td>
-							<td>
-
+						<td><select style="width: 120px" name="str_email"
+								id="selectEmail" class="form-control">
+									<option value="1">직접입력</option>
+									<option value="naver.com" selected>naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="nate.com">nate.com</option>
+									<option value="gmail.com">gmail.com</option>
+							</select>
 						</label>
 						</td>
 					</tr>
 				</table>
+
+			</div>
+
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="username">이름</label> <input type="text" -->
+<!-- 					class="form-control" id="username" placeholder="이름을 입력해 주세요"> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="usernumber">휴대전화번호</label> -->
+<!-- 				<div class="input-group"> -->
+<!-- 					<input type="tel" class="form-control" id="usernumber" -->
+<!-- 						placeholder="- 없이 입력해 주세요"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 				
-			<tr>
-			<label>Address:
-			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}">
-			</div>
-			</label>
-			</tr>
-			</div>
-
-
+<!-- 		<div> -->
+<%-- 				<a>현재이미지:<img id="myimage" src="${imageUrl}"></a></br> --%>
+<!-- 				<div class="chimage"> -->
+<!-- 					<img id="img1" class="img" src="/resources/images/profile/img1.png" onclick="setMyimage(this)"> -->
+<!-- 					<img id="img2" class="img" src="/resources/images/profile/img2.png" onclick="setMyimage(this)"> -->
+<!-- 					<img id="img3" class="img" src="/resources/images/profile/img3.png" onclick="setMyimage(this)"> -->
+<!-- 				</div> -->
+<!-- 		</div> -->
 			<div>
 			<img src="${imageUrl}" alt="..." id="Profile" class="img-thumbnail">
 			</div>
@@ -165,12 +136,19 @@ function execDaumPostcode() {
 						onclick="setMyimage(this)">스파이더맨</li>
 				</ul>
 			</div>
-			<div>
-			<button type="button" class="btn btn-primary" onclick="javascript:history.back(-1)">
+
+			<div class="form-group text-center">
+				<button id="signupbtn" type="submit" class="btn btn-info" >
+					수정하기<i class="fa fa-check spaceLeft"></i>
+				</button>
+				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">
 					수정취소<i class="fa fa-times spaceLeft"></i>
-			</button>
+				</button>
 			</div>
 		</form>
+		
+
+	
 		
 	</div>
 
@@ -181,5 +159,47 @@ function execDaumPostcode() {
 <!-- /container -->
 
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+<script type="text/javascript">
+	//이메일 입력방식 선택
+	$('#selectEmail').change(function() {
+		$("#selectEmail option:selected").each(function() {
+
+			if ($(this).val() == '1') { //직접입력일 경우
+				$("#str_email").val(''); //값 초기화
+				$("#str_email").attr("disabled", false); //활성화
+			} else { //직접입력이 아닐경우
+				$("#str_email").val($(this).text()); //선택값 입력
+				$("#str_email").attr("disabled", true); //비활성화
+			}
+		});
+	});
+	
+	 $(function(){
+//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
+		 $("#loginForm").on("submit", function(){
+//	 		 event.preventDefault();
+
+			 var pass=$("#password").val(); 
+			 var passcheck=$("#pass2").val();
+			 
+
+			 if(pass==""){
+			 	alert("패스워스를 입력하세요");
+			 	$("#password").focus();
+			 	return false;
+			 }
+			 if(pass!=passcheck){
+				 alert("패스워드가 일치하지 않습니다")
+			 	$("#pass2").focus();
+				 return false;
+			 }
+			 
+			 $("#loginForm").submit();
+		 })
+		 
+	 });
+
+</script>
 
 </html>

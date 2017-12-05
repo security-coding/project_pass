@@ -14,6 +14,64 @@
 	href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
 
+<style>
+.search-form .form-group {
+	float: right !important;
+	transition: all 0.35s, border-radius 0s;
+	width: 32px;
+	height: 32px;
+	background-color: #fff;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	border-radius: 25px;
+	border: 1px solid #ccc;
+}
+
+.search-form .form-group input.form-control {
+	padding-right: 20px;
+	border: 0 none;
+	background: transparent;
+	box-shadow: none;
+	display: block;
+}
+
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+	display: none;
+}
+
+.search-form .form-group input.form-control:-moz-placeholder {
+	/* Firefox 18- */
+	display: none;
+}
+
+.search-form .form-group input.form-control::-moz-placeholder {
+	/* Firefox 19+ */
+	display: none;
+}
+
+.search-form .form-group input.form-control:-ms-input-placeholder {
+	display: none;
+}
+
+.search-form .form-group:hover, .search-form .form-group.hover {
+	width: 100%;
+	border-radius: 4px 25px 25px 4px;
+}
+
+.search-form .form-group span.form-control-feedback {
+	position: absolute;
+	top: -1px;
+	right: -2px;
+	z-index: 2;
+	display: block;
+	width: 34px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	color: #3596e0;
+	left: initial;
+	font-size: 14px;
+}
+</style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -28,22 +86,42 @@
 				</button>
 				<a class="navbar-brand" href="#">Pass Admin Page</a>
 			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Settings</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
 
 	<div class="row">
-		<div id="navbar" class="col-sm-3 col-md-2 sidebar">
+		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li><a href="/admin">공연 정보 업데이트</a></li>
+				<li><p>공연 관련 정보 관리</p></li>
+				<li><a href="/admin">정보 업데이트</a></li>
 				<li class="active"><a href="#">공연 목록<span class="sr-only">(current)</span></a></li>
 				<li><a href="/admin/select/place">공연 시설 목록</a></li>
 				<li><a href="/admin/select/boxoffice">주간 박스오피스</a></li>
 			</ul>
 
 			<ul class="nav nav-sidebar">
-				<li><a href="/admin/member">사용자 정보 관리</a></li>
-				<li><a href="">코멘트 관리</a>
+				<li><p>사용자 정보 관리</p></li>
+				<li><a href="">Nav item</a></li>
+				<li><a href="">Nav item again</a></li>
+				<li><a href="">One more nav</a></li>
+				<li><a href="">Another nav item</a></li>
+				<li><a href="">More navigation</a></li>
+			</ul>
+
+			<ul class="nav nav-sidebar">
+				<li><p>코멘트 & 기타 관리</p></li>
+				<li><a href="">Nav item again</a></li>
+				<li><a href="">One more nav</a></li>
+				<li><a href="">Another nav item</a></li>
 			</ul>
 		</div>
 
@@ -54,17 +132,11 @@
 
 				<div class="placeholders">
 					<div>
-						<div class="btn-group">
-							<button type="button" class="btn-sm btn-default">공연 완료</button>
-							<button type="button" class="btn-sm btn-default">공연 중</button>
-							<button type="button" class="btn-sm btn-default">공연 예정</button>
-						</div>
-						
 						<div class="col-md-4 col-md-offset-4">
 							<select class="form-control" id="searchBox">
 								<option selected>-- 검색 설정 --</option>
 								<option value="fcltynm">공연명</option>
-								<option value="GENRENM">공연 장르</option>
+								<option value="sidonm">공연 장르</option>
 							</select>
 
 							<div class="input-group custom-search-form">
@@ -138,19 +210,23 @@
 								</ul>
 							</nav>
 							<form action="/admin/select/concert" method="post" id="frmPaging">
-								<input type="hidden" name="index" id="index" value="${paging.index}"> 
-								<input type="hidden"name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
-								<input type="hidden" name="listCnt" id="listCnt" value="${paging.listCnt}">
-								<input type="hidden" name="searchFilter" id="searchFilter" value="${paging.searchFilter}"> 
-								<input type="hidden" name="searchValue" id="searchValue" value="${paging.searchValue}">
+								<input type="hidden" name="index" id="index"
+									value="${paging.index}"> <input type="hidden"
+									name="pageStartNum" id="pageStartNum"
+									value="${paging.pageStartNum}"> <input type="hidden"
+									name="listCnt" id="listCnt" value="${paging.listCnt}">
+								<input type="hidden" name="searchFilter" id="searchFilter"
+									value="${paging.searchFilter}"> <input type="hidden"
+									name="searchValue" id="searchValue"
+									value="${paging.searchValue}">
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
+		<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+		<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </body>
 </html>

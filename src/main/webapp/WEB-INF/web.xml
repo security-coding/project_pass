@@ -44,7 +44,6 @@
 				classpath:spring/appServlet/play-context.xml
 				classpath:spring/appServlet/common-context.xml
 				classpath:spring/appServlet/member-context.xml
-				classpath:spring/appServlet/place-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

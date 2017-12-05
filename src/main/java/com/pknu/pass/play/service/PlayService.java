@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import org.springframework.ui.Model;
 
-import com.pknu.pass.place.dto.PlaceDto;
-import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 
@@ -27,7 +25,7 @@ public interface PlayService {
 
 	public void getsearch(String keyword, Model model);
 	
-	public ArrayList<PlaceDto> getNearMap(String la, String lo); 
+	public void getNearMap(String la, String lo, Model model); 
 		
 	public void boxTest(Model model);
 	

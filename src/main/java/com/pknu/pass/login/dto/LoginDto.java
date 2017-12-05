@@ -11,9 +11,7 @@ public class LoginDto {
 	int certify;
 	String profile;
 	int grade;
-	String address;
-	String detailAddress;
-	
+	int loginfailcount;
 	public String getId() {
 		return id;
 	}
@@ -56,26 +54,24 @@ public class LoginDto {
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	public String getAddress() {
-		return address;
+	public int getLoginfailcount() {
+		return loginfailcount;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setLoginfailcount(int loginfailcount) {
+		this.loginfailcount = loginfailcount;
 	}
-	public String getDetailAddress() {
-		return detailAddress;
-	}
-	public void setDetailAddress(String detailAddress) {
-		this.detailAddress = detailAddress;
-	}
-	
 	@Override
 	public String toString() {
 		return "LoginDto [id=" + id + ", password=" + password + ", email=" + email + ", certKey=" + certKey
-				+ ", certify=" + certify + ", profile=" + profile + ", grade=" + grade + ", address=" + address
-				+ ", detailAddress=" + detailAddress + "]";
+				+ ", certify=" + certify + ", profile=" + profile + ", grade=" + grade + ", loginfailcount="
+				+ loginfailcount + "]";
 	}
 	
 	
-}
 	
+	
+	
+	
+	
+	
+}

@@ -14,6 +14,7 @@
 				<button type="button" class="btn btn-primary" data-toggle="modal"
 					data-target="#myModal">로그인</button>
 				<button type="button" class="btn btn-primary"
+				
 					onclick="location.href='/member/joinForm'">회원가입</button>
 <!-- 			</div> -->
 </body>

@@ -9,6 +9,13 @@ public class MainDto {
 	private	String genrenm;
 	private String mt20id;
 	private String pType;
+	
+	
+	
+	
+	
+
+	
 
 	@Override
 	public String toString() {
