@@ -18,15 +18,15 @@
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
     <!-- Bootstrap Core JavaScript -->
 </head>
-<header>
 
-</header>
 <body>
 
-               <ul class="listNav" >
-					<li><a class="butn" href = "/play/now" >현재공연작</a></li>
-					<li><a class="butn" href = "/play/come" >공연예정작</a></li>
-				</ul>
+
+    <%@include file="../loginPage/header.jsp"%>
+<br>
+<br>
+
+         
 <div class="text-center">
          	<h1>현재 공연작</h1>
 	</div>
@@ -75,15 +75,48 @@
             </c:forEach>
          </div>
       </div>
-     <br>
 <br>
 <br>
 <br>
 <br>
-<br> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
            	
 </div>
-
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>           
 <script>
 	$(document).ready(function() {
 		var jbOffset = $( '.typeNav' ).offset();
@@ -107,7 +140,8 @@
 					data:({ "stNum" : stNum , "index" : index}),
 					success: function(data) {
 						let str =""; 
-					    $.each(data,function(index, item){					  					 				 
+					    
+						$.each(data,function(index, item){					  					 				 
 					    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
 							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
 							         +"<div class='imageUrl'>"
@@ -144,8 +178,12 @@
 				let str ="";
 				let typ ="";
 				$(".poster").empty(); 
-			    $.each(data,function(index, item){					  					 				 
-			    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+				
+               
+               if(data.length===0){alert("현재공연작이 없습니다.");};
+				$.each(data,function(index, item){					  					 				 
+					 
+					str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
 					       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
 					         +"<div class='imageUrl'>"
 					           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageUrl+"' alt=''/>"

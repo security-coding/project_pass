@@ -25,14 +25,15 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand topnav" href="/member/main">Project Pass</a>
+				<a class="navbar-brand topnav" href="/">Project Pass</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#about">공연 정보</a></li>
-					<li><a href="#services">주변 공연 찾기</a></li>
+					<li><a href="/play/now">현재 공연작</a></li>
+					<li><a href="/play/come">공연 예정작</a></li>
+					<li><a href="/place">주변 공연 찾기</a></li>
 					<li><c:if test="${id==null}">
 							<%@include file="../loginPage/login.jsp"%>
 						</c:if> <c:if test="${id!=null}">
