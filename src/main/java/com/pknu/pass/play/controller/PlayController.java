@@ -107,13 +107,21 @@ public class PlayController {
 		return fileNames;
 	}
 
-	// 상세페이지
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String getDetail(String mt20id, Model model) throws Exception {
-
-		playService.getDetail(mt20id, model);
-
+//	상세페이지
+	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	public String getDetail(String mt20id, Model model,HttpSession session) throws Exception {
+		
+		playService.getDetail(mt20id, model,session);
+		
 		return "play/detailpage";
+	}
+	
+	
+//	좋아요 기능 내 추가를 할 시
+	@ResponseBody
+	@RequestMapping(value="/UpdateLikes")
+	public int UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal) {
+		return playService.UpdateLikes(id, mt20id, changeVal); 
 	}
 
 	@RequestMapping(value = "/search")

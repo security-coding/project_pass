@@ -74,7 +74,6 @@
         mapOption = {
             center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
             level: 7, // 지도의 확대 레벨
-            draggable : false,	//드래그 여부
             scrollwheel : false,
             disableDoubleClick : false,
             disableDoubleClickZoom : false
@@ -85,12 +84,16 @@
     //주소-좌표 변환 객체를 생성
     var geocoder = new daum.maps.services.Geocoder();
 
+	 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	 var zoomControl = new daum.maps.ZoomControl();
+	 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+	 
     var content = '<div class="label"><h3 class="center">주소 입력창에 주소를 검색하면 지도에 공연 정보가 나타납니다. </h3><span class="right"></span></div>';
 
     var customOverlay = new daum.maps.CustomOverlay({
         position: new daum.maps.LatLng(37.537187, 127.005476),
         content: content      
-    });
+    })
     
     customOverlay.setMap(map);
     
@@ -190,7 +193,7 @@
     }
  
   	function getTitles(place) {
-  		var str = "<div><h4 class='text-center'><a href='"+place.relateurl+"'>"+place.fcltynm+"</a></h4>";
+  		var str = "<div><h4 class='text-center'><a href='"+place.relateurl+"' target='_blank'>"+place.fcltynm+"</a></h4>";
 		$.ajax({
 			url: '/place/titles',
 			type: 'post',

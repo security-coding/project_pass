@@ -45,4 +45,8 @@ public interface PlayDao {
     public ArrayList<MainBoxofficeDto> getBoxOffice();
     
     public ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
+
+	public void getLikes(HashMap<String, String> likes);
+
+	public String changeLikes(HashMap<String, String> likes);
 }

@@ -18,10 +18,13 @@
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
     <!-- Bootstrap Core JavaScript -->
 </head>
-<header>
 
-</header>
 <body>
+
+    <%@include file="../loginPage/header.jsp"%>
+<br>
+<br>
+
 <div class="text-center">
          	<h1>공연 예정작</h1>
 	</div>
@@ -50,7 +53,7 @@
 		           <div class="imageUrl">
 		        
 		             <img class="img-fluid img-thumbnail imageUrl" src="${play.imageUrl}" alt="" />  
-		           <div class="img-fluid img-thumbnail overlay">
+		           <div  class="img-fluid img-thumbnail overlay">
                       <div class="text">                      
                     <p>${play.genrenm}</p><br>
                     <p>${play.prfnm}</p><br>
@@ -64,10 +67,46 @@
             </c:forEach>
          </div>
       </div>
-      
-           	
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+   	
 </div>
+ <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>           
 
+ 
+ <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 <script>
 	$(document).ready(function() {
 		var jbOffset = $( '.typeNav' ).offset();
@@ -128,7 +167,8 @@
 				let str ="";
 				let typ ="";
 				$(".poster").empty(); 
-			    $.each(data,function(index, item){					  					 				 
+				if(data.length===0){alert("공연예정작이 없습니다.");};
+				$.each(data,function(index, item){					  					 				 
 			    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
 					       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
 					         +"<div class='imageUrl'>"
@@ -165,6 +205,5 @@
 
 	
 </script>
-
 </body>
 </html>
