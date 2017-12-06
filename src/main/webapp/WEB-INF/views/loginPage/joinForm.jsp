@@ -15,27 +15,30 @@
 <script>
 	let idCheck = false;
 	let emailCheck = false;
+	
 	function checkId() {
-		$("#id").on("blur", function() {
+		$("#joinId").on("blur", function() {
 			$.ajax({
 				type : "POST",
 				async : true,
 				dataType : 'json',
 				url : "/member/joinIdCheck",
 				data : {
-					inputId : $("#id").val()
+					inputId : $("#joinId").val()
 				},
 				success : function(data) {
 					let html;
-					if ($("#id").val() != "") {
+					if ($("#joinId").val() != "") {
 						if (data == "1") {
 							html = "<b>사용 가능한 아이디입니다.</b>"
 							$("#idCheck").html(html).css("color", "blue");
+							console.log("가능한 아이디");
 							idCheck=true;
 							
 						} else {
 							html = "<b>중복된 아이디입니다.<b>";
 							$("#idCheck").html(html).css("color", "red");
+							console.log("중복된 아아디");
 							idCheck=false;
 							
 						}
@@ -162,8 +165,8 @@
 		<form id="joinForm" name="" class="form-horizontal" role="form" action="/member/insertuser" method="post" onsubmit="return availability()"><!-- form -->
 			
 			<div class="form-group">
-				<label for="id">ID:</label> <input type="text"
-					class="form-control" id="id" name="id" placeholder="ID" oninput="checkId()">
+				<label for="joinId">ID:</label> <input type="text"
+					class="form-control" id="joinId" name="joinId" placeholder="ID" oninput="checkId()">
 				<div id="idCheck"></div>
 			</div>
 			
@@ -260,7 +263,7 @@
 //	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
 		 $("#joinForm").on("submit", function(){
 //	 		 event.preventDefault();
-			 var id=$("#id").val();
+			 var id=$("#joinId").val();
 			 var pass=$("#password").val(); 
 			 var passCheck=$("#pass2").val();
 			 var email=$("#email").val();
@@ -268,7 +271,7 @@
 			 
 			 if(id==""){
 			 	alert("아이디를 입력하세요");
-			 	$("#id").focus();
+			 	$("#joinId").focus();
 			 	return false;
 			 }
 			 if(pass==""){

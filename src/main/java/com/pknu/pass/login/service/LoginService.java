@@ -20,6 +20,8 @@ public interface LoginService {
 
 	public void myPageId(HttpSession session,Model model,LoginDto logindto);
 
+	public void myPassChengeForm(HttpSession session, Model model);
+	
 	public void myPageUpdate(HttpSession session,String password,LoginDto logindto,String address,String detailaddress);
 
 	public int checkJoin(String certKey,Model model);
