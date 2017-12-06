@@ -109,8 +109,7 @@ pageEncoding="UTF-8"%>
                         <a href="/play/detail?mt20id=${play.mt20id}">
 
 
-                            <div style="position: absolute; z-index: 2;"><img
-                                    src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
+                            <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
                             <div style="position: relative; z-index: 1;" class="image-lg image-md image-sm image-xs">
 
                                 <div><img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"

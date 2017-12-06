@@ -118,41 +118,41 @@
 	         }else {
 	             $( '.typeNav' ).removeClass( 'jbFixed' );
 	         }
-			
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { 
-				let elem = document.getElementById("type");
-				let index = elem.getAttribute("data-index");
+		
+// 			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { 
+// 				let elem = document.getElementById("type");
+// 				let index = elem.getAttribute("data-index");
 				   
-							$.ajax({
-					type:"POST",
-					dataType:"JSON",
-					url:"/play/come/getNextPoster",
-					data:({ "stNum" : stNum , "index" : index}),
-					success: function(data) {
-						let str =""; 
-					    $.each(data,function(index, item){					  					 				 
-					    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
-							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
-							         +"<div class='imageUrl'>"
-							           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageUrl+"' alt=''/>"
-							              +"<div class='img-fluid img-thumbnail overlay'>"
-							                 +"<div class='text'>"
-							                    +"<p>"+item.prfnm+"</p><br>"
-							                    +"<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
-							                    +"<p>"+item.fcltynm+"</p><br>"
-							                    +"<p>"+item.genrenm+"</p>"
-							                    +"</div>"
-							                +"</div>"
-							                   +"</div>"
-							                       +"</a></div>" 
+// 							$.ajax({
+// 					type:"POST",
+// 					dataType:"JSON",
+// 					url:"/play/come/getNextPoster",
+// 					data:({ "stNum" : stNum , "index" : index}),
+// 					success: function(data) {
+// 						let str =""; 
+// 					    $.each(data,function(index, item){					  					 				 
+// 					    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+// 							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
+// 							         +"<div class='imageUrl'>"
+// 							           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageUrl+"' alt=''/>"
+// 							              +"<div class='img-fluid img-thumbnail overlay'>"
+// 							                 +"<div class='text'>"
+// 							                    +"<p>"+item.prfnm+"</p><br>"
+// 							                    +"<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
+// 							                    +"<p>"+item.fcltynm+"</p><br>"
+// 							                    +"<p>"+item.genrenm+"</p>"
+// 							                    +"</div>"
+// 							                +"</div>"
+// 							                   +"</div>"
+// 							                       +"</a></div>" 
 							  		       
-							  $(".poster").append(str);
+// 							  $(".poster").append(str);
 							  
-						  });			
-					}					 						
-				})
-				stNum++;	
-		    }
+// 						  });			
+// 					}					 						
+// 				})
+// 				stNum++;	
+// 		    }
 		});
 	});
 			
