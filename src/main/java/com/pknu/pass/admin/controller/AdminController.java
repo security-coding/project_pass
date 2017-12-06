@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
 import com.pknu.pass.common.dto.PagingDto;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
@@ -64,27 +65,22 @@ public class AdminController {
 		adminService.getBoxofficeInf();
 	}
 	
-	@RequestMapping(value = "/select/concert")
-	public String selectConcert(HttpServletRequest request, Model model, PagingDto paging) {
-		logger.info("paging : " + paging);
-		List<ConcertDto> concertList = adminService.selectConcert(paging);
-		paging.setTotal(adminService.selectTotalConcert(paging));
-		
-		model.addAttribute("concertList", concertList);
-		model.addAttribute("paging",paging);
-		
+	@RequestMapping(value = "/select/concert", method=RequestMethod.GET)
+	public String selectConcert(HttpServletRequest request) {
 		return "admin/concert";
 	}
 	
-	@RequestMapping(value = "/select/concert/{mt20id}")
-	public String selectOneConcert(HttpServletRequest request, Model model,@PathVariable String mt20id) {
-		ConcertDto concert = adminService.selectOneConcert(mt20id);
-		List<ImageDto> imageList = adminService.selectImageList(mt20id);
+	@RequestMapping(value = "/select/concert", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> selectConcertAjax(HttpServletRequest request, PagingDto paging) {
+		Map<String, Object> paramMap = new HashMap<>();
+
+		List<ConcertDto> concertList = adminService.selectConcert(paging);
+		paging.setTotal(adminService.selectTotalConcert(paging));
+		paramMap.put("list", concertList);
+		paramMap.put("p", paging);
 		
-		model.addAttribute("concert",concert);
-		model.addAttribute("imageList", imageList);
-		
-		return "admin/concertDetail";
+		return paramMap;
 	}
 	
 	@RequestMapping(value = "/select/place")
@@ -124,4 +120,5 @@ public class AdminController {
 	public void changeGrade(HttpServletRequest request, LoginDto member) {
 		adminService.changeGrade(member);
 	}
+	
 }

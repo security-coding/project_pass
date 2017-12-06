@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.pknu.pass.common.dto.PagingDto;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
@@ -19,10 +20,7 @@ public interface AdminService {
 	void getBoxofficeInf();
 	
 	List<ConcertDto> selectConcert(PagingDto paging);
-	
 	int selectTotalConcert(PagingDto paging);
-	ConcertDto selectOneConcert(String mt20id);
-	List<ImageDto> selectImageList(String mt20id);
 	
 	List<PlaceDto> selectPlace(PagingDto paging);
 	int selectTotalPlace(PagingDto paging);
@@ -31,6 +29,6 @@ public interface AdminService {
 	
 	List<LoginDto> selectMember(PagingDto paging);
 	int selectTotalMember(PagingDto paging);
-	void changeGrade(LoginDto member);
+	void changeGrade(LoginDto member);	
 
 }

@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Admin Page(Concert)</title>
 
-<script src='<c:url value="/js/paging.js"/>'></script>
-
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
 <link rel="stylesheet"
 	href='<c:url value="/css/bootstrap-theme.min.css"/>'>
@@ -96,54 +94,11 @@
 											<th>공연 런타임</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="concert" items="${concertList}">
-											<tr>
-												<td><a href="/admin/select/concert/${concert.mt20id}">${concert.mt20id }</a></td>
-												<td>${concert.prfnm }</td>
-												<td>${concert.prfpdfrom }</td>
-												<td>${concert.prfpdto }</td>
-												<td>${concert.fcltynm }</td>
-												<td>${concert.genrenm }</td>
-												<td>${concert.prfruntime }</td>
-											</tr>
-										</c:forEach>
+									<tbody id="table-body">
 									</tbody>
-
 								</table>
+								<%@include file="../paging.jsp"%>
 							</div>
-							<nav aria-label="Page navigation">
-								<ul class="pagination">
-									<c:if test="${paging.pageStartNum ne 1 }">
-										<li><a
-											onclick='pagePre(${paging.pageCnt+1},${paging.pageCnt});'>맨
-												처음으로</a></li>
-										<li><a
-											onclick='pagePre(${paging.pageStartNum},${paging.pageCnt});'
-											aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-									</c:if>
-
-									<c:forEach var='i' begin="${paging.pageStartNum}"
-										end="${paging.pageLastNum}" step="1">
-										<li class='pageIndex${i}'><a onclick='pageIndex(${i});'>${i}</a></li>
-									</c:forEach>
-
-									<c:if test="${paging.lastChk}">
-										<li><a
-											onclick='pageNext(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt});'>&raquo;</a></li>
-										<li><a
-											onclick='pageLast(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt});'>맨
-												마지막으로</a></li>
-									</c:if>
-								</ul>
-							</nav>
-							<form action="/admin/select/concert" method="post" id="frmPaging">
-								<input type="hidden" name="index" id="index" value="${paging.index}"> 
-								<input type="hidden"name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
-								<input type="hidden" name="listCnt" id="listCnt" value="${paging.listCnt}">
-								<input type="hidden" name="searchFilter" id="searchFilter" value="${paging.searchFilter}"> 
-								<input type="hidden" name="searchValue" id="searchValue" value="${paging.searchValue}">
-							</form>
 						</div>
 					</div>
 				</div>
@@ -152,5 +107,43 @@
 	</div>
 	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	<script>
+		$(function() {
+			paging.ajax = ajaxList;
+			ajaxList();
+		});
+		
+		var ajaxList = function() {
+			var submitData = {};
+			submitData.index = paging.p.index;
+			submitData.pageStartNum = paging.p.pageStartNum;
+			console.log(submitData);
+			    $.ajax({
+			        url: '/admin/select/concert',
+			        type: 'post',
+			        data: submitData,
+			        success : function(obj){
+			        		$("#table-body").empty();    
+			        	
+			            var str = '';
+			            $.each(obj.list, function(index, concert) {
+			            		str += "<tr>";
+							str += "<td>"+concert.mt20id+"</td>";
+							str += "<td>"+concert.prfnm+"</td>";
+							str += "<td>"+concert.prfpdfrom+"</td>";
+							str += "<td>"+concert.prfpdto+"</td>";
+							str += "<td>"+concert.fcltynm+"</td>";
+							str += "<td>"+concert.genrenm+"</td>";
+							str += "<td>"+concert.prfruntime+"</td>";
+							str += "</tr>";
+						});
+			            
+			            $("#table-body").append(str);
+			            paging.p = obj.p;
+			            paging.create();
+			        }
+			    });   
+		};
+	</script>
 </body>
 </html>
