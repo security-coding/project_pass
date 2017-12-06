@@ -76,8 +76,10 @@ public class LoginController {
 		loginService.myPageId(session,model,loginDto); 
 		return "loginPage/mypage";
 	}
+	
 	@RequestMapping(value="/myPassChange")//비밀번호 변경 페이지
-	public String myPassChengeForm() {
+	public String myPassChengeForm(HttpSession session) {
+		session.getAttribute("id");
 		return "loginPage/myPassChange";
 	}
 	
