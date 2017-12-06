@@ -68,19 +68,14 @@
 			<version>2.9.1</version>
 		</dependency>
 
-<<<<<<< HEAD
 		<!--12-06일날 넣음  xss필터링 -->
 		<dependency>
 			<groupId>com.navercorp.lucy</groupId>
 			<artifactId>lucy-xss-servlet</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-        
-        
-		<!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-core -->
-=======
+
 		<!-- com.twelvemonkeys.imageio -->
->>>>>>> 41b2b8a0d7b52f99b130d0e852d307ebc204072b
 		<dependency>
 			<groupId>com.twelvemonkeys.imageio</groupId>
 			<artifactId>imageio-core</artifactId>
