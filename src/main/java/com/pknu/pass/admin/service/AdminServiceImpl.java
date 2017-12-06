@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -39,7 +40,7 @@ public class AdminServiceImpl implements AdminService {
 	private String API_KEY;
 
 	@Override
-	public void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
+	public void getConertInf(HttpServletRequest request, String stdate, String eddate, String prfstate) throws Exception {
 
 		String _stdate = stdate.replaceAll("-", "");
 		String _eddate = eddate.replaceAll("-", "");
@@ -75,12 +76,14 @@ public class AdminServiceImpl implements AdminService {
 
 				concertList.add(new ConcertDto(mt20id, prfnm, prfpdfrom, prfpdto, fcltynm, genrenm));
 			}
-			insertConcertInf(concertList, session);
+			insertConcertInf(concertList,request);
 		}
 
 	}
 
-	private void insertConcertInf(ArrayList<ConcertDto> concertList, HttpSession session) throws Exception {
+	private void insertConcertInf(ArrayList<ConcertDto> concertList,HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		
 		ArrayList<String> imageUrlList = null;
 		ArrayList<ImageDto> imageList = null;
 
