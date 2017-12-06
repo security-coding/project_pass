@@ -72,8 +72,6 @@ public class LoginServiceImpl implements LoginService {
 					if (password.equals(securityUtil.encrypt(pass))) {
 						session.setAttribute("id", id);
 						session.setAttribute("imageUrl", profile);
-						model.addAttribute("id",id);
-						model.addAttribute("imageUrl",profile);
 						view = "/home";
 					} else {// 비밀번호 실패
 						model.addAttribute("passFail", passFail);
@@ -177,6 +175,7 @@ public class LoginServiceImpl implements LoginService {
 	public void updateProfile(HttpSession session, String srcinput, LoginDto logindto,Model model) {
 		logindto.setId((String) session.getAttribute("id"));
 		logindto.setProfile(srcinput);
+		session.setAttribute("imageUrl", srcinput);
 		logindao.updateProfile(logindto);
 	}
 

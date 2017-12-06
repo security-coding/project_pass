@@ -17,6 +17,7 @@
   <!-- jQuery -->
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
     <!-- Bootstrap Core JavaScript -->
+
 </head>
 
 <body>
@@ -28,20 +29,34 @@
 <div class="text-center">
          	<h1>공연 예정작</h1>
 	</div>
-
-	<div class="typeNav" >
-	<ul>
-		<li><a class="butn" href = "#" onclick="change('전체');">전체</a></li>
-		<li><a class="butn" href = "#" onclick="change('연극');">연극</a></li>
-		<li><a class="butn" href = "#" onclick="change('뮤지컬');">뮤지컬</a></li>
-		<li><a class="butn" href = "#" onclick="change('클래식');">클래식</a></li>
-		<li><a class="butn" href = "#" onclick="change('오페라');">오페라</a></li>
-	    <li><a class="butn" href = "#" onclick="change('무용');">무용</a></li>
-	    <li><a class="butn" href = "#" onclick="change('발래');">발래</a></li>
-	    <li><a class="butn" href = "#" onclick="change('국악');">국악</a></li>
-        <li><a class="butn" href = "#" onclick="change('복합');">복합</a></li>
-	</ul>
+<div class="typeNav" > 
+<ul class="nav nav-tabs  nav-justified">
+  <li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
+  <li  role="presentation"><a href="#" onclick="change('연극');">연극</a></li>
+  <li  role="presentation"><a href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
+  <li  role="presentation"><a href="#" onclick="change('클래식');">클래식</a></li>
+  <li  role="presentation"><a href="#" onclick="change('오페라');">오페라</a></li>
+  <li  role="presentation"><a href="#" onclick="change('무용');">무용</a></li>
+  <li  role="presentation"><a href="#" onclick="change('발래');">발래</a></li>
+  <li  role="presentation"><a href="#" onclick="change('국악');">국악</a></li>
+  <li  role="presentation"><a href="#"onclick="change('복합');">복합</a></li>
+</ul>
 	</div>
+<br>	
+	
+<!-- 	<div class="typeNav" > -->
+<!-- 	<ul> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('전체');">전체</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('연극');">연극</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('뮤지컬');">뮤지컬</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('클래식');">클래식</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('오페라');">오페라</a></li> -->
+<!-- 	    <li><a class="butn" href = "#" onclick="change('무용');">무용</a></li> -->
+<!-- 	    <li><a class="butn" href = "#" onclick="change('발래');">발래</a></li> -->
+<!-- 	    <li><a class="butn" href = "#" onclick="change('국악');">국악</a></li> -->
+<!--         <li><a class="butn" href = "#" onclick="change('복합');">복합</a></li> -->
+<!-- 	</ul> -->
+<!-- 	</div> -->
 
  <div class="container">
         <div class="row text-center">
@@ -138,21 +153,23 @@
 					data:({ "stNum" : stNum , "index" : index}),
 					success: function(data) {
 						let str =""; 
-					    $.each(data,function(index, item){					  					 				 
-					    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
-							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
-							         +"<div class='imageUrl'>"
-							           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageUrl+"' alt=''/>"
-							              +"<div class='img-fluid img-thumbnail overlay'>"
-							                 +"<div class='text'>"
-							                    +"<p>"+item.prfnm+"</p><br>"
-							                    +"<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
-							                    +"<p>"+item.fcltynm+"</p><br>"
-							                    +"<p>"+item.genrenm+"</p>"
-							                    +"</div>"
-							                +"</div>"
-							                   +"</div>"
-							                       +"</a></div>" 
+					    $.each(data,function(index, item){					  
+					    	
+					    	str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+			                       + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
+			                       + "<div style='position: absolute; z-index: 2;'><img src='#'/></div>"
+					               + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
+				                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
+				                   + "<div class='img-fluid img-thumbnail overlay'>"
+			                       + "<div class='text'>" 							                    
+			                       + "<p>"+item.prfnm+"</p><br>"
+						           + "<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
+				                   + "<p>"+item.fcltynm+"</p><br>"
+			                       + "<p>"+item.genrenm+"</p>"
+			                       + "</div>"
+			                       + "</div>"
+			                       + "</div>"
+					               + "</a></div>"  
 							  		       
 							  $(".poster").append(str);
 							  

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ public class AdminController {
 	AdminService adminService;
 
 	@RequestMapping
-	public String adminMain() {
+	public String adminMain(HttpServletRequest request, Model model) {
 		return "admin/main";
 	}
 
@@ -44,27 +45,27 @@ public class AdminController {
 	 * */
 	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
 	@ResponseBody
-	public void getConcertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception {
+	public void getConcertInf(HttpServletRequest request, String stdate, String eddate, String prfstate) throws Exception {
 		logger.info("Concert Info Update Service");
-		adminService.getConertInf(session,stdate, eddate, prfstate);
+		adminService.getConertInf(request,stdate, eddate, prfstate);
 	}
 
 	@RequestMapping(value = "/update/place", method = RequestMethod.POST)
 	@ResponseBody
-	public void getPlaceInf() {
+	public void getPlaceInf(HttpServletRequest request) {
 		logger.info("Place Info Update Service");
 		adminService.getPlaceInf();
 	}
 
 	@RequestMapping(value = "/update/boxoffice", method= RequestMethod.POST)
 	@ResponseBody
-	public void getBoxofficeInf() {
+	public void getBoxofficeInf(HttpServletRequest request) {
 		logger.info("BoxOffice Update Service");
 		adminService.getBoxofficeInf();
 	}
 	
 	@RequestMapping(value = "/select/concert")
-	public String selectConcert(Model model, PagingDto paging) {
+	public String selectConcert(HttpServletRequest request, Model model, PagingDto paging) {
 		logger.info("paging : " + paging);
 		List<ConcertDto> concertList = adminService.selectConcert(paging);
 		paging.setTotal(adminService.selectTotalConcert(paging));
@@ -76,7 +77,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/select/concert/{mt20id}")
-	public String selectOneConcert(Model model,@PathVariable String mt20id) {
+	public String selectOneConcert(HttpServletRequest request, Model model,@PathVariable String mt20id) {
 		ConcertDto concert = adminService.selectOneConcert(mt20id);
 		List<ImageDto> imageList = adminService.selectImageList(mt20id);
 		
@@ -87,7 +88,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/select/place")
-	public String selectPlace(Model model, PagingDto paging) {
+	public String selectPlace(HttpServletRequest request, Model model, PagingDto paging) {
 		List<PlaceDto> placeList = adminService.selectPlace(paging);
 		paging.setTotal(adminService.selectTotalPlace(paging));
 		
@@ -98,7 +99,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/select/boxoffice")
-	public String selectBoxoffice(Model model) {
+	public String selectBoxoffice(HttpServletRequest request, Model model) {
 		Map<String, List<BoxofficeDto>> paramMap = adminService.selectBoxoffice();
 		
 		model.addAttribute("boxof",paramMap);
@@ -107,7 +108,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/member")
-	public String selectMember(Model model, PagingDto paging) {
+	public String selectMember(HttpServletRequest request, Model model, PagingDto paging) {
 		logger.info(paging.toString());
 		List<LoginDto> memberList = adminService.selectMember(paging);
 		paging.setTotal(adminService.selectTotalMember(paging));
@@ -120,7 +121,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/member/changeGrade")
 	@ResponseBody
-	public void changeGrade(LoginDto member) {
+	public void changeGrade(HttpServletRequest request, LoginDto member) {
 		adminService.changeGrade(member);
 	}
 }

@@ -10,9 +10,7 @@
 
 		
 <!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
-<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 지도 api -->		
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>		
 
 <script>
 function setMyimage(imgsrc){

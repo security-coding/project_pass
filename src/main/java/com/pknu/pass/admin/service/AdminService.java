@@ -3,6 +3,7 @@ package com.pknu.pass.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.pknu.pass.common.dto.PagingDto;
@@ -13,7 +14,7 @@ import com.pknu.pass.play.dto.ConcertDto;
 import com.pknu.pass.play.dto.ImageDto;
 
 public interface AdminService {
-	void getConertInf(HttpSession session, String stdate, String eddate, String prfstate) throws Exception;
+	void getConertInf(HttpServletRequest request, String stdate, String eddate, String prfstate) throws Exception;
 	void getPlaceInf();
 	void getBoxofficeInf();
 	
