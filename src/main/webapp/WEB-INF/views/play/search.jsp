@@ -33,19 +33,19 @@ body, table, div, p {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="#">Project Pass</a>
+                <a class="navbar-brand topnav" href="/">Project Pass</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#about">About</a>
+                        <a href="/play/now">현재 공연작</a>
                     </li>
                     <li>
-                        <a href="#services">Services</a>
+                        <a href="/play/come">공연 예정작</a>
                     </li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="/place">주변 공연 찾기</a>
                     </li>
                     <li>
                      <c:if test="${id==null}">
@@ -153,7 +153,6 @@ body, table, div, p {
 					<li><span>공연 시작일 :</span> ${keyword.prfpdfrom}</li><p></p>
 					<li><span>공연 종료일 :</span> ${keyword.prfpdto}</li><p></p>
 					<li><span>공연 총시간 :</span> ${keyword.dtguidance}</li><p></p>
-					<li><span>공연 총시간 :</span> ${keyword.prfruntime}</li><p></p>
 					<li><span>공연 시설명 :</span> ${keyword.fcltynm}</li><p></p>
 				</p>
 									<hr />

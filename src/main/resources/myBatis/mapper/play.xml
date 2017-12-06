@@ -155,7 +155,7 @@
 	<!-- 검색 -->
 	<select id="getsearch" parameterType="String" resultType="detail">
 		select
-		prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl
+		prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl,dtguidance
 		from
 		concert c ,image i
 		where i.mt20id=c.mt20id and i.imagetype=1 and prfnm

@@ -197,7 +197,11 @@
 				$(".poster").empty(); 
 				
                
-               if(data.length===0){alert("현재공연작이 없습니다.");};
+               if(data.length===0){
+            	  
+            	   alert("현재공연작이 없습니다.");
+               $(".poster").append("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
+               };
 				$.each(data,function(index, item){					  					 				 
 					 
 					 str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
@@ -234,6 +238,8 @@
 	let stNum = 1;
 	
 	
+
+	 
 
 	
 </script>
