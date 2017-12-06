@@ -203,7 +203,7 @@ pageEncoding="UTF-8"%>
         </section>
     </div>
     <div class="col-md-4">
-        <h3>본 공연의 지도 위치는 다음과 같습니다.</h3>
+        <h3>본 공연의 지도 위치</h3>
         <p/>
         <script type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
@@ -294,7 +294,7 @@ pageEncoding="UTF-8"%>
             2014 Copyrights - <span>All Rights Reserved</span>
         </p>
         <p class="footerNote">
-            John Doe - <span>Email me</span>
+            project pass - <span>-</span>
         </p>
     </footer>
 </div>
