@@ -191,7 +191,7 @@ public class PlayServiceImpl implements PlayService {
 			return UpdateStat;
 		} else {
 			UpdateStat = 1;
-			playDao.getLikes(Likes);
+			playDao.delLikes(Likes);
 			return UpdateStat;
 		}
 	}

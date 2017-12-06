@@ -23,15 +23,12 @@ public class AdminAspect {
 		
 		HttpServletRequest request = null;
 		HttpServletResponse response = null;
-		Model model = null ;
 		
 		for (Object obj : point.getArgs()) {
 			if(obj instanceof HttpServletRequest)
 				request = (HttpServletRequest) obj;
 			if(obj instanceof HttpServletResponse)
 				response = (HttpServletResponse) obj;
-			if(obj instanceof Model)
-				model = (Model) obj;
 		}
 		
 		if(request != null) {

@@ -318,7 +318,7 @@ header .profileLogo .logoPlaceholder {
 header .profilePhoto {
 	float: left;
 	margin-right: 3%;
-	width: 500px;
+	width: 400px;
 	height: 580px;
 }
 header .profileHeader {
