@@ -83,7 +83,7 @@ pageEncoding="UTF-8"%>
                     data: {
                         commentContent: $("#commentContent").val(),
                         //mt20id:"${play.mt20id}   mt20id는 play/dto/DetailDto 안에 있는 공연번호()
-                        mt20id: "PF140778"
+                        mt20id: "PF122341"
                     },
                     success: function (data) {
 
@@ -257,14 +257,14 @@ pageEncoding="UTF-8"%>
             <p/>
             <h3 class="card-header">본 공연에 대한 댓글 남기기 :</h3>
             <div class="card-body">
-                <form>
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea id="commentContent" class="form-control" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">작성</button>
-                </form>
+                    <button id="commentWrite" class="btn btn-primary">작성</button>
             </div>
         </div>
+
+   		  <div id="appendWrite" style="overflow-x:hidden; width:450px; height:600px;"></div>
 
         <!-- Single Comment -->
         <div class="media mb-4">

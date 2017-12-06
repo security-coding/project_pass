@@ -115,7 +115,6 @@ public class LoginController {
 	
 	@RequestMapping(value="/userloss")//아이디 and 비밀번호 찾기 폼
 	public String userlossForm() {
-		
 		return "loginPage/userloss";
 	}
 	

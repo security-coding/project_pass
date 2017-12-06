@@ -88,14 +88,15 @@ function execDaumPostcode() {
  <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
  <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
-	
+
 	<article class="container-fluid">
 
 	
 	<div class="page-header">
-		<h1>
-			마이페이지
-		</h1>
+
+	<div>
+	<%@ include file="../loginPage/header.jsp" %>
+	</div>	
 	</div>
 	
 	<div class="col-sm-3 col-md-2 sidebar">
@@ -103,8 +104,6 @@ function execDaumPostcode() {
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보변경</a></li>
-			<li><a href="#">공연 시설 목록</a></li>
-			<li><a href="#">주간 박스오피스</a></li>
 		</ul>
 	</div>
 
@@ -138,7 +137,7 @@ function execDaumPostcode() {
 			<tr>
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}">
+				<input type="text" id="address" name="address" placeholder="주소" value="${address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}" disabled="disabled">
 			</div>
 			</label>
 			</tr>
@@ -166,8 +165,8 @@ function execDaumPostcode() {
 				</ul>
 			</div>
 			<div>
-			<button type="button" class="btn btn-primary" onclick="javascript:history.back(-1)">
-					수정취소<i class="fa fa-times spaceLeft"></i>
+			<button type="button" class="btn btn-primary" onclick='document.location.href="../";'>
+					되돌아가기<i class="fa fa-times spaceLeft"></i>
 			</button>
 			</div>
 		</form>
