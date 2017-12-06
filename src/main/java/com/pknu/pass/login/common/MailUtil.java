@@ -53,10 +53,7 @@ public class MailUtil {
 			javaMailSender.send(preparator);
 			return true;
 		} catch (MailException e) {
-			// TODO: handle exception
 			return false;
 		}
-		
-		
 	}
 }

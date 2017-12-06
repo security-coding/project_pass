@@ -68,12 +68,13 @@
 			<version>2.9.1</version>
 		</dependency>
 
-		<!--12-06일날 넣음  xss필터링 -->
+		<!-- naver lucy (script filtering) -->
 		<dependency>
 			<groupId>com.navercorp.lucy</groupId>
 			<artifactId>lucy-xss-servlet</artifactId>
 			<version>2.0.0</version>
 		</dependency>
+
 
 		<!-- com.twelvemonkeys.imageio -->
 		<dependency>
@@ -106,14 +107,14 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		
+
 		<!-- AspectJ Weaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
