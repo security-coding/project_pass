@@ -46,44 +46,40 @@
 	</div>
 
 <div class="container">
-  <div class="row text-center">
-     <div class="poster">  
-        <div id="type" class="test row" data-index="전체"></div>
-	       <c:forEach var="play" items="${playList}">	 
-		      <div class="col-lg-15 col-md-3 col-xs-3 boxContent" > 
-		        <a href="/play/detail?mt20id=${play.mt20id}">
-		          
-		          
-		          
-<!-- 		           <div ><img src="#"/></div> -->
-<!-- 		           <div style="position: absolute; z-index: 1;"><img src="#"/></div> -->
-		           <div  class="imageUrl">
-<!-- 		           <div style="position: relative; z-index: 2;" class="imageUrl"> -->
-<!-- 		           <div  class="imageUrl"> -->
-		             <img class="img-fluid img-thumbnail imageUrl" src="${play.imageUrl}" alt="" />  
-		           <div class="img-fluid img-thumbnail overlay">
-                      <div class="text">                      
-                    <p>${play.genrenm}</p><br>
-                    <p>${play.prfnm}</p><br>
-                    <p>${play.prfpdfrom}~${play.prfpdto}</p><br>
-                    <p>${play.fcltynm}</p>
-                      </div>
+  
+   <div class="row text-center">
+            <div class="poster">
+
+                <div id="type" class="test row" data-index="전체"></div>
+                <c:forEach var="play" items="${playList}" varStatus="status">
+                    <div class="col-lg-15 col-md-4 col-sm-6 col-xs-12 boxContent">
+                        <a href="/play/detail?mt20id=${play.mt20id}">
+
+
+                            <div style="position: absolute; z-index: 1;"><img src="#"/></div>
+                            <div style="position: relative; z-index: 2;" class="image-lg image-md image-sm image-xs">
+
+                                <div><img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"
+                                          src="${play.imageUrl}" alt=""/></div>
+
+
+                                <div class="img-responsive img-thumbnail overlay">
+                                    <div class="text">
+                                      
+                                        <p>${play.genrenm}</p><br>
+                    					<p>${play.prfnm}</p><br>
+                    					<p>${play.prfpdfrom}~${play.prfpdto}</p><br>
+                   					 	<p>${play.fcltynm}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
                     </div>
-		           </div>   
-		         </a> 
-		       </div>
-            </c:forEach>
-         </div>
-      </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+                </c:forEach>
+            </div>
+        </div>
+ 
 <br>
 <br>
 <br>
@@ -129,9 +125,10 @@
 	             $( '.typeNav' ).removeClass( 'jbFixed' );
 	         }
 			
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { 
-				let elem = document.getElementById("type");
-				let index = elem.getAttribute("data-index");
+			if ($(window).scrollTop() == $(document).height() - $(window).height()) { 
+				 
+				 let elem = document.getElementById("type");
+				 let index = elem.getAttribute("data-index");
 				   
 							$.ajax({
 					type:"POST",
@@ -142,20 +139,24 @@
 						let str =""; 
 					    
 						$.each(data,function(index, item){					  					 				 
-					    	str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
-							       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
-							         +"<div class='imageUrl'>"
-							           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageUrl+"' alt=''/>"
-							              +"<div class='img-fluid img-thumbnail overlay'>"
-							                 +"<div class='text'>"
-							                    +"<p>"+item.prfnm+"</p><br>"
-							                    +"<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
-							                    +"<p>"+item.fcltynm+"</p><br>"
-							                    +"<p>"+item.genrenm+"</p>"
-							                    +"</div>"
-							                +"</div>"
-							                   +"</div>"
-							                       +"</a></div>" 
+					    	
+							
+							 str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+			                       + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
+			                       + "<div style='position: absolute; z-index: 2;'><img src='#'/></div>"
+					               + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
+				                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
+				                   + "<div class='img-fluid img-thumbnail overlay'>"
+			                       + "<div class='text'>" 							                    
+			                       + "<p>"+item.prfnm+"</p><br>"
+						           + "<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
+				                   + "<p>"+item.fcltynm+"</p><br>"
+			                       + "<p>"+item.genrenm+"</p>"
+			                       + "</div>"
+			                       + "</div>"
+			                       + "</div>"
+					               + "</a></div>"
+													
 							  		       
 							  $(".poster").append(str);
 							  
@@ -183,20 +184,21 @@
                if(data.length===0){alert("현재공연작이 없습니다.");};
 				$.each(data,function(index, item){					  					 				 
 					 
-					str ="<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
-					       +"<a href='/play/detail?mt20id="+ item.mt20id+"'>"
-					         +"<div class='imageUrl'>"
-					           +"<img class='img-fluid img-thumbnail imageUrl' src= '"+ item.imageUrl+"' alt=''/>"
-					              +"<div class='img-fluid img-thumbnail overlay'>"
-					                 +"<div class='text'>"
-					                    +"<p>"+item.prfnm+"</p><br>"
-					                    +"<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
-					                    +"<p>"+item.fcltynm+"</p><br>"
-					                    +"<p>"+item.genrenm+"</p>"
-					                    +"</div>"
-					                +"</div>"
-					                   +"</div>"
-					                       +"</a></div>" 
+					 str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+	                       + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
+	                       + "<div style='position: absolute; z-index: 2;'><img src='#'/></div>"
+			               + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
+		                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
+		                   + "<div class='img-fluid img-thumbnail overlay'>"
+	                       + "<div class='text'>" 							                    
+	                       + "<p>"+item.prfnm+"</p><br>"
+				           + "<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
+		                   + "<p>"+item.fcltynm+"</p><br>"
+	                       + "<p>"+item.genrenm+"</p>"
+	                       + "</div>"
+	                       + "</div>"
+	                       + "</div>"
+			               + "</a></div>"
 					 
 							       
 					  $(".poster").append(str);

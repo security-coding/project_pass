@@ -134,10 +134,10 @@ pageEncoding="UTF-8"%>
         </div>
     </div>
 </div>
-</div>
+<!-- </div> 고려-->
 <!-- /.container -->
 
-</div>
+<!-- </div> 고려-->
 <br>
 <br>
 <br>
@@ -243,8 +243,7 @@ pageEncoding="UTF-8"%>
                         + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageurl + "' alt=''/>"
                         + "<div class='img-fluid img-thumbnail overlay'>"
-                        + "<div class='text'>"
-                        // 							                    +"<p> RANK"+ item.rnum+"</p><br>"
+                        + "<div class='text'>" 							                    
                         + "<p>" + item.prfnm + "</p><br>"
                         + "<p>" + item.prfpd + "</p><br>"
                         + "<p>" + item.prfplcnm + "</p><br>"
