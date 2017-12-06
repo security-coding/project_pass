@@ -5,6 +5,7 @@ var paging = {
         index: 0,
         pageStartNum: 1
     },
+    
     // paging create
     create: function () {
         var htmlTag = '';

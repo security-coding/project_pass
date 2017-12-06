@@ -67,70 +67,60 @@ pageEncoding="UTF-8"%>
             });
             
         }
-
-        $.ajaxSetup({
-            type: "POST",
-            async: true,
-            dataType: "json",
-            error: function (xhr) {
-                alert("error html = " + xhr.statusText);
-                console.log($("#commentContent").val());
-            }
-        });
-
+        
         $(document).ready(function () {
+        		paging.ajax = ajaxList;
+			ajaxList();
+        	
             $("#commentWrite").on("click", function () {
                 $.ajax({
                     url: "/comment/write",
                     data: {
                         commentContent: $("#commentContent").val(),
-                        //mt20id:"${play.mt20id}   mt20id는 play/dto/DetailDto 안에 있는 공연번호()
                         mt20id: "${detailInf.mt20id}"
                     },
                     success: function (data) {
-
-                        alert("comment가 정성적으로 입력되었습니다");
-                        $("#commentContent").val("");
-
-                        let str = "";
-                        $.each(data, function (index, item) {
-
-                            str = "<div class='media mb-4'>"
-                                + "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>"
-                                + "<div class='media-body'>"
-                                + "<h5 class='mt-0'>" + item.id + "</h5>"
-                                + item.commentContent
-                                + "</div>"
-                                + "</div>"
-
-                            $("#appendWrite").append(str);
-                        });
+                    		alert("!!!");
+                    		$("#commentContent").val("");
+                    		ajaxList();
                     }
                 });
             });
         });
-
-        function getComment() {
-            // 	event.preventDefault();
-            $.ajax({
-                url: "/comment/read",
-                data: {
-                    mt20id: "${mt20id}",
-                    // 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
-                },
-                success: function (data) {
-                    console.log(data);
-                    console.log(data.commentContent);
-                    showHtml(data, event);
-                }
-            });
-        }
-
-
-        function showHtml(data) {
-
-
-        }
+        
+        var ajaxList = function() {
+			var submitData = {};
+			submitData.index = paging.p.index;
+			submitData.pageStartNum = paging.p.pageStartNum;
+			
+			$.ajax({
+				url:"/comment/read",
+				type:"post",
+				data: {
+					mt20id : "${detailInf.mt20id}",
+					index : paging.p.index,
+					pageStartNum : paging.p.pageStartNum
+				},
+				success: function(obj) {
+					$("#comment-group").empty();
+					var str='';
+					$.each(obj.list, function(index, comment) {
+						console.log(comment);
+						str += "<div class='media mb-4'>";
+	                   	str += "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>";
+	                    	str += "<div class='media-body'>";
+	                    	str += "<h5 class='mt-0'>" + comment.id + "</h5>";
+	                    	str += comment.commentContent;
+	                    	str += "</div>";
+	                    	str += "</div>";
+				});
+				$("#comment-group").append(str);
+				
+				paging.p = obj.p;
+				paging.create();
+			}
+			});
+		};
     </script>
 
 </head>
@@ -265,20 +255,9 @@ pageEncoding="UTF-8"%>
                     <button id="commentWrite" class="btn btn-primary">작성</button>
             </div>
         </div>
-		
-		<div id="appendWrite" style="overflow-x:hidden; width: 450px; height: 600px; "></div>
-		
-        <!-- Single Comment -->
-        <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-
+       	<div id="comment-group">
+       	</div>
+       	<%@include file="../paging.jsp" %>
             </div>
         </div>
 
