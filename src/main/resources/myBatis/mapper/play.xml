@@ -102,7 +102,7 @@
 	
 	<select id="getDetailInf" parameterType="String" resultType="detail">
 	   select prfnm, prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime,
-	   prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm
+	   prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm, mt20id
 	     from concert natural join place
 	     where mt20id=#{mt20id}
 	</select>

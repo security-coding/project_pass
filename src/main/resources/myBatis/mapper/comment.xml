@@ -17,10 +17,14 @@
 <!-- 	</select> -->
 
 	<select id="getComments" parameterType="String" resultType="comment">
-		select *
+	SELECT *
+      from(SELECT rownum rum, project.*
+     	 FROM( select *
 		      from comments 
 		     	where mt20id=#{mt20id} 
-		     	order by commentDate desc 
+		     	order by commentDate desc ) project)
+          where rum BETWEEN (#{commentRow})*10+1 and ((#{commentRow})+1)*10
+		     	
 		     
 		     	
 	</select>

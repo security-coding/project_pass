@@ -44,53 +44,71 @@ body, table, div, p, header, hr, footer {
 				data : {
 					commentContent : $("#commentContent").val(),
 					//mt20id:"${play.mt20id}   mt20id는 play/dto/DetailDto 안에 있는 공연번호()
-					mt20id : "PF140778" 
+					mt20id : "${detailInf.mt20id}"
 				},
 				success : function(data) {
 					
 						alert("comment가 정성적으로 입력되었습니다");
 						$("#commentContent").val("");
 						
-						let str="";						
+						let str="";	
+						$(".appendWrite").empty(); 
 						$.each(data, function(index,item){
 							
 						str = "<div class='media mb-4'>"	
 							 	+"<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>"
 							 		+"<div class='media-body'>"
-							 		+"<h5 class='mt-0'>"+item.id+"</h5>"
+							 		+"<h5 class='mt-0'>"+"작성자 : "+item.id+"</h5>"
 									 +item.commentContent
 							 	+"</div>"		
 							 +"</div>"
 							 
-							 $("#appendWrite").append(str);
+							 $(".appendWrite").append(str);
 						});	
 				}
 			});
 		});
 	});
 	
-	//	function getComment(commPageNum, event){
-	////	 	event.preventDefault();
-	//		$.ajax({			
-	//			url:"/comment/read",	
-	//			data:{
-	//				mt20id:"${comment.mt20id}",     
-	////	 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
-	//				commentRow:commPageNum * 10
-	//			},
-	//			success:function(data){
-	//				showHtml(data,commPageNum,event);
-	//			}				
-	//		}); 	
-	//	}
+	  let commentRow = 1;
+	  //
+	  $(window).scroll(function() { 
+	    
+	    if ( $(window).scrollTop() == $(document).height() - $(window).height()) { 
+
+	      //alert(index);   
+	      //console.log("스크롤 인식");
+	            $.ajax({
+	        type:"POST",
+	        dataType:"JSON",
+	        url:"/comment/read",
+	        data:({ "commentRow" : commentRow}),
+	        //
+	        success: function(data) {
+	          let str =""; 
+	            $.each(data,function(index, item){
+	            	
+				str = "<div class='media mb-4'>"	
+				 	+"<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>"
+				 		+"<div class='media-body'>"
+				 		+"<h5 class='mt-0'>"+"작성자 : "+item.id+"</h5>"
+						 +item.commentContent
+				 	+"</div>"		
+				 +"</div>"
+	              $(".appendWrite").append(str);
+	            });     
+	        }                     
+	      });
+	      commentRow++;  
+	      }
+	  });	
+	
 	
 	function getComment(){
-	// 	event.preventDefault();
 		$.ajax({			
 			url:"/comment/read",	
 			data:{
 				mt20id:"${mt20id}",     
-	// 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
 			},
 			success:function(data){
 				console.log(data);
@@ -324,7 +342,7 @@ body, table, div, p, header, hr, footer {
             </div>
           </div>
    		
-   		  <div id="appendWrite" style="overflow-x:hidden; width:450px; height:600px;"></div>
+   		  <div class="appendWrite" style="overflow-x:hidden; width:450px; height:600px;"></div>
    		  
    
              <!-- Single Comment -->

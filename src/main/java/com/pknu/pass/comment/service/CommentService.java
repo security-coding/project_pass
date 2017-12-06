@@ -8,7 +8,7 @@ import com.pknu.pass.comment.dto.CommentDto;
 
 public interface CommentService {
 	
-	public List<CommentDto> getComments(String mt20id);
+	public List<CommentDto> getComments(String mt20id, String commentRow);
 	public void insertComment(CommentDto comment);
 
 }

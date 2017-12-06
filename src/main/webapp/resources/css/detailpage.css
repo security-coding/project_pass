@@ -324,6 +324,7 @@ header .profilePhoto {
 }
 header .profileHeader {
 	text-align: left;
+	margin-bottom: 100px;
 }
 header .socialNetworkNavBar .socialNetworkNav {
 	width: 74px;

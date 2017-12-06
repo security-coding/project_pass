@@ -19,17 +19,16 @@ import com.pknu.pass.play.dto.DetailDto;
 public class CommentServiceImpl implements CommentService {
 	@Autowired
 	CommentDao commentDao;
-
+	
 	List<CommentDto> commentList;
 	List<DetailDto> detailList;
 	HashMap<String, Integer> paramMap;
 
 	
 	@Override
-	public List<CommentDto> getComments(String mt20id) {
+	public List<CommentDto> getComments(String mt20id, String commentRow) {
 	
-
-		return commentDao.getComments(mt20id);
+		return commentDao.getComments(mt20id, commentRow);
 	}
 
 	@Override

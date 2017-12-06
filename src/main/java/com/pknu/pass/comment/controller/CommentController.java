@@ -26,13 +26,13 @@ public class CommentController {
 	
 	@RequestMapping(value="/read")
 	@ResponseBody
-	public List<CommentDto> commentRead(@RequestParam String mt20id, @RequestParam int commentRow ){							
-		return commentService.getComments(mt20id);	
+	public List<CommentDto> commentRead(@RequestParam String mt20id, @RequestParam String commentRow ){
+		return commentService.getComments(mt20id, commentRow);	
 	}
 	 
 	
 	@RequestMapping(value="/write")
-	@ResponseBody
+	@ResponseBody	
 	public List<CommentDto> commentWrite(CommentDto comment, HttpSession session){
 		System.out.println(comment.getCommentContent());
 		comment.setId((String)session.getAttribute("id"));
@@ -41,7 +41,7 @@ public class CommentController {
 //		hm.put("result", 1);
 //		hm.put("commentList", commentList);
 //		System.out.println(commentService.getComments(comment.getMt20id()).toString());
-		return commentService.getComments(comment.getMt20id());//
+		return commentService.getComments(comment.getMt20id(), "0");//
 		
 	}
 	
