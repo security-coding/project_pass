@@ -170,6 +170,15 @@ public class LoginServiceImpl implements LoginService {
 		logindao.myPageUpdate(logindto);
 
 	}
+	
+	public void myPassChengeForm(HttpSession session, Model model) {
+		String id=(String)session.getAttribute("id");
+		LoginDto userInf=logindao.getUser(id);
+		model.addAttribute("address",userInf.getAddress());
+		model.addAttribute("detailAddress",userInf.getDetailAddress());
+		
+		
+	}
 
 	@Override
 	public void updateProfile(HttpSession session, String srcinput, LoginDto logindto,Model model) {
@@ -275,5 +284,8 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return result;
 	}
+
+
+
 
 }

@@ -24,12 +24,18 @@
  <update id="myPageUpdate" parameterType="String">
  	UPDATE MEMBER 
  	<choose>
+ 	<when test="password !=null and address !='' and detailAddress !=''">
+  	set password=#{password},address=#{address},DETAILADDRESS=#{detailAddress}
+  	</when>
+  	
  	<when test="password !=null">
  	set password=#{password} 
   	</when>
+  	
   	<when test="address !='' and detailAddress !=''">
   	set address=#{address},DETAILADDRESS=#{detailAddress}
   	</when>
+  	
   	</choose>
   	WHERE ID=#{id}
  </update>

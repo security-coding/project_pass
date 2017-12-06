@@ -30,14 +30,15 @@
 				},
 				success : function(data) {
 					let html;
+					console.log(data);
 					if ($("#currentPw").val() != "") {
-						if (data == 1) {
+						if (data === 1) {
 							passCheck = true;
-							console.log("허용");
-						} else {
+							
+						} else if(data==2) {
 							html = "<b>현재 비밀번호 틀림<b>";
 							passCheck = false;
-							console.log("비밀번호 틀림");
+							
 						}
 					} else {
 						html = "<b>현재비밀번호를 입력해 주세요</b>"
@@ -52,50 +53,16 @@
 		});
 	});
 
-	if (document.getElementById('address').value() != ""
-			&& document.getElementById('detailaddress').value() != "") {
-		addressCheck = true;
-	} else {
-		addressCheck = false;
-	}
-
-	// function submitCheck() {
-	// 	if (passCheck == true||addressCheck == true) {
-
-	// 	}else {
-	// 		alert("현재 비밀번호가 틀렸습니다.")
-	// 		return false;
-	// 	}
-
-	// 	if (addressCheck == true) {
-	// 			return true;
-	// 		} else {
-	// 			alert("입력안하신 부분이 있습니다");
-	// 			return false
-	// 		}
-	// 	}
-
 
 	function submitCheck() {
-		if (passCheck == true || addressCheck == true) {
-
-			if (passCheck == true) {
-				return true;
-
-			} else if (passCheck == false) {
-				alert("현재 비밀번호가 맞지 않습니다.");
-				return false;
-			}
-
-			if (addressCheck == true) {
-				return true;
-			} else if (addressCheck == false) {
-				alert("필수 입력값을 입력안했습니다.");
-				return false
-			}
-
+		if (passCheck == true) {
+			return true;
+		}else{
+			alert("현재 비밀번호가 일치하지 않습니다");
+			return false;
 		}
 	}
+
 
 	function execDaumPostcode() {
 		new daum.Postcode(
@@ -166,7 +133,7 @@
 	</div>
 
 	<div class="col-xs-8 col-sm-6">		
-		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return passwordSubmit()"><!-- form -->
+		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
 			<div class="form-group">
 				<label for="id" id="id" name="id" >ID:${id}</label>
@@ -178,26 +145,26 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="password">변경할비밀번호</label> <input type="password"
-					class="form-control" id="password" name="password" placeholder="변경할비밀번호">
+				<label for="changePass">변경할비밀번호</label> <input type="password"
+					class="form-control" id="changePass" name="changePass" placeholder="변경할비밀번호">
 			</div>
 			
 			<div class="form-group">
-				<label>변경한 비밀번호 확인</label> <input type="password"
-					class="form-control" id="pass2" placeholder="변경할비밀번호 확인" >
+				<label for="changPassCheck">변경한 비밀번호 확인</label> <input type="password"
+					class="form-control" id="changPassCheck" placeholder="변경할비밀번호 확인" >
 			</div>
 			
 			<div class="form-group">
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
+				<input type="text" id="address" name="address" placeholder="주소" value="${address}" > - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
 			</div>
 			</label>
 			</div>
 			
 			<div class="form-group text-center">
 				<button id="passUpbtn" type="submit" class="btn btn-info" >
-					비밀번호변경<i class="fa fa-check spaceLeft"></i>
+					회원정보변경<i class="fa fa-check spaceLeft"></i>
 				</button>
 				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">
 					되돌아기<i class="fa fa-times spaceLeft"></i>
@@ -215,30 +182,34 @@
 
 <script type="text/javascript">
 
-// 	 $(function(){
-// //	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
-// 		 $("#loginForm").on("submit", function(){
-// //	 		 event.preventDefault();
+	 $(function(){
+//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
+		 $("#loginForm").on("submit", function(){
 
-// 			 var pass=$("#password").val(); 
-// 			 var passcheck=$("#pass2").val();
+			 var pass=$("#changePass").val(); 
+			 var passcheck=$("#changPassCheck").val();
+			 var detailaddress=$("#detailaddress").val();
+			 console.log(pass);
+			 if(pass==""){
+			 	alert("패스워스를 입력하세요");
+			 	$("#changePass").focus();
+			 	return false;
+			 }
+			 if(pass!=passcheck){
+				 alert("패스워드가 일치하지 않습니다")
+			 	$("#changPassCheck").focus();
+				 return false;
+			 }
+			 if(detailaddress==""){
+				 alert("상세주소를 입력해주세요");
+				 $("#detailaddress").focus();
+				 return false;
+			 }
 			 
-
-// 			 if(pass==""){
-// 			 	alert("패스워스를 입력하세요");
-// 			 	$("#password").focus();
-// 			 	return false;
-// 			 }
-// 			 if(pass!=passcheck){
-// 				 alert("패스워드가 일치하지 않습니다")
-// 			 	$("#pass2").focus();
-// 				 return false;
-// 			 }
-			 
-// 			 $("#loginForm").submit();
-// 		 })
+			 $("#loginForm").submit();
+		 })
 		 
-// 	 });
+	 });
 
 </script>
 
