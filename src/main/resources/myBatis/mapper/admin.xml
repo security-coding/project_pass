@@ -7,9 +7,6 @@
 	<select id="selectTotalConcert" resultType="Integer">
 		SELECT COUNT(*)
 		FROM CONCERT
-		<if test="searchFilter != null and searchValue !=''">
-			WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
-		</if>
 	</select>
 	
 	<!-- ROWNUM Query(Paging) -->
@@ -18,17 +15,8 @@
 		FROM ( SELECT ROWNUM RNUM, C.*
 				FROM ( SELECT * 
 						FROM CONCERT
-						<if test="searchFilter != null and searchValue !=''">
-						WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
-						</if>
 						ORDER BY MT20ID) C )
 		WHERE RNUM BETWEEN #{start} AND #{last}
-	</select>
-
-	<select id="selectOneConcert" parameterType="String" resultType="concert">
-		SELECT *
-		FROM CONCERT
-	 	WHERE mt20id = #{mt20id}
 	</select>
 	
 	<select id="selectTotalPlace" parameterType="paging" resultType="Integer">
@@ -211,10 +199,6 @@
 		SELECT * FROM image WHERE MT20ID = #{mt20id} and IMAGETYPE = 1
 	</select>
 	
-	<select id="selectImageList" parameterType="String" resultType="image">
-		SELECT * FROM IMAGE WHERE MT20ID = #{mt20id} ORDER BY imageType ASC, imageUrl ASC
-	</select>
-	
 	<delete id="deleteImageInf" parameterType="String">
 		DELETE IMAGE WHERE mt20id = #{mt20id} 
 	</delete>
@@ -227,7 +211,7 @@
 		UPDATE MEMBER SET
 			grade = #{grade}
 		WHERE ID = #{id}
-	</update>
+	</update>	
 </mapper>
 	
 	

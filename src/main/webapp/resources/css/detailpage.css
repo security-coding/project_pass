@@ -241,7 +241,6 @@ header {
 }
 header .profileLogo .logoPlaceholder {
 	display: inline-block;
-	: 'Montserrat', sans-serif;
 }
 header .profilePhoto {
 	float: left;

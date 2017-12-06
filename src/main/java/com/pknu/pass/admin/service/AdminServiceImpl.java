@@ -22,6 +22,7 @@ import org.w3c.dom.NodeList;
 
 import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.common.dto.PagingDto;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
@@ -293,16 +294,6 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int selectTotalConcert(PagingDto paging) {
 		return adminDao.selectTotalConcert(paging);
-	}
-
-	@Override
-	public ConcertDto selectOneConcert(String mt20id) {
-		return adminDao.selectOneConcert(mt20id);
-	}
-
-	@Override
-	public List<ImageDto> selectImageList(String mt20id) {
-		return adminDao.selectImageList(mt20id);
 	}
 
 	@Override
