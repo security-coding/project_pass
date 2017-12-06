@@ -31,19 +31,35 @@
          	<h1>현재 공연작</h1>
 	</div>
 
-	<div class="typeNav" >
-	<ul>
-		<li><a class="butn" href = "#" onclick="change('전체');">전체</a></li>
-		<li><a class="butn" href = "#" onclick="change('연극');">연극</a></li>
-		<li><a class="butn" href = "#" onclick="change('뮤지컬');">뮤지컬</a></li>
-		<li><a class="butn" href = "#" onclick="change('클래식');">클래식</a></li>
-		<li><a class="butn" href = "#" onclick="change('오페라');">오페라</a></li>
-	    <li><a class="butn" href = "#" onclick="change('무용');">무용</a></li>
-	    <li><a class="butn" href = "#" onclick="change('발래');">발래</a></li>
-	    <li><a class="butn" href = "#" onclick="change('국악');">국악</a></li>
-        <li><a class="butn" href = "#" onclick="change('복합');">복합</a></li>
-	</ul>
+
+<div class="typeNav" > 
+<ul class="nav nav-tabs  nav-justified">
+  <li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
+  <li  role="presentation"><a href="#" onclick="change('연극');">연극</a></li>
+  <li  role="presentation"><a href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
+  <li  role="presentation"><a href="#" onclick="change('클래식');">클래식</a></li>
+  <li  role="presentation"><a href="#" onclick="change('오페라');">오페라</a></li>
+  <li  role="presentation"><a href="#" onclick="change('무용');">무용</a></li>
+  <li  role="presentation"><a href="#" onclick="change('발래');">발래</a></li>
+  <li  role="presentation"><a href="#" onclick="change('국악');">국악</a></li>
+  <li  role="presentation"><a href="#"onclick="change('복합');">복합</a></li>
+</ul>
 	</div>
+<br>	
+
+<!-- 	<div class="typeNav" > -->
+<!-- 	<ul> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('전체');">전체</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('연극');">연극</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('뮤지컬');">뮤지컬</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('클래식');">클래식</a></li> -->
+<!-- 		<li><a class="butn" href = "#" onclick="change('오페라');">오페라</a></li> -->
+<!-- 	    <li><a class="butn" href = "#" onclick="change('무용');">무용</a></li> -->
+<!-- 	    <li><a class="butn" href = "#" onclick="change('발래');">발래</a></li> -->
+<!-- 	    <li><a class="butn" href = "#" onclick="change('국악');">국악</a></li> -->
+<!--         <li><a class="butn" href = "#" onclick="change('복합');">복합</a></li> -->
+<!-- 	</ul> -->
+<!-- 	</div> -->
 
 <div class="container">
   
