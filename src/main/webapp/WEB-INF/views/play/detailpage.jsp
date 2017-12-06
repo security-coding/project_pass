@@ -28,6 +28,7 @@ pageEncoding="UTF-8"%>
         p,
         header,
         hr,
+        section,
         footer {
             font-family: 'Jeju Gothic'
         }
@@ -61,9 +62,10 @@ pageEncoding="UTF-8"%>
                     }
                 },
                 error: function (e) {
-                    alert(e.responseText);
+                    alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
                 }
             });
+            
         }
 
         $.ajaxSetup({
@@ -258,13 +260,14 @@ pageEncoding="UTF-8"%>
             <h3 class="card-header">본 공연에 대한 댓글 남기기 :</h3>
             <div class="card-body">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea id="commentContent" class="form-control" rows="3"></textarea>
                     </div>
-                    <button id="commentwrite" class="btn btn-primary">작성</button>
-                    
+                    <button id="commentWrite" class="btn btn-primary">작성</button>
             </div>
         </div>
-
+		
+		<div id="appendWrite" style="overflow-x:hidden; width: 450px; height: 600px; "></div>
+		
         <!-- Single Comment -->
         <div class="media mb-4">
             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">

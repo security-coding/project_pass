@@ -155,9 +155,7 @@
 	
 	<article class="container-fluid">
 	<div class="page-header">
-		<h1>
-			회원가입 
-		</h1>
+	<%@include file="../loginPage/header.jsp"%>
 	</div>
 	
 	<div class="col-xs-8 col-sm-6">

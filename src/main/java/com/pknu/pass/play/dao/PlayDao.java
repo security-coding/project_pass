@@ -35,9 +35,16 @@ public interface PlayDao {
 
 	public DetailDto getDetailInf(String mt20id);
 
+	//좋아요
+	public void getLikes(HashMap<String, String> likes);
+
+	public String changeLikes(HashMap<String, String> likes);
+	
+	public void delLikes(HashMap<String, String> likes);
+	
 	//검색
 	public ArrayList<DetailDto> getsearch(String keyword);
-
+	
 	//지도
 	public ArrayList<PlaceDto> getNearMap(HashMap<String, String> lalo);
 	
@@ -46,7 +53,5 @@ public interface PlayDao {
     
     public ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
 
-	public void getLikes(HashMap<String, String> likes);
-
-	public String changeLikes(HashMap<String, String> likes);
+	
 }
