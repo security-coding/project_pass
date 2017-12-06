@@ -92,13 +92,27 @@ pageEncoding="UTF-8"%>
     </div>
 
 
-    <ul class="typeNav">
-        <li><a class="butn" href="#" onclick="change('YK');">연극</a></li>
-        <li><a class="butn" href="#" onclick="change('MU');">뮤지컬</a></li>
-        <li><a class="butn" href="#" onclick="change('CCO');">클래식/오페라</a></li>
-        <li><a class="butn" href="#" onclick="change('MMB');">무용/발래</a></li>
-        <li><a class="butn" href="#" onclick="change('KKB');">국악/복합</a></li>
-    </ul>
+<!--     <ul class="typeNav"> -->
+<!--         <li><a class="butn" href="#" onclick="change('YK');">연극</a></li> -->
+<!--         <li><a class="butn" href="#" onclick="change('MU');">뮤지컬</a></li> -->
+<!--         <li><a class="butn" href="#" onclick="change('CCO');">클래식/오페라</a></li> -->
+<!--         <li><a class="butn" href="#" onclick="change('MMB');">무용/발래</a></li> -->
+<!--         <li><a class="butn" href="#" onclick="change('KKB');">국악/복합</a></li> -->
+<!--     </ul> -->
+    
+    <div class="typeNav" > 
+<ul class="nav nav-tabs  nav-justified">
+  
+  <li  role="presentation"><a href="#" onclick="change('YK');">연극</a></li>
+  <li  role="presentation"><a href="#" onclick="change('MU');">뮤지컬</a></li>
+  <li  role="presentation"><a href="#" onclick="change('CCO');">클래식/오페라</a></li>
+  <li  role="presentation"><a href="#" onclick="change('MMB');">무용/발래</a></li> 
+  <li  role="presentation"><a href="#" onclick="change('KKB');">국악/복합</a></li>
+  
+</ul>
+	</div>
+<br>	
+    
     <div class="container">
         <div class="row text-center">
             <div class="poster">
