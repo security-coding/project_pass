@@ -6,7 +6,7 @@
 <mapper namespace="com.pknu.pass.place.dao.PlaceDao">
 	<select id="getTitles" parameterType="String" resultType="predto">
 		SELECT
-		 imageUrl, prfnm, prfpdfrom, prfpdto, genrenm
+		 imageUrl, prfnm, prfpdfrom, prfpdto, genrenm, mt20id
 		FROM CONCERT NATURAL JOIN IMAGE
 		WHERE mt10id = #{mt10id} AND sysdate > prfpdfrom AND imageType = 1 AND
 		prfpdto > sysdate
