@@ -68,16 +68,26 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.1</version>
 		</dependency>
+<<<<<<< HEAD
 		
 		<!-- 스크립트 필터링(xss)네이버 -->
+=======
+
+		<!--12-06일날 넣음  xss필터링 -->
+>>>>>>> be99cf15d3d91858fde7a90d3a639b63b1b1876d
 		<dependency>
 			<groupId>com.navercorp.lucy</groupId>
 			<artifactId>lucy-xss-servlet</artifactId>
 			<version>2.0.0</version>
 		</dependency>
+<<<<<<< HEAD
   
         
 		<!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-core -->
+=======
+
+		<!-- com.twelvemonkeys.imageio -->
+>>>>>>> be99cf15d3d91858fde7a90d3a639b63b1b1876d
 		<dependency>
 			<groupId>com.twelvemonkeys.imageio</groupId>
 			<artifactId>imageio-core</artifactId>
