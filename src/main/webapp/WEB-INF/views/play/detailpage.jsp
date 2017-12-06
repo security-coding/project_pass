@@ -28,6 +28,7 @@ pageEncoding="UTF-8"%>
         p,
         header,
         hr,
+        section,
         footer {
             font-family: 'Jeju Gothic'
         }
@@ -61,9 +62,10 @@ pageEncoding="UTF-8"%>
                     }
                 },
                 error: function (e) {
-                    alert(e.responseText);
+                    alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
                 }
             });
+            
         }
 
         $.ajaxSetup({
