@@ -20,14 +20,14 @@
 		select *
 		      from comments 
 		     	where mt20id=#{mt20id} 
-		     	order by commentNum desc 
+		     	order by commentDate desc 
 		     
 		     	
 	</select>
 	
 	<insert id="insertComment" parameterType="comment">
 		insert into comments values(comment_seq.nextVal,#{id},
-									#{commentContent},sysdate,#{mt20id})
+									#{commentContent},TO_CHAR(SYSTIMESTAMP,'YYYY-MM-DD HH24:MI:SS'),#{mt20id})
 	</insert>
 	
 	

@@ -82,15 +82,27 @@ pageEncoding="UTF-8"%>
                     url: "/comment/write",
                     data: {
                         commentContent: $("#commentContent").val(),
-                        //mt20id:"${play.mt20id}"    
-                        mt20id: "PF140536"
+                        //mt20id:"${play.mt20id}   mt20id는 play/dto/DetailDto 안에 있는 공연번호()
+                        mt20id: "PF140778"
                     },
                     success: function (data) {
-                        if (data.result == 1) {
-                            alert("comment가 정성적으로 입력되었습니다");
-                            $("#commentContent").val("");
-                            showHtml(data.commentList, 1);
-                        }
+
+                        alert("comment가 정성적으로 입력되었습니다");
+                        $("#commentContent").val("");
+
+                        let str = "";
+                        $.each(data, function (index, item) {
+
+                            str = "<div class='media mb-4'>"
+                                + "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>"
+                                + "<div class='media-body'>"
+                                + "<h5 class='mt-0'>" + item.id + "</h5>"
+                                + item.commentContent
+                                + "</div>"
+                                + "</div>"
+
+                            $("#appendWrite").append(str);
+                        });
                     }
                 });
             });
@@ -101,37 +113,21 @@ pageEncoding="UTF-8"%>
             $.ajax({
                 url: "/comment/read",
                 data: {
-                    mt20id: "PF140536",
+                    mt20id: "${mt20id}",
                     // 			숫자와 문자연산에서 +를 제외하고는 숫자 우선
                 },
                 success: function (data) {
                     console.log(data);
                     console.log(data.commentContent);
-                    showHtml(data, commPageNum, event);
+                    showHtml(data, event);
                 }
             });
         }
 
-        function showHtml(data, commPageNum) {
-            var html = "<table border='1' width='500' align='center'>";
-            $.each(data, function (index, item) {
-                html += "<tr>";
-                html += "<td>" + item.id + "</td>";
-                html += "<td>" + item.commentNum + "</td>";
-                html += "<td>" + item.mt20id + "</td>";
-                html += "<td>" + item.commentContent + "</td>";
-                html += "<td>" + item.commentDate + "</td>";
-                html += "</tr>";
-            });
-            html += "</table>";
-            commPageNum = parseInt(commPageNum);
-            if ("${play.commentCount}" > commPageNum * 10) {
-                nextPageNum = commPageNum + 1;
-                html += "<br /><input type='button' onclick='getComment(nextPageNum,event)' value='다음comment보기'><br>";
-            }
-            $("#showComment").html(html);
-            $("#commentContent").val("");
-            $("#commentContent").focus();
+
+        function showHtml(data) {
+
+
         }
     </script>
 
@@ -219,14 +215,14 @@ pageEncoding="UTF-8"%>
             <script>
                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                     mapOption = {
-						center: new daum.maps.LatLng(${detailInf.la},${detailInf.lo}), // 지도의 중심좌표
-                			level: 5 // 지도의 확대 레벨
-                		};
+                        center: new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo}), // 지도의 중심좌표
+                        level: 5 // 지도의 확대 레벨
+                    };
 
                 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
                 // 마커가 표시될 위치입니다 
-                var markerPosition = new daum.maps.LatLng(${detailInf.la},${detailInf.lo});
+                var markerPosition = new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo});
 
 
                 // 마커를 생성합니다
@@ -280,35 +276,6 @@ pageEncoding="UTF-8"%>
                 fringilla. Donec lacinia congue felis in faucibus.
             </div>
         </div>
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-
-                <div class="media mt-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
-                <div class="media mt-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
 
             </div>
         </div>
