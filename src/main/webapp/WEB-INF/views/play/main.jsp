@@ -47,7 +47,7 @@ pageEncoding="UTF-8"%>
 <%@include file="../loginPage/header.jsp"%>
 
 <!-- Header -->
-<a name="about"></a>
+<a id="about"></a>
 <div class="intro-header">
     <div class="container">
 

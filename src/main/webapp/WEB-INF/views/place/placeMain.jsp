@@ -203,7 +203,8 @@
 			success: function(data) {
 				
 				$.each(data, function(index, item) {
-					str += "<div class='contentBox'><div class='imgBox'><img class='img-responsive' src='<c:url value='"+item.imageUrl+"'/>'></div>";
+					str += "<div class='contentBox'>";
+					str += "<div class='imgBox'><img class='img-responsive' src='<c:url value='"+item.imageUrl+"' onclick='detailPage("+item.mt20id+")'/>'></div>";
 					str += "<div class='titleInf'><p>"+item.prfnm+"</p>";
 					str += "<p>"+item.prfpdfrom+"<span>~</span>"+item.prfpdto+"</p>";
 					str += "<p>"+item.genrenm+"</p>";
