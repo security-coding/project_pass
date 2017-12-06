@@ -69,6 +69,7 @@
 			<version>2.9.1</version>
 		</dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		<!-- 스크립트 필터링(xss)네이버 -->
 =======
@@ -81,6 +82,9 @@
 			<version>2.0.0</version>
 		</dependency>
 <<<<<<< HEAD
+=======
+        
+>>>>>>> parent of 902f087... 댓글 스크립트 필터링
   
         
 		<!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-core -->
