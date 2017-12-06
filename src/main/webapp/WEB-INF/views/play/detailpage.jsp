@@ -83,7 +83,7 @@ pageEncoding="UTF-8"%>
                     data: {
                         commentContent: $("#commentContent").val(),
                         //mt20id:"${play.mt20id}   mt20id는 play/dto/DetailDto 안에 있는 공연번호()
-                        mt20id: "PF140778"
+                        mt20id: "${detailInf.mt20id}"
                     },
                     success: function (data) {
 
@@ -142,7 +142,7 @@ pageEncoding="UTF-8"%>
         <header>
             <div class="profilePhoto">
                 <!-- Profile photo -->
-                <img src="${detailImages[0]}" style="width: 500; height: 100%; " alt="concert-image"/>
+                <img src="${detailImages[0]}" style="width: 400; height: 100%; " alt="concert-image"/>
             </div>
             <!-- Identity details -->
             <section class="profileHeader">
@@ -192,7 +192,7 @@ pageEncoding="UTF-8"%>
                 <h2 class="sectionTitle">해당 공연의 기본 정보</h2>
 
                 <hr class="sectionTitleRule2">
-                <div class="section1Content" align="left;">
+                <div class="context-text">
                     <div>
                         <c:forEach var="detailImage" items="${detailImages}" begin="1">
                             <img class="img-fluid img-thumbnail" src="${detailImage}"/>
@@ -257,12 +257,11 @@ pageEncoding="UTF-8"%>
             <p/>
             <h3 class="card-header">본 공연에 대한 댓글 남기기 :</h3>
             <div class="card-body">
-                <form>
                     <div class="form-group">
                         <textarea class="form-control" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">작성</button>
-                </form>
+                    <button id="commentwrite" class="btn btn-primary">작성</button>
+                    
             </div>
         </div>
 

@@ -24,9 +24,8 @@ header .logoPlaceholder span {
 	line-height: 53px;
 }
 header .profilePhoto {
-	background-color: rgba(237,237,237,1.00);
-	width: 500px;
-	border-radius: 50%;
+	background-color: rgba(255,255,255,1.00);
+	width: 400px;
 	height: 580px;
 	clear: both;
 }
@@ -324,6 +323,7 @@ header .profilePhoto {
 }
 header .profileHeader {
 	text-align: left;
+    margin-bottom: 100px;
 }
 header .socialNetworkNavBar .socialNetworkNav {
 	width: 74px;
