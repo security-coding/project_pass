@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -111,7 +112,7 @@ function passSearchSubmit(){
 	<div>
 	<article class="container-fluid">
 	<div class="page-header">
-		<h1>아이디/비밀번호찾기</h1>
+	<%@include file="../loginPage/header.jsp"%>
 	</div>
 	<h2>아이디찾기</h2>
 	<div class="col-xs-8 col-sm-6">

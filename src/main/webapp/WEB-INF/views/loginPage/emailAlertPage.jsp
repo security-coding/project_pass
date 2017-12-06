@@ -21,7 +21,7 @@ $(document).ready(function(){
 	} else if(certKey == "3") {
 		alert("한적 없음");
 	}
-	document.location.href="../play";
+	document.location.href="../";
 });
 
 </script>
