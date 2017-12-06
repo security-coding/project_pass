@@ -15,6 +15,7 @@ public class PlaceDto {
 	private String la;			//위도
 	private String lo;			//경도
 	
+	
 	public PlaceDto() {}
 	
 	public PlaceDto(String fcltynm ,String mt10id, String sidonm) {
