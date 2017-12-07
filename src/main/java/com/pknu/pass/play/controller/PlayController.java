@@ -51,7 +51,7 @@ public class PlayController {
 	// 현재공연
 	@RequestMapping(value = "/now" ,method=RequestMethod.GET)
 	public String playNowMain(Model model) {
-          System.out.println("play컨트롤");
+         
 		playService.playNowMain(model);
 		
 		return "play/playinglist";
@@ -76,7 +76,7 @@ public class PlayController {
 		ArrayList<MainDto> fileNames = new ArrayList<>();
 
 		fileNames = playService.getNowNextPoster(stNum, index);
-
+         System.out.println(fileNames.get(0).getSidonm());
 		return fileNames;
 	}
 
