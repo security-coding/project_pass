@@ -56,7 +56,7 @@
                         <a href="/play/detail?mt20id=${play.mt20id}">
 
 
-                            <div style="position: absolute; z-index: 1;"><img src="#"/></div>
+                           
                             <div style="position: relative; z-index: 2;" class="image-lg image-md image-sm image-xs">
 
                                 <div><img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"
@@ -79,6 +79,7 @@
                 </c:forEach>
             </div>
         </div>
+
 </div>
 <%@include file="../footer.jsp" %>  
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
@@ -99,7 +100,7 @@
 				let elem = document.getElementById("type");
 				let index = elem.getAttribute("data-index");
 				   
-							$.ajax({
+			  $.ajax({
 					type:"POST",
 					dataType:"JSON",
 					url:"/play/come/getNextPoster",
@@ -110,7 +111,7 @@
 					    	
 					    	str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
 			                       + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
-			                       + "<div style='position: absolute; z-index: 2;'><img src='#'/></div>"
+			                       
 					               + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
 				                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
 				                   + "<div class='img-fluid img-thumbnail overlay'>"
@@ -128,7 +129,7 @@
 							  
 						  });			
 					}					 						
-				})
+				});
 				stNum++;	
 		    }
 		});
@@ -152,7 +153,7 @@
 			    						 
 				    str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
                        + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
-                       + "<div style='position: absolute; z-index: 2;'><img src='#'/></div>"
+                      
 		               + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
 	                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
 	                   + "<div class='img-fluid img-thumbnail overlay'>"
