@@ -1,18 +1,31 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
+
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+    
+    <title>joinForm.jsp * 회원 가입</title>
+    
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 
-<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 지도 api -->		
-
-<script>
+    <!-- jQuery 모달 불러들이기 필수요소-->
+    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+    <!-- 지도 api -->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    
+    <script>
 	let idCheck = false;
 	let emailCheck = false;
 	
@@ -150,101 +163,180 @@
 
 </script>
 
-</head>
 
-		<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-    	<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
-<body>
-	
-	<article class="container-fluid">
-	<div class="page-header">
-	<%@include file="../loginPage/header.jsp"%>
-	</div>
-	
-	<div class="col-xs-8 col-sm-6">
-		<form id="joinForm" name="" class="form-horizontal" role="form" action="/member/insertuser" method="post" onsubmit="return availability()"><!-- form -->
-			
-			<div class="form-group">
-				<label for="joinId">ID:</label> <input type="text"
-					class="form-control" id="joinId" name="joinId" placeholder="ID" oninput="checkId()">
-				<div id="idCheck"></div>
-			</div>
-			
-			<div class="form-group">
-				<label for="joinPass">비밀번호</label> <input type="password"
-					class="form-control" id="joinPass" name="joinPass" placeholder="비밀번호">
-					<div id="passcheck"></div>
-			</div>
-			
-			<div class="form-group">
-				<label>비밀번호 확인</label> <input type="password"
-					class="form-control" id="joinPassCheck" placeholder="비밀번호 확인" >
-					<div id="passCheck2"></div>
-			</div>
-			
-			<div class="form-group">
+    
+            <!-- CSS -->
+        <link rel="stylesheet" href="assets/typicons/typicons.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/media-queries.css">
+    
+    
+    </head>
+    
+<!--     바디시작 -->
+    <body>
+    
+<!--     로그인 모달 헤더 불러오기 -->
+    <%@include file="../loginPage/header.jsp"%>
 
-				<table>
-					<tr>
-						<label for="email">Email:
-							<td><div>
-									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"></td>
-							<td>@</td>
-							<td><input type="text" name="str_email" id="str_email" class="form-control"
-								style="width: 100px" disabled value="naver.com">
-								</div></td>
-						<td><select style="width: 120px" name="str_email"
-								id="selectEmail" class="form-control">
+    	<div class="loader">
+    		<div class="loader-img"></div>
+    	</div>
+				
+        <!-- Top content -->
+        <div class="top-content">
+        	
+        	<!-- Top menu -->
+
+        	<div class="inner-bg">
+                <div class="container">
+                
+                    <div class="row text-center" style="margin-top: 100px">
+                        <div class="col-sm-8 col-sm-offset-2 text wow fadeInLeft">
+                            <h1><strong>회원가입</strong></h1>
+                            <div class="description">
+                            	<p>회원 가입을 통해 즐겨보세요!</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="row">
+						<div class="col-sm-6 col-sm-offset-3 subscribe wow fadeInUp">
+						
+							<form id="joinForm" name="" class="" role="form" action="/member/insertuser" method="post" onsubmit="return availability()"><!-- form -->		
+<!-- 							아이디 입력창 -->
+								<div class="form-group">
+									<label class="sr-only" for="joinId">ID</label>
+									<input type="text" name="joinId" placeholder="아이디" class="form-control" id="joinId" oninput="checkId()">
+
+<!-- 							아이디 성공, 실패여부 체크 -->
+								<div id="idCheck"></div>
+								
+								</div>
+								
+<!-- 								비밀번호 입력창 (첫번째) -->
+								<div class="form-group">
+									<label class="sr-only" for="joinPass">Password</label>
+									<input type="password" name="joinPass" placeholder="비밀번호" class="form-control" id="joinPass">
+								</div>
+
+<!--								비밀번호 첫번째 성공 실패 체크 -->
+								<div id="passCheck"></div>								
+								
+<!-- 								비밀번호 입력창 (두번째) 확인 -->
+								<div class="form-group">
+									<label class="sr-only" for="joinPassCheck">checkPassword</label>
+									<input type="password" name="joinPassCheck" placeholder="비밀번호확인" class="form-control" id="joinPassCheck">
+								</div>
+								
+								<div id="passCheck2"></div>
+								
+<!-- 								이메일 부분 1행 4열 (골뱅이 포함) -->
+
+								<!-- 1행 1열 - 이메일아이디 부분 -->
+								<table>
+								<tr>
+								<td>
+								<div class="form-group">
+									<label class="sr-only" for="email">email</label>
+									<input type="text" name="email" placeholder="이메일아이디" class="form-control" id="email" style="width:200px">
+								</div>
+								</td>
+								
+								
+<!-- 								1행 2열 - 1,3열 사이 골뱅이 부분 -->
+								<td>
+								<p>@</p>
+								</td>
+
+								<!-- 1행 3열 이메일 도메인주소 부분								 -->
+								<td>
+								<div class="form-group">
+									<label class="sr-only" for="str_email">email_2nd</label>
+									<input type="text" name="str_email" placeholder="도메인주소" class="form-control" id="str_email" style="width: 220px" disabled value="naver.com">
+								</div>
+								</td>
+								
+								<!-- 1행 4열 이메일 선택 박스부분			 -->
+								<td>
+								<div class="form-group">
+									<label class="sr-only" for="str_email">selectEmail</label>
+									<select style="width: 120px" id="selectEmail" name="str_email" class="form-control">
 									<option value="1">직접입력</option>
 									<option value="naver.com" selected>naver.com</option>
 									<option value="gmail.com">gmail.com</option>
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="nate.com">nate.com</option>
 									<option value="gmail.com">gmail.com</option>
-							</select><td><div id="emailCheck"></div></td>
-						</label>
-						</td>
-					</tr>
-				</table>
-				
-			<tr>
-			<label>Address:
-			<div>
-				<p>
-				<input class="form-control" type="text" id="postcode" placeholder="우편번호" onclick="execDaumPostcode()">
-				</p>
-				<input type="text" id="address" name="address" placeholder="주소"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소">
-			</div>
-			</label>
-			</tr>
-			</div>
-			
-			
-	
-			<div class="form-group text-center">
-				<button id="signupbtn" type="submit" class="btn btn-info">
-					회원가입<i class="fa fa-check spaceLeft"></i>
-				</button>
-				<button type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">
-					가입취소<i class="fa fa-times spaceLeft"></i>
-				</button>
-			</div>
-		</form>
-	</div>
+									</select>
+									</div>
+								</td>
+								</tr>
+								<tr>
+								<td><div id="emailCheck"></div></td>
+								</tr>
+								</table>
 
-	
-	</article>
-</body>
-	
-<!-- /container -->
-	<!--부트스트랩-->
-<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+				<!-- 이메일 체크 끝난 뒤 주소로 넘어가는 부분 -->
 
-<!-- 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-
-
-<script>
+								<table>
+								<tr>
+								<td colspan="2">
+								<div class="form-group">
+									<label class="sr-only" for="subscribe-location">ZipCode</label>
+									<input type="text" name="ZipCode" placeholder="우편 주소" class="form-control" id="postcode" onclick="execDaumPostcode()">
+								</div>
+								</td>
+								</tr>
+								
+								<tr>
+								<td>
+								<div class="form-group">
+									<label class="sr-only" for="address">address</label>
+									<input type="text" name="address" placeholder="주소" class="form-control" id="address" readonly="readonly">
+								</div>
+								</td>
+								
+								<td>
+								<p> ━ </p>
+								</td>
+								
+								<td>
+								<div class="form-group">
+									<label class="sr-only" for="detailaddress">detailaddress</label>
+									<input type="text" name="detailaddress" placeholder="상세주소" class="form-control" id="detailaddress">
+								</td>
+								</div>
+								</table>
+								
+								
+<!-- 								폼 다끝나고 회원가입 버튼 및 가입 취소 구간 -->
+								
+								<div class="form-group text-center">
+								<button id="signupbtn" type="submit" class="btn btn-info">회원 가입 </button>
+								<button id="reset" type="reset" class="btn btn-warning" onclick="javascript:history.back(-1)">가입 취소</button>
+								</div>
+							</form>
+						</div>
+					</div>  
+                </div>
+            </div>        
+    </body>
+    
+           <!-- Javascript -->
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+    
+    
+    <script>
 	//이메일 입력방식 선택
 	$('#selectEmail').change(function() {
 		$("#selectEmail option:selected").each(function() {
@@ -323,4 +415,4 @@
 
 		
 	</script>
-</html>
+    </html>
