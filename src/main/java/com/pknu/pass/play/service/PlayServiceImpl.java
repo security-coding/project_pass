@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.DetailDto;
@@ -25,9 +26,11 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public void playNowMain(Model model) {
 
-		ArrayList<MainDto> posters = new ArrayList<>();
-		posters = playDao.getNowPoster();
-		model.addAttribute("playList", posters);
+//		ArrayList<MainDto> posters = new ArrayList<>();
+//		posters = playDao.getNowPoster();
+		
+		 System.out.println("DB한번접속");
+		 model.addAttribute("playList", playDao.getNowPoster());
 
 	}
 
@@ -180,19 +183,33 @@ public class PlayServiceImpl implements PlayService {
 
 	// 좋아요
 	@Override
-	public int UpdateLikes(String id, String mt20id, int changeVal) {
-		int UpdateStat;
+	public HashMap<String, Integer> UpdateLikes(String id, String mt20id, int changeVal, Model model) {
+		HashMap<String,Integer> UpdateStat = new HashMap<>();
+		int Count;
 		HashMap<String, String> Likes = new HashMap<>();
 		Likes.put("mt20id", mt20id);
 		Likes.put("id", id);
 		if (changeVal == 0) {
-			UpdateStat = 0;
 			playDao.getLikes(Likes);
+			Count=playDao.likesCount(Likes);
+			UpdateStat.put("Stat",0);
+			UpdateStat.put("Count",Count);
 			return UpdateStat;
 		} else {
-			UpdateStat = 1;
 			playDao.delLikes(Likes);
+			Count=playDao.likesCount(Likes);
+			UpdateStat.put("Stat",1);
+			UpdateStat.put("Count",Count);
 			return UpdateStat;
 		}
 	}
+
+	@Override
+	public int nowLikes(String mt20id) {
+		HashMap<String, String> Likes = new HashMap<>();
+		Likes.put("mt20id", mt20id);
+		return playDao.likesCount(Likes);
+	}
+	
+	
 }

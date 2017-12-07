@@ -14,11 +14,8 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
-	h2 {
-		padding-bottom: 50px;
-	}
 	.content {
-		margin: 100px 30px 0 30px;
+		margin: 0 30px;
 	}
 	
 	.label {
@@ -48,10 +45,10 @@
 </head>
 <body>
 	<div>
-		<%@include file="../loginPage/header.jsp"%>
+		<%@include file="../header.jsp"%>
 	</div>
-	<div class="container-fluid content">
-	<h2 class="text-center">주변 공연 위치 찾기</h2>
+	<h1 class="text-center" style="margin-top: 6%;'">주변 공연 위치 찾기</h1>
+	<div class="content">
 	<div class="col-md-4">
 		<div class="well">
 			<h4>주소 검색창</h4>
@@ -65,6 +62,8 @@
 		<div id="map" style="width:100%;height:500px;"></div>
 	</div>
 	</div>
+	
+	<%@include file="../footer.jsp" %>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
 
@@ -79,7 +78,7 @@
             disableDoubleClickZoom : false
         };
 
-    //지도를 미리 생
+    //지도를 미리 생성
     var map = new daum.maps.Map(mapContainer, mapOption);
     //주소-좌표 변환 객체를 생성
     var geocoder = new daum.maps.services.Geocoder();

@@ -1,6 +1,8 @@
 package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,10 +29,12 @@ public class PlayController {
 	// 메인 화면
 	@RequestMapping
 	public String boxOfficeMain(Model model) {
+		
 		playService.boxTest(model);
 
 		return "play/main";
 	}
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/change")
@@ -45,10 +49,11 @@ public class PlayController {
 	}
 
 	// 현재공연
-	@RequestMapping(value = "/now")
+	@RequestMapping(value = "/now" ,method=RequestMethod.GET)
 	public String playNowMain(Model model) {
-
+          System.out.println("play컨트롤");
 		playService.playNowMain(model);
+		
 		return "play/playinglist";
 
 	}
@@ -118,10 +123,23 @@ public class PlayController {
 	
 	
 //	좋아요 기능 내 추가를 할 시
+//	@ResponseBody
+//	@RequestMapping(value="/UpdateLikes")
+//	public int UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal, Model model) {
+//		return playService.UpdateLikes(id, mt20id, changeVal, model); 
+//	}
+	
 	@ResponseBody
 	@RequestMapping(value="/UpdateLikes")
-	public int UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal) {
-		return playService.UpdateLikes(id, mt20id, changeVal); 
+	public HashMap<String,Integer> UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal, Model model) {
+		HashMap<String,Integer>likesMap=playService.UpdateLikes(id, mt20id, changeVal, model);
+		return likesMap; 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/nowLikes")
+	public int nowLikes(@RequestParam("mt20id")String mt20id) {
+		return playService.nowLikes(mt20id); 
 	}
 
 	@RequestMapping(value = "/search")

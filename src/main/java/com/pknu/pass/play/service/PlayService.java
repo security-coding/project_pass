@@ -1,6 +1,7 @@
 package com.pknu.pass.play.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,5 +36,9 @@ public interface PlayService {
 	
 	public ArrayList<MainBoxofficeDto> getBoxChange(String type);
 
-	public int UpdateLikes(String id, String mt20id, int changeVal);
+	public HashMap<String, Integer> UpdateLikes(String id, String mt20id, int changeVal, Model model);
+
+	public int nowLikes(String mt20id);
+	
+	
 }

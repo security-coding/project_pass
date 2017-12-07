@@ -220,6 +220,13 @@
 		where
 		mt20id=#{mt20id} and id=#{id}
 	</delete>
+	
+<!-- 	상세페이지 내 좋아요 기능 카운트 관련 -->
+	<select id="likesCount" resultType="int" parameterType="hashMap">
+		select count(mt20id)
+		from likes
+		where mt20id=#{mt20id}
+	</select>
 </mapper>
 	
 	

@@ -38,7 +38,6 @@ pageEncoding="UTF-8"%>
         let id = '${id}';
         let mt20id = '${detailInf.mt20id}';
         let heart = '${fullHeart}';
-
         function changeImg(changeStat) {
             let changeVal = $(changeStat).attr("value");
             console.log(changeVal);
@@ -53,10 +52,12 @@ pageEncoding="UTF-8"%>
                     changeVal: changeVal
                 },
                 success: function (data) {
-                    if (data == 0) {
+                    if (data.Stat == 0) {
+                        $(inCount).attr("value",data.Count);
                         $(changeStat).attr("src", "/images/likes/full-heart.png");
                         $(changeStat).attr("value", 1);
-                    } else {
+                    } else if(data.Stat==1) {
+                        $(inCount).attr("value",data.Count);
                         $(changeStat).attr("src", "/images/likes/empty-heart.png");
                         $(changeStat).attr("value", 0);
                     }
@@ -67,6 +68,21 @@ pageEncoding="UTF-8"%>
             });
             
         }
+        
+        $(function() {
+        	 $.ajax({
+                 type: "POST",
+                 async: true,
+                 dataType: 'json',
+                 url: "/play/nowLikes",
+                 data: {
+                     mt20id: mt20id
+                 },
+				success : function(data){
+					$(inCount).attr("value",data);
+				}
+			});
+       });
         
         $(document).ready(function () {
         		paging.ajax = ajaxList;
@@ -126,7 +142,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<%@include file="../loginPage/header.jsp"%>
+<%@include file="../header.jsp"%>
 <div style="height: 100px;"></div>
 <div class="row">
     <div class="col-md-7 col-md-offset-1">
@@ -148,13 +164,16 @@ pageEncoding="UTF-8"%>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
                              style="width:20px;, height:20px;" onclick="changeImg(this)">
+                         <input id=inCount name=inCount type="text" readonly="readonly"
+                         style="border:0;">    
                     </c:when>
                     <c:when test="${fullHeart eq 1}">
                         <img id="full-heart" src="/images/likes/full-heart.png" value=1
                              style="width:20px;, height:20px;" onclick="changeImg(this)">
+                         <input id=inCount name=inCount type="text" readonly="readonly"
+                         style="border:0;">    
                     </c:when>
                 </c:choose>
-
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>

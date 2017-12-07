@@ -1,32 +1,27 @@
 package com.pknu.pass.admin.controller;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.admin.service.AdminService;
-import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
-import com.pknu.pass.play.dto.ImageDto;
 
 @Controller
 @RequestMapping("/admin")
@@ -72,7 +67,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/select/concert", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> selectConcertAjax(HttpServletRequest request, PagingDto paging) {
+	public Map<String,Object> selectConcert(HttpServletRequest request, PagingDto paging) {
 		Map<String, Object> paramMap = new HashMap<>();
 
 		List<ConcertDto> concertList = adminService.selectConcert(paging);
@@ -83,15 +78,24 @@ public class AdminController {
 		return paramMap;
 	}
 	
-	@RequestMapping(value = "/select/place")
-	public String selectPlace(HttpServletRequest request, Model model, PagingDto paging) {
+	@RequestMapping(value = "/select/place", method=RequestMethod.GET)
+	public String selectPlace(HttpServletRequest request) {
+		
+		return "admin/place";
+	}
+	
+	@RequestMapping(value = "/select/place", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectPlace(HttpServletRequest request, PagingDto paging) {
+		Map<String, Object> paramMap = new HashMap<>();
+		
 		List<PlaceDto> placeList = adminService.selectPlace(paging);
 		paging.setTotal(adminService.selectTotalPlace(paging));
 		
-		model.addAttribute("placeList",placeList);
-		model.addAttribute("paging", paging);
+		paramMap.put("list", placeList);
+		paramMap.put("p"	, paging);
 		
-		return "admin/place";
+		return paramMap;
 	}
 	
 	@RequestMapping(value = "/select/boxoffice")
@@ -103,7 +107,12 @@ public class AdminController {
 		return "admin/boxoffice";
 	}
 	
-	@RequestMapping(value = "/member")
+	@RequestMapping(value="/member", method=RequestMethod.GET)
+	public String selectMember(HttpServletRequest request) {
+		return "admin/member";
+	}
+	
+	@RequestMapping(value = "/member", method=RequestMethod.POST)
 	public String selectMember(HttpServletRequest request, Model model, PagingDto paging) {
 		logger.info(paging.toString());
 		List<LoginDto> memberList = adminService.selectMember(paging);
