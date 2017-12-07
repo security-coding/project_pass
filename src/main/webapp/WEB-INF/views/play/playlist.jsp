@@ -9,27 +9,27 @@
 <link rel="stylesheet" href='<c:url value="/css/boxoffice.css"/>'>
 <!-- jQuery -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </head>
 <body>
 <div>
     <%@include file="../header.jsp"%>
 </div>
 
-
 <h1 class="text-center" style="margin-top: 6%;'">공연 예정작</h1>
 <div class="typeNav" > 
-<ul class="nav nav-tabs  nav-justified">
-  <li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
-  <li  role="presentation"><a href="#" onclick="change('연극');">연극</a></li>
-  <li  role="presentation"><a href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
-  <li  role="presentation"><a href="#" onclick="change('클래식');">클래식</a></li>
-  <li  role="presentation"><a href="#" onclick="change('오페라');">오페라</a></li>
-  <li  role="presentation"><a href="#" onclick="change('무용');">무용</a></li>
-  <li  role="presentation"><a href="#" onclick="change('발래');">발래</a></li>
-  <li  role="presentation"><a href="#" onclick="change('국악');">국악</a></li>
-  <li  role="presentation"><a href="#"onclick="change('복합');">복합</a></li>
-</ul>
-	</div>
+	<ul class="nav nav-tabs  nav-justified">
+		<li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
+		<li  role="presentation"><a href="#" onclick="change('연극');">연극</a></li>
+		<li  role="presentation"><a href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
+		<li  role="presentation"><a href="#" onclick="change('클래식');">클래식</a></li>
+		<li  role="presentation"><a href="#" onclick="change('오페라');">오페라</a></li>
+		<li  role="presentation"><a href="#" onclick="change('무용');">무용</a></li>
+		<li  role="presentation"><a href="#" onclick="change('발래');">발래</a></li>
+		<li  role="presentation"><a href="#" onclick="change('국악');">국악</a></li>
+		<li  role="presentation"><a href="#" onclick="change('복합');">복합</a></li>
+	</ul>
+</div>
 <br>	
 	
 <!-- 	<div class="typeNav" > -->
@@ -54,9 +54,6 @@
                 <c:forEach var="play" items="${playList}" varStatus="status">
                     <div class="col-lg-15 col-md-4 col-sm-6 col-xs-12 boxContent">
                         <a href="/play/detail?mt20id=${play.mt20id}">
-
-
-                           
                             <div style="position: relative; z-index: 2;" class="image-lg image-md image-sm image-xs">
 
                                 <div><img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"
@@ -82,7 +79,6 @@
 
 </div>
 <%@include file="../footer.jsp" %>  
-<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 <script>
 	$(document).ready(function() {
 		var jbOffset = $( '.typeNav' ).offset();
