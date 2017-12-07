@@ -38,4 +38,6 @@ public interface LoginService {
 	
 	public int currentPwCheck(HttpSession session,String currentPw);
 	
+	public void memberClear(HttpSession session);
+	
 }

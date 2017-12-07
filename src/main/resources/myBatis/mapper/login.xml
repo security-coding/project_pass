@@ -60,5 +60,9 @@
 <update id="updatePass" parameterType="String">
 	UPDATE MEMBER set password=#{password} where EMAIL=#{email} AND ID=#{id}
 </update>
+
+<delete id="memberClear" parameterType="String">
+	delete from member where id=#{id}
+</delete>
  
  </mapper>

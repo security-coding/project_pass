@@ -286,6 +286,15 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 
+	public void memberClear(HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		logindao.memberClear(id);
+		session.removeAttribute("id");
+		session.invalidate();
+		
+	}
+
+
 
 
 }
