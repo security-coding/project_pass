@@ -42,6 +42,10 @@ public interface PlayDao {
 	
 	public void delLikes(HashMap<String, String> likes);
 	
+	//좋아요 내 카운트 기능
+	
+	public int likesCount(HashMap<String, String> likes);
+	
 	//검색
 	public ArrayList<DetailDto> getsearch(String keyword);
 	

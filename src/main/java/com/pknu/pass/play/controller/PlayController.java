@@ -1,6 +1,8 @@
 package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -118,10 +120,23 @@ public class PlayController {
 	
 	
 //	좋아요 기능 내 추가를 할 시
+//	@ResponseBody
+//	@RequestMapping(value="/UpdateLikes")
+//	public int UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal, Model model) {
+//		return playService.UpdateLikes(id, mt20id, changeVal, model); 
+//	}
+	
 	@ResponseBody
 	@RequestMapping(value="/UpdateLikes")
-	public int UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal) {
-		return playService.UpdateLikes(id, mt20id, changeVal); 
+	public HashMap<String,Integer> UpdateLikes(@RequestParam("id")String id, @RequestParam("mt20id")String mt20id,@RequestParam("changeVal")int changeVal, Model model) {
+		HashMap<String,Integer>likesMap=playService.UpdateLikes(id, mt20id, changeVal, model);
+		return likesMap; 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/nowLikes")
+	public int nowLikes(@RequestParam("mt20id")String mt20id) {
+		return playService.nowLikes(mt20id); 
 	}
 
 	@RequestMapping(value = "/search")
