@@ -110,7 +110,6 @@ pageEncoding="UTF-8"%>
 		let html;
 		if(idCheck==true&&emailCheck==true){
 			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
-			html="<img src='/resources/images/'>"
 			return true;
 		}else if(!idCheck || !emailCheck){
 			alert("확인해주세요");
@@ -176,7 +175,7 @@ pageEncoding="UTF-8"%>
     <body>
     
 <!--     로그인 모달 헤더 불러오기 -->
-    <%@include file="../loginPage/header.jsp"%>
+    <%@include file="../header.jsp"%>
 
     	<div class="loader">
     		<div class="loader-img"></div>
@@ -389,9 +388,9 @@ pageEncoding="UTF-8"%>
 	 });
  	
 	 
-		$("#joinId").blur(function(){
+		$("#joinPass").blur(function(){
 			let html;
-			if($("#joinId").val()==""){
+			if($("#joinPass").val()==""){
 				html="<b>암호를 입력해주세요</b>"
 				$("#passCheck").html(html).css("color","red");
 			}else{
