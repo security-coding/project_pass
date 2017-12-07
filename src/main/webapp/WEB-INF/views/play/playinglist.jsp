@@ -10,24 +10,17 @@
  
 <!-- jQuery -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-<style>
-	.container {
-		margin-bottom: 10%;
-	}
-</style>
 </head>
 
 <body>
 
-
+<div>
     <%@include file="../header.jsp"%>
-<br>
-<br>
+</div>
 
-         
-<div class="text-center">
-         	<h1>현재 공연작</h1>
-	</div>
+
+<h1 class="text-center" style="margin-top: 6%;'">현재 공연작</h1>
+
 
 
 <div class="typeNav" > 
@@ -201,13 +194,7 @@
 	}
 	
 	
-	let stNum = 1;
-	
-	
-
-	 
-
-	
+	let stNum = 1;	
 </script>
 
 </body>

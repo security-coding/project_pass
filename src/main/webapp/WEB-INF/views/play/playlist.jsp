@@ -9,20 +9,14 @@
 <link rel="stylesheet" href='<c:url value="/css/boxoffice.css"/>'>
 <!-- jQuery -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-<style>
-	.container {
-		margin-bottom: 10%;
-	} 
-</style>
 </head>
 <body>
+<div>
     <%@include file="../header.jsp"%>
-<br>
-<br>
+</div>
 
-<div class="text-center">
-         	<h1>공연 예정작</h1>
-	</div>
+
+<h1 class="text-center" style="margin-top: 6%;'">공연 예정작</h1>
 <div class="typeNav" > 
 <ul class="nav nav-tabs  nav-justified">
   <li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
