@@ -27,15 +27,6 @@
 		where rum BETWEEN 1 and 20
 	</select>
 
-<!-- SELECT * -->
-<!-- 		from(SELECT rownum rum, human.* -->
-<!-- 		FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm, a.mt20id, p.area -->
-<!-- 		      from image e, concert a, place p -->
-<!-- 		      where e.mt20id = a.mt20id and a.mt10id = p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate  -->
-<!-- 		      order by prfpdfrom asc) human ) -->
-<!-- 		where rum BETWEEN 1 and 20 -->
-
-
 
 	<select id="getNowNextPoster" parameterType="hashMap"
 		resultType="predto">

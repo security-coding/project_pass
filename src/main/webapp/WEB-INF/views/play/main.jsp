@@ -171,9 +171,14 @@ pageEncoding="UTF-8"%>
 
 
 <script>
+
+
+
+
     $(document).ready(function () {
         var jbOffset = $('.typeNav').offset();
 
+       
         $(window).scroll(function () {
 
             if ($(document).scrollTop() > jbOffset.top) {

@@ -227,10 +227,16 @@ pageEncoding="UTF-8"%>
                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                     mapOption = {
                         center: new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo}), // 지도의 중심좌표
-                        level: 5 // 지도의 확대 레벨
+                        level: 5, // 지도의 확대 레벨
+                        scrollwheel : false,
+                        disableDoubleClick : false,
+                        disableDoubleClickZoom : false
                     };
 
                 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+                 
+                var zoomControl = new daum.maps.ZoomControl();
+           	 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
                 // 마커가 표시될 위치입니다 
                 var markerPosition = new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo});

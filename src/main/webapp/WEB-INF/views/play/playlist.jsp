@@ -19,15 +19,15 @@
 <h1 class="text-center" style="margin-top: 6%;'">공연 예정작</h1>
 <div class="typeNav" > 
 	<ul class="nav nav-tabs  nav-justified">
-		<li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
-		<li  role="presentation"><a href="#" onclick="change('연극');">연극</a></li>
-		<li  role="presentation"><a href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
-		<li  role="presentation"><a href="#" onclick="change('클래식');">클래식</a></li>
-		<li  role="presentation"><a href="#" onclick="change('오페라');">오페라</a></li>
-		<li  role="presentation"><a href="#" onclick="change('무용');">무용</a></li>
-		<li  role="presentation"><a href="#" onclick="change('발래');">발래</a></li>
-		<li  role="presentation"><a href="#" onclick="change('국악');">국악</a></li>
-		<li  role="presentation"><a href="#" onclick="change('복합');">복합</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('전체');">전체</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('연극');">연극</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('클래식');">클래식</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('오페라');">오페라</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('무용');">무용</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('발래');">발래</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('국악');">국악</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('복합');">복합</a></li>
 	</ul>
 </div>
 <br>	
@@ -67,7 +67,24 @@
 </div>
 <%@include file="../footer.jsp" %>  
 <script>
+	
+	
+		$(".top").on("click", function(){
+		    $('html, body').animate({
+		        scrollTop: 74
+		    }, 700);
+		    return false; 
+		});
+	
+	
+	
 	$(function() {
+	
+		
+		  
+		
+		
+		
 		var jbOffset = $( '.typeNav' ).offset();
 		
 		$(window).scroll(function() {

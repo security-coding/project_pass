@@ -19,15 +19,15 @@
 <h1 class="text-center" style="margin-top: 6%;'">현재 공연작</h1>
 <div class="typeNav" > 
 	<ul class="nav nav-tabs  nav-justified">
-		<li  role="presentation"><a href="#" onclick="change('전체');">전체</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('연극');">연극</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('클래식');">클래식</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('오페라');">오페라</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('무용');">무용</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('발래');">발래</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('국악');">국악</a></li>
-	    <li  role="presentation"><a href="#" onclick="change('복합');">복합</a></li>
+		<li  role="presentation"><a class="top" href="#" onclick="change('전체');">전체</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('연극');">연극</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('뮤지컬');">뮤지컬</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('클래식');">클래식</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('오페라');">오페라</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('무용');">무용</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('발래');">발래</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('국악');">국악</a></li>
+	    <li  role="presentation"><a class="top" href="#" onclick="change('복합');">복합</a></li>
 	</ul>
 </div>
 <br>	
@@ -69,9 +69,22 @@
 </div>
 <%@include file="../footer.jsp" %>           
 <script>
-	let stNum = 1;
+	
+	
+	
+		$(".top").on("click", function(){
+		    $('html, body').animate({
+		        scrollTop: 74
+		    }, 700);
+		    return false; 
+		});
+			
+      let stNum = 1;
 	
 	$(function() {
+		
+	   
+		
 		var jbOffset = $( '.typeNav' ).offset();
 		
 		$(window).scroll(function() {
@@ -80,6 +93,11 @@
 	         }else {
 	             $( '.typeNav' ).removeClass( 'jbFixed' );
 	         }
+			
+
+			
+			
+			
 			
 			if($(window).scrollTop() == $(document).height() - $(window).height()) {
 				let elem = document.getElementById("type");
