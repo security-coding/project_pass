@@ -9,12 +9,25 @@ public class MainDto {
 	private	String genrenm;
 	private String mt20id;
 	private String pType;
+	private String sidonm;
+
+	
+
+	
 
 	@Override
 	public String toString() {
 		return "MainDto [imageUrl=" + imageUrl + ", prfnm=" + prfnm + ", prfpdfrom=" + prfpdfrom + ", prfpdto="
 				+ prfpdto + ", fcltynm=" + fcltynm + ", genrenm=" + genrenm + ", mt20id=" + mt20id + ", pType=" + pType
-				+ "]";
+				+ ", sidonm=" + sidonm + "]";
+	}
+
+	public String getSidonm() {
+		return sidonm;
+	}
+
+	public void setSidonm(String sidonm) {
+		this.sidonm = sidonm;
 	}
 
 	public String getpType() {

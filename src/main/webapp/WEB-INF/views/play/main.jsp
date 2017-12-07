@@ -138,6 +138,7 @@ pageEncoding="UTF-8"%>
                                 <div class="img-responsive img-thumbnail overlay">
                                     <div class="text">
                                         <%-- <p>RANK ${play.rnum}</p><br> --%>
+                                        <p>~${play.area}~</p><br>
                                         <p>${play.prfnm}</p><br>
                                         <p>${play.prfpd}</p><br>
                                         <p>${play.prfplcnm}</p><br>
@@ -232,6 +233,7 @@ pageEncoding="UTF-8"%>
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageurl + "' alt=''/>"
                         + "<div class='img-fluid img-thumbnail overlay'>"
                         + "<div class='text'>" 							                    
+                        + "<p>~" + item.area + "~</p><br>"
                         + "<p>" + item.prfnm + "</p><br>"
                         + "<p>" + item.prfpd + "</p><br>"
                         + "<p>" + item.prfplcnm + "</p><br>"

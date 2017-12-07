@@ -51,6 +51,7 @@
                                 <div class="img-responsive img-thumbnail overlay">
                                     <div class="text">
                                       
+                                        <p>~${play.sidonm}~</p><br>
                                         <p>${play.genrenm}</p><br>
                     					<p>${play.prfnm}</p><br>
                     					<p>${play.prfpdfrom}~${play.prfpdto}</p><br>
@@ -87,7 +88,7 @@
 			  $.ajax({
 					type:"POST",
 					dataType:"JSON",
-					url:"/play/come/getNextPoster",
+					url:"/play/now/getNextPoster",
 					data:({ "stNum" : stNum , "index" : index}),
 					success: function(data) {
 						let str =""; 
@@ -99,6 +100,7 @@
 				                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
 				                   + "<div class='img-fluid img-thumbnail overlay'>"
 			                       + "<div class='text'>" 							                    
+			                       + "<p>~"+item.sidonm+"~</p><br>"
 			                       + "<p>"+item.prfnm+"</p><br>"
 						           + "<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
 				                   + "<p>"+item.fcltynm+"</p><br>"
@@ -146,6 +148,7 @@
 		                   + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
 		                   + "<div class='img-fluid img-thumbnail overlay'>"
 	                       + "<div class='text'>" 							                    
+	                       + "<p>~"+item.sidonm+"~</p><br>"
 	                       + "<p>"+item.prfnm+"</p><br>"
 				           + "<p>"+item.prfpdfrom+"~"+item.prfpdto+"</p><br>"
 		                   + "<p>"+item.fcltynm+"</p><br>"

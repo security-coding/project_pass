@@ -10,125 +10,94 @@
 	<select id="getNowChange" parameterType="String" resultType="predto">
 		SELECT *
 		from(SELECT rownum rum, human.*
-		FROM (select imageUrl, genrenm,
-		prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from image e, concert a
-		where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1
-		and
-		sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		order by prfpdfrom
-		asc) human )
+		FROM (  select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		        from image e, concert a, place p
+		        where e.mt20id = a.mt20id and a.mt10id=p.mt10id and  a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+		        order by prfpdfrom asc) human )
 		where rum BETWEEN 1 and 20
 	</select>
 
 	<select id="getNowPoster" resultType="predto">
 		SELECT *
-		from(SELECT rownum
-		rum, human.*
-		FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from image e, concert a
-		where e.mt20id = a.mt20id and
-		e.imagetype = 1 and sysdate >= a.prfpdfrom
-		and a.prfpdto >= sysdate
-		order by prfpdfrom asc) human )
+		from(SELECT rownum rum, human.*
+		FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		      from image e, concert a, place p
+		      where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate 
+		      order by prfpdfrom asc) human )
 		where rum BETWEEN 1 and 20
 	</select>
+
+<!-- SELECT * -->
+<!-- 		from(SELECT rownum rum, human.* -->
+<!-- 		FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto, fcltynm, a.mt20id, p.area -->
+<!-- 		      from image e, concert a, place p -->
+<!-- 		      where e.mt20id = a.mt20id and a.mt10id = p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate  -->
+<!-- 		      order by prfpdfrom asc) human ) -->
+<!-- 		where rum BETWEEN 1 and 20 -->
+
+
 
 	<select id="getNowNextPoster" parameterType="hashMap"
 		resultType="predto">
 		SELECT *
 		from(SELECT rownum rum, human.*
-		FROM (select
-		imageUrl, genrenm, prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from
-		image e, concert a
-		where e.mt20id = a.mt20id and a.genrenm=#{pType} and
-		e.imagetype = 1 and
-		sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and
-		((#{stNum})+1)*20
+		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		     from image e, concert a, place p
+		     where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+		     order by prfpdfrom asc) human )
+		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
 	</select>
 
 	<select id="getNowAllNextPoster" parameterType="String"
 		resultType="predto">
 		SELECT *
 		from(SELECT rownum rum, human.*
-		FROM (select
-		imageUrl, genrenm, prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from
-		image e, concert a
-		where e.mt20id = a.mt20id and e.imagetype = 1 and
-		sysdate >= a.prfpdfrom
-		and a.prfpdto >= sysdate
-		order by prfpdfrom asc)
-		human )
+		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		           from image e, concert a, place p
+	 	           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+		           order by prfpdfrom asc) human )
 		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
 	</select>
 
 
 	<!-- 상영예정 -->
 	<select id="getChange" parameterType="String" resultType="predto">
-		SELECT
-		*
-		from(SELECT rownum rum, human.*
-		FROM (select imageUrl, genrenm, prfnm,
-		prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from image e, concert a
-		where
-		e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1 and
-		a.prfpdfrom > sysdate
-		order by prfpdfrom asc) human )
-		where rum BETWEEN
-		1 and 20
+		SELECT *
+		 from(SELECT rownum rum, human.*
+		      FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		           from image e, concert a, place p
+		           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate order by prfpdfrom asc) human )
+		where rum BETWEEN 1 and 20
 	</select>
 
 	<select id="getPoster" resultType="predto">
-		SELECT *
-		from(SELECT rownum
-		rum, human.*
-		FROM (select imageUrl, genrenm, prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from image e, concert a
-		where e.mt20id = a.mt20id and
-		e.imagetype = 1 and a.prfpdfrom > sysdate
-		order by prfpdfrom asc) human
-		)
+		SELECT * 
+		  from(SELECT rownum rum, human.*
+		       FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		              from image e, concert a, place p 
+		              where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
+		              order by prfpdfrom asc) human)
 		where rum BETWEEN 1 and 20
 	</select>
 
 	<select id="getNextPoster" parameterType="hashMap" resultType="predto">
 		SELECT *
-		from(SELECT rownum rum, human.*
-		FROM (select imageUrl, genrenm,
-		prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from image e, concert a
-		where e.mt20id = a.mt20id and a.genrenm=#{pType} and e.imagetype = 1
-		and
-		a.prfpdfrom > sysdate
-		order by prfpdfrom asc) human )
-		where rum
-		BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+		  from(SELECT rownum rum, human.*
+		      FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		             from image e, concert a, place p
+		             where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
+		             order by prfpdfrom asc) human )
+		  where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
 	</select>
 
 	<select id="getAllNextPoster" parameterType="String" resultType="predto">
 		SELECT *
 		from(SELECT rownum rum, human.*
-		FROM (select imageUrl, genrenm,
-		prfnm, prfpdfrom, prfpdto,
-		fcltynm,a.mt20id
-		from image e, concert a
-		where e.mt20id = a.mt20id and e.imagetype = 1 and a.prfpdfrom >
-		sysdate
-		order by prfpdfrom asc) human )
-		where rum BETWEEN
-		(#{stNum})*20+1 and ((#{stNum})+1)*20
+		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		           from image e, concert a, place p
+		           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
+		           order by prfpdfrom asc) human )
+		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
 	</select>
 
 	<!-- 내 포스터 -->
@@ -143,10 +112,7 @@
 	<!-- 내 정보 -->
 
 	<select id="getDetailInf" parameterType="String" resultType="detail">
-		select prfnm, prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew,
-		prfruntime,
-		prfage, entrpsnm, pcseguidance, dtguidance, la, lo,
-		genrenm, mt20id
+		select prfnm, prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime, prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm, mt20id
 		from concert natural join place
 		where mt20id=#{mt20id}
 	</select>
@@ -154,12 +120,9 @@
 
 	<!-- 검색 -->
 	<select id="getsearch" parameterType="String" resultType="detail">
-		select
-		prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl,dtguidance
-		from
-		concert c ,image i
-		where i.mt20id=c.mt20id and i.imagetype=1 and prfnm
-		like '%'||#{keyword}||'%'
+		select prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl,dtguidance
+		from concert c ,image i
+		where i.mt20id=c.mt20id and i.imagetype=1 and prfnm like '%'||#{keyword}||'%'
 	</select>
 
 	<select id="getNearMap" parameterType="hashMap" resultType="place">
@@ -179,22 +142,17 @@
 
 	<select id="getBoxOffice" resultType="mainbox">
 
-		select area, prfdtcnt,
-		nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id,
-		imageurl
-		from
-		boxoffice natural join image
+		select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
+		from boxoffice natural join image
 		where catecode = 'YK' and imagetype = 1
 		order by rnum
 	</select>
 
 	<select id="getBoxChange" parameterType="String" resultType="mainbox">
 
-		select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum,
-		mt20id, imageurl
+		select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
 		from boxoffice natural join image
-		where catecode =
-		#{cateCode} and imagetype = 1
+		where catecode = #{cateCode} and imagetype = 1
 		order by rnum
 	</select>
 
