@@ -11,7 +11,7 @@
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </head>
-<body>
+<body style="background-color : #f8f8f8;">
 <div>
     <%@include file="../header.jsp"%>
 </div>

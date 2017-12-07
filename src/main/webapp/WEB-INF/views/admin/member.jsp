@@ -20,7 +20,7 @@
  	background-color: #428BCA;
  	text-align: center;
  }
- button {
+ .btn-group button, .btn-group a {
  	width: 100%;
  }
 </style>
@@ -54,7 +54,7 @@
 
 			<ul class="nav nav-sidebar">
 				<li class="active"><a href="#">사용자 정보 관리</a></li>
-				<li><a href="">코멘트 관리</a>
+				<li><a href="/admin/comment">코멘트 관리</a>
 			</ul>
 		</div>
 
@@ -65,19 +65,13 @@
 
 				<div class="placeholders">
 					<div>
-						<div class="pull-left">
-							<label class="radio-inline">
-								<input type="radio" name="searchVal" value="" onclick="btn_type();"><span>전체</span>
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="searchVal" value="1" onclick="btn_type();"><span>활성 회원</span>
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="searchVal" value="0" onclick="btn_type();"><span>비활성 회원</span>
-							</label>
+						<div class="btn-group" align="center" style="display:flex;">
+      		 				<button class="btn btn-info active" value="">전	체</button>
+       						<button class="btn btn-primary" value=1>활성 회원</button>
+       						<button class="btn btn-danger" value=0>비활성 회원</button>
 						</div>
 						<div class="pull-right">
-							<span>유저 DB 갯수 <span class="badge">${paging.total}</span></span>
+							<span>유저 DB 갯수 <span class="badge"></span></span>
 						</div>
 						<div class="clearfix"></div>
 						<div class="placeholder">
@@ -94,67 +88,11 @@
 											<th>Comment</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="member" items="${memberList}">
-											<tr>
-												<td id="id">${member.id}</td>
-												<td id="email">${member.email}</td>
-												<td id="addr1">부산시 북구 효열로220번길</td>
-												<td id="addr2">누구누구아파트</td>
-												<c:choose>
-													<c:when test="${member.certify eq 0}"> 
-														<td>이메일 미인증</td>
-													</c:when>
-													<c:when test="${member.certify eq 1}">
-														<td>이메일 인증</td>
-													</c:when>
-												</c:choose>
-												<c:choose>
-													<c:when test="${member.grade eq 0}">
-														<td><button class="btn-sm btn-danger grade" value=0 onclick="changeGrade(this);">Block</button></td>
-													</c:when>
-													<c:when test="${member.grade eq 1}">
-														<td><button class="btn-sm btn-primary grade" value=1 onclick="changeGrade(this);">Active</button></td>
-													</c:when>
-												</c:choose>
-												<td><button class="btn-sm btn-default"><a href="/admin/user/comment?id=${member.id}">confirm</a></button></td>
-											</tr>
-										</c:forEach>
+									<tbody id="table-body">
 									</tbody>
 								</table>
 							</div>
-							<nav aria-label="Page navigation">
-								<ul class="pagination">
-									<c:if test="${paging.pageStartNum ne 1 }">
-										<li><a
-											onclick='pagePre(${paging.pageCnt+1},${paging.pageCnt});'>맨
-												처음으로</a></li>
-										<li><a
-											onclick='pagePre(${paging.pageStartNum},${paging.pageCnt});'
-											aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-									</c:if>
-
-									<c:forEach var='i' begin="${paging.pageStartNum}"
-										end="${paging.pageLastNum}" step="1">
-										<li class='pageIndex${i}'><a onclick='pageIndex(${i});'>${i}</a></li>
-									</c:forEach>
-
-									<c:if test="${paging.lastChk}">
-										<li><a
-											onclick='pageNext(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt});'>&raquo;</a></li>
-										<li><a
-											onclick='pageLast(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt});'>맨
-												마지막으로</a></li>
-									</c:if>
-								</ul>
-							</nav>
-							<form action="/admin/member" method="post" id="frmPaging">
-								<input type="hidden" name="index" id="index" value="${paging.index}"> 
-								<input type="hidden"name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
-								<input type="hidden" name="listCnt" id="listCnt" value="${paging.listCnt}">
-								<input type="hidden" name="searchFilter" id="searchFilter" value="grade"> 
-								<input type="hidden" name="searchValue" id="searchValue" value="${paging.searchValue}">
-							</form>
+							<%@include file="../paging.jsp" %>
 						</div>
 					</div>
 				</div>
@@ -165,6 +103,61 @@
 	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 	
 		<script>
+		$(function() {
+			paging.ajax = ajaxList;
+			ajaxList();
+			
+			$('.btn-group button').on('click',function(){
+				$(this).addClass('active').siblings().removeClass('active');
+				ajaxList();
+			});
+		});
+			
+		var ajaxList = function() {
+			var submitData = {};
+			submitData.index = paging.p.index;
+			submitData.pageStartNum = paging.p.pageStartNum;
+			submitData.value = $(".btn-group .active").attr('value');
+			submitData.filter = "grade";
+			
+			    $.ajax({
+			        url: '/admin/member',
+			        type: 'post',
+			        data: submitData,
+			        success : function(obj){
+			        		$("#table-body").empty();    
+			        	
+			            var str = '';
+			            $.each(obj.list, function(index, member) {
+			            		str += "<tr>";
+							str += "<td id='id'>"+member.id+"</td>";
+							str += "<td>"+member.email+"</td>";
+							str += "<td>"+member.address+"</td>";
+							str += "<td>"+member.detailAddress+"</td>";
+							if(member.certify == 1) {
+								str += "<td>이메일 인증</td>";
+							} else {
+								str += "<td>이메일 미인증</td>";
+							}
+							if(member.grade == 1) {
+								str += "<td><button class='btn-sm btn-primary grade' value=1 onclick='changeGrade(this);'>Active</button></td>";
+							} else {
+								str += "<td><button class='btn-sm btn-danger grade' value=0 onclick='changeGrade(this);'>Block</button></td>";
+							}
+							str += "<td><a href='/admin/comment/"+member.id+"' class='btn-sm btn-default'>confirm</a></td>";
+							
+							str += "</tr>";
+						});
+			            
+			            $("#table-body").append(str);
+			            $(".badge").html(obj.p.total);
+			            
+			            paging.p = obj.p;
+			            paging.create();
+			        }
+			    });   
+		};
+		
 			function changeGrade(obj) {
 				var id = $(obj).parents().prevAll("#id").text();
 				var grade = 1 - $(obj).val();
@@ -195,12 +188,6 @@
 	 				});		
 				console.log(id);
 			}
-		}
-			
-		function btn_type() {
-			var active = $('input[type="radio"]:checked').val();
-			document.getElementById("searchValue").value = active;
-			frmPaging();
 		}
 	</script>
 </body>

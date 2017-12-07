@@ -19,21 +19,6 @@ pageEncoding="UTF-8"%>
     <!-- Bootstrap Core JavaScript -->
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
-    <style>
-        @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
-
-        body,
-        table,
-        div,
-        p,
-        header,
-        hr,
-        section,
-        footer {
-            font-family: 'Jeju Gothic'
-        }
-    </style>
-
     <script>
         let id = '${id}';
         let mt20id = '${detailInf.mt20id}';
@@ -292,20 +277,9 @@ pageEncoding="UTF-8"%>
 
 
 <!-- Replicate the above Div block to add more title and company details -->
-
-</div>
 <div>
-    <footer>
-        <hr>
-        <p class="footerDisclaimer">
-            2014 Copyrights - <span>All Rights Reserved</span>
-        </p>
-        <p class="footerNote">
-            project pass - <span>-</span>
-        </p>
-    </footer>
+<%@include file="../footer.jsp" %>
 </div>
-
 
 </body>
 </html>
