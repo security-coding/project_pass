@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Admin Page(Place)</title>
 
-<script src='<c:url value="/js/paging.js"/>'></script>
-
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
@@ -54,17 +52,17 @@
 				<div class="placeholders">
 					<div>
 						<div class="col-md-4 col-md-offset-4">
-							<select class="form-control" id="searchBox">
-								<option selected>-- 검색 설정 --</option>
+							<select class="form-control" id="filter">
+								<option value="ALL">전		체</option>
 								<option value="fcltynm">공연시설 명</option>
 								<option value="sidonm">지역</option>
 							</select>
 
 							<div class="input-group custom-search-form">
 								<input type="text" class="form-control" placeholder="Search..."
-									id="searchVal"> <span class="input-group-btn">
+									id="value"> <span class="input-group-btn">
 									<button class="btn btn-primary" type="button"
-										onclick="searchPaging();">
+										onclick="ajaxList();">
 										<i>search</i>
 									</button>
 								</span>
@@ -73,7 +71,7 @@
 						<br>
 						<br>
 						<div class="pull-right">
-							<br> <span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
+							<br> <span>공연 DB 갯수 <span class="badge"></span></span>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -91,60 +89,10 @@
 										<th>개관연도</th>
 									</tr>
 								</thead>
-								<tbody>
-									<c:forEach var="place" items="${placeList}">
-										<tr>
-											<td><a href="/admin/select/concert/${place.mt10id}">${place.mt10id }</a></td>
-											<td>${place.fcltynm }</td>
-											<td>${place.mt13cnt }</td>
-											<td>${place.seatscale }</td>
-											<td>${place.fcltychartr }</td>
-											<td>${place.sidonm }</td>
-											<td>${place.opende }</td>
-										</tr>
-									</c:forEach>
+								<tbody id="table-body">
 								</tbody>
-
 							</table>
-						</div>
-						<nav aria-label="Page navigation">
-							<ul class="pagination">
-								<c:if test="${paging.pageStartNum ne 1 }">
-									<li><a
-										onclick='pagePre(${paging.pageCnt+1},${paging.pageCnt});'>맨
-											처음으로</a></li>
-									<li><a
-										onclick='pagePre(${paging.pageStartNum},${paging.pageCnt});'
-										aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-								</c:if>
-
-								<c:forEach var='i' begin="${paging.pageStartNum}"
-									end="${paging.pageLastNum}" step="1">
-									<li class='pageIndex${i}'><a onclick='pageIndex(${i});'>${i}</a></li>
-								</c:forEach>
-
-								<c:if test="${paging.lastChk}">
-									<li><a
-										onclick='pageNext(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt});'>&raquo;</a></li>
-									<li><a
-										onclick='pageLast(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt});'>맨
-											마지막으로</a></li>
-								</c:if>
-							</ul>
-						</nav>
-						<form action="/admin/select/place" method="post" id="frmPaging">
-							<input type="hidden" name="index" id="index"
-								value="${paging.index}"> <input type="hidden"
-								name="pageStartNum" id="pageStartNum"
-								value="${paging.pageStartNum}"> <input type="hidden"
-								name="listCnt" id="listCnt" value="${paging.listCnt}"> <input
-								type="hidden" name="searchFilter" id="searchFilter" value="${paging.searchFilter}"> <input
-								type="hidden" name="searchValue" id="searchValue" value="${paging.searchValue}">
-						</form>
-
-						<div class="pull-right">
-							<button>공연 정보 추가</button>
-							<button>선택 정보 삭제</button>
+							<%@include file="../paging.jsp"%>
 						</div>
 					</div>
 				</div>
@@ -153,5 +101,48 @@
 	</div>
 	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	
+	<script>
+		$(function() {
+			paging.ajax = ajaxList;
+			ajaxList();
+		});
+		
+		var ajaxList = function() {
+			var submitData = {};
+			submitData.index = paging.p.index;
+			submitData.pageStartNum = paging.p.pageStartNum;
+			submitData.filter = $("#filter option:selected").val();
+			submitData.value = $("#value").val();
+			
+			    $.ajax({
+			        url: '/admin/select/place',
+			        type: 'post',
+			        data: submitData,
+			        success : function(obj){
+			        		$("#table-body").empty();    
+			        	
+			            var str = '';
+			            $.each(obj.list, function(index, place) {
+			            		str += "<tr>";
+							str += "<td>"+place.mt10id+"</td>";
+							str += "<td>"+place.fcltynm+"</td>";
+							str += "<td>"+place.mt13cnt+"</td>";
+							str += "<td>"+place.seatscale+"</td>";
+							str += "<td>"+place.fcltychartr+"</td>";
+							str += "<td>"+place.sidonm+"</td>";
+							str += "<td>"+place.opende+"</td>";
+							str += "</tr>";
+						});
+			            
+			            $("#table-body").append(str);
+			            $(".badge").html(obj.p.total);
+			            
+			            paging.p = obj.p;
+			            paging.create();
+			        }
+			    });   
+		};
+	</script>
 </body>
 </html>
