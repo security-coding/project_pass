@@ -112,7 +112,7 @@ function passSearchSubmit(){
 	<div>
 	<article class="container-fluid">
 	<div class="page-header">
-	<%@include file="../loginPage/header.jsp"%>
+	<%@include file="../header.jsp"%>
 	</div>
 	<h2>아이디찾기</h2>
 	<div class="col-xs-8 col-sm-6">

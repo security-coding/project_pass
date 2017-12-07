@@ -126,7 +126,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<%@include file="../loginPage/header.jsp"%>
+<%@include file="../header.jsp"%>
 <div style="height: 100px;"></div>
 <div class="row">
     <div class="col-md-7 col-md-offset-1">
