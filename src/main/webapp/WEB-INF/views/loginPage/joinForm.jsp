@@ -162,8 +162,6 @@ pageEncoding="UTF-8"%>
     }
 
 </script>
-
-
     
             <!-- CSS -->
         <link rel="stylesheet" href="assets/typicons/typicons.min.css">

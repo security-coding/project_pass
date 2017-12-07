@@ -26,9 +26,11 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public void playNowMain(Model model) {
 
-		ArrayList<MainDto> posters = new ArrayList<>();
-		posters = playDao.getNowPoster();
-		model.addAttribute("playList", posters);
+//		ArrayList<MainDto> posters = new ArrayList<>();
+//		posters = playDao.getNowPoster();
+		
+		 System.out.println("DB한번접속");
+		 model.addAttribute("playList", playDao.getNowPoster());
 
 	}
 

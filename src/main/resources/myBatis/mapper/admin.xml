@@ -115,24 +115,42 @@
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE grade != 2
-		<if test="searchFilter != null and searchValue !=''">
-			AND ${searchFilter} = #{searchValue}
+		<if test='filter != null and value !=""'>
+			AND ${filter} = #{value}
 		</if>
 	</select>
 	
 	<select id="selectMember" parameterType="paging" resultType="login">
 		SELECT *
 		FROM ( SELECT ROWNUM RNUM, M.*
-				FROM ( SELECT ID,EMAIL,CERTIFY,GRADE 
+				FROM ( SELECT ID,EMAIL,CERTIFY,GRADE,ADDRESS,DETAILADDRESS
 						FROM MEMBER
 						WHERE grade != 2 <!-- admin 계정은 select에서 제외 -->
-						<if test="searchFilter != null and searchValue !=''">
-							AND ${searchFilter} = #{searchValue}
+						<if test='filter != null and value !=""'>
+							AND ${filter} = #{value}
 						</if>
 						ORDER BY GRADE DESC
 						) M )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
+	
+	<select id="selectComment" parameterType="paging" resultType="comment">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, C.*
+				FROM ( SELECT * 
+						FROM COMMENTS ) C )
+		WHERE RNUM BETWEEN #{start} AND #{last}	
+	</select>
+	
+	<select id="selectTotalComment" parameterType="paging" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM COMMENTS
+	</select>
+	
+	<delete id="deleteComment" parameterType="Integer">
+		DELETE COMMENTS
+		WHERE commentNum = #{commentNum}
+	</delete>
 
 	<insert id="insertConcertInf" parameterType="concert">
 		MERGE INTO CONCERT
@@ -270,6 +288,7 @@
 	<delete id="deleteBoxofInf">
 		DELETE BOXOFFICE
 	</delete>
+
 	
 	<update id="changeGrade" parameterType="login">
 		UPDATE MEMBER SET

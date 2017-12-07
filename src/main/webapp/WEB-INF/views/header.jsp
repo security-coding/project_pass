@@ -144,10 +144,10 @@ function showPassword() {
 					<li><a href="/place">주변 공연 찾기</a></li>
 					<li>
 						<c:if test="${id==null}">
-							<%@include file="../loginPage/login.jsp"%>
+							<%@include file="./loginPage/login.jsp"%>
 						</c:if> 
 						<c:if test="${id!=null}">
-							<%@include file="../loginPage/loginOk.jsp"%>
+							<%@include file="./loginPage/loginOk.jsp"%>
 						</c:if>
 					</li>
 				</ul>

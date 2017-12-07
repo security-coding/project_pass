@@ -29,10 +29,12 @@ public class PlayController {
 	// 메인 화면
 	@RequestMapping
 	public String boxOfficeMain(Model model) {
+		
 		playService.boxTest(model);
 
 		return "play/main";
 	}
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/change")
@@ -47,10 +49,11 @@ public class PlayController {
 	}
 
 	// 현재공연
-	@RequestMapping(value = "/now")
+	@RequestMapping(value = "/now" ,method=RequestMethod.GET)
 	public String playNowMain(Model model) {
-
+         
 		playService.playNowMain(model);
+		
 		return "play/playinglist";
 
 	}
@@ -73,7 +76,7 @@ public class PlayController {
 		ArrayList<MainDto> fileNames = new ArrayList<>();
 
 		fileNames = playService.getNowNextPoster(stNum, index);
-
+         System.out.println(fileNames.get(0).getSidonm());
 		return fileNames;
 	}
 

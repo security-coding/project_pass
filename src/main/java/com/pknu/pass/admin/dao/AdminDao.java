@@ -3,6 +3,7 @@ package com.pknu.pass.admin.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
@@ -36,6 +37,10 @@ public interface AdminDao {
 	List<LoginDto> selectMember(PagingDto paging);
 	int selectTotalMember(PagingDto paging);
 	void changeGrade(LoginDto member);
+	
+	List<CommentDto> selectComment(PagingDto paging);
+	int selectTotalComment(PagingDto paging);
+	void deleteComment(int commentNum);
 	
 }
 

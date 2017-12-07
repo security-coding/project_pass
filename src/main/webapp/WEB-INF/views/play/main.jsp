@@ -42,11 +42,14 @@ pageEncoding="UTF-8"%>
         #searchHeader {
             font-size: 4.5rem;
         }
+        .page-content {
+        		margin-bottom: 10%;
+        }
     </style>
 </head>
 
 <body>
-<%@include file="../loginPage/header.jsp"%>
+<%@include file="../header.jsp"%>
 
 <!-- Header -->
 <a id="about"></a>
@@ -88,7 +91,7 @@ pageEncoding="UTF-8"%>
 <!-- /.intro-header -->
 
 <!-- Page Content -->
-<div>
+<div class="page-content">
     <div class="text-center" id="typeNav">
         <h1>BOX OFFICE</h1>
     </div>
@@ -135,6 +138,7 @@ pageEncoding="UTF-8"%>
                                 <div class="img-responsive img-thumbnail overlay">
                                     <div class="text">
                                         <%-- <p>RANK ${play.rnum}</p><br> --%>
+                                        <p>~${play.area}~</p><br>
                                         <p>${play.prfnm}</p><br>
                                         <p>${play.prfpd}</p><br>
                                         <p>${play.prfplcnm}</p><br>
@@ -154,39 +158,8 @@ pageEncoding="UTF-8"%>
 <!-- /.container -->
 
 <!-- </div> 고려-->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="list-inline">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li class="footer-menu-divider">&sdot;</li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="footer-menu-divider">&sdot;</li>
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    <li class="footer-menu-divider">&sdot;</li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-                <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
-            </div>
-        </div>
-    </div>
-</footer>
+
+<%@include file="../footer.jsp" %>
 
 <!-- jQuery -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
@@ -198,9 +171,14 @@ pageEncoding="UTF-8"%>
 
 
 <script>
+
+
+
+
     $(document).ready(function () {
         var jbOffset = $('.typeNav').offset();
 
+       
         $(window).scroll(function () {
 
             if ($(document).scrollTop() > jbOffset.top) {
@@ -260,6 +238,7 @@ pageEncoding="UTF-8"%>
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageurl + "' alt=''/>"
                         + "<div class='img-fluid img-thumbnail overlay'>"
                         + "<div class='text'>" 							                    
+                        + "<p>~" + item.area + "~</p><br>"
                         + "<p>" + item.prfnm + "</p><br>"
                         + "<p>" + item.prfpd + "</p><br>"
                         + "<p>" + item.prfplcnm + "</p><br>"
