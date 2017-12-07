@@ -171,14 +171,14 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="joinPass">비밀번호</label> <input type="password"
-					class="form-control" id="joinPass" name="joinPass" placeholder="비밀번호">
+				<label for="password">비밀번호</label> <input type="password"
+					class="form-control" id="password" name="password" placeholder="비밀번호">
 					<div id="passcheck"></div>
 			</div>
 			
 			<div class="form-group">
 				<label>비밀번호 확인</label> <input type="password"
-					class="form-control" id="joinPassCheck" placeholder="비밀번호 확인" >
+					class="form-control" id="pass2" placeholder="비밀번호 확인" >
 					<div id="passCheck2"></div>
 			</div>
 			
@@ -264,8 +264,8 @@
 		 $("#joinForm").on("submit", function(){
 //	 		 event.preventDefault();
 			 var id=$("#joinId").val();
-			 var pass=$("#joinPass").val(); 
-			 var passCheck=$("#joinPassCheck").val();
+			 var pass=$("#password").val(); 
+			 var passCheck=$("#pass2").val();
 			 var email=$("#email").val();
 			 var str_email=$("#str_email").val();
 			 
@@ -276,7 +276,7 @@
 			 }
 			 if(pass==""){
 			 	alert("패스워드를 입력하세요");
-			 	$("#joinPass").focus();
+			 	$("#password").focus();
 			 	return false;
 			 }
 			 if(email==""){
@@ -291,7 +291,7 @@
 			 }
 			 if(pass!=passCheck){
 				 alert("패스워드가 일치하지 않습니다")
-			 	$("#joinPassCheck").focus();
+			 	$("#pass2").focus();
 				 return false;
 			 }
 			 $("#joinForm").submit();
@@ -299,9 +299,9 @@
 	 });
  	
 	 
-		$("#joinId").blur(function(){
+		$("#password").blur(function(){
 			let html;
-			if($("#joinId").val()==""){
+			if($("#password").val()==""){
 				html="<b>암호를 입력해주세요</b>"
 				$("#passCheck").html(html).css("color","red");
 			}else{
@@ -310,12 +310,12 @@
 			}
 		});
 		 
-	 	$("#joinPassCheck").blur(function(){
+	 	$("#pass2").blur(function(){
 	 		let html;
-	 		if($("#joinPass").val()!=$("#joinPassCheck").val()){
+	 		if($("#password").val()!=$("#pass2").val()){
 				html="<b>암호가 일치하지 않습니다.</b>"
 				$("#passCheck2").html(html).css("color","red");
-	 		}else if($("#joinPass").val()==$("#joinPassCheck").val()&&$("#joinPass").val()!=""&&$("#pass2").val()!=""){
+	 		}else if($("#password").val()==$("#pass2").val()&&$("#password").val()!=""&&$("#pass2").val()!=""){
 				html="<b>암호가 일치합니다.</b>"
 				$("#passCheck2").html(html).css("color","blue");
 	 		}
