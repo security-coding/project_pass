@@ -120,7 +120,7 @@
 	
 	<div class="page-header">
 	<div>
-	<%@include file="../loginPage/header.jsp"%>
+	<%@include file="../header.jsp"%>
 	</div>
 	</div>
 	

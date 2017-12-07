@@ -6,23 +6,21 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-
-<!-- 제이쿼리 -->
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
-
 <link rel="stylesheet" href='<c:url value="/css/boxoffice.css"/>'>
-   
-
-
-  <!-- jQuery -->
-    <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-    <!-- Bootstrap Core JavaScript -->
+ 
+<!-- jQuery -->
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+<style>
+	.container {
+		margin-bottom: 10%;
+	}
+</style>
 </head>
 
 <body>
 
 
-    <%@include file="../loginPage/header.jsp"%>
+    <%@include file="../header.jsp"%>
 <br>
 <br>
 
@@ -95,44 +93,9 @@
                 </c:forEach>
             </div>
         </div>
- 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-           	
+
 </div>
-<footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#about">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#services">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>           
+<%@include file="../footer.jsp" %>           
 <script>
 let stNum = 1;
 	
