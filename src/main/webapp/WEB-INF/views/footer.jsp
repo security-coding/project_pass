@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <ul class="list-inline">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="/">Box Office</a>
                     </li>
                     <li class="footer-menu-divider">&sdot;</li>
                     <li>

@@ -40,7 +40,7 @@ public interface AdminDao {
 	
 	List<CommentDto> selectComment(PagingDto paging);
 	int selectTotalComment(PagingDto paging);
-	void deleteComment(String commentNum);
+	void deleteComment(int commentNum);
 	
 }
 

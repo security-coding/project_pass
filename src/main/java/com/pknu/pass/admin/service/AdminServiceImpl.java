@@ -344,7 +344,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void deleteComment(String commentNum) {
+	public void deleteComment(int commentNum) {
 		adminDao.deleteComment(commentNum);
 	}
 }

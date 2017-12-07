@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import com.pknu.pass.admin.service.AdminService;
 import com.pknu.pass.comment.dto.CommentDto;
@@ -161,9 +160,9 @@ public class AdminController {
 		return resultMap;
 	}
 
-	@RequestMapping(value="/comment", method = RequestMethod.DELETE)
+	@RequestMapping(value="/comment/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public void deleteComment(HttpServletRequest request,String commentNum) {
+	public void deleteComment(HttpServletRequest request,int commentNum) {
 		System.out.println(commentNum);
 		adminService.deleteComment(commentNum);
 	}

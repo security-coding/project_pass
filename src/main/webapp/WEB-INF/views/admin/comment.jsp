@@ -128,16 +128,19 @@
 		};
 		
 		function deleteComment(num) {
+			var submitData = {};
+			submitData.commentNum = num;
 			$.ajax({
-				url : "/admin/comment",
-				data : {
-					commentNum : num
-				},
-				type: "DELETE",
+				url : "/admin/comment/delete",
+				data : submitData,
+				type: "POST",
 				success: function() {
 					alert("삭제가 완료 되었습니다.");
 					ajaxList();
-				}
+				},
+				error:function(){
+		            alert("삭제에 실패 하였습니다.");
+		        }
 			});
 		}
 	</script>

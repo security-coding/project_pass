@@ -147,7 +147,7 @@
 		FROM COMMENTS
 	</select>
 	
-	<delete id="deleteComment" parameterType="String">
+	<delete id="deleteComment" parameterType="Integer">
 		DELETE COMMENTS
 		WHERE commentNum = #{commentNum}
 	</delete>
