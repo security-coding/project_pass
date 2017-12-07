@@ -133,6 +133,24 @@
 						) M )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
+	
+	<select id="selectComment" parameterType="paging" resultType="comment">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, C.*
+				FROM ( SELECT * 
+						FROM COMMENTS ) C )
+		WHERE RNUM BETWEEN #{start} AND #{last}	
+	</select>
+	
+	<select id="selectTotalComment" parameterType="paging" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM COMMENTS
+	</select>
+	
+	<delete id="deleteComment" parameterType="String">
+		DELETE COMMENTS
+		WHERE commentNum = #{commentNum}
+	</delete>
 
 	<insert id="insertConcertInf" parameterType="concert">
 		MERGE INTO CONCERT
@@ -270,6 +288,7 @@
 	<delete id="deleteBoxofInf">
 		DELETE BOXOFFICE
 	</delete>
+
 	
 	<update id="changeGrade" parameterType="login">
 		UPDATE MEMBER SET

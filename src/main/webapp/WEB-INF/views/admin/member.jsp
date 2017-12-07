@@ -20,7 +20,7 @@
  	background-color: #428BCA;
  	text-align: center;
  }
- button {
+ .btn-group button, .btn-group a {
  	width: 100%;
  }
 </style>
@@ -54,7 +54,7 @@
 
 			<ul class="nav nav-sidebar">
 				<li class="active"><a href="#">사용자 정보 관리</a></li>
-				<li><a href="">코멘트 관리</a>
+				<li><a href="/admin/comment">코멘트 관리</a>
 			</ul>
 		</div>
 
@@ -144,7 +144,8 @@
 							} else {
 								str += "<td><button class='btn-sm btn-danger grade' value=0 onclick='changeGrade(this);'>Block</button></td>";
 							}
-							str += "<td><button class='btn-sm btn-default'><a href='/admin/user/comment/"+member.id+"'>confirm</a></button></td>";
+							str += "<td><a href='/admin/comment/"+member.id+"' class='btn-sm btn-default'>confirm</a></td>";
+							
 							str += "</tr>";
 						});
 			            

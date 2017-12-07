@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
@@ -29,6 +30,10 @@ public interface AdminService {
 	
 	List<LoginDto> selectMember(PagingDto paging);
 	int selectTotalMember(PagingDto paging);
-	void changeGrade(LoginDto member);	
+	void changeGrade(LoginDto member);
+	
+	List<CommentDto> selectComment(PagingDto paging);
+	int selectTotalComment(PagingDto paging);
+	void deleteComment(String commentNum);	
 
 }

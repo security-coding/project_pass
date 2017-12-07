@@ -58,24 +58,88 @@
 
 				<div class="placeholders">
 					<div>
+						<div class="pull-right">
+							<span>유저 DB 갯수 <span class="badge"></span></span>
+						</div>
 						<div class="clearfix"></div>
 						<div class="placeholder">
-							<div class="col-lg-6 col-md-6">
-							<table class="table table-bordered table-hover">
-								<thead>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>작성자</th>
+											<th>작성 내용</th>
+											<th>작성 일자</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody id="table-body">
+									</tbody>
+								</table>
 							</div>
+							<%@include file="../paging.jsp" %>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-
-		<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-		<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	</div>
+	<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+	<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+	
+		<script>
+		$(function() {
+			paging.ajax = ajaxList;
+			ajaxList();
+		});
+			
+		var ajaxList = function() {
+			var submitData = {};
+			submitData.index = paging.p.index;
+			submitData.pageStartNum = paging.p.pageStartNum;
+			
+			    $.ajax({
+			        url: '/admin/comment',
+			        type: 'post',
+			        data: submitData,
+			        success : function(obj){
+			        		$("#table-body").empty();    
+			        	
+			            var str = '';
+			            $.each(obj.list, function(index, comment) {
+			            		str += "<tr>";
+			            		str += "<td class='col-md-1'>"+comment.commentNum+"</td>";
+			            		str += "<td class='col-md-2'>"+comment.id+"</td>";
+			            		str += "<td class='col-md-6'>"+comment.commentContent+"</td>";
+			            		str += "<td>"+comment.commentDate+"</td>";
+			            		str += "<td class='col-md-1'><button class='btn-sm btn-danger'"
+			            				+" style='width:100%;' onclick='deleteComment("+comment.commentNum+")'>삭		제</button></td>";
+							str += "</tr>";
+						});
+			            
+			            $("#table-body").append(str);
+			            $(".badge").html(obj.p.total);
+			            
+			            paging.p = obj.p;
+			            paging.create();
+			        }
+			    });   
+		};
+		
+		function deleteComment(num) {
+			$.ajax({
+				url : "/admin/comment",
+				data : {
+					commentNum : num
+				},
+				type: "DELETE",
+				success: function() {
+					alert("삭제가 완료 되었습니다.");
+					ajaxList();
+				}
+			});
+		}
+	</script>
 </body>
 </html>
