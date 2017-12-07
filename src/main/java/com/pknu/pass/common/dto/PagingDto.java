@@ -8,6 +8,9 @@ public class PagingDto {
 	private int total; // 리스트 총 갯수
 	private int pageLastNum;
 	private boolean lastChk;
+	private String filter;	// 검색 분류
+	private String value;	// 검색 값
+	private String type;
 	
 	{
 		pageCnt = 10;
@@ -95,6 +98,30 @@ public class PagingDto {
 
 	public void setLastChk(boolean lastChk) {
 		this.lastChk = lastChk;
+	}
+
+	public String getFilter() {
+		return filter;
+	}
+
+	public void setFilter(String filter) {
+		this.filter = filter;
+	}
+	
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override

@@ -7,6 +7,29 @@
 	<select id="selectTotalConcert" resultType="Integer">
 		SELECT COUNT(*)
 		FROM CONCERT
+		WHERE 1 = 1
+		<choose>
+			<when test="type == 1"><!-- 상영 완료 -->
+				AND sysdate > prfpdto
+			</when>
+			<when test="type == 2"><!-- 상영 중 -->
+				AND sysdate >= prfpdfrom AND prfpdto >= sysdate
+			</when>
+			<when test="type == 3">	<!-- 상영 예정 -->
+				AND prfpdfrom > sysdate
+			</when>
+		</choose>
+		<if test='filter != null and value != ""'>
+			<choose>
+				<when test='filter = "ALL"'>
+				AND (PRFNM LIKE '%'||#{value}||'%'
+					OR FCLTYNM LIKE '%'||#{value}||'%')
+				</when>
+				<otherwise>
+				 AND ${filter} LIKE '%'||#{value}||'%'
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 	
 	<!-- ROWNUM Query(Paging) -->
@@ -15,6 +38,29 @@
 		FROM ( SELECT ROWNUM RNUM, C.*
 				FROM ( SELECT * 
 						FROM CONCERT
+						WHERE 1 = 1			<!-- 검색 설정을 위한 기본값 -->
+						<choose>
+							<when test="type == 1"><!-- 상영 완료 -->
+								AND sysdate > prfpdto
+							</when>
+							<when test="type == 2"><!-- 상영 중 -->
+								AND sysdate >= prfpdfrom AND prfpdto >= sysdate
+							</when>
+							<when test="type == 3">	<!-- 상영 예정 -->
+								AND prfpdfrom > sysdate
+							</when>
+						</choose>
+						<if test='filter != null and value != ""'>
+							<choose>
+								<when test='filter = "ALL"'>
+								AND (PRFNM LIKE '%'||#{value}||'%'
+									OR FCLTYNM LIKE '%'||#{value}||'%')
+								</when>
+								<otherwise>
+								 AND ${filter} LIKE '%'||#{value}||'%'
+								</otherwise>
+							</choose>
+						</if>
 						ORDER BY MT20ID) C )
 		WHERE RNUM BETWEEN #{start} AND #{last}
 	</select>
@@ -22,8 +68,17 @@
 	<select id="selectTotalPlace" parameterType="paging" resultType="Integer">
 		SELECT COUNT(*)
 		FROM PLACE
-		<if test="searchFilter != null and searchValue !=''">
-			WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+		WHERE 1 = 1 
+		<if test='filter != null and value !=""'>
+			<choose>
+				<when test='filter = "ALL"'>
+				AND (FCLTYNM LIKE '%'||#{value}||'%'
+					OR SIDONM LIKE '%'||#{value}||'%')
+				</when>
+				<otherwise>
+				 AND ${filter} LIKE '%'||#{value}||'%'
+				</otherwise>
+			</choose>
 		</if>
 	</select>
 	
@@ -32,8 +87,17 @@
 		FROM ( SELECT ROWNUM RNUM, P.*
 				FROM ( SELECT *
 						FROM PLACE
-						<if test="searchFilter != null and searchValue != ''">
-							WHERE ${searchFilter} LIKE '%'||#{searchValue}||'%'
+						WHERE 1 = 1
+						<if test='filter != null and value != ""'>
+							<choose>
+								<when test='filter = "ALL"'>
+								AND (FCLTYNM LIKE '%'||#{value}||'%'
+									OR SIDONM LIKE '%'||#{value}||'%')
+								</when>
+								<otherwise>
+								 AND ${filter} LIKE '%'||#{value}||'%'
+								</otherwise>
+							</choose>
 						</if>
 						ORDER BY MT10ID
 						) P )

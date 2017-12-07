@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href='<c:url value="/css/landing-page.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/font-awesome/css/font-awesome.min.css"/>'>
 <style type="text/css">
@@ -135,10 +131,6 @@ function showPassword() {
 	}
 	
 </script>
-
-<title>Insert title here</title>
-</head>
-<body>
 	<!-- Navigation -->
 	<div>
 		<nav class="navbar navbar-default navbar-fixed-top topnav"
@@ -236,5 +228,3 @@ function showPassword() {
 		<!--모달 끝 -->
 	</div>
 	</div>
-</body>
-</html>
