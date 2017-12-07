@@ -47,9 +47,11 @@ public class LoginController {
 	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
 	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail,
 							@RequestParam("address")String address,
-							@RequestParam("detailaddress")String detailAddress) {
-		
-		
+							@RequestParam("detailaddress")String detailAddress,
+							@RequestParam("joinPass")String password,
+							@RequestParam("joinId")String id) {
+		logindto.setId(id);
+		logindto.setPassword(password);
 		loginService.insertUser(logindto,stremail,address,detailAddress);
 		return "/home";
 	}
@@ -147,6 +149,13 @@ public class LoginController {
 	@ResponseBody
 	public int reSetPassCheck(@RequestParam("email2")String email,@RequestParam("id")String id) {
 		return loginService.reSetPassCheck(email,id);
+	}
+	
+	@RequestMapping(value="/memberClear")
+	public String memberClear(HttpSession sesseion) {
+		loginService.memberClear(sesseion);
+		return "/home";
+		
 	}
 }
 
