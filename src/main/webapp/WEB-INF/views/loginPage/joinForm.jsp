@@ -15,27 +15,30 @@
 <script>
 	let idCheck = false;
 	let emailCheck = false;
+	
 	function checkId() {
-		$("#id").on("blur", function() {
+		$("#joinId").on("blur", function() {
 			$.ajax({
 				type : "POST",
 				async : true,
 				dataType : 'json',
 				url : "/member/joinIdCheck",
 				data : {
-					inputId : $("#id").val()
+					inputId : $("#joinId").val()
 				},
 				success : function(data) {
 					let html;
-					if ($("#id").val() != "") {
+					if ($("#joinId").val() != "") {
 						if (data == "1") {
 							html = "<b>사용 가능한 아이디입니다.</b>"
 							$("#idCheck").html(html).css("color", "blue");
+							console.log("가능한 아이디");
 							idCheck=true;
 							
 						} else {
 							html = "<b>중복된 아이디입니다.<b>";
 							$("#idCheck").html(html).css("color", "red");
+							console.log("중복된 아아디");
 							idCheck=false;
 							
 						}
@@ -162,20 +165,20 @@
 		<form id="joinForm" name="" class="form-horizontal" role="form" action="/member/insertuser" method="post" onsubmit="return availability()"><!-- form -->
 			
 			<div class="form-group">
-				<label for="id">ID:</label> <input type="text"
-					class="form-control" id="id" name="id" placeholder="ID" oninput="checkId()">
+				<label for="joinId">ID:</label> <input type="text"
+					class="form-control" id="joinId" name="joinId" placeholder="ID" oninput="checkId()">
 				<div id="idCheck"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="password">비밀번호</label> <input type="password"
-					class="form-control" id="password" name="password" placeholder="비밀번호">
+				<label for="joinPass">비밀번호</label> <input type="password"
+					class="form-control" id="joinPass" name="joinPass" placeholder="비밀번호">
 					<div id="passcheck"></div>
 			</div>
 			
 			<div class="form-group">
 				<label>비밀번호 확인</label> <input type="password"
-					class="form-control" id="pass2" placeholder="비밀번호 확인" >
+					class="form-control" id="joinPassCheck" placeholder="비밀번호 확인" >
 					<div id="passCheck2"></div>
 			</div>
 			
@@ -260,20 +263,20 @@
 //	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
 		 $("#joinForm").on("submit", function(){
 //	 		 event.preventDefault();
-			 var id=$("#id").val();
-			 var pass=$("#password").val(); 
-			 var passCheck=$("#pass2").val();
+			 var id=$("#joinId").val();
+			 var pass=$("#joinPass").val(); 
+			 var passCheck=$("#joinPassCheck").val();
 			 var email=$("#email").val();
 			 var str_email=$("#str_email").val();
 			 
 			 if(id==""){
 			 	alert("아이디를 입력하세요");
-			 	$("#id").focus();
+			 	$("#joinId").focus();
 			 	return false;
 			 }
 			 if(pass==""){
 			 	alert("패스워드를 입력하세요");
-			 	$("#password").focus();
+			 	$("#joinPass").focus();
 			 	return false;
 			 }
 			 if(email==""){
@@ -288,7 +291,7 @@
 			 }
 			 if(pass!=passCheck){
 				 alert("패스워드가 일치하지 않습니다")
-			 	$("#pass2").focus();
+			 	$("#joinPassCheck").focus();
 				 return false;
 			 }
 			 $("#joinForm").submit();
@@ -296,9 +299,9 @@
 	 });
  	
 	 
-		$("#password").blur(function(){
+		$("#joinId").blur(function(){
 			let html;
-			if($("#password").val()==""){
+			if($("#joinId").val()==""){
 				html="<b>암호를 입력해주세요</b>"
 				$("#passCheck").html(html).css("color","red");
 			}else{
@@ -307,12 +310,12 @@
 			}
 		});
 		 
-	 	$("#pass2").blur(function(){
+	 	$("#joinPassCheck").blur(function(){
 	 		let html;
-	 		if($("#password").val()!=$("#pass2").val()){
+	 		if($("#joinPass").val()!=$("#joinPassCheck").val()){
 				html="<b>암호가 일치하지 않습니다.</b>"
 				$("#passCheck2").html(html).css("color","red");
-	 		}else if($("#password").val()==$("#pass2").val()&&$("#password").val()!=""&&$("#pass2").val()!=""){
+	 		}else if($("#joinPass").val()==$("#joinPassCheck").val()&&$("#joinPass").val()!=""&&$("#pass2").val()!=""){
 				html="<b>암호가 일치합니다.</b>"
 				$("#passCheck2").html(html).css("color","blue");
 	 		}

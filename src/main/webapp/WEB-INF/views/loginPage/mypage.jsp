@@ -78,6 +78,13 @@ function execDaumPostcode() {
     }).open();
 }
 
+function memberClear(){
+	if(confirm("회원 탈퇴하시겠습니까?")==true){
+		
+	}else{
+		return false;
+	}
+}
 
 </script>
 
@@ -101,6 +108,7 @@ function execDaumPostcode() {
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보변경</a></li>
+			<li><a href="/member/memberClear" onclick="return memberClear();">회원탈퇴</a></li>
 		</ul>
 	</div>
 

@@ -26,13 +26,7 @@ public interface LoginDao {
 
 	public String currentPwCheck(String id);
 
-
-
-
-		
+	public void memberClear(String id);
 
 	
-
-	
-
 }

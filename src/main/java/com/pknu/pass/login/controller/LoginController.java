@@ -47,9 +47,11 @@ public class LoginController {
 	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
 	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail,
 							@RequestParam("address")String address,
-							@RequestParam("detailaddress")String detailAddress) {
-		
-		
+							@RequestParam("detailaddress")String detailAddress,
+							@RequestParam("joinPass")String password,
+							@RequestParam("joinId")String id) {
+		logindto.setId(id);
+		logindto.setPassword(password);
 		loginService.insertUser(logindto,stremail,address,detailAddress);
 		return "/home";
 	}
@@ -78,8 +80,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/myPassChange")//비밀번호 변경 페이지
-	public String myPassChengeForm(HttpSession session) {
+	public String myPassChengeForm(HttpSession session,Model model) {
 		session.getAttribute("id");
+		loginService.myPassChengeForm(session,model);
 		return "loginPage/myPassChange";
 	}
 	
@@ -92,14 +95,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
-	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam(value="password")String password,
+	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam("changePass")String password,
 							   @RequestParam("address")String address,@RequestParam("detailaddress")String detailaddress) {
 		
+		System.out.println(address);
 		loginService.myPageUpdate(session,password,logindto,address,detailaddress);
 		loginService.logout(session);
 		
-		
-		return "loginPage/mypage";
+		return "/home";
 	}
 	
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경
@@ -146,6 +149,13 @@ public class LoginController {
 	@ResponseBody
 	public int reSetPassCheck(@RequestParam("email2")String email,@RequestParam("id")String id) {
 		return loginService.reSetPassCheck(email,id);
+	}
+	
+	@RequestMapping(value="/memberClear")
+	public String memberClear(HttpSession sesseion) {
+		loginService.memberClear(sesseion);
+		return "/home";
+		
 	}
 }
 

@@ -1,7 +1,7 @@
 package com.pknu.pass.comment.service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pknu.pass.comment.dao.CommentDao;
 import com.pknu.pass.comment.dto.CommentDto;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.play.dto.DetailDto;
 
 @Service
@@ -20,16 +21,15 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	CommentDao commentDao;
 
-	List<CommentDto> commentList;
-	List<DetailDto> detailList;
-	HashMap<String, Integer> paramMap;
-
 	
 	@Override
-	public List<CommentDto> getComments(String mt20id) {
-	
+	public int getTotalComments(Map<String, Object> paramMap) {
+		return commentDao.getTotalComments(paramMap);
+	}
 
-		return commentDao.getComments(mt20id);
+	@Override
+	public List<CommentDto> getComments(Map<String, Object> paramMap) {
+		return commentDao.getComments(paramMap);
 	}
 
 	@Override

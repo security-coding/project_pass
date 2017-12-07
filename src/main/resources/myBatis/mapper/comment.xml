@@ -16,13 +16,13 @@
 <!-- 		where rownum between 1 and #{commentRow} -->
 <!-- 	</select> -->
 
-	<select id="getComments" parameterType="String" resultType="comment">
-		select *
-		      from comments 
-		     	where mt20id=#{mt20id} 
-		     	order by commentDate desc 
-		     
-		     	
+	<select id="getComments" parameterType="HashMap" resultType="comment">
+		SELECT *
+		FROM ( SELECT ROWNUM RNUM, C.* 
+				FROM ( SELECT *
+						FROM COMMENTS WHERE mt20id = #{mt20id}
+						ORDER BY COMMENTNUM DESC ) C )
+		WHERE RNUM BETWEEN #{p.start} AND #{p.last}
 	</select>
 	
 	<insert id="insertComment" parameterType="comment">
@@ -30,6 +30,10 @@
 									#{commentContent},TO_CHAR(SYSTIMESTAMP,'YYYY-MM-DD HH24:MI:SS'),#{mt20id})
 	</insert>
 	
-	
+	<select id="getTotalComments" parameterType="HashMap" resultType="Integer">
+		SELECT count(*) 
+		FROM COMMENTS
+		WHERE mt20id = #{mt20id}
+	</select>
 	 
 </mapper>

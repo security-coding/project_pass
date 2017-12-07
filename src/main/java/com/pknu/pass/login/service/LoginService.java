@@ -20,6 +20,8 @@ public interface LoginService {
 
 	public void myPageId(HttpSession session,Model model,LoginDto logindto);
 
+	public void myPassChengeForm(HttpSession session, Model model);
+	
 	public void myPageUpdate(HttpSession session,String password,LoginDto logindto,String address,String detailaddress);
 
 	public int checkJoin(String certKey,Model model);
@@ -35,5 +37,7 @@ public interface LoginService {
 	public int reSetPassCheck(String email, String id);
 	
 	public int currentPwCheck(HttpSession session,String currentPw);
+	
+	public void memberClear(HttpSession session);
 	
 }
