@@ -14,6 +14,10 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
+	body{
+		background-color: #f8f8f8;
+	}
+
 	.content {
 		margin: 0 30px;
 	}
