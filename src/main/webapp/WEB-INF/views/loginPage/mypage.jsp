@@ -11,12 +11,15 @@
 		
 <!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>		
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
 
 <style>
 ul{
    list-style:none;
    }
 </style>
+
 <script>
 function setMyimage(imgsrc){
 	let nowProfile=document.getElementById('myimage');
@@ -88,6 +91,17 @@ function memberClear(){
 		return false;
 	}
 }
+
+//추가부분
+
+       var container = document.getElementById('map');
+		var options = {
+			center: new daum.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new daum.maps.Map(container, options);
+
 
 $(document).ready(function(){
     $("#myimage").click(function(){
@@ -180,17 +194,136 @@ $(document).ready(function(){
 					</c:forEach>
 				</ul>
 			</div>
-			<div>
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../";'>
-					되돌아가기<i class="fa fa-times spaceLeft"></i>
-			</button>
-			</div>
 		</form>
-		
+		<!-- bookmark content -->
+		<div class="row">
+			<c:forEach var="bookmark" items="${list}">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="${bookmark.imageUrl}" alt="...">
+					<div class="caption">
+						<h3>${bookmark.prfnm}</h3>
+						<p>${bookmark.prfpdfrom}</p>
+						<p>${bookmark.prfpdto}</p>
+						<p>${bookmark.genrenm }</p>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
 	</div>
 
 	
 	</article>
+	
+<!-- 	<div id="map" style="width:500px;height:400px;"></div> -->
+	<h3 class="text-center" >거주지 주변 공연현황 </h1>
+	<div class="content">
+	<div class="col-md-4">
+		<div class="well">			
+			<div id="resultTitles"></div>
+		</div>
+	</div>
+	<div id="mapContainer" class="col-md-8">
+		<div id="map" style="width:500px;height:400px;"></div>
+	</div>
+	</div>
+	
+<script>
+
+
+
+
+
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(${la}, ${lo}), // 지도의 중심좌표
+            level: 7, // 지도의 확대 레벨
+            scrollwheel : false,
+            disableDoubleClick : false,
+            disableDoubleClickZoom : false
+        };
+
+    //지도를 미리 생성
+    var map = new daum.maps.Map(mapContainer, mapOption);
+
+	 // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	 var zoomControl = new daum.maps.ZoomControl();
+	 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+	 
+  
+	 
+	 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		<c:forEach items="${places}" var="info">
+	        
+		var	place = {
+				mt10id :  "${info.mt10id}",
+				fcltynm : "${info.fcltynm}",
+				relateurl : "${info.relateurl}",
+				telno : "${info.telno}"
+			};
+		    
+		
+		    var imageSize = new daum.maps.Size(24, 35);
+	        var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+			
+		    // 마커 이미지의 이미지 크기 입니다
+		    var imageSize = new daum.maps.Size(24, 35); 
+		    
+		    // 마커 이미지를 생성합니다    
+		    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
+		    
+		    // 마커를 생성합니다
+		    var marker = new daum.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position : new daum.maps.LatLng(${info.la}, ${info.lo}), // 마커를 표시할 위치
+		        title : "${info.fcltynm}", // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		        image : markerImage // 마커 이미지 
+		    }); 
+		    
+		    (function(marker, place) {
+		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+		        daum.maps.event.addListener(marker, 'click', function() {
+		        		$("#resultTitles").empty();
+		            getTitles(place);
+		        });
+		    })(marker,place);
+		    
+		</c:forEach>
+	 
+		 function getTitles(place) {
+		  		var str = "<div><h4 class='text-center'><a href='"+place.relateurl+"' target='_blank'>"+place.fcltynm+"</a></h4>";
+				$.ajax({
+					url: '/place/titles',
+					type: 'post',
+					data: {
+						mt10id : place.mt10id
+					},
+					success: function(data) {
+						
+						$.each(data, function(index, item) {
+							
+							str += "<div class='contentBox'><div class='imgBox'><a href='/play/detail?mt20id=" + item.mt20id + "'>";
+							str += "<img class='img-responsive' src='<c:url value='"+item.imageUrl+"'/>'></a></div>";
+							str += "<div class='titleInf'><p>"+item.prfnm+"</p>";
+							str += "<p>"+item.prfpdfrom+"<span>~</span>"+item.prfpdto+"</p>";
+							str += "<p>"+item.genrenm+"</p>";
+							str += "</div></div>";
+							str += "<div class='clearfix'></div>";
+						});
+						str +="</div>";
+						str +="<a href='tel:"+place.telno+"'><p>문의 전화 : "+place.telno+"</p></a>";
+						$("#resultTitles").append(str);
+					},
+					error: function(e) {
+						alert(e.responseText);
+					}
+				});
+			}
+
+</script>	
+	
 </body>
 
 <!-- /container -->

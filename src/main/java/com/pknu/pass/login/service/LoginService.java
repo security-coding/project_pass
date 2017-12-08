@@ -8,7 +8,7 @@ import com.pknu.pass.login.dto.LoginDto;
 
 public interface LoginService {
 
-	public void insertUser(LoginDto logindto,String stremail,String address,String detailAddress);
+	public void insertUser(LoginDto logindto);
 
 	public String login(String id, String password,HttpSession session, Model model);
 

@@ -101,7 +101,7 @@ pageEncoding="UTF-8"%>
             <div class="poster">
                 <div id="type" class="test row" data-index="전체"></div>
                 <c:forEach var="play" items="${boxList}" varStatus="status">
-                    <div class="col-lg-15 col-md-15 col-sm-3 col-xs-6">
+                    <div class="col-lg-15 col-md-3 col-sm-3 col-xs-6">
                         <a href="/play/detail?mt20id=${play.mt20id}">
                             <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
                             <div style="position: relative; z-index: 1;">

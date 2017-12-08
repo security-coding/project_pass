@@ -46,14 +46,14 @@ public class LoginController {
 	
 	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
 	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail,
-							@RequestParam("address")String address,
-							@RequestParam("detailaddress")String detailAddress,
 							@RequestParam("joinPass")String password,
-							@RequestParam("joinId")String id) {
+							@RequestParam("joinId")String id
+							) {
 	
 		logindto.setId(id);
+		logindto.setEmail(logindto.getEmail()+"@"+stremail);
 		logindto.setPassword(password);
-		loginService.insertUser(logindto,stremail,address,detailAddress);
+		loginService.insertUser(logindto);
 		return "/home";
 	}
 	
@@ -127,17 +127,18 @@ public class LoginController {
 	
 	@RequestMapping(value="/userlossid")//아이디 찾고 결과페이지 이동
 	public String userlossid(LoginDto logindto,Model model,@RequestParam("email1")String email) {
+		System.out.println(email);
 		logindto.setEmail(email);
 		loginService.userLossId(logindto,model);
 		return "loginPage/lossresult";
 	}
 	
 	@RequestMapping(value="/userlosspass")//임시비밀번호 발송 
-	public String uesrlosspass(LoginDto logindto,@RequestParam("email2")String email,@RequestParam("id")String id,String pass) {
+	public String uesrlosspass(LoginDto logindto,@RequestParam("email2")String email,@RequestParam("lookUpId")String id,String pass) {
 		logindto.setEmail(email);
 		logindto.setId(id);
 		loginService.userLossPass(logindto,pass);
-		return "loginPage/main";
+		return "/home";
 	}
 	
 	@RequestMapping(value="/standlossid")//아이디 찾기할때 ajax로 찾는아이디에 이메일이 있는지 없는지 확인
