@@ -184,7 +184,7 @@ $(document).ready(function(){
 <!-- 				<button id="spreadBtn" type="button"> -->
 <%-- 					<img id="myimage" src="${imageUrl}"> <span class="caret"></span> --%>
 <!-- 				</button> -->
-				<ul id="hiddenList" style="display: none;">
+				<ul id="hiddenList" style="margin-left: 35px; margin-top: 10px; display: none;">
 					<li><img id="img1" class="img"
 						src="/resources/images/profile/img1.png"
 						onclick="setMyimage(this)">악마</li>

@@ -370,6 +370,7 @@ body, table, div, p, style, section, h {
             </div>
         </div>
  </div>   
+ </div>
 <!-- Replicate the above Div block to add more title and company details -->
 <div>
 <%@include file="../footer.jsp" %>
