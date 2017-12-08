@@ -10,5 +10,6 @@ public interface CommentDao {
 	public List<CommentDto> getComments(Map<String, Object> paramMap);
 	public void insertComment(CommentDto comment);
 	public int getTotalComments(Map<String, Object> paramMap);
+	public void deleteComment(int commentNum);
 }
 	

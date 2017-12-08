@@ -24,6 +24,10 @@ pageEncoding="UTF-8"%>
         let mt20id = '${detailInf.mt20id}';
         let heart = '${fullHeart}';
         function changeImg(changeStat) {
+        		if(id==''){
+        			alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+        			return;
+        		}
             let changeVal = $(changeStat).attr("value");
             console.log(changeVal);
             $.ajax({
@@ -48,11 +52,38 @@ pageEncoding="UTF-8"%>
                     }
                 },
                 error: function (e) {
-                    alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+                    alert("오류가 발생했습니다.");
                 }
             });
             
         }
+        
+        function bookmark(obj) {
+			if(id=='') {
+				alert("북마크 기능을 이용하기 위해서는 로그인이 필요합니다.");
+				return;
+			}
+			var value = $(obj).attr('value');
+			$.ajax({
+				url : '/play/bookmark',
+				type : 'post',
+				data : {
+					id : id,
+					mt20id : mt20id,
+					value : value
+				},
+				success : function(data) {
+					if(value == 0) {
+						alert("북마크가 설정되었습니다");
+						$(obj).attr("src", "/images/likes/bookmark.png");
+	                    $(obj).attr("value", 1);
+					} else {
+						$(obj).attr("src", "/images/likes/non_bookmark.png");
+	                    $(obj).attr("value", 0);
+					}
+				}
+			});
+		}
         
         $(function() {
         	 $.ajax({
@@ -81,13 +112,31 @@ pageEncoding="UTF-8"%>
                         mt20id: "${detailInf.mt20id}"
                     },
                     success: function (data) {
-                    		alert("!!!");
+                    		alert("정상적으로 입력되었습니다.");
                     		$("#commentContent").val("");
                     		ajaxList();
                     }
                 });
             });
+            
         });
+        
+        function deleteComment(obj) {
+        		var commentNum = $(obj).parents().prevAll("input[type=hidden]").val();
+        		console.log(commentNum);
+        		
+        		$.ajax({
+		        url: "/comment/delete",
+		        type:"post", 
+		        data: {
+		        	commentNum : commentNum
+		        },
+		        success: function(result){
+	                alert("삭제되었습니다.");
+            			ajaxList();
+		        }
+		    });
+		}
         
         var ajaxList = function() {
 			var submitData = {};
@@ -100,19 +149,26 @@ pageEncoding="UTF-8"%>
 				data: {
 					mt20id : "${detailInf.mt20id}",
 					index : paging.p.index,
-					pageStartNum : paging.p.pageStartNum
+					pageStartNum : paging.p.pageStartNum,
 				},
 				success: function(obj) {
 					$("#comment-group").empty();
-					var str='';
+					var str='';	
 					$.each(obj.list, function(index, comment) {
-						console.log(comment);
+					
+// 						console.log(comment);
+						str += "<br />";
 						str += "<div class='media mb-4'>";
-	                   	str += "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>";
+						str += "<input type='hidden' value='" + comment.commentNum + "'>";
+	                   	str += "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>";	                   	
 	                    	str += "<div class='media-body'>";
-	                    	str += "<h5 class='mt-0'>" + comment.id + "</h5>";
+	                    	str += "<h5 class='mt-0'>" + "작성자 : " + comment.id + "&nbsp&nbsp&nbsp&nbsp" + "작성일 : " + comment.commentDate ;
+	                    if(comment.id == id){
+	                    		str += "&nbsp&nbsp&nbsp&nbsp&nbsp" + "<button id='commentDelete' class='btn btn-primary' onclick='deleteComment(this);'>" + "삭제" + "</button>";
+	                    }
+	                    	str += "</h5>";
 	                    	str += comment.commentContent;
-	                    	str += "</div>";
+	                    	str += "</div>";	
 	                    	str += "</div>";
 				});
 				$("#comment-group").append(str);
@@ -122,6 +178,8 @@ pageEncoding="UTF-8"%>
 			}
 			});
 		};
+			
+		
     </script>
 
 </head>
@@ -145,6 +203,7 @@ pageEncoding="UTF-8"%>
                 <!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
     <img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
      -->
+     			
                 <c:choose>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
@@ -159,6 +218,17 @@ pageEncoding="UTF-8"%>
                          style="border:0;">    
                     </c:when>
                 </c:choose>
+                
+                <c:choose>
+     				<c:when test="${bookmark == null}">
+     					<img id="bookmark" src= "/images/likes/non_bookmark.png" value=0
+     						style="width:20px; height:20px" onclick="bookmark(this);">
+     				</c:when>
+     				<c:when test="${bookmark eq 1}">
+     					<img id="bookmark" src= "/images/likes/bookmark.png" value=1
+     						style="width:20px; height:20px" onclick="bookmark(this);">
+     				</c:when>
+     			</c:choose>
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
@@ -262,11 +332,14 @@ pageEncoding="UTF-8"%>
                     <div class="form-group">
                         <textarea id="commentContent" class="form-control" rows="3"></textarea>
                     </div>
+                    
+                  <div align="right">
                     <button id="commentWrite" class="btn btn-primary">작성</button>
+                  <div>
             </div>
         </div>
-       	<div id="comment-group">
-       	</div>
+        <h5>총 댓글 수 : ${getTotalComments} </h5>
+       	<div id="comment-group"></div>
        	<%@include file="../paging.jsp" %>
             </div>
         </div>

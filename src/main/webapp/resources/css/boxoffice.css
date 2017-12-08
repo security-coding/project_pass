@@ -4,14 +4,7 @@
   width: 50%;
 }
 
-.image {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-
-.overlay {
-	
+.overlay  {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -25,15 +18,17 @@
 	background-color: rgba(0,0,0,0.65);
 }
 
-.boxContent:hover .overlay {
+.overlay:hover {
 	opacity: 1;
 }
 
 .text {
+	width: 100%;
+	height: 100%;
 	color: white;
-	font-size: 1.333em;
+	font-size: 1.333rem;
 	position: absolute;
-	top: 50%;
+	top: 65%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
@@ -78,27 +73,27 @@
 
 
 .image-xs {
-	width: 180px;
+	width: 100%;
 	height: 250px;
 }
 
 @media ( min-width : 768px) {
-	.image-xs {
-		width: auto;
+	.image-sm {
+		width: 100%;
 		height: 280px;
 	}
 }
 
 @media ( min-width : 992px) {
 	.image-md {
-		width: auto;
+		width: 100%;
 		height: 300px;
 	}
 }
 
 @media ( min-width : 1200px) {
 	.image-lg {
-		width: auto;
+		width: 100%;
 		height: 373px;
 	
 	}
