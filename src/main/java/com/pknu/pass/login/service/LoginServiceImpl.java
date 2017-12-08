@@ -1,5 +1,6 @@
 package com.pknu.pass.login.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import com.pknu.pass.login.common.MailUtil;
 import com.pknu.pass.login.common.SecurityUtil;
 import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.play.dto.MainDto;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -135,29 +137,13 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void myPageId(HttpSession session, Model model,LoginDto loginDto) {
-		LoginDto userInf=null;
-		String id =(String)session.getAttribute("id");
-		String imageUrl;
-		String address;
-		String detailAddress;
+		String id = (String)session.getAttribute("id");
 		
-		userInf=logindao.getUser(id);
-		imageUrl = userInf.getProfile();
-		address=userInf.getAddress();
-		detailAddress=userInf.getDetailAddress();
-		
-		
-		String mail = userInf.getEmail();
-		int idx = mail.indexOf("@");
-		String mailid = mail.substring(0, idx);
-		
-
-		model.addAttribute("imageUrl", imageUrl);
-		model.addAttribute("id", session.getAttribute("id"));
-		model.addAttribute("email", mailid);
-		model.addAttribute("address",address);
-		model.addAttribute("detailAddress",detailAddress);
-		
+		LoginDto user = logindao.getUser(id);
+		List<MainDto> bookmarkList = logindao.getBookmark(id);
+	
+		model.addAttribute("user", user);
+		model.addAttribute("list",bookmarkList);
 	}
 
 	@Override

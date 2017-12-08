@@ -183,13 +183,23 @@ $(document).ready(function(){
 						onclick="setMyimage(this)">스파이더맨</li>
 				</ul>
 			</div>
-			<div>
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../";'>
-					되돌아가기<i class="fa fa-times spaceLeft"></i>
-			</button>
-			</div>
 		</form>
-		
+		<!-- bookmark content -->
+		<div class="row">
+			<c:forEach var="bookmark" items="${list}">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="${bookmark.imageUrl}" alt="...">
+					<div class="caption">
+						<h3>${bookmark.prfnm}</h3>
+						<p>${bookmark.prfpdfrom}</p>
+						<p>${bookmark.prfpdto}</p>
+						<p>${bookmark.genrenm }</p>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
 	</div>
 
 	

@@ -1,6 +1,9 @@
 package com.pknu.pass.login.dao;
 
+import java.util.List;
+
 import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.play.dto.MainDto;
 
 public interface LoginDao {
 
@@ -28,5 +31,6 @@ public interface LoginDao {
 
 	public void memberClear(String id);
 
+	public List<MainDto> getBookmark(String id);
 	
 }
