@@ -14,113 +14,27 @@
 <style>
 @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
 
-body, table, div, p {
+body, table, div, p, h {
 	font-family: 'Jeju Gothic'
 }
 </style>
 
 </head>
   <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand topnav" href="/">Project Pass</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/play/now">현재 공연작</a>
-                    </li>
-                    <li>
-                        <a href="/play/come">공연 예정작</a>
-                    </li>
-                    <li>
-                        <a href="/place">주변 공연 찾기</a>
-                    </li>
-                    <li>
-                     <c:if test="${id==null}">
-						<%@include file="../loginPage/login.jsp"%>
-					</c:if> 
-					<c:if test="${id!=null}">
-						<%@include file="../loginPage/loginOk.jsp"%>
-					</c:if>
-					</li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    
-   	<div>
-	<!-- Modal -->
-	<form>
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">로그인</h4>
-					</div>
-					<form class="signform" name="signupform">
-						<div name="inputform" class="modal-body container-fluid">
-							<label for="id">ID:<input type="text" id="id" name="id"
-								class="form-control" placeholder="id"></label><br> <label
-								for="pass">password:<input type="password"
-								id="password" name="password" class="form-control"
-								placeholder="password"></label><br>
-						</div>
-
-						<div class="modal-footer">
-							<button id="reset" type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
-							<button id="login" type="submit" class="btn btn-primary">로그인</button>
-							<td><p>
-									<a href="../member/userloss">아이디/비밀번호찾기></a>
-								</p>
-							<td>
-						</div>
-					</form>
-
-				</div>
-				<!-- modal-content의 div끝 -->
-
-			</div>
-			<!-- modal-dialog의 div끝 -->
-
-		</div>
-	</form>
-	<!--모달 내용 서브밋form-->
-	</form>
-	<!--모달 부르는 버튼 form-->
-	<!--모달 끝-->
+  <div>
+    <%@include file="../header.jsp"%>
 </div>
-<div class="-" style="height: 100px;"></div>
-					<!-- Page Content -->
-					<div class="container">
+
+<!-- Page Content -->
+<div class="container" style="margin-top: 100px">
+
 
 <!-- Page Heading -->
 	<div>
 		<!-- Search Widget -->
 		<form action="/play/search" onsubmit="return blank()">
 			<div class="card my-4">
-				<h5 class="card-header">Search</h5>
-				<div class="card-body">
+				<h2 class="wrapper"><p>검색</p></h2>
 					<div class="input-group">
 						<input id="keyword" name="keyword" type="text"
 							class="form-control" placeholder="공연 제목 입력"> <span
@@ -128,12 +42,12 @@ body, table, div, p {
 							type="submit" value="검색" />
 						</span>
 					</div>
-<div class="" style="height: 100px;"></div>
+
 
 						<!-- Search Result Value -->
 						<c:forEach var="keyword" items="${keyword}">
 							<!--뿌리는값 -->
-							<div class="col-md-11">
+							<div class="col-md-12">
 								<hr>
 								</div>
 							<div class="row">
@@ -162,12 +76,24 @@ body, table, div, p {
 								</div>
 							</div>
 						</c:forEach>
+						<c:if test="${empty keyword}">
+						
+							<section id="wrapper" style="margin-top: 20%; margin-bottom: 15%;">
+								<div class="error-body text-center">							
+									<h1><p class="text-muted m-t-30 m-b-30" style="margin-bottom: 3%">해당 검색 결과가 없습니다.</p></h1>
+									<h4><p class="text-muted m-t-30 m-b-30" style="margin-bottom: 2%">다시 한번 검색하기 바랍니다.</p></h4>
+									
+									<a href="/" class="btn btn-danger btn-rounded">메인으로 돌아가기</a>
+								</div>
+							</section>
+					</c:if>
+						
 						<!-- Footer -->
-						<footer class="py-5 bg-dark">
-						<div class="container">
-						<hr>
+						<footer>
+						<div>
+						<%@include file="../footer.jsp" %>
 						</div>
-						<!-- /.container --> </footer>
+						</footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>

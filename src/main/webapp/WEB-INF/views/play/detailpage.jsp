@@ -124,12 +124,21 @@ pageEncoding="UTF-8"%>
 		};
     </script>
 
+<style>
+@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
+
+body, table, div, p, style, section, h {
+	font-family: 'Jeju Gothic'
+}
+</style>
+
+
 </head>
 
 <body>
 <%@include file="../header.jsp"%>
-<div style="height: 100px;"></div>
-<div class="row">
+
+<div class="row" style="margin-top: 100px">
     <div class="col-md-7 col-md-offset-1">
         <!-- Header content -->
         <header>
@@ -145,6 +154,9 @@ pageEncoding="UTF-8"%>
                 <!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
     <img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
      -->
+     			<table>
+     			<tr>
+     			<td>
                 <c:choose>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
@@ -159,35 +171,46 @@ pageEncoding="UTF-8"%>
                          style="border:0;">    
                     </c:when>
                 </c:choose>
+				</td>
+				</tr>
+     			</table>
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
-                <hr>
+                <hr />
 
-
-                <p/> 공연 시작일 : ${detailInf.prfpdfrom}
-                <p/> 공연 종료일 : ${detailInf.prfpdto}
-                <p/> 공연 시　간 : ${detailInf.dtguidance}
-                <p/> 공연 시설명 : ${detailInf.fcltynm}
-                <p/> 공연 출연진 : ${detailInf.prfcast}
-                <p/> 공연 제작진 : ${detailInf.prfcrew}
-                <p/> 공연 런타임 : ${detailInf.prfruntime}
-                <p/> 공연 관람 연령 : ${detailInf.prfage}
-                <p/> 공연 제작사 : ${detailInf.entrpsnm}
-                <p/> 티켓 가격 : ${detailInf.pcseguidance}
-                <p/>
-                <p/>
-                <p/>
+				<table>
+				<tr>
+				<td>
+				<p>공연 시작일 : ${detailInf.prfpdfrom}</p>
+				<p>공연 종료일 : ${detailInf.prfpdto}</p>
+				<p>공연 일정 : ${detailInf.dtguidance}</p>
+				<p>공연 시설명 : ${detailInf.fcltynm}</p>
+				<p>공연 출연진 : ${detailInf.prfcast}</p>
+				<p>공연 제작진 : ${detailInf.prfcrew}</p>
+				<p>공연 런타임 : ${detailInf.prfruntime}</p>
+				<p>공연 관람 연령 : ${detailInf.prfage}</p>
+				<p>공연 제작사 : ${detailInf.entrpsnm}</p>
+				<p>티켓 가격 : ${detailInf.pcseguidance}</p>
+				</td>
+				</tr>
+				</table>
             </section>
         </header>
-        <hr/>
+        	        <hr />
         <!-- content -->
         <section class="mainContent">
             <!-- Contact details -->
+            
             <section class="section1">
-                <h2 class="sectionTitle">해당 공연의 기본 정보</h2>
-
-                <hr class="sectionTitleRule2">
+            	<table>
+    		    <tr>
+       			<td>
+                <h3 class="profileHeader">해당 공연 정보</h3>
+                </td>
+		        </tr>
+		        </table>
+		        <hr class="sectionTitleRule1 context-text" />
                 <div class="context-text">
                     <div>
                         <c:forEach var="detailImage" items="${detailImages}" begin="1">
@@ -197,10 +220,12 @@ pageEncoding="UTF-8"%>
                 </div>
             </section>
         </section>
+
+        
     </div>
     <div class="col-md-4">
-        <h3>본 공연의 지도 위치</h3>
-        <p/>
+        <h3>공연 지도 위치</h3>
+        <p />
         <script type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
 
@@ -254,10 +279,12 @@ pageEncoding="UTF-8"%>
             </script>
         </div>
 
+       <hr class="sectionTitleRule1 context-text" />
+
         <!-- Comments Form -->
         <div class="card my-4">
             <p/>
-            <h3 class="card-header">본 공연에 대한 댓글 남기기 :</h3>
+            <h3 class="card-header">댓글 남기기 : </h3>
             <div class="card-body">
                     <div class="form-group">
                         <textarea id="commentContent" class="form-control" rows="3"></textarea>
@@ -270,12 +297,7 @@ pageEncoding="UTF-8"%>
        	<%@include file="../paging.jsp" %>
             </div>
         </div>
-
-    </div>
-
-</div>
-
-
+        
 <!-- Replicate the above Div block to add more title and company details -->
 <div>
 <%@include file="../footer.jsp" %>
