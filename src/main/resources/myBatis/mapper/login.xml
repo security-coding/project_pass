@@ -65,4 +65,10 @@
 	delete from member where id=#{id}
 </delete>
  
+ <select id="getBookmark" parameterType="String" resultType="predto">
+ 	SELECT imageUrl, prfnm, prfpdfrom, prfpdto, genrenm
+ 	FROM CONCERT NATURAL JOIN BOOKMARK NATURAL JOIN IMAGE
+ 	WHERE id = #{id} AND imageType = 1
+ </select>
+ 
  </mapper>

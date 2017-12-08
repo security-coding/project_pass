@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
         let heart = '${fullHeart}';
         function changeImg(changeStat) {
         		if(id==''){
-        			alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+        			alert("좋아요 기능을 이용하기 위해서는 로그인이 필요합니다.");
         			return;
         		}
             let changeVal = $(changeStat).attr("value");
@@ -105,6 +105,10 @@ pageEncoding="UTF-8"%>
 			ajaxList();
         	
             $("#commentWrite").on("click", function () {
+    			if(id=='') {
+    				alert("댓글 기능을 이용하기 위해서는 로그인이 필요합니다.");
+    				return;
+    			}
                 $.ajax({
                     url: "/comment/write",
                     data: {
@@ -160,7 +164,7 @@ pageEncoding="UTF-8"%>
 						str += "<br />";
 						str += "<div class='media mb-4'>";
 						str += "<input type='hidden' value='" + comment.commentNum + "'>";
-	                   	str += "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>";	                   	
+	                   	str += "<img class='d-flex mr-3 rounded-circle' src='"+ comment.profile + "' alt=''>";	                   	
 	                    	str += "<div class='media-body'>";
 	                    	str += "<h5 class='mt-0'>" + "작성자 : " + comment.id + "&nbsp&nbsp&nbsp&nbsp" + "작성일 : " + comment.commentDate ;
 	                    if(comment.id == id){
@@ -172,7 +176,7 @@ pageEncoding="UTF-8"%>
 	                    	str += "</div>";
 				});
 				$("#comment-group").append(str);
-				
+				$("#totalComment").html(obj.p.total);
 				paging.p = obj.p;
 				paging.create();
 			}
@@ -182,12 +186,21 @@ pageEncoding="UTF-8"%>
 		
     </script>
 
+<style>
+@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
+
+body, table, div, p, style, section, h {
+	font-family: 'Jeju Gothic'
+}
+</style>
+
+
 </head>
 
 <body>
 <%@include file="../header.jsp"%>
-<div style="height: 100px;"></div>
-<div class="row">
+
+<div class="row" style="margin-top: 100px">
     <div class="col-md-7 col-md-offset-1">
         <!-- Header content -->
         <header>
@@ -203,7 +216,7 @@ pageEncoding="UTF-8"%>
                 <!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
     <img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
      -->
-     			
+
                 <c:choose>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
@@ -218,6 +231,7 @@ pageEncoding="UTF-8"%>
                          style="border:0;">    
                     </c:when>
                 </c:choose>
+
                 
                 <c:choose>
      				<c:when test="${bookmark == null}">
@@ -232,32 +246,40 @@ pageEncoding="UTF-8"%>
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
-                <hr>
+                <hr />
 
-
-                <p/> 공연 시작일 : ${detailInf.prfpdfrom}
-                <p/> 공연 종료일 : ${detailInf.prfpdto}
-                <p/> 공연 시　간 : ${detailInf.dtguidance}
-                <p/> 공연 시설명 : ${detailInf.fcltynm}
-                <p/> 공연 출연진 : ${detailInf.prfcast}
-                <p/> 공연 제작진 : ${detailInf.prfcrew}
-                <p/> 공연 런타임 : ${detailInf.prfruntime}
-                <p/> 공연 관람 연령 : ${detailInf.prfage}
-                <p/> 공연 제작사 : ${detailInf.entrpsnm}
-                <p/> 티켓 가격 : ${detailInf.pcseguidance}
-                <p/>
-                <p/>
-                <p/>
+				<table>
+				<tr>
+				<td>
+				<p>공연 시작일 : ${detailInf.prfpdfrom}</p>
+				<p>공연 종료일 : ${detailInf.prfpdto}</p>
+				<p>공연 일정 : ${detailInf.dtguidance}</p>
+				<p>공연 시설명 : ${detailInf.fcltynm}</p>
+				<p>공연 출연진 : ${detailInf.prfcast}</p>
+				<p>공연 제작진 : ${detailInf.prfcrew}</p>
+				<p>공연 런타임 : ${detailInf.prfruntime}</p>
+				<p>공연 관람 연령 : ${detailInf.prfage}</p>
+				<p>공연 제작사 : ${detailInf.entrpsnm}</p>
+				<p>티켓 가격 : ${detailInf.pcseguidance}</p>
+				</td>
+				</tr>
+				</table>
             </section>
         </header>
-        <hr/>
+        	        <hr />
         <!-- content -->
         <section class="mainContent">
             <!-- Contact details -->
+            
             <section class="section1">
-                <h2 class="sectionTitle">해당 공연의 기본 정보</h2>
-
-                <hr class="sectionTitleRule2">
+            	<table>
+    		    <tr>
+       			<td>
+                <h3 class="profileHeader">해당 공연 정보</h3>
+                </td>
+		        </tr>
+		        </table>
+		        <hr class="sectionTitleRule1 context-text" />
                 <div class="context-text">
                     <div>
                         <c:forEach var="detailImage" items="${detailImages}" begin="1">
@@ -267,10 +289,12 @@ pageEncoding="UTF-8"%>
                 </div>
             </section>
         </section>
+
+        
     </div>
     <div class="col-md-4">
-        <h3>본 공연의 지도 위치</h3>
-        <p/>
+        <h3>공연 지도 위치</h3>
+        <p />
         <script type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
 
@@ -324,10 +348,12 @@ pageEncoding="UTF-8"%>
             </script>
         </div>
 
+       <hr class="sectionTitleRule1 context-text" />
+
         <!-- Comments Form -->
         <div class="card my-4">
             <p/>
-            <h3 class="card-header">본 공연에 대한 댓글 남기기 :</h3>
+            <h3 class="card-header">댓글 남기기 : </h3>
             <div class="card-body">
                     <div class="form-group">
                         <textarea id="commentContent" class="form-control" rows="3"></textarea>
@@ -338,17 +364,12 @@ pageEncoding="UTF-8"%>
                   <div>
             </div>
         </div>
-        <h5>총 댓글 수 : ${getTotalComments} </h5>
+        <h5>총 댓글 수 : <span id="totalComment"></span></h5>
        	<div id="comment-group"></div>
        	<%@include file="../paging.jsp" %>
             </div>
         </div>
-
-    </div>
-
-</div>
-
-
+ </div>   
 <!-- Replicate the above Div block to add more title and company details -->
 <div>
 <%@include file="../footer.jsp" %>

@@ -14,12 +14,15 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2"></script>
 
+<style>
+ul{
+   list-style:none;
+   }
+</style>
 <script>
 function setMyimage(imgsrc){
-	let myimage=document.getElementById('myimage');
-	let nowProfile=document.getElementById('Profile');
+	let nowProfile=document.getElementById('myimage');
 	let img = imgsrc.getAttribute('src');
-	myimage.setAttribute('src',img);
 	nowProfile.setAttribute('src',img);
 	$.ajax({
 		type:"POST",
@@ -27,7 +30,7 @@ function setMyimage(imgsrc){
 		dataType : 'String',
 		url:'/member/updateprofile',
 		data : {
-			srcinput :myimage.getAttribute('src') 
+			srcinput :nowProfile.getAttribute('src') 
 		},
 		success:function(data){
 			
@@ -99,6 +102,15 @@ function memberClear(){
 		var map = new daum.maps.Map(container, options);
 
 
+$(document).ready(function(){
+    $("#myimage").click(function(){
+        if($("#hiddenList").is(":visible")){
+            $("#hiddenList").slideUp();
+        }else{
+            $("#hiddenList").slideDown();
+        }
+    });
+});
 
 
 
@@ -166,14 +178,13 @@ function memberClear(){
 
 
 			<div>
-			<img src="${imageUrl}" alt="..." id="Profile" class="img-thumbnail">
+			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail" onclick="">
 			</div>
 			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-lg dropdown-toggle"
-					data-toggle="dropdown" aria-expanded="false">
-					<img id="myimage" src="${imageUrl}"> <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
+<!-- 				<button id="spreadBtn" type="button"> -->
+<%-- 					<img id="myimage" src="${imageUrl}"> <span class="caret"></span> --%>
+<!-- 				</button> -->
+				<ul id="hiddenList" style="display: none;">
 					<li><img id="img1" class="img"
 						src="/resources/images/profile/img1.png"
 						onclick="setMyimage(this)">악마</li>
@@ -185,13 +196,23 @@ function memberClear(){
 						onclick="setMyimage(this)">스파이더맨</li>
 				</ul>
 			</div>
-			<div>
-			<button type="button" class="btn btn-primary" onclick='document.location.href="../";'>
-					되돌아가기<i class="fa fa-times spaceLeft"></i>
-			</button>
-			</div>
 		</form>
-		
+		<!-- bookmark content -->
+		<div class="row">
+			<c:forEach var="bookmark" items="${list}">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="${bookmark.imageUrl}" alt="...">
+					<div class="caption">
+						<h3>${bookmark.prfnm}</h3>
+						<p>${bookmark.prfpdfrom}</p>
+						<p>${bookmark.prfpdto}</p>
+						<p>${bookmark.genrenm }</p>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
 	</div>
 
 	
@@ -302,55 +323,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 					}
 				});
 			}
-		
-	 
-	 
-// 	 $(document).ready(function () {
-	 
-// 		 var places=${places};
-// 		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-		
-// 		for(var i=0; i<${places}.length; i++) {
-// 			var	place = {
-// 				mt10id :  ${places[i]}.mt10id,
-// 				fcltynm : ${places[i]}.fcltynm,
-// 				relateurl : ${places[i]}.relateurl,
-// 				telno : ${places[i]}.telno
-// 			};
-			
-// 			var imageSize = new daum.maps.Size(24, 35);
-// 	        var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
-	        
-// 	      // 마커 이미지의 이미지 크기 입니다
-// 		    var imageSize = new daum.maps.Size(24, 35); 
-		    
-// 		    // 마커 이미지를 생성합니다    
-// 		    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
-		    
-// 		    // 마커를 생성합니다
-// 		    marker = new daum.maps.Marker({
-// 		        map: map, // 마커를 표시할 지도
-// 		        position : new daum.maps.LatLng(${places[i]}.la, ${places[i]}.lo), // 마커를 표시할 위치
-// 		        title : ${places[i]}.fcltynm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-// 		        image : markerImage,	 // 마커 이미지
-// 			});
-		    
-		   
-// 		   (function(marker, place) {
-// 		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-// 		        daum.maps.event.addListener(marker, 'click', function() {
-// 		        		$("#resultTitles").empty();
-// 		            getTitles(place);
-// 		        });
-// 		    })(marker,place);
-
-// 		});
-//   });
- 
- 
-
-
-
 
 </script>	
 	
