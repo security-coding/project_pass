@@ -21,6 +21,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.pknu.pass.admin.dao.AdminDao;
+import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
@@ -330,6 +331,20 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void changeGrade(LoginDto member) {
 		adminDao.changeGrade(member);
-	}	
+	}
 
+	@Override
+	public List<CommentDto> selectComment(PagingDto paging) {
+		return adminDao.selectComment(paging);
+	}
+
+	@Override
+	public int selectTotalComment(PagingDto paging) {
+		return adminDao.selectTotalComment(paging);
+	}
+
+	@Override
+	public void deleteComment(int commentNum) {
+		adminDao.deleteComment(commentNum);
+	}
 }

@@ -41,7 +41,7 @@
 
 			<ul class="nav nav-sidebar">
 				<li><a href="/admin/member">사용자 정보 관리</a></li>
-				<li><a href="">코멘트 관리</a>
+				<li><a href="/admin/comment">코멘트 관리</a>
 			</ul>
 		</div>
 
@@ -53,23 +53,24 @@
 				<div class="placeholders">
 					<div>
 						<div class="btn-group">
-							<button type="button" class="btn-sm btn-default">공연 완료</button>
-							<button type="button" class="btn-sm btn-default">공연 중</button>
-							<button type="button" class="btn-sm btn-default">공연 예정</button>
+      		 				<button class="btn btn-primary active" value="0">전	체</button>
+       						<button class="btn btn-primary" value="1">공연 완료</button>
+       						<button class="btn btn-primary" value="2">공연 중</button>
+       						<button class="btn btn-primary" value="3">공연 예정</button>	
 						</div>
 						
 						<div class="col-md-4 col-md-offset-4">
-							<select class="form-control" id="searchBox">
-								<option selected>-- 검색 설정 --</option>
-								<option value="fcltynm">공연명</option>
+							<select class="form-control" id="filter">
+								<option value="ALL">전		체</option>
+								<option value="PRFNM">공연명</option>
 								<option value="GENRENM">공연 장르</option>
 							</select>
 
 							<div class="input-group custom-search-form">
 								<input type="text" class="form-control" placeholder="Search..."
-									id="searchVal"> <span class="input-group-btn">
+									id="value"> <span class="input-group-btn">
 									<button class="btn btn-primary" type="button"
-										onclick="searchPaging();">
+										onclick="ajaxList();">
 										<i>search</i>
 									</button>
 								</span>
@@ -77,7 +78,7 @@
 						</div>
 						<br> <br>
 						<div class="pull-right">
-							<br> <span>공연 DB 갯수 <span class="badge">${paging.total}</span></span>
+							<br> <span>공연 DB 갯수 <span class="badge"></span></span>
 						</div>
 						<div class="clearfix"></div>
 						<div class="placeholder">
@@ -111,12 +112,19 @@
 		$(function() {
 			paging.ajax = ajaxList;
 			ajaxList();
+			
+			$('.btn-group button').on('click',function(){
+				$(this).addClass('active').siblings().removeClass('active');
+			});
 		});
 		
 		var ajaxList = function() {
 			var submitData = {};
 			submitData.index = paging.p.index;
 			submitData.pageStartNum = paging.p.pageStartNum;
+			submitData.filter = $('#filter').val();
+			submitData.value = $('#value').val();
+			submitData.type = $(".btn-group .btn.btn-primary.active").attr('value');
 			console.log(submitData);
 			    $.ajax({
 			        url: '/admin/select/concert',
@@ -139,6 +147,8 @@
 						});
 			            
 			            $("#table-body").append(str);
+			            $(".badge").html(obj.p.total);
+			            
 			            paging.p = obj.p;
 			            paging.create();
 			        }

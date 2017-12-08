@@ -42,11 +42,14 @@ pageEncoding="UTF-8"%>
         #searchHeader {
             font-size: 4.5rem;
         }
+        .page-content {
+        		margin-bottom: 10%;
+        }
     </style>
 </head>
 
 <body>
-<%@include file="../loginPage/header.jsp"%>
+<%@include file="../header.jsp"%>
 
 <!-- Header -->
 <a id="about"></a>
@@ -88,60 +91,41 @@ pageEncoding="UTF-8"%>
 <!-- /.intro-header -->
 
 <!-- Page Content -->
-<div>
+<div class="page-content">
     <div class="text-center" id="typeNav">
         <h1>BOX OFFICE</h1>
     </div>
-
-
-<!--     <ul class="typeNav"> -->
-<!--         <li><a class="butn" href="#" onclick="change('YK');">연극</a></li> -->
-<!--         <li><a class="butn" href="#" onclick="change('MU');">뮤지컬</a></li> -->
-<!--         <li><a class="butn" href="#" onclick="change('CCO');">클래식/오페라</a></li> -->
-<!--         <li><a class="butn" href="#" onclick="change('MMB');">무용/발래</a></li> -->
-<!--         <li><a class="butn" href="#" onclick="change('KKB');">국악/복합</a></li> -->
-<!--     </ul> -->
-    
-    <div class="typeNav" > 
-<ul class="nav nav-tabs  nav-justified">
-  
-  <li  role="presentation"><a href="#" onclick="change('YK');">연극</a></li>
-  <li  role="presentation"><a href="#" onclick="change('MU');">뮤지컬</a></li>
-  <li  role="presentation"><a href="#" onclick="change('CCO');">클래식/오페라</a></li>
-  <li  role="presentation"><a href="#" onclick="change('MMB');">무용/발래</a></li> 
-  <li  role="presentation"><a href="#" onclick="change('KKB');">국악/복합</a></li>
-  
-</ul>
-	</div>
+<div class="typeNav" > 
+	<ul class="nav nav-tabs  nav-justified">  
+	  <li  role="presentation"><a href="#" onclick="change('YK');">연극</a></li>
+	  <li  role="presentation"><a href="#" onclick="change('MU');">뮤지컬</a></li>
+	  <li  role="presentation"><a href="#" onclick="change('CCO');">클래식/오페라</a></li>
+	  <li  role="presentation"><a href="#" onclick="change('MMB');">무용/발래</a></li> 
+	  <li  role="presentation"><a href="#" onclick="change('KKB');">국악/복합</a></li>	  
+	</ul>
+</div>
 <br>	
-    
     <div class="container">
         <div class="row text-center">
             <div class="poster">
-
                 <div id="type" class="test row" data-index="전체"></div>
                 <c:forEach var="play" items="${boxList}" varStatus="status">
-                    <div class="col-lg-15 col-md-4 col-sm-6 col-xs-12 boxContent">
+                    <div class="col-lg-15 col-md-15 col-sm-3 col-xs-6">
                         <a href="/play/detail?mt20id=${play.mt20id}">
-
-
                             <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
-                            <div style="position: relative; z-index: 1;" class="image-lg image-md image-sm image-xs">
-
-                                <div><img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"
-                                          src="${play.imageurl}" alt=""/></div>
-
-
-                                <div class="img-responsive img-thumbnail overlay">
+                            <div style="position: relative; z-index: 1;">
+                                <img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"
+                                          src="${play.imageurl}" alt=""/>
+                                <div class="overlay">
                                     <div class="text">
                                         <%-- <p>RANK ${play.rnum}</p><br> --%>
+                                        <p>~${play.area}~</p><br>
                                         <p>${play.prfnm}</p><br>
                                         <p>${play.prfpd}</p><br>
                                         <p>${play.prfplcnm}</p><br>
                                         <p>${play.cate}</p>
                                     </div>
                                 </div>
-
                             </div>
                         </a>
                     </div>
@@ -154,53 +138,20 @@ pageEncoding="UTF-8"%>
 <!-- /.container -->
 
 <!-- </div> 고려-->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="list-inline">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li class="footer-menu-divider">&sdot;</li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="footer-menu-divider">&sdot;</li>
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    <li class="footer-menu-divider">&sdot;</li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-                <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
-            </div>
-        </div>
-    </div>
-</footer>
+
+<%@include file="../footer.jsp" %>
 
 <!-- jQuery -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 <!-- Bootstrap Core JavaScript -->
-
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
 </body>
-
-
 <script>
     $(document).ready(function () {
         var jbOffset = $('.typeNav').offset();
 
+       
         $(window).scroll(function () {
 
             if ($(document).scrollTop() > jbOffset.top) {
@@ -260,6 +211,7 @@ pageEncoding="UTF-8"%>
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageurl + "' alt=''/>"
                         + "<div class='img-fluid img-thumbnail overlay'>"
                         + "<div class='text'>" 							                    
+                        + "<p>~" + item.area + "~</p><br>"
                         + "<p>" + item.prfnm + "</p><br>"
                         + "<p>" + item.prfpd + "</p><br>"
                         + "<p>" + item.prfplcnm + "</p><br>"
@@ -270,7 +222,6 @@ pageEncoding="UTF-8"%>
                         + "</a></div>"
 
                     $(".poster").append(str);
-// 					location.href="#typeNav";
                     window.scroll(0, getOffsetTop(document.getElementById("typeNav")));
                 });
 
@@ -291,8 +242,6 @@ pageEncoding="UTF-8"%>
     }
 
     // 	window.scroll(0, getOffsetTop(document.getElementById("bookmark")));
-
-
 </script>
 
 </html>

@@ -19,27 +19,15 @@ pageEncoding="UTF-8"%>
     <!-- Bootstrap Core JavaScript -->
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
-    <style>
-        @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
-
-        body,
-        table,
-        div,
-        p,
-        header,
-        hr,
-        section,
-        footer {
-            font-family: 'Jeju Gothic'
-        }
-    </style>
-
     <script>
         let id = '${id}';
         let mt20id = '${detailInf.mt20id}';
         let heart = '${fullHeart}';
-
         function changeImg(changeStat) {
+        		if(id==''){
+        			alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+        			return;
+        		}
             let changeVal = $(changeStat).attr("value");
             console.log(changeVal);
             $.ajax({
@@ -53,20 +41,64 @@ pageEncoding="UTF-8"%>
                     changeVal: changeVal
                 },
                 success: function (data) {
-                    if (data == 0) {
+                    if (data.Stat == 0) {
+                        $(inCount).attr("value",data.Count);
                         $(changeStat).attr("src", "/images/likes/full-heart.png");
                         $(changeStat).attr("value", 1);
-                    } else {
+                    } else if(data.Stat==1) {
+                        $(inCount).attr("value",data.Count);
                         $(changeStat).attr("src", "/images/likes/empty-heart.png");
                         $(changeStat).attr("value", 0);
                     }
                 },
                 error: function (e) {
-                    alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+                    alert("오류가 발생했습니다.");
                 }
             });
             
         }
+        
+        function bookmark(obj) {
+			if(id=='') {
+				alert("북마크 기능을 이용하기 위해서는 로그인이 필요합니다.");
+				return;
+			}
+			var value = $(obj).attr('value');
+			$.ajax({
+				url : '/play/bookmark',
+				type : 'post',
+				data : {
+					id : id,
+					mt20id : mt20id,
+					value : value
+				},
+				success : function(data) {
+					if(value == 0) {
+						alert("북마크가 설정되었습니다");
+						$(obj).attr("src", "/images/likes/bookmark.png");
+	                    $(obj).attr("value", 1);
+					} else {
+						$(obj).attr("src", "/images/likes/non_bookmark.png");
+	                    $(obj).attr("value", 0);
+					}
+				}
+			});
+		}
+        
+        $(function() {
+        	 $.ajax({
+                 type: "POST",
+                 async: true,
+                 dataType: 'json',
+                 url: "/play/nowLikes",
+                 data: {
+                     mt20id: mt20id
+                 },
+				success : function(data){
+					$(inCount).attr("value",data);
+				}
+			});
+       });
         
         $(document).ready(function () {
         		paging.ajax = ajaxList;
@@ -153,7 +185,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<%@include file="../loginPage/header.jsp"%>
+<%@include file="../header.jsp"%>
 <div style="height: 100px;"></div>
 <div class="row">
     <div class="col-md-7 col-md-offset-1">
@@ -171,17 +203,32 @@ pageEncoding="UTF-8"%>
                 <!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
     <img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
      -->
+     			
                 <c:choose>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
                              style="width:20px;, height:20px;" onclick="changeImg(this)">
+                         <input id=inCount name=inCount type="text" readonly="readonly"
+                         style="border:0;">    
                     </c:when>
                     <c:when test="${fullHeart eq 1}">
                         <img id="full-heart" src="/images/likes/full-heart.png" value=1
                              style="width:20px;, height:20px;" onclick="changeImg(this)">
+                         <input id=inCount name=inCount type="text" readonly="readonly"
+                         style="border:0;">    
                     </c:when>
                 </c:choose>
-
+                
+                <c:choose>
+     				<c:when test="${bookmark == null}">
+     					<img id="bookmark" src= "/images/likes/non_bookmark.png" value=0
+     						style="width:20px; height:20px" onclick="bookmark(this);">
+     				</c:when>
+     				<c:when test="${bookmark eq 1}">
+     					<img id="bookmark" src= "/images/likes/bookmark.png" value=1
+     						style="width:20px; height:20px" onclick="bookmark(this);">
+     				</c:when>
+     			</c:choose>
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
@@ -235,10 +282,16 @@ pageEncoding="UTF-8"%>
                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                     mapOption = {
                         center: new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo}), // 지도의 중심좌표
-                        level: 5 // 지도의 확대 레벨
+                        level: 5, // 지도의 확대 레벨
+                        scrollwheel : false,
+                        disableDoubleClick : false,
+                        disableDoubleClickZoom : false
                     };
 
                 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+                 
+                var zoomControl = new daum.maps.ZoomControl();
+           	 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
                 // 마커가 표시될 위치입니다 
                 var markerPosition = new daum.maps.LatLng(${detailInf.la}, ${detailInf.lo});
@@ -297,20 +350,9 @@ pageEncoding="UTF-8"%>
 
 
 <!-- Replicate the above Div block to add more title and company details -->
-
-</div>
 <div>
-    <footer>
-        <hr>
-        <p class="footerDisclaimer">
-            2014 Copyrights - <span>All Rights Reserved</span>
-        </p>
-        <p class="footerNote">
-            project pass - <span>-</span>
-        </p>
-    </footer>
+<%@include file="../footer.jsp" %>
 </div>
-
 
 </body>
 </html>
