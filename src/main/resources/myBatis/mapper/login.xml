@@ -25,15 +25,15 @@
  	UPDATE MEMBER 
  	<choose>
  	<when test="password !=null and address !='' and detailAddress !=''">
-  	set password=#{password},address=#{address},DETAILADDRESS=#{detailAddress}
+  	set password=#{password},address=#{address},DETAILADDRESS=#{detailAddress},la=#{la},lo=#{lo}
   	</when>
   	
  	<when test="password !=null">
- 	set password=#{password} 
+ 	set password=#{password},address=#{address},DETAILADDRESS=#{detailAddress},la=#{la},lo=#{lo}
   	</when>
   	
   	<when test="address !='' and detailAddress !=''">
-  	set address=#{address},DETAILADDRESS=#{detailAddress}
+  	set address=#{address},DETAILADDRESS=#{detailAddress},la=#{la},lo=#{lo}
   	</when>
   	
   	</choose>

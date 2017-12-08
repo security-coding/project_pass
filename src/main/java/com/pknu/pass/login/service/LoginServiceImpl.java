@@ -1,10 +1,8 @@
 package com.pknu.pass.login.service;
 
 import java.util.HashMap;
-import java.util.Map;
-
 import java.util.List;
-
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -163,12 +161,10 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void myPageUpdate(HttpSession session,String password,LoginDto logindto,String address,String detailaddress) {
+	public void myPageUpdate(HttpSession session,String password,LoginDto logindto) {
 		
 		logindto.setId((String) session.getAttribute("id"));
 		logindto.setPassword(securityUtil.encrypt(password));
-		logindto.setAddress(address);
-		logindto.setDetailAddress(detailaddress);
 		logindao.myPageUpdate(logindto);
 
 	}
@@ -176,8 +172,7 @@ public class LoginServiceImpl implements LoginService {
 	public void myPassChengeForm(HttpSession session, Model model) {
 		String id=(String)session.getAttribute("id");
 		LoginDto userInf=logindao.getUser(id);
-		model.addAttribute("address",userInf.getAddress());
-		model.addAttribute("detailAddress",userInf.getDetailAddress());
+		model.addAttribute("userInf",userInf);
 		
 		
 	}

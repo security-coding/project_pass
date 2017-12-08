@@ -96,11 +96,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/updateuser")//마이페이지 내용 업데이트
-	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam("changePass")String password,
-							   @RequestParam("address")String address,@RequestParam("detailaddress")String detailaddress) {
+	public String mypageupdate(HttpSession session,LoginDto logindto,@RequestParam("changePass")String password) {
 		
-		System.out.println(address);
-		loginService.myPageUpdate(session,password,logindto,address,detailaddress);
+		System.out.println(logindto.getAddress());
+		System.out.println(logindto.getDetailAddress());
+		loginService.myPageUpdate(session,password,logindto);
 		loginService.logout(session);
 		
 		return "/home";

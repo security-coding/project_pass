@@ -136,7 +136,7 @@ $(document).ready(function(){
 		<ul class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
-			<li><a href="/member/myPassChange">회원정보변경</a></li>
+			<li><a href="/member/myPassChange">회원정보 변경</a></li>
 			<li><a href="/member/memberClear" onclick="return memberClear();">회원탈퇴</a></li>
 		</ul>
 	</div>
@@ -156,13 +156,7 @@ $(document).ready(function(){
 						<label for="email">Email:
 							<td><div>
 									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"  value="${email}" disabled="true"></td>
-							<td>@</td>
-							<td><input type="text" name="str_email" id="str_email" class="form-control"
-								style="width: 100px" disabled value="naver.com">
-								</div></td>
-							<td>
-
+										placeholder="Email" style="width: 200px"  value="${user.email}" disabled="true"></td>
 						</label>
 						</td>
 					</tr>
@@ -171,7 +165,7 @@ $(document).ready(function(){
 			<tr>
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}" disabled="disabled">
+				<input type="text" id="address" name="address" placeholder="주소" value="${user.address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${user.detailAddress}" disabled="disabled">
 			</div>
 			</label>
 			</tr>
@@ -285,6 +279,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		        image : markerImage // 마커 이미지 
 		    }); 
 		    
+		    
 		    (function(marker, place) {
 		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
 		        daum.maps.event.addListener(marker, 'click', function() {
@@ -325,6 +320,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				});
 			}
 
+		 
 </script>	
 	
 </body>
