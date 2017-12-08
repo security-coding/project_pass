@@ -54,11 +54,12 @@ create table MEMBER
 	EMAIL VARCHAR2(100) not null,
 	CERTKEY VARCHAR2(36) not null,
 	CERTIFY NUMBER(1) default 0 not null,
-    profile VARCHAR(100),
+    profile VARCHAR(100) default '/resources/images/profile/img1.png',
 	GRADE NUMBER(1) DEFAULT 1 NOT NULL,
 	ADDRESS VARCHAR2(100) NOT NULL ,
 	DETAILADDRESS VARCHAR2(100) NOT NULL
 )
+alter table member modify(profiledefault'/resources/images/profile/img2.png');
 /
 
 
