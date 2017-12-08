@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
                                                 <input id="keyword" name="keyword" type="text"
                                                        class="form-control" placeholder="보고싶은 공연을 검색해 보세요!"> <span
                                                     class="input-group-btn"> <input
-                                                    class="btn" type="submit" value="검색"/>
+                                                    class="btn btn-info" type="submit" value="검색"/>
 											</span>
                                             </div>
                                         </div>
