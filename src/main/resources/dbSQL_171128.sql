@@ -66,6 +66,8 @@ CREATE TABLE MEMBER
 alter table member modify(profile default '/resources/images/profile/img2.png');
 /
 
+ALTER TABLE member ADD (la VARCHAR2(100) NULL, lo VARCHAR2(100) NULL);
+
 CREATE TABLE BOXOFFICE
 (
   AREA     VARCHAR2(20)  NOT NULL,

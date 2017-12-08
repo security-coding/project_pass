@@ -17,7 +17,7 @@ let idCheck=false;
 let emailCheck = false;
 
 $(function() {
-	$("#email1").on("click", function() {
+	$("#email1").on("change", function() {
 		$.ajax({
 			type : "POST",
 			async : true,
@@ -50,6 +50,7 @@ $(function() {
 
 $(function() {
 	$("#email2").on("blur", function() {
+		$("#lookUpId").on("change",function(){
 		$.ajax({
 			type : "POST",
 			async : true,
@@ -57,12 +58,12 @@ $(function() {
 			url : "/member/reSetPassCheck",
 			data : {
 				email2 : $("#email2").val(),
-				id:$("#id").val()
+				id:$("#lookUpId").val()
 			},
 			success : function(data) {
 				let emailHtml;
 				let idHtml;
-				if ($("#email2").val() != "" && $("#id").val() !="") {
+				if ($("#email2").val() != "" && $("#lookUpId").val() !="") {
 					if (data == 1) {
 						 idCheck=true;
 						 emailCheck=true;
@@ -72,14 +73,16 @@ $(function() {
 						emailCheck=false;
 						 
 					}
-				} else if($("#email1").val() == "" && $("#id").val() ==""){	
+				} else if($("#email2").val() == "" && $("#lookUpId").val() ==""){	
 					idCheck=false; 
 					emailCheck=false; 
 				}
 			}
+			});//ajax
 		});
 	});
 });
+
 
 
 function idSearchSubmit(){
@@ -151,8 +154,8 @@ function passSearchSubmit(){
 			</div>
 
 			<div class="form-group">
-				<label for="id">아이디</label> <input type="text" class="form-control"
-					id="id" name="id" placeholder="회원가입할때 입력하신 아이디 입력">
+				<label for="lookUpId">아이디</label> <input type="text" class="form-control"
+					id="lookUpId" name="lookUpId" placeholder="회원가입할때 입력하신 아이디 입력">
 					<div id="emailCheck"></div>
 			</div>
 
