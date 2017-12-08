@@ -5,16 +5,6 @@
 
 <mapper namespace="com.pknu.pass.comment.dao.CommentDao">
 	
-	
-	
-<!-- 	<select id="getComments" parameterType="HashMap" resultType="comment"> -->
-<!-- 		select * -->
-<!-- 		from (select commentContent,commentDate, mt20id -->
-<!-- 		      from comments  -->
-<!-- 		     	where mt20id=#{mt20id}  -->
-<!-- 		     	order by commentNum desc ) human  -->
-<!-- 		where rownum between 1 and #{commentRow} -->
-<!-- 	</select> -->
 
 	<select id="getComments" parameterType="HashMap" resultType="comment">
 		SELECT *
@@ -35,5 +25,11 @@
 		FROM COMMENTS
 		WHERE mt20id = #{mt20id}
 	</select>
+	
+	<delete id="deleteComment" parameterType="Integer">
+		DELETE
+		FROM COMMENTS	
+		WHERE commentNum = #{commentNum}
+	</delete>
 	 
 </mapper>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.pknu.pass.place.dto.PlaceDto;
+import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
@@ -57,5 +58,8 @@ public interface PlayDao {
     
     public ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
 
+	public void insertBookmark(BookmarkDto bookmark);
+
+	public void deleteBookmark(BookmarkDto bookmark);
 	
 }

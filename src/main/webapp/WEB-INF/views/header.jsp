@@ -91,6 +91,8 @@
     color: inherit;
 }
 </style>
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
+
 <script>
 function blank(){
 	if($('#keyword').val()==""){
@@ -118,6 +120,17 @@ function showPassword() {
     }
     
 }
+</script>
+
+<script>
+$(function() {
+		let Certify = ${dbCertify};
+		if (Certify == 0) {
+			alert("회원가입 이메일 인증을 안하셨습니다.");
+		}
+		document.location.href = "../";
+
+	});
 </script>
 
 	<!-- Navigation -->
@@ -167,7 +180,7 @@ function showPassword() {
 							<button type="button" class="close" data-dismiss="modal">
 								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
 							</button>
-							<h4 class="modal-title">로그인</h4>
+							<h4 class="modal-title text-center">로그인</h4>
 						</div>
 						<section id="login">
 						<div class="container">
@@ -191,7 +204,7 @@ function showPassword() {
 												<span class="label">Show password</span>
 											</div>
 											<input type="submit" id="btn-login"
-												class="btn btn-custom btn-lg btn-block" value="Log in">
+												class="btn btn-custom btn-lg btn-block" value="Log in" oninput="CertifyCheck()">
 										</form>
 										<p><a href="/member/userloss">아이디/비밀번호찾기</a></p>
 										<hr>

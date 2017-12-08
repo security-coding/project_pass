@@ -18,7 +18,6 @@ body, table, div, p, h {
 	font-family: 'Jeju Gothic'
 }
 </style>
-
 </head>
   <body>
   <div>

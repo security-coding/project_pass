@@ -25,6 +25,8 @@ pageEncoding="UTF-8"%>
     <!-- 지도 api -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     
+
+    
     <script>
 	let idCheck = false;
 	let emailCheck = false;
@@ -108,6 +110,49 @@ pageEncoding="UTF-8"%>
 	
 	function availability(){
 		let html;
+		
+		 var id=$("#joinId").val();
+		 var pass=$("#joinPass").val(); 
+		 var passCheck=$("#joinPassCheck").val();
+		 var email=$("#email").val();
+		 var str_email=$("#str_email").val();
+		 var address=$("#address").val();
+		 var detailaddress=$("#detailaddress").val();
+		 
+		 if(id==""){
+		 	alert("아이디를 입력하세요");
+		 	$("#joinId").focus();
+		 	return false;
+		 }
+		 if(pass==""){
+		 	alert("패스워드를 입력하세요");
+		 	$("#joinPass").focus();
+		 	return false;
+		 }
+		 if(email==""){
+			 alert("이메일을 입력하세요");
+			 $("#email").focus();
+			 return false;
+		 }
+		 if(str_email==""){
+			 alert("이메일주소를 입력해주세요");
+			 $("#str_email").focus();
+			 return false;
+		 }
+		 if(pass!=passCheck){
+			 alert("패스워드가 일치하지 않습니다")
+		 	$("#joinPassCheck").focus();
+			 return false;
+		 }
+		 if(address==""){
+			 alert("주소를 입력해주세요");
+			 return false;
+		 }
+		 if(detailaddress==""){
+			 alert("상세주소를 입력해주세요");
+		 	 $("#detailaddress"),focus();
+			 return false;
+		 }
 		if(idCheck==true&&emailCheck==true){
 			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
 			return true;
@@ -116,57 +161,111 @@ pageEncoding="UTF-8"%>
 			return false;
 		}
 	}
-/*지도 스크립트 */
 	
-    function execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+$(function() {
+	//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
 
-                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    fullAddr = data.roadAddress;
+	$("#joinPass").blur(
+			function() {
+				let html;
+				if ($("#joinPass").val() == "") {
+					html = "<b>암호를 입력해주세요</b>"
+					$("#passCheck").html(html).css("color",
+							"red");
+				} else {
+					html = ""
+					$("#passCheck").html(html).css("color",
+							"white");
+				}
+			});
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    fullAddr = data.jibunAddress;
-                }
+	$("#joinPassCheck").blur(
+			function() {
+				let html;
+				if ($("#joinPass").val() != $("#joinPassCheck").val()) {
+					html = "<b>암호가 일치하지 않습니다.</b>"
+					$("#passCheck2").html(html).css("color", "red");
+				} else if ($("#joinPass").val() == $("#joinPassCheck").val()&& $("#joinPass").val() !=""&& $("#joinPassCheck").val() != "") {
+					html = "<b>암호가 일치합니다.</b>"
+					$("#passCheck2").html(html).css("color", "blue");
+				}
+			});
+	
+	$('#selectEmail').change(function() {
+		$("#selectEmail option:selected").each(function() {
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
+			if ($(this).val() == '1') { //직접입력일 경우
+				$("#str_email").val(''); //값 초기화
+				$("#str_email").attr("disabled", false); //활성화
+			} else { //직접입력이 아닐경우
+				$("#str_email").val($(this).text()); //선택값 입력
+				$("#str_email").attr("disabled", true); //비활성화
+			}
+		});
+	});
+	
+});
+	
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('address').value = fullAddr;
+	
+	/*지도 스크립트 */
 
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('detailaddress').focus();
-            }
-        }).open();
-    }
-
-</script>
+	function execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
+	
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
+	
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
+						}
+	
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName
+										: data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' ('
+									+ extraAddr + ')'
+									: '');
+						}
+	
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('address').value = fullAddr;
+	
+						// 커서를 상세주소 필드로 이동한다.
+						document
+								.getElementById('detailaddress')
+								.focus();
+					}
+				}).open();
+	}
+				</script>
     
             <!-- CSS -->
-        <link rel="stylesheet" href="assets/typicons/typicons.min.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/media-queries.css">
+<!--         <link rel="stylesheet" href="assets/typicons/typicons.min.css"> -->
+<!--         <link rel="stylesheet" href="assets/css/animate.css"> -->
+<!--         <link rel="stylesheet" href="assets/css/style.css"> -->
+<!--         <link rel="stylesheet" href="assets/css/media-queries.css"> -->
     
     
     </head>
@@ -309,7 +408,7 @@ pageEncoding="UTF-8"%>
 								</table>
 								
 								
-<!-- 								폼 다끝나고 회원가입 버튼 및 가입 취소 구간 -->
+						<!--폼 다끝나고 회원가입 버튼 및 가입 취소 구간 -->
 								
 								<div class="form-group text-center">
 								<button id="signupbtn" type="submit" class="btn btn-info">회원 가입 </button>
@@ -323,93 +422,13 @@ pageEncoding="UTF-8"%>
     </body>
     
            <!-- Javascript -->
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/retina-1.1.0.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+<!--         <script src="assets/js/jquery.backstretch.min.js"></script> -->
+<!--         <script src="assets/js/wow.min.js"></script> -->
+<!--         <script src="assets/js/retina-1.1.0.min.js"></script> -->
+<!--         <script src="assets/js/scripts.js"></script> -->
         
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
     
-    
-    <script>
-	//이메일 입력방식 선택
-	$('#selectEmail').change(function() {
-		$("#selectEmail option:selected").each(function() {
-
-			if ($(this).val() == '1') { //직접입력일 경우
-				$("#str_email").val(''); //값 초기화
-				$("#str_email").attr("disabled", false); //활성화
-			} else { //직접입력이 아닐경우
-				$("#str_email").val($(this).text()); //선택값 입력
-				$("#str_email").attr("disabled", true); //비활성화
-			}
-		});
-	});
-	
-	 $(function(){
-//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
-		 $("#joinForm").on("submit", function(){
-//	 		 event.preventDefault();
-			 var id=$("#joinId").val();
-			 var pass=$("#joinPass").val(); 
-			 var passCheck=$("#joinPassCheck").val();
-			 var email=$("#email").val();
-			 var str_email=$("#str_email").val();
-			 
-			 if(id==""){
-			 	alert("아이디를 입력하세요");
-			 	$("#joinId").focus();
-			 	return false;
-			 }
-			 if(pass==""){
-			 	alert("패스워드를 입력하세요");
-			 	$("#joinPass").focus();
-			 	return false;
-			 }
-			 if(email==""){
-				 alert("이메일을 입력하세요");
-				 $("#email").focus();
-				 return false;
-			 }
-			 if(str_email==""){
-				 alert("주소를 입력해주세요");
-				 $("#str_email").focus();
-				 return false;
-			 }
-			 if(pass!=passCheck){
-				 alert("패스워드가 일치하지 않습니다")
-			 	$("#joinPassCheck").focus();
-				 return false;
-			 }
-			 $("#joinForm").submit();
-		 })
-	 });
- 	
-	 
-		$("#joinPass").blur(function(){
-			let html;
-			if($("#joinPass").val()==""){
-				html="<b>암호를 입력해주세요</b>"
-				$("#passCheck").html(html).css("color","red");
-			}else{
-				html=""
-				$("#passCheck").html(html).css("color","white");
-			}
-		});
-		 
-	 	$("#joinPassCheck").blur(function(){
-	 		let html;
-	 		if($("#joinPass").val()!=$("#joinPassCheck").val()){
-				html="<b>암호가 일치하지 않습니다.</b>"
-				$("#passCheck2").html(html).css("color","red");
-	 		}else if($("#joinPass").val()==$("#joinPassCheck").val()&&$("#joinPass").val()!=""&&$("#pass2").val()!=""){
-				html="<b>암호가 일치합니다.</b>"
-				$("#passCheck2").html(html).css("color","blue");
-	 		}
-	 	});
-
-		
-	</script>
     </html>
