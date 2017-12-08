@@ -50,6 +50,7 @@ public class LoginController {
 							@RequestParam("detailaddress")String detailAddress,
 							@RequestParam("joinPass")String password,
 							@RequestParam("joinId")String id) {
+	
 		logindto.setId(id);
 		logindto.setPassword(password);
 		loginService.insertUser(logindto,stremail,address,detailAddress);

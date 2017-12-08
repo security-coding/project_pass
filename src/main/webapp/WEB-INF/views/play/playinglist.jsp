@@ -74,7 +74,7 @@
 	
 		$(".top").on("click", function(){
 		    $('html, body').animate({
-		        scrollTop: 74
+		        scrollTop: 35
 		    }, 700);
 		    return false; 
 		});
