@@ -27,7 +27,8 @@
 <body>
 	
 	<form class="navbar-form navbar-right" action="/member/logout" method="post">
-		<a href="/member/mypage" class="user_a"><p class="user"><img alt="" src="${imageUrl}">${id}</p></a><button class="btn btn-primary" id="logout">로그아웃</button> 
+		<a href="/member/mypage" class="user_a"><p class="user"><img alt="" style="width:30px; height:30px;" src="${imageUrl}">&nbsp&nbsp${id}</p></a>
+		&nbsp&nbsp&nbsp&nbsp<button class="btn btn-primary" id="logout">로그아웃</button> 
 		<!-- 버튼태그가 form태그안에 선언되면 해당되는  form이 submit이 선언된다 -->
 		
 	</form>

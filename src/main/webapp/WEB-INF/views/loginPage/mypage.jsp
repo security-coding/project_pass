@@ -180,15 +180,11 @@ $(document).ready(function(){
 <%-- 					<img id="myimage" src="${imageUrl}"> <span class="caret"></span> --%>
 <!-- 				</button> -->
 				<ul id="hiddenList" style="display: none;">
-					<li><img id="img1" class="img"
-						src="/resources/images/profile/img1.png"
-						onclick="setMyimage(this)">악마</li>
-					<li><img id="img2" class="img"
-						src="/resources/images/profile/img2.png"
-						onclick="setMyimage(this)">판다</li>
-					<li><img id="img3" class="img"
-						src="/resources/images/profile/img3.png"
-						onclick="setMyimage(this)">스파이더맨</li>
+					<c:forEach begin="1" end="13" varStatus="status">
+					<li><img id="img${status.count}" class="img"
+						src="/resources/images/profile/img${status.count}.png"
+						onclick="setMyimage(this)" style="width:50px; height:50px;"></li>
+					</c:forEach>
 				</ul>
 			</div>
 		</form>
