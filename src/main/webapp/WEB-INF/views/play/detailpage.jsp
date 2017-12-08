@@ -164,7 +164,7 @@ pageEncoding="UTF-8"%>
 						str += "<br />";
 						str += "<div class='media mb-4'>";
 						str += "<input type='hidden' value='" + comment.commentNum + "'>";
-	                   	str += "<img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>";	                   	
+	                   	str += "<img class='d-flex mr-3 rounded-circle' src='"+ comment.profile + "' alt=''>";	                   	
 	                    	str += "<div class='media-body'>";
 	                    	str += "<h5 class='mt-0'>" + "작성자 : " + comment.id + "&nbsp&nbsp&nbsp&nbsp" + "작성일 : " + comment.commentDate ;
 	                    if(comment.id == id){
@@ -176,7 +176,7 @@ pageEncoding="UTF-8"%>
 	                    	str += "</div>";
 				});
 				$("#comment-group").append(str);
-				
+				$("#totalComment").html(obj.p.total);
 				paging.p = obj.p;
 				paging.create();
 			}
@@ -364,7 +364,7 @@ body, table, div, p, style, section, h {
                   <div>
             </div>
         </div>
-        <h5>총 댓글 수 : ${getTotalComments} </h5>
+        <h5>총 댓글 수 : <span id="totalComment"></span></h5>
        	<div id="comment-group"></div>
        	<%@include file="../paging.jsp" %>
             </div>
