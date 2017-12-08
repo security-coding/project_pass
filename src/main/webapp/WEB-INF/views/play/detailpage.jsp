@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
         let heart = '${fullHeart}';
         function changeImg(changeStat) {
         		if(id==''){
-        			alert("좋아요를 누르기 위해서는 로그인이 필요합니다.");
+        			alert("좋아요 기능을 이용하기 위해서는 로그인이 필요합니다.");
         			return;
         		}
             let changeVal = $(changeStat).attr("value");
@@ -105,6 +105,10 @@ pageEncoding="UTF-8"%>
 			ajaxList();
         	
             $("#commentWrite").on("click", function () {
+    			if(id=='') {
+    				alert("댓글 기능을 이용하기 위해서는 로그인이 필요합니다.");
+    				return;
+    			}
                 $.ajax({
                     url: "/comment/write",
                     data: {
