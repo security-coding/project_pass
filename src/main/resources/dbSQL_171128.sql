@@ -48,18 +48,7 @@ ON DELETE CASCADE
 
 CREATE TABLE MEMBER
 (
-<<<<<<< HEAD
-	ID VARCHAR2(20) not null
-		primary key,
-	PASSWORD VARCHAR2(65) not null,
-	EMAIL VARCHAR2(100) not null,
-	CERTKEY VARCHAR2(36) not null,
-	CERTIFY NUMBER(1) default 0 not null,
-    profile VARCHAR(100) default '/resources/images/profile/img1.png',
-	GRADE NUMBER(1) DEFAULT 1 NOT NULL,
-	ADDRESS VARCHAR2(100) NOT NULL ,
-	DETAILADDRESS VARCHAR2(100) NOT NULL
-=======
+
   ID            VARCHAR2(20)        NOT NULL
     PRIMARY KEY,
   PASSWORD      VARCHAR2(65)        NOT NULL,
@@ -70,11 +59,12 @@ CREATE TABLE MEMBER
   GRADE         NUMBER(1) DEFAULT 1 NOT NULL,
   ADDRESS       VARCHAR2(100)       NOT NULL,
   DETAILADDRESS VARCHAR2(100)       NOT NULL
->>>>>>> 514c59f18689aed89fba58fce38a78e2f3079b95
+
 )
-alter table member modify(profiledefault'/resources/images/profile/img2.png');
 /
 
+alter table member modify(profile default '/resources/images/profile/img2.png');
+/
 
 CREATE TABLE BOXOFFICE
 (

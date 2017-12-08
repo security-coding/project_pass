@@ -47,10 +47,11 @@ public class LoginController {
 	@RequestMapping(value="/insertuser")//회원가입 데이터 db에 삽입
 	public String insertuser(LoginDto logindto,@RequestParam("str_email")String stremail,
 							@RequestParam("joinPass")String password,
-							@RequestParam("joinId")String id) {
-		
+							@RequestParam("joinId")String id
+							) {
+	
+		logindto.setId(id);
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
-		logindto.setId(id);	
 		logindto.setPassword(password);
 		loginService.insertUser(logindto);
 		return "/home";

@@ -7,6 +7,7 @@ public class CommentDto {
 	private String commentContent;  
 	private String commentDate ;  
 	private String mt20id;
+	private String profile;
 
 	
 	public int getCommentNum() {
@@ -40,14 +41,22 @@ public class CommentDto {
 	public void setMt20id(String mt20id) {
 		this.mt20id = mt20id;
 	}
-	
-	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
 	@Override
 	public String toString() {
 		return "CommentDto [commentNum=" + commentNum + ", id=" + id + ", commentContent=" + commentContent
-				+ ", commentDate=" + commentDate + ", mt20id=" + mt20id + "]";
+				+ ", commentDate=" + commentDate + ", mt20id=" + mt20id + ", profile=" + profile + "]";
 	}
+	
+	
+	
+	
 
 	
 

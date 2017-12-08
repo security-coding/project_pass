@@ -18,7 +18,7 @@
  
  
  <insert id="insertUser" parameterType="String">
- 	insert into MEMBER(id,password,email,certkey,address,detailaddress) values(#{id},#{password},#{email},#{certKey},#{address},#{detailAddress})
+ 	insert into MEMBER(id,password,email,certkey,address,detailaddress,la,lo) values(#{id},#{password},#{email},#{certKey},#{address},#{detailAddress},#{la},#{lo})
  </insert>
  
  <update id="myPageUpdate" parameterType="String">
@@ -64,5 +64,11 @@
 <delete id="memberClear" parameterType="String">
 	delete from member where id=#{id}
 </delete>
+ 
+ <select id="getBookmark" parameterType="String" resultType="predto">
+ 	SELECT imageUrl, prfnm, prfpdfrom, prfpdto, genrenm
+ 	FROM CONCERT NATURAL JOIN BOOKMARK NATURAL JOIN IMAGE
+ 	WHERE id = #{id} AND imageType = 1
+ </select>
  
  </mapper>

@@ -1,5 +1,10 @@
 package com.pknu.pass.login.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import java.util.List;
+
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +17,9 @@ import com.pknu.pass.login.common.MailUtil;
 import com.pknu.pass.login.common.SecurityUtil;
 import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.place.dao.PlaceDao;
+import com.pknu.pass.play.dto.MainDto;
+
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -20,6 +28,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private LoginDao logindao;
+	
+	@Autowired
+	PlaceDao placeDao;
 
 	@Autowired
 	private SecurityUtil securityUtil;
@@ -134,29 +145,21 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void myPageId(HttpSession session, Model model,LoginDto loginDto) {
-		LoginDto userInf=null;
-		String id =(String)session.getAttribute("id");
-		String imageUrl;
-		String address;
-		String detailAddress;
+		String id = (String)session.getAttribute("id");
+	
+		LoginDto user = logindao.getUser(id);
+		List<MainDto> bookmarkList = logindao.getBookmark(id);
 		
-		userInf=logindao.getUser(id);
-		imageUrl = userInf.getProfile();
-		address=userInf.getAddress();
-		detailAddress=userInf.getDetailAddress();
-		
-		
-		String mail = userInf.getEmail();
-		int idx = mail.indexOf("@");
-		String mailid = mail.substring(0, idx);
-		
-
-		model.addAttribute("imageUrl", imageUrl);
-		model.addAttribute("id", session.getAttribute("id"));
-		model.addAttribute("email", mailid);
-		model.addAttribute("address",address);
-		model.addAttribute("detailAddress",detailAddress);
-		
+		//내주변지도관련
+		Map<String,String> paramMap = new HashMap<>();
+		paramMap.put("la", user.getLa());
+		paramMap.put("lo", user.getLo());
+	
+		model.addAttribute("user", user);
+		model.addAttribute("list",bookmarkList);
+		model.addAttribute("la",user.getLa());
+		model.addAttribute("lo",user.getLo());
+		model.addAttribute("places",placeDao.selectPlace(paramMap));
 	}
 
 	@Override

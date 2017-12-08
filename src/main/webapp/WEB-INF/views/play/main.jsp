@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
                                                 <input id="keyword" name="keyword" type="text"
                                                        class="form-control" placeholder="보고싶은 공연을 검색해 보세요!"> <span
                                                     class="input-group-btn"> <input
-                                                    class="btn" type="submit" value="검색"/>
+                                                    class="btn btn-info" type="submit" value="검색"/>
 											</span>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@ pageEncoding="UTF-8"%>
             <div class="poster">
                 <div id="type" class="test row" data-index="전체"></div>
                 <c:forEach var="play" items="${boxList}" varStatus="status">
-                    <div class="col-lg-15 col-md-15 col-sm-3 col-xs-6">
+                    <div class="col-lg-15 col-md-3 col-sm-3 col-xs-6">
                         <a href="/play/detail?mt20id=${play.mt20id}">
                             <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
                             <div style="position: relative; z-index: 1;">
@@ -195,12 +195,12 @@ pageEncoding="UTF-8"%>
                 $(".poster").empty();
                 $.each(data, function (index, item) {
 
-                    str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+                    str = "<div class='col-lg-15 col-md-15 col-sm-3 col-xs-6' >"
                         + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
                         + "<div style='position: absolute; z-index: 2;'><img src='/resources/images/rank/poster_rank_" + (index + 1) + ".png'/></div>"
-                        + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
+                        + "<div style='position: relative; z-index: 1;'>"
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageurl + "' alt=''/>"
-                        + "<div class='img-fluid img-thumbnail overlay'>"
+                        + "<div class='overlay'>"
                         + "<div class='text'>" 							                    
                         + "<p>~" + item.area + "~</p><br>"
                         + "<p>" + item.prfnm + "</p><br>"
