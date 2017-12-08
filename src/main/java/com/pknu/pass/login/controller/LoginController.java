@@ -49,10 +49,15 @@ public class LoginController {
 							@RequestParam("address")String address,
 							@RequestParam("detailaddress")String detailAddress,
 							@RequestParam("joinPass")String password,
-							@RequestParam("joinId")String id) {
+							@RequestParam("joinId")String id,
+							@RequestParam("la")String la,
+							@RequestParam("lo")String lo
+							) {
 	
 		logindto.setId(id);
 		logindto.setPassword(password);
+		logindto.setLa(la);
+		logindto.setLo(lo);	
 		loginService.insertUser(logindto,stremail,address,detailAddress);
 		return "/home";
 	}

@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
     <!-- 지도 api -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
 
     
     <script>
@@ -212,6 +212,9 @@ $(function() {
 	/*지도 스크립트 */
 
 	function execDaumPostcode() {
+		//주소-좌표 변환 객체를 생성
+	    var geocoder = new daum.maps.services.Geocoder();
+		
 		new daum.Postcode(
 				{
 					oncomplete : function(data) {
@@ -252,10 +255,26 @@ $(function() {
 						document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
 						document.getElementById('address').value = fullAddr;
 	
+						
+						
 						// 커서를 상세주소 필드로 이동한다.
 						document
 								.getElementById('detailaddress')
 								.focus();
+					
+				           geocoder.addressSearch(data.address, function(results, status) {
+			                    // 정상적으로 검색이 완료됐으면
+			                    if (status === daum.maps.services.Status.OK) {
+									$(".label").css("display","none");
+			                        var result = results[0]; //첫번째 결과의 값을 활용
+			                        document.getElementById('la').value = result.y; //위도
+									document.getElementById('lo').value = result.x; //경도  
+			                       
+			                
+			                    }
+			                });	
+						
+						
 					}
 				}).open();
 	}
@@ -406,7 +425,8 @@ $(function() {
 								</td>
 								</div>
 								</table>
-								
+								<input type="hidden" name="la" id="la">
+								<input type="hidden" name="lo" id="lo">
 								
 						<!--폼 다끝나고 회원가입 버튼 및 가입 취소 구간 -->
 								

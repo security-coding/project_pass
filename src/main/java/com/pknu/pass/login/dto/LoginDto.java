@@ -13,6 +13,8 @@ public class LoginDto {
 	int grade;
 	String address;
 	String detailAddress;
+	String la;
+	String lo;
 	
 	public String getId() {
 		return id;
@@ -68,13 +70,26 @@ public class LoginDto {
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
-	
+	public String getLa() {
+		return la;
+	}
+	public void setLa(String la) {
+		this.la = la;
+	}
+	public String getLo() {
+		return lo;
+	}
+	public void setLo(String lo) {
+		this.lo = lo;
+	}
 	@Override
 	public String toString() {
 		return "LoginDto [id=" + id + ", password=" + password + ", email=" + email + ", certKey=" + certKey
 				+ ", certify=" + certify + ", profile=" + profile + ", grade=" + grade + ", address=" + address
-				+ ", detailAddress=" + detailAddress + "]";
+				+ ", detailAddress=" + detailAddress + ", la=" + la + ", lo=" + lo + "]";
 	}
+	
+	
 	
 	
 }

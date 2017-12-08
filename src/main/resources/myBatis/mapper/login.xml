@@ -18,7 +18,7 @@
  
  
  <insert id="insertUser" parameterType="String">
- 	insert into MEMBER(id,password,email,certkey,address,detailaddress) values(#{id},#{password},#{email},#{certKey},#{address},#{detailAddress})
+ 	insert into MEMBER(id,password,email,certkey,address,detailaddress,la,lo) values(#{id},#{password},#{email},#{certKey},#{address},#{detailAddress},#{la},#{lo})
  </insert>
  
  <update id="myPageUpdate" parameterType="String">

@@ -1,5 +1,7 @@
 package com.pknu.pass.login.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import com.pknu.pass.login.common.MailUtil;
 import com.pknu.pass.login.common.SecurityUtil;
 import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.place.dao.PlaceDao;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -20,6 +23,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private LoginDao logindao;
+	
+	@Autowired
+	PlaceDao placeDao;
 
 	@Autowired
 	private SecurityUtil securityUtil;
@@ -146,6 +152,11 @@ public class LoginServiceImpl implements LoginService {
 		address=userInf.getAddress();
 		detailAddress=userInf.getDetailAddress();
 		
+		//내주변지도관련
+		Map<String,String> paramMap = new HashMap<>();
+		paramMap.put("la", userInf.getLa());
+		paramMap.put("lo", userInf.getLo());
+		
 		
 		String mail = userInf.getEmail();
 		int idx = mail.indexOf("@");
@@ -157,7 +168,9 @@ public class LoginServiceImpl implements LoginService {
 		model.addAttribute("email", mailid);
 		model.addAttribute("address",address);
 		model.addAttribute("detailAddress",detailAddress);
-		
+		model.addAttribute("la",userInf.getLa());
+		model.addAttribute("lo",userInf.getLo());
+		model.addAttribute("places",placeDao.selectPlace(paramMap));
 	}
 
 	@Override
