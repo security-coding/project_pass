@@ -12,12 +12,15 @@
 <!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>		
 
+<style>
+ul{
+   list-style:none;
+   }
+</style>
 <script>
 function setMyimage(imgsrc){
-	let myimage=document.getElementById('myimage');
-	let nowProfile=document.getElementById('Profile');
+	let nowProfile=document.getElementById('myimage');
 	let img = imgsrc.getAttribute('src');
-	myimage.setAttribute('src',img);
 	nowProfile.setAttribute('src',img);
 	$.ajax({
 		type:"POST",
@@ -25,7 +28,7 @@ function setMyimage(imgsrc){
 		dataType : 'String',
 		url:'/member/updateprofile',
 		data : {
-			srcinput :myimage.getAttribute('src') 
+			srcinput :nowProfile.getAttribute('src') 
 		},
 		success:function(data){
 			
@@ -85,6 +88,18 @@ function memberClear(){
 		return false;
 	}
 }
+
+$(document).ready(function(){
+    $("#myimage").click(function(){
+        if($("#hiddenList").is(":visible")){
+            $("#hiddenList").slideUp();
+        }else{
+            $("#hiddenList").slideDown();
+        }
+    });
+});
+
+
 
 </script>
 
@@ -150,14 +165,13 @@ function memberClear(){
 
 
 			<div>
-			<img src="${imageUrl}" alt="..." id="Profile" class="img-thumbnail">
+			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail" onclick="">
 			</div>
 			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-lg dropdown-toggle"
-					data-toggle="dropdown" aria-expanded="false">
-					<img id="myimage" src="${imageUrl}"> <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
+<!-- 				<button id="spreadBtn" type="button"> -->
+<%-- 					<img id="myimage" src="${imageUrl}"> <span class="caret"></span> --%>
+<!-- 				</button> -->
+				<ul id="hiddenList" style="display: none;">
 					<li><img id="img1" class="img"
 						src="/resources/images/profile/img1.png"
 						onclick="setMyimage(this)">악마</li>
