@@ -24,6 +24,10 @@ pageEncoding="UTF-8"%>
         let mt20id = '${detailInf.mt20id}';
         let heart = '${fullHeart}';
         function changeImg(changeStat) {
+        		if(id==''){
+        			alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+        			return;
+        		}
             let changeVal = $(changeStat).attr("value");
             console.log(changeVal);
             $.ajax({
@@ -48,11 +52,38 @@ pageEncoding="UTF-8"%>
                     }
                 },
                 error: function (e) {
-                    alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+                    alert("오류가 발생했습니다.");
                 }
             });
             
         }
+        
+        function bookmark(obj) {
+			if(id=='') {
+				alert("북마크 기능을 이용하기 위해서는 로그인이 필요합니다.");
+				return;
+			}
+			var value = $(obj).attr('value');
+			$.ajax({
+				url : '/play/bookmark',
+				type : 'post',
+				data : {
+					id : id,
+					mt20id : mt20id,
+					value : value
+				},
+				success : function(data) {
+					if(value == 0) {
+						alert("북마크가 설정되었습니다");
+						$(obj).attr("src", "/images/likes/bookmark.png");
+	                    $(obj).attr("value", 1);
+					} else {
+						$(obj).attr("src", "/images/likes/non_bookmark.png");
+	                    $(obj).attr("value", 0);
+					}
+				}
+			});
+		}
         
         $(function() {
         	 $.ajax({
@@ -145,6 +176,7 @@ pageEncoding="UTF-8"%>
                 <!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
     <img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
      -->
+     			
                 <c:choose>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
@@ -159,6 +191,17 @@ pageEncoding="UTF-8"%>
                          style="border:0;">    
                     </c:when>
                 </c:choose>
+                
+                <c:choose>
+     				<c:when test="${bookmark == null}">
+     					<img id="bookmark" src= "/images/likes/non_bookmark.png" value=0
+     						style="width:20px; height:20px" onclick="bookmark(this);">
+     				</c:when>
+     				<c:when test="${bookmark eq 1}">
+     					<img id="bookmark" src= "/images/likes/bookmark.png" value=1
+     						style="width:20px; height:20px" onclick="bookmark(this);">
+     				</c:when>
+     			</c:choose>
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>

@@ -176,6 +176,16 @@
 		from likes
 		where mt20id=#{mt20id}
 	</select>
+	
+	<insert id="insertBookmark" parameterType="com.pknu.pass.play.dto.BookmarkDto">
+		INSERT INTO BOOKMARK 
+		VALUES (BOOKMARK_SEQ.nextval,#{mt20id},#{id}) 
+	</insert>
+	
+	<delete id="deleteBookmark" parameterType="com.pknu.pass.play.dto.BookmarkDto">
+		DELETE FROM BOOKMARK
+		WHERE mt20id = #{mt20id} AND id = #{id}
+	</delete>
 </mapper>
 	
 	
