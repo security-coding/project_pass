@@ -37,6 +37,11 @@ public class CommentServiceImpl implements CommentService {
 		commentDao.insertComment(comment);			
 	}
 
+	@Override
+	public void deleteComment(int commentNum) {
+		commentDao.deleteComment(commentNum);
+	}
+
 	
 	
 

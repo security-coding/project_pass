@@ -63,5 +63,10 @@ public class CommentController {
 	}
 	
 
+	@RequestMapping(value="/delete")
+	@ResponseBody
+	public void delete(int commentNum){		
+		commentService.deleteComment(commentNum);				
+	}
 	
 }
