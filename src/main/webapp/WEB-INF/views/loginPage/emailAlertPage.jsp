@@ -19,7 +19,7 @@ $(document).ready(function(){
 	} else if(certKey == "2") {
 		alert("가입 완료");
 		
-	} else if(certKey == "3") {
+	} else if(certKey == "0") {
 		alert("한적 없음");
 	}
 	document.location.href="../";

@@ -17,6 +17,7 @@ ul{
    list-style:none;
    }
 </style>
+
 <script>
 function setMyimage(imgsrc){
 	let nowProfile=document.getElementById('myimage');

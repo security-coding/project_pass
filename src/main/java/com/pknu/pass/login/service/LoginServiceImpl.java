@@ -23,22 +23,21 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private SecurityUtil securityUtil;
+	
+	private int Fail=0;
+	private int Success=1;
+	private int alreadySuccess=2;
 
 	@Override
-	public void insertUser(LoginDto logindto,String stremail,String address,String detailAddress) {
+	public void insertUser(LoginDto logindto) {
 		System.out.println(logindto.getPassword());
 		String certKey = UUID.randomUUID().toString().replaceAll("-", "");
 		String SecurityPass = securityUtil.encrypt(logindto.getPassword());
 		
-		logindto.setDetailAddress(detailAddress);
-		logindto.setAddress(address);
-		logindto.setEmail(logindto.getEmail()+"@"+stremail);
 		logindto.setCertKey(certKey);
 		logindto.setPassword(SecurityPass);
 
 		logindao.insertUser(logindto);
-
-		System.out.println(logindto.getPassword() + "비밀번호");
 
 		mailUtil.sendMail(certKey, logindto.getEmail());
 	}
@@ -65,7 +64,7 @@ public class LoginServiceImpl implements LoginService {
 			if(certify == 1) {
 				switch (grade) {//grade 권한: 0=밴 1=일반회원 2=관리자 
 				case 0://밴
-					model.addAttribute("loginBan", loginBan);
+					model.addAttribute("loginBan", Fail);
 					view = "loginPage/loginFail";
 					break;
 				case 1://일반 회원
@@ -74,7 +73,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("imageUrl", profile);
 						view = "/home";
 					} else {// 비밀번호 실패
-						model.addAttribute("passFail", passFail);
+						model.addAttribute("passFail",Fail);
 						view = "loginPage/loginFail";
 					}
 					break;
@@ -83,7 +82,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("id", id);
 						view = "admin/main";
 					} else{// 비밀번호 실패
-						model.addAttribute("passFail", passFail);
+						model.addAttribute("passFail",Fail);
 						view = "loginPage/loginFail";
 					}
 					break;
@@ -91,11 +90,11 @@ public class LoginServiceImpl implements LoginService {
 					break;
 				}
 			} else if (certify == 0) {//회원가입 인증이 되지 않았음
-				model.addAttribute("dbCertify", dbCertifyCheckNo);
+				model.addAttribute("dbCertify", Fail);
 				view = "/home";
 			}
 		} else {//아이디가 존재하지 않을때
-			model.addAttribute("Notmember", Notmember);
+			model.addAttribute("Notmember", Fail);
 			view = "loginPage/loginFail";
 		}
 		
@@ -115,9 +114,9 @@ public class LoginServiceImpl implements LoginService {
 		String dbjoinIdCheck = logindao.loginCheck(inputId);
 		System.out.println(dbjoinIdCheck);
 		if (dbjoinIdCheck != null) {
-			return 2;
+			return Fail;
 		} else {
-			return 1;
+			return Success;
 		}
 
 	}
@@ -127,9 +126,9 @@ public class LoginServiceImpl implements LoginService {
 		String result = inputemail + "@" + selectaddress;
 		String dbjoinemailCheck = logindao.logineMailCheck(result);
 		if (dbjoinemailCheck != null) {
-			return 2;
+			return Fail;
 		} else {
-			return 1;
+			return Success;
 		}
 	}
 
@@ -194,21 +193,20 @@ public class LoginServiceImpl implements LoginService {
 		LoginDto User = logindao.checkJoin(certKey);
 		if (User.getCertify() == LoginDto.SUCCESS) {
 			// 이미 링크 클릭(가입 절차 모두완료된 상태)
-			checkjoin = 1;
-			model.addAttribute("certKey", checkjoin);
-			return checkjoin;
+			model.addAttribute("certKey", Success);
+			return Success;
 
 		} else if (User.getCertify() == LoginDto.FAIL) {
 			// dto를 업데이트 해준다. (certify => 1) User의 ID값 이용
-			checkjoin = 2;
+			checkjoin = alreadySuccess;
 			logindao.checkJoinUpdate(certKey);
 			model.addAttribute("certKey", checkjoin);
 			return checkjoin;
-		} else {
+		} else{
 			// certKey가 존재 하지 않는 키라는 뜻!(회원가입 신청 한적이없음)
-			checkjoin = 3;
+			checkjoin = Fail;
 			model.addAttribute("certKey", checkjoin);
-			return checkjoin;
+			return Fail;
 		}
 
 	}
@@ -230,7 +228,7 @@ public class LoginServiceImpl implements LoginService {
 				pass = pass + lowerStr;
 			}
 		}
-		System.out.println(pass);
+		
 		logindto.setPassword(securityUtil.encrypt(pass));
 		logindao.updatePass(logindto);
 		mailUtil.sendPass(pass, logindto.getEmail());
@@ -240,25 +238,28 @@ public class LoginServiceImpl implements LoginService {
 		String result = email;
 		String dbJoineMailCheck = logindao.logineMailCheck(result);
 		if (dbJoineMailCheck != null) {
-			return 1;
+			return Success;
 		} else {
-			return 2;
+			return Fail;
 		}
 
 	}
 
 	public int reSetPassCheck(String email, String id) {
+		System.out.println(id);
+		System.out.println(email);
 		int status = 0;
 		String result = email;
-
-		String dbmailCheck = logindao.logineMailCheck(result);
-		String dbidCheck = logindao.loginCheck(id);
-
+		LoginDto user=logindao.getUser(id);
+		
+		String dbmailCheck = user.getEmail();
+		String dbidCheck = user.getId();
+		
 		if (dbmailCheck != null && dbidCheck != null) {
-			status = 1;
+			status = Success;
 
 		} else if (dbmailCheck == null || dbidCheck != null) {
-			status = 2;
+			status = Fail;
 		}
 
 		return status;
@@ -270,15 +271,14 @@ public class LoginServiceImpl implements LoginService {
 		int result=0;
 		String defaultPw;
 		String pw=(String)securityUtil.encrypt(currentPw);
-		System.out.println(pw+"입력한 패스워드");
+		
 		defaultPw=(String)logindao.loginCheck(id);//쿼리문이 동일함
-		System.out.println(defaultPw+"db값");
-		System.out.println(id+"id값");
+		
 		if(pw.equals(defaultPw)) {
-			result=1;
+			result=Success;
 			System.out.println(result);			
 		}else{
-			result=2;
+			result=Fail;
 			System.out.println(result);
 			
 		}
