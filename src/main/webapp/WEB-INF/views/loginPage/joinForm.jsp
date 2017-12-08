@@ -107,7 +107,11 @@
 /*지도 스크립트 */
 	
     function execDaumPostcode() {
-        new daum.Postcode({
+         
+	
+    
+	
+	    new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
@@ -144,6 +148,10 @@
 
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById('detailaddress').focus();
+            
+               
+      
+            
             }
         }).open();
     }
@@ -215,6 +223,7 @@
 				<input class="form-control" type="text" id="postcode" placeholder="우편번호" onclick="execDaumPostcode()">
 				</p>
 				<input type="text" id="address" name="address" placeholder="주소"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소">
+		           
 			</div>
 			</label>
 			</tr>
