@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
         let heart = '${fullHeart}';
         function changeImg(changeStat) {
         		if(id==''){
-        			alert("해당 좋아요를 누르기 위해서는 로그인이 필요합니다.");
+        			alert("좋아요 기능을 이용하기 위해서는 로그인이 필요합니다.");
         			return;
         		}
             let changeVal = $(changeStat).attr("value");
@@ -105,6 +105,10 @@ pageEncoding="UTF-8"%>
 			ajaxList();
         	
             $("#commentWrite").on("click", function () {
+    			if(id=='') {
+    				alert("댓글 기능을 이용하기 위해서는 로그인이 필요합니다.");
+    				return;
+    			}
                 $.ajax({
                     url: "/comment/write",
                     data: {
@@ -212,13 +216,7 @@ body, table, div, p, style, section, h {
                 <!-- <img id="empty-heart" class='empty-heart' src="/images/likes/empty-heart.png" style="width:20px;, height:20px;">
     <img id="full-heart" src="/images/likes/full-heart.png" style="width:20px;, height:20px;" hidden="true">
      -->
-<<<<<<< HEAD
-     			<table>
-     			<tr>
-     			<td>
-=======
-     			
->>>>>>> 9df4178707d02966bf1dc8ab9cdc554a26eb236d
+
                 <c:choose>
                     <c:when test="${fullHeart eq 0}">
                         <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
@@ -233,11 +231,7 @@ body, table, div, p, style, section, h {
                          style="border:0;">    
                     </c:when>
                 </c:choose>
-<<<<<<< HEAD
-				</td>
-				</tr>
-     			</table>
-=======
+
                 
                 <c:choose>
      				<c:when test="${bookmark == null}">
@@ -249,7 +243,6 @@ body, table, div, p, style, section, h {
      						style="width:20px; height:20px" onclick="bookmark(this);">
      				</c:when>
      			</c:choose>
->>>>>>> 9df4178707d02966bf1dc8ab9cdc554a26eb236d
 
                 <h1>${detailInf.prfnm}</h1>
                 <h3>${detailInf.genrenm} . ${detailInf.prfpdfrom} ~ ${detailInf.prfpdto}</h3>
