@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dao.PlayDao;
+import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
@@ -210,6 +211,12 @@ public class PlayServiceImpl implements PlayService {
 		Likes.put("mt20id", mt20id);
 		return playDao.likesCount(Likes);
 	}
-	
-	
+
+	@Override
+	public void updateBookmark(BookmarkDto bookmark) {
+		if (bookmark.getValue() == 0)
+			playDao.insertBookmark(bookmark);
+		else
+			playDao.deleteBookmark(bookmark);
+	}
 }

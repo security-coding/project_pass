@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pknu.pass.place.dto.PlaceDto;
+import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 import com.pknu.pass.play.service.PlayService;
@@ -148,6 +149,12 @@ public class PlayController {
 		playService.getsearch(keyword, model);
 
 		return "play/search";
+	}
+	
+	@RequestMapping(value="/bookmark", method=RequestMethod.POST)
+	@ResponseBody
+	public void updateBookmark(BookmarkDto bookmark) {
+		playService.updateBookmark(bookmark);
 	}
 
 }
