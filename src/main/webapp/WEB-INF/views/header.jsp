@@ -60,6 +60,10 @@
 	text-align: center;
 	display: block;
 }
+#logo .image {
+	width: 150px;
+	height: 40px;
+}
 
 /*    --------------------------------------------------
 	:: Inputs & Buttons
@@ -152,7 +156,9 @@ $(function() {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand topnav" href="/">Project Pass</a>
+				<div id="logo">
+				<a class="navbar-brand topnav" href="/"><img class="image" src="/resources/images/logo2.png" /></a>
+				</div>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
