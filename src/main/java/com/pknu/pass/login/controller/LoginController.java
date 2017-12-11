@@ -153,6 +153,12 @@ public class LoginController {
 		return loginService.reSetPassCheck(email,id);
 	}
 	
+	@RequestMapping(value="/memberClearForm")
+	public String memberClearForm(HttpSession session) {
+		session.getAttribute("id");
+		return "loginPage/dropOutMember";
+	}
+	
 	@RequestMapping(value="/memberClear")
 	public String memberClear(HttpSession sesseion) {
 		loginService.memberClear(sesseion);
