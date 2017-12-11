@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
         
         $(document).ready(function () {
         		paging.ajax = ajaxList;
-			ajaxList();
+		     	ajaxList();
         	
             $("#commentWrite").on("click", function () {
     			if(id=='') {
@@ -116,7 +116,7 @@ pageEncoding="UTF-8"%>
                         mt20id: "${detailInf.mt20id}"
                     },
                     success: function (data) {
-                    		alert("정상적으로 입력되었습니다.");
+                    		//alert("정상적으로 입력되었습니다.");
                     		$("#commentContent").val("");
                     		ajaxList();
                     }
@@ -344,7 +344,7 @@ body, table, div, p, style, section, h {
                     }
                 };
 
-                geocoder.addressSearch('부산광역시 남구 용당동 331', callback);
+                //geocoder.addressSearch('부산광역시 남구 용당동 331', callback);
             </script>
         </div>
 
@@ -372,6 +372,8 @@ body, table, div, p, style, section, h {
  </div>   
  </div>
 <!-- Replicate the above Div block to add more title and company details -->
+<br>
+<br>
 <div>
 <%@include file="../footer.jsp" %>
 </div>

@@ -185,7 +185,7 @@
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>
-			<li><a href="/member/memberClear" onclick="return memberClear();">회원탈퇴</a></li>
+			<li><a href="/member/memberClearForm">회원탈퇴</a></li>
 		</ul>
 	</div>
 

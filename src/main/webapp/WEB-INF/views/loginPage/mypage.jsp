@@ -103,15 +103,6 @@ function memberClear(){
 		var map = new daum.maps.Map(container, options);
 
 
-$(document).ready(function(){
-    $("#myimage").click(function(){
-        if($("#hiddenList").is(":visible")){
-            $("#hiddenList").slideUp();
-        }else{
-            $("#hiddenList").slideDown();
-        }
-    });
-});
 
 
 
@@ -137,7 +128,7 @@ $(document).ready(function(){
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>
-			<li><a href="/member/memberClear" onclick="return memberClear();">회원탈퇴</a></li>
+			<li><a href="/member/memberClearForm">회원탈퇴</a></li>
 		</ul>
 	</div>
 
@@ -316,7 +307,19 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				});
 			}
 
-</script>
+		 
+		 $(document).ready(function(){
+			    $("#myimage").click(function(){
+			        if($("#hiddenList").is(":visible")){
+			            $("#hiddenList").slideUp();
+			        }else{
+			            $("#hiddenList").slideDown();
+			        }
+			    });
+			});
+		 
+</script>	
+
 	
 </body>
 
