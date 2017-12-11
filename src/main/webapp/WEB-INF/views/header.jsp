@@ -76,6 +76,7 @@
 }
 .btn-custom {
     color: #fff;
+    font-weight:bold;
 	background-color: rgba(133, 221, 119, 0.4);
 }
 .btn-custom:hover,
