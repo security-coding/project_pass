@@ -234,7 +234,7 @@ body, table, div, p, style, section, h {
 
                 
                 <c:choose>
-     				<c:when test="${bookmark == null}">
+     				<c:when test="${bookmark eq 0}">
      					<img id="bookmark" src= "/images/likes/non_bookmark.png" value=0
      						style="width:20px; height:20px" onclick="bookmark(this);">
      				</c:when>

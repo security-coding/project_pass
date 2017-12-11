@@ -132,7 +132,8 @@ function memberClear(){
 		</ul>
 	</div>
 
-	<div class="col-xs-8 col-sm-6">		
+	<div class="col-xs-8 col-sm-6">
+		<div class="col-md-12">	
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
 			
 			<div class="form-group">
@@ -148,8 +149,6 @@ function memberClear(){
 							<td><div>
 									<input id="email" name="email" type="text" class="form-control"
 										placeholder="Email" style="width: 200px"  value="${user.email}" disabled="true"></td>
-						</label>
-						</td>
 					</tr>
 				</table>
 				
@@ -164,7 +163,7 @@ function memberClear(){
 
 
 			<div>
-			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail" onclick="">
+			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail">
 			</div>
 			<div class="btn-group">
 <!-- 				<button id="spreadBtn" type="button"> -->
@@ -179,6 +178,7 @@ function memberClear(){
 				</ul>
 			</div>
 		</form>
+		</div>
 		<!-- bookmark content -->
 		<div class="row">
 			<c:forEach var="bookmark" items="${list}">
@@ -189,19 +189,14 @@ function memberClear(){
 						<h3>${bookmark.prfnm}</h3>
 						<p>${bookmark.prfpdfrom}</p>
 						<p>${bookmark.prfpdto}</p>
-						<p>${bookmark.genrenm }</p>
+						<p>${bookmark.genrenm}</p>
 					</div>
 				</div>
 			</div>
 			</c:forEach>
 		</div>
-	</div>
-
-	
-	</article>
-	
-<!-- 	<div id="map" style="width:500px;height:400px;"></div> -->
-	<h3 class="text-center" >거주지 주변 공연현황 </h1>
+		<div class="row">
+	<h3 class="text-center" >거주지 주변 공연현황 </h3>
 	<div class="content">
 	<div class="col-md-4">
 		<div class="well">			
@@ -212,6 +207,11 @@ function memberClear(){
 		<div id="map" style="width:500px;height:400px;"></div>
 	</div>
 	</div>
+	</div>
+	</div>
+	</article>
+	
+	
 	
 <script>
 
@@ -307,6 +307,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				});
 			}
 
+<<<<<<< HEAD
 		 
 		 $(document).ready(function(){
 			    $("#myimage").click(function(){
@@ -319,6 +320,9 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			});
 		 
 </script>	
+=======
+</script>
+>>>>>>> 4db2048b6fe60a53ea6c30910d5a323252186a03
 	
 </body>
 
