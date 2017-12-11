@@ -65,9 +65,10 @@
 	<div id="mapContainer" class="col-md-8">
 		<div id="map" style="width:100%;height:500px;"></div>
 	</div>
+	<%@include file="../footer.jsp" %>
 	</div>
 	
-	<%@include file="../footer.jsp" %>
+	
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
 

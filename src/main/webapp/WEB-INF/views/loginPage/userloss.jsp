@@ -112,13 +112,10 @@ function passSearchSubmit(){
 		<!-- 부가적인 테마 -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <body>
-	<div>
-	<article class="container-fluid">
-	<div class="page-header">
 	<%@include file="../header.jsp"%>
-	</div>
-	<h2>아이디찾기</h2>
-	<div class="col-xs-8 col-sm-6">
+	<div class="container">
+	<h2 style="margin-top: 6%;" class="text-center">아이디찾기</h2>
+	<div class="col-md-6 col-md-offset-3">
 		<form id="idForm" class="form-horizontal" role="form"
 			action="/member/userlossid" method="post" onsubmit="return idSearchSubmit()">
 			<!-- form -->
@@ -136,13 +133,9 @@ function passSearchSubmit(){
 			</div>
 		</form>
 	</div>
-	</article>
-	</div>
-	
-	<div>
-	<article class="container-fluid">
-	<h2>비밀번호 찾기</h2>
-	<div class="col-xs-8 col-sm-6">
+	<div class="clearfix"></div>
+	<h2 style="margin-top: 6%;" class="text-center">비밀번호 찾기</h2>
+	<div class="col-md-6 col-md-offset-3">
 		<form id="idForm" class="form-horizontal" role="form"
 			action="/member/userlosspass" method="post" onsubmit="return passSearchSubmit()">
 			<!-- form -->
@@ -166,9 +159,7 @@ function passSearchSubmit(){
 			</div>
 		</form>
 	</div>
-	</article>
-	</div>
-
+</div>
 </body>
 
 <!-- /container -->

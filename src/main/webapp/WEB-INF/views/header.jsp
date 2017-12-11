@@ -90,6 +90,12 @@
 #footer a {
     color: inherit;
 }
+
+.center {
+	display: block;
+	margin-left: 15px;
+	margin-right: 15px;
+}
 </style>
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 
@@ -183,10 +189,9 @@ $(function() {
 							<h4 class="modal-title text-center">로그인</h4>
 						</div>
 						<section id="login">
-						<div class="container">
 							<div class="row">
-								<div class="col-xs-12">
-									<div class="form-wrap">
+								<div class="col-md-12 col-xs-12">
+									<div class="center">
 										<h1>Log in with your email account</h1>
 										<form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
 											<div class="form-group">
@@ -213,7 +218,6 @@ $(function() {
 								<!-- /.col-xs-12 -->
 							</div>
 							<!-- /.row -->
-						</div>
 						<!-- /.container --> </section>
 
 					</div>
