@@ -18,6 +18,16 @@
 ul{
    list-style:none;
    }
+.sidebar{
+    color: rgba(95, 219, 234, 0.5);
+    border-color:rgba(255,255,255,0.4);
+    border: 1px dotted rgba(129, 161, 199,0.5) ;
+    border-radius: 10px;
+    margin-right: 15px;
+	-moz-box-shadow: -2px 7px 22px #696485;
+	-webkit-box-shadow: -2px 7px 22px #696485;
+	box-shadow: -2px 7px 22px #696485;   
+}
 </style>
 
 </head>
