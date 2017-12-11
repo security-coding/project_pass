@@ -141,7 +141,8 @@ $(document).ready(function(){
 		</ul>
 	</div>
 
-	<div class="col-xs-8 col-sm-6">		
+	<div class="col-xs-8 col-sm-6">
+		<div class="col-md-12">	
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
 			
 			<div class="form-group">
@@ -156,13 +157,8 @@ $(document).ready(function(){
 						<label for="email">Email:
 							<td><div>
 									<input id="email" name="email" type="text" class="form-control"
-										placeholder="Email" style="width: 200px"  value="${email}" disabled="true"></td>
-							<td>@</td>
-							<td><input type="text" name="str_email" id="str_email" class="form-control"
-								style="width: 100px" disabled value="naver.com">
-								</div></td>
+										placeholder="Email" style="width: 200px"  value="${user.email}" disabled="true"></td>
 							<td>
-
 						</label>
 						</td>
 					</tr>
@@ -171,7 +167,7 @@ $(document).ready(function(){
 			<tr>
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}" disabled="disabled">
+				<input type="text" id="address" name="address" placeholder="주소" value="${user.address}" disabled="disabled"> - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${user.detailAddress}" disabled="disabled">
 			</div>
 			</label>
 			</tr>
@@ -179,7 +175,7 @@ $(document).ready(function(){
 
 
 			<div>
-			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail" onclick="">
+			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail">
 			</div>
 			<div class="btn-group">
 <!-- 				<button id="spreadBtn" type="button"> -->
@@ -194,6 +190,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 		</form>
+		</div>
 		<!-- bookmark content -->
 		<div class="row">
 			<c:forEach var="bookmark" items="${list}">
@@ -204,19 +201,14 @@ $(document).ready(function(){
 						<h3>${bookmark.prfnm}</h3>
 						<p>${bookmark.prfpdfrom}</p>
 						<p>${bookmark.prfpdto}</p>
-						<p>${bookmark.genrenm }</p>
+						<p>${bookmark.genrenm}</p>
 					</div>
 				</div>
 			</div>
 			</c:forEach>
 		</div>
-	</div>
-
-	
-	</article>
-	
-<!-- 	<div id="map" style="width:500px;height:400px;"></div> -->
-	<h3 class="text-center" >거주지 주변 공연현황 </h1>
+		<div class="row">
+	<h3 class="text-center" >거주지 주변 공연현황 </h3>
 	<div class="content">
 	<div class="col-md-4">
 		<div class="well">			
@@ -227,6 +219,11 @@ $(document).ready(function(){
 		<div id="map" style="width:500px;height:400px;"></div>
 	</div>
 	</div>
+	</div>
+	</div>
+	</article>
+	
+	
 	
 <script>
 
@@ -321,7 +318,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				});
 			}
 
-</script>	
+</script>
 	
 </body>
 

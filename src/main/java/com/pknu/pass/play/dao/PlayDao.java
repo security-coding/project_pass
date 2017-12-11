@@ -39,7 +39,7 @@ public interface PlayDao {
 	//좋아요
 	public void getLikes(HashMap<String, String> likes);
 
-	public String changeLikes(HashMap<String, String> likes);
+	public String changeLikes(HashMap<String, String> paramMap);
 	
 	public void delLikes(HashMap<String, String> likes);
 	
@@ -58,8 +58,9 @@ public interface PlayDao {
     
     public ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
 
+    	//북마크
 	public void insertBookmark(BookmarkDto bookmark);
-
 	public void deleteBookmark(BookmarkDto bookmark);
+	public int getBookmark(HashMap<String, String> paramMap);
 	
 }

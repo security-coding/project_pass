@@ -122,9 +122,9 @@ public class PlayServiceImpl implements PlayService {
 	public void getDetail(String mt20id, Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
 
-		HashMap<String, String> Likes = new HashMap<>();
-		Likes.put("mt20id", mt20id);
-		Likes.put("id", id);
+		HashMap<String, String> paramMap = new HashMap<>();
+		paramMap.put("mt20id", mt20id);
+		paramMap.put("id", id);
 
 		DetailDto detailInf = new DetailDto();
 		ArrayList<String> detailImages = new ArrayList<>();
@@ -135,11 +135,14 @@ public class PlayServiceImpl implements PlayService {
 		model.addAttribute("detailImages", detailImages);
 		model.addAttribute("detailInf", detailInf);
 
-		if (playDao.changeLikes(Likes) != null) {
+		if (playDao.changeLikes(paramMap) != null) {
 			model.addAttribute("fullHeart", 1);
 		} else {
 			model.addAttribute("fullHeart", 0);
 		}
+		
+		model.addAttribute("bookmark", playDao.getBookmark(paramMap));
+			
 	}
 
 	// 검색

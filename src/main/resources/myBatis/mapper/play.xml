@@ -186,6 +186,12 @@
 		DELETE FROM BOOKMARK
 		WHERE mt20id = #{mt20id} AND id = #{id}
 	</delete>
+	
+	<select id="getBookmark" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*)
+		FROM BOOKMARK
+		WHERE mt20id = #{mt20id} AND id = #{id}
+	</select>
 </mapper>
 	
 	

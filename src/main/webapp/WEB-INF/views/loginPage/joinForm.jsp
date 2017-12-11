@@ -421,7 +421,7 @@ $(function() {
 								<td>
 								<div class="form-group">
 									<label class="sr-only" for="detailaddress">detailaddress</label>
-									<input type="text" name="detailaddress" placeholder="상세주소" class="form-control" id="detailaddress">
+									<input type="text" name="detailAddress" placeholder="상세주소" class="form-control" id="detailAddress">
 								</td>
 								</div>
 								</table>

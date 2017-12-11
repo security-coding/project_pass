@@ -117,7 +117,7 @@ public class PlayController {
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String getDetail(String mt20id, Model model,HttpSession session) throws Exception {
 		
-		playService.getDetail(mt20id, model,session);
+		playService.getDetail(mt20id, model, session);
 		
 		return "play/detailpage";
 	}
