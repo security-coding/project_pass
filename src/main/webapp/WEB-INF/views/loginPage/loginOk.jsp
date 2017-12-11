@@ -11,7 +11,7 @@
 	.user{
 	float:left;
 	padding-top:1px; 
-	width: 90px;
+	width: 100px;
 	}
 	.user_a{
 		text-decoration: none;
