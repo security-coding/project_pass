@@ -128,11 +128,10 @@ public class AdminController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value = "/memeber/{id}", method = RequestMethod.GET)
-	public String selectMemberComment(HttpServletRequest request, Model model) {
-		
-		
-		return "admin/memberComment";
+	@RequestMapping(value = "/memberComment", method = RequestMethod.POST)
+	@ResponseBody
+	public List<CommentDto> selectMemberComment(HttpServletRequest request, String id) {
+		return adminService.selectMemberComment(id);
 	}
 
 	@RequestMapping(value = "/member/changeGrade")

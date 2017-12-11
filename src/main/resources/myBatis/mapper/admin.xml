@@ -294,7 +294,13 @@
 		UPDATE MEMBER SET
 			grade = #{grade}
 		WHERE ID = #{id}
-	</update>	
+	</update>
+	
+	<select id="selectMemberComment" parameterType="String" resultType="comment">
+		SELECT * 
+		FROM COMMENTS
+		WHERE id = #{id}
+	</select>
 </mapper>
 	
 	

@@ -347,4 +347,11 @@ public class AdminServiceImpl implements AdminService {
 	public void deleteComment(int commentNum) {
 		adminDao.deleteComment(commentNum);
 	}
+
+	@Override
+	public List<CommentDto> selectMemberComment(String id) {
+		return adminDao.selectMemberComment(id);
+	}
+	
+	
 }

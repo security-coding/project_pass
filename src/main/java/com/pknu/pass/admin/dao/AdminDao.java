@@ -35,12 +35,15 @@ public interface AdminDao {
 	List<BoxofficeDto> selectBoxoffice(String catecode);
 	
 	List<LoginDto> selectMember(PagingDto paging);
+	List<CommentDto> selectMemberComment(String id);
 	int selectTotalMember(PagingDto paging);
 	void changeGrade(LoginDto member);
 	
 	List<CommentDto> selectComment(PagingDto paging);
 	int selectTotalComment(PagingDto paging);
 	void deleteComment(int commentNum);
+	
+	
 	
 }
 

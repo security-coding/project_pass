@@ -29,11 +29,13 @@ public interface AdminService {
 	Map<String, List<BoxofficeDto>> selectBoxoffice();
 	
 	List<LoginDto> selectMember(PagingDto paging);
+	List<CommentDto> selectMemberComment(String id);	
 	int selectTotalMember(PagingDto paging);
 	void changeGrade(LoginDto member);
 	
 	List<CommentDto> selectComment(PagingDto paging);
 	int selectTotalComment(PagingDto paging);
-	void deleteComment(int commentNum);	
+	void deleteComment(int commentNum);
+	
 
 }

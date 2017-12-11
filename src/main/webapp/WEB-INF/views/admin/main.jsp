@@ -214,12 +214,6 @@
             success : function() {
                 alert("데이터베이스가 정상적으로 업데이트 되었습니다");
             },
-            beforeSend : function() {
-                alert("시작전");
-            },
-            complete : function() {
-                alert("완료후");
-            },
             error : function(e) {
                 alert(e.responseText);
             }
