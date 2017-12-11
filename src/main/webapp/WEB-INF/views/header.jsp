@@ -64,12 +64,15 @@
 /*    --------------------------------------------------
 	:: Inputs & Buttons
 	-------------------------------------------------- */
+#btn-login:hover{
+	background-color: #1fa67b;
+}
 .form-control {
     color: #212121;
 }
 .btn-custom {
     color: #fff;
-	background-color: #1fa67b;
+	background-color: rgba(133, 221, 119, 0.4);
 }
 .btn-custom:hover,
 .btn-custom:focus {
@@ -197,7 +200,7 @@ $(function() {
 											<div class="form-group">
 												<label for="id" class="sr-only">Email</label> <input
 													type="text" name="id" id="id" class="form-control"
-													placeholder="id">
+													placeholder="ID">
 											</div>
 											<div class="form-group">
 												<label for="password" class="sr-only">Password</label> <input
@@ -206,7 +209,7 @@ $(function() {
 											</div>
 											<div class="checkbox">
 												<span class="character-checkbox" onclick="showPassword()"></span>
-												<span class="label">Show password</span>
+												<span class="label" style="font-weight: bold;">Show password</span>
 											</div>
 											<input type="submit" id="btn-login"
 												class="btn btn-custom btn-lg btn-block" value="Log in" oninput="CertifyCheck()">

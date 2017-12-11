@@ -25,7 +25,25 @@ pageEncoding="UTF-8"%>
     <!-- 지도 api -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
-
+	
+	<style type="text/css">
+	 #backImg{
+	  position: relative; 
+	 }
+	#backImg:after {
+	content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../images/templateimg/banner-bg.jpeg) no-repeat center center; 
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    opacity : 0.5;
+    z-index: -1;
+	}
+	</style>
     
     <script>
 	let idCheck = false;
@@ -287,10 +305,9 @@ $(function() {
     
 <!--     바디시작 -->
     <body>
-    
-<!--     로그인 모달 헤더 불러오기 -->
+<!--    로그인 모달 헤더 불러오기 -->
     <%@include file="../header.jsp"%>
-
+		<div id="backImg">
     	<div class="loader">
     		<div class="loader-img"></div>
     	</div>
@@ -434,8 +451,12 @@ $(function() {
 						</div>
 					</div>  
                 </div>
-            </div>        
+            </div> 
+            </div>
+            </div>
+       <%@include file="../footer.jsp" %>
     </body>
+	   
     
            <!-- Javascript -->
 <!--         <script src="assets/js/jquery.backstretch.min.js"></script> -->
