@@ -117,7 +117,7 @@ pageEncoding="UTF-8"%>
 		 var email=$("#email").val();
 		 var str_email=$("#str_email").val();
 		 var address=$("#address").val();
-		 var detailaddress=$("#detailaddress").val();
+		 var detailaddress=$("#detailAddress").val();
 		 
 		 if(id==""){
 		 	alert("아이디를 입력하세요");
@@ -150,7 +150,7 @@ pageEncoding="UTF-8"%>
 		 }
 		 if(detailaddress==""){
 			 alert("상세주소를 입력해주세요");
-		 	 $("#detailaddress"),focus();
+		 	 $("#detailAddress"),focus();
 			 return false;
 		 }
 		if(idCheck==true&&emailCheck==true){
@@ -258,9 +258,7 @@ $(function() {
 						
 						
 						// 커서를 상세주소 필드로 이동한다.
-						document
-								.getElementById('detailaddress')
-								.focus();
+						document.getElementById('detailAddress').focus();
 					
 				           geocoder.addressSearch(data.address, function(results, status) {
 			                    // 정상적으로 검색이 완료됐으면
@@ -269,8 +267,6 @@ $(function() {
 			                        var result = results[0]; //첫번째 결과의 값을 활용
 			                        document.getElementById('la').value = result.y; //위도
 									document.getElementById('lo').value = result.x; //경도  
-			                       
-			                
 			                    }
 			                });	
 						
@@ -420,7 +416,7 @@ $(function() {
 								
 								<td>
 								<div class="form-group">
-									<label class="sr-only" for="detailaddress">detailaddress</label>
+									<label class="sr-only" for="detailAddress">detailaddress</label>
 									<input type="text" name="detailAddress" placeholder="상세주소" class="form-control" id="detailAddress">
 								</td>
 								</div>

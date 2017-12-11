@@ -22,7 +22,7 @@ public interface LoginService {
 
 	public void myPassChengeForm(HttpSession session, Model model);
 	
-	public void myPageUpdate(HttpSession session,String password,LoginDto logindto,String address,String detailaddress);
+	public void myPageUpdate(HttpSession session,String password,LoginDto logindto);
 
 	public int checkJoin(String certKey,Model model);
 	

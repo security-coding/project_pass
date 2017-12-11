@@ -12,7 +12,8 @@
 <!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 <!-- 지도api -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 지도 api -->		
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
 
 <script>
 	let addressCheck = false;
@@ -35,8 +36,9 @@
 						if (data === 1) {
 							passCheck = true;
 							
-						} else if(data==2) {
+						} else if(data==0) {
 							html = "<b>현재 비밀번호 틀림<b>";
+							console.log('현재 비밀번호 틀림');
 							passCheck = false;
 							
 						}
@@ -52,19 +54,54 @@
 			});
 		});
 	});
-
-
+	
+	if ($('#address').val() != ""&& $('#detailAddress').val() != "") {
+	addressCheck = true;
+} else {
+	addressCheck = false;
+}
+	
 	function submitCheck() {
-		if (passCheck == true) {
-			return true;
+		if (passCheck == true||addressCheck==true) {
+			if(passCheck==true){
+				var pass=$("#changePass").val(); 
+				var passcheck=$("#changPassCheck").val();
+				
+				 if(pass==""){
+					 	alert("패스워스를 입력하세요");
+					 	$("#changePass").focus();
+					 	return false;
+					 }
+				if(pass!=passcheck){
+						 alert("패스워드가 일치하지 않습니다")
+					 	$("#changPassCheck").focus();
+						 return false;
+					}
+				return true;	
+			}
+			if(addressCheck==true){
+				var address=$("#address").val();
+				var detailaddress=$("#detailAddress").val();
+				
+				if(address==null){
+					alert("주소를 입력해주세요");
+					return false;
+				}
+				if(detailaddress==null){
+					alert("상세주소를 써주세요");
+					return false;
+				}
+				return true;
+			}
 		}else{
-			alert("현재 비밀번호가 일치하지 않습니다");
+			alert("확인해주세요");
 			return false;
 		}
 	}
-
-
+	
 	function execDaumPostcode() {
+		var geocoder = new daum.maps.services.Geocoder();
+
 		new daum.Postcode(
 				{
 					oncomplete : function(data) {
@@ -104,15 +141,26 @@
 						document.getElementById('address').value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('detailaddress').focus();
+						document.getElementById('detailAddress').focus();
+
+						geocoder.addressSearch(data.address, function(results,
+								status) {
+							// 정상적으로 검색이 완료됐으면
+							if (status === daum.maps.services.Status.OK) {
+								$(".label").css("display", "none");
+								var result = results[0]; //첫번째 결과의 값을 활용
+								document.getElementById('la').value = result.y; //위도
+								document.getElementById('lo').value = result.x; //경도  
+							}
+						});
 					}
 				}).open();
 	}
-	
-	function memberClear(){
-		if(confirm("회원 탈퇴하시겠습니까?")==true){
-			
-		}else{
+
+	function memberClear() {
+		if (confirm("회원 탈퇴하시겠습니까?") == true) {
+
+		} else {
 			return false;
 		}
 	}
@@ -145,7 +193,7 @@
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
 			<div class="form-group">
-				<label for="id" id="id" name="id" >ID:${id}</label>
+				<label for="id" id="id" name="id" >ID:${userInf.id}</label>
 			</div>
 			
 			<div class="form-group">
@@ -166,10 +214,13 @@
 			<div class="form-group">
 			<label>Address:
 			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${address}" > - <input type="text" id="detailaddress" name="detailaddress" placeholder="상세주소" value="${detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
+				<input type="text" id="address" name="address" placeholder="주소" value="${userInf.address}" > - <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" value="${userInf.detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
 			</div>
 			</label>
 			</div>
+			
+			<input type="hidden" name="la" id="la" value='${userInf.la}'>
+			<input type="hidden" name="lo" id="lo" value='${userInf.lo}'>
 			
 			<div class="form-group text-center">
 				<button id="passUpbtn" type="submit" class="btn btn-info" >
@@ -189,37 +240,7 @@
 
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 
-<script type="text/javascript">
 
-	 $(function(){
-//	 	 폼이벤트 처리할때는 event.preventDefault();가 안먹는 이유...알아내기
-		 $("#loginForm").on("submit", function(){
 
-			 var pass=$("#changePass").val(); 
-			 var passcheck=$("#changPassCheck").val();
-			 var detailaddress=$("#detailaddress").val();
-			 console.log(pass);
-			 if(pass==""){
-			 	alert("패스워스를 입력하세요");
-			 	$("#changePass").focus();
-			 	return false;
-			 }
-			 if(pass!=passcheck){
-				 alert("패스워드가 일치하지 않습니다")
-			 	$("#changPassCheck").focus();
-				 return false;
-			 }
-			 if(detailaddress==""){
-				 alert("상세주소를 입력해주세요");
-				 $("#detailaddress").focus();
-				 return false;
-			 }
-			 
-			 $("#loginForm").submit();
-		 })
-		 
-	 });
-
-</script>
 
 </html>

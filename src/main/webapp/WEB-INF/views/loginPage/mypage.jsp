@@ -136,7 +136,7 @@ $(document).ready(function(){
 		<ul class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
-			<li><a href="/member/myPassChange">회원정보변경</a></li>
+			<li><a href="/member/myPassChange">회원정보 변경</a></li>
 			<li><a href="/member/memberClear" onclick="return memberClear();">회원탈퇴</a></li>
 		</ul>
 	</div>
@@ -158,9 +158,6 @@ $(document).ready(function(){
 							<td><div>
 									<input id="email" name="email" type="text" class="form-control"
 										placeholder="Email" style="width: 200px"  value="${user.email}" disabled="true"></td>
-							<td>
-						</label>
-						</td>
 					</tr>
 				</table>
 				
@@ -277,6 +274,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		        title : "${info.fcltynm}", // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 		        image : markerImage // 마커 이미지 
 		    }); 
+		    
 		    
 		    (function(marker, place) {
 		        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
