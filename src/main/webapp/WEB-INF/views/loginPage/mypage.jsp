@@ -307,7 +307,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				});
 			}
 
-<<<<<<< HEAD
 		 
 		 $(document).ready(function(){
 			    $("#myimage").click(function(){
@@ -320,9 +319,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			});
 		 
 </script>	
-=======
-</script>
->>>>>>> 4db2048b6fe60a53ea6c30910d5a323252186a03
+
 	
 </body>
 
