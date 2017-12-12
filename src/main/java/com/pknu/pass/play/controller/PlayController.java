@@ -77,7 +77,10 @@ public class PlayController {
 		ArrayList<MainDto> fileNames = new ArrayList<>();
 
 		fileNames = playService.getNowNextPoster(stNum, index);
-         System.out.println(fileNames.get(0).getSidonm());
+        
+		if(fileNames.size() == 0)
+			return null;
+		
 		return fileNames;
 	}
 
