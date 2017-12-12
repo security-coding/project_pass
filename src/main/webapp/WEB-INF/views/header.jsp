@@ -173,10 +173,15 @@ $(function() {
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/play/now">현재 공연작</a></li>
-					<li><a href="/play/come">공연 예정작</a></li>
-					<li><a href="/place">주변 공연 찾기</a></li>
+				<ul class="nav navbar-nav navbar-center" style="margin-left:150px;">
+					<li><a href="/play/now" style="padding-top:15px;"><img src="/resources/images/m1.1.png" style="width: 140px; height: 40px;"
+						onmouseover="this.src='/resources/images/m2.1.png'" onmouseout="this.src='/resources/images/m1.1.png'"></a></li>
+					<li><a href="/play/come" style="padding-top:15px;"><img src="/resources/images/m1.2.png" style="width: 140px; height: 40px;"
+					onmouseover="this.src='/resources/images/m2.2.png'" onmouseout="this.src='/resources/images/m1.2.png'"></a></li>
+					<li><a href="/place" style="padding-top:15px;"><img src="/resources/images/m1.3.png" style="width: 140px; height: 40px;"
+					onmouseover="this.src='/resources/images/m2.3.png'" onmouseout="this.src='/resources/images/m1.3.png'"></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="padding-top:10px;">
 					<li>
 						<c:if test="${id==null}">
 							<%@include file="./loginPage/login.jsp"%>
