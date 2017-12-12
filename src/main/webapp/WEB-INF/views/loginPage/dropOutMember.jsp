@@ -18,15 +18,18 @@
 ul{
    list-style:none;
    }
+@media all and (min-width:768px) and (max-width:1300px){
+#menu{
+ 	color: rgba(35, 99, 151, 0.5);
+	position: fixed;
+}
+
 .sidebar{
-    color: rgba(35, 99, 151, 0.5);
+    color: rgba(35, 99, 151, 0);
     border-color:rgba(255,255,255,0.4);
-    border: 1px dotted rgba(129, 161, 199,0.5) ;
     border-radius: 10px;
-    margin-right: 15px;
-	-moz-box-shadow: -2px 7px 22px #696485;
-	-webkit-box-shadow: -2px 7px 22px #696485;
-	box-shadow: -2px 7px 22px #696485;   
+	
+}
 }
 </style>
 
@@ -45,8 +48,8 @@ ul{
 	</div>
 	</div>
 	
-	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%">
-		<ul class="nav nav-sidebar">
+	<div  class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%;" >
+		<ul id="menu" class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>
@@ -109,8 +112,9 @@ $(function() {
 						passCheck = false;
 						
 					}
-				} else {
+				} else if($("#currentPw").val() == "") {
 					html = "<b>현재비밀번호를 입력해 주세요</b>"
+				    alert("현재 비밀번호를 입력해주세요.");
 					passCheck = false;
 					console.log("비밀번호 입력");
 				}

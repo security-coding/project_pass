@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 
 <style type="text/css">
+@media all and (min-width:768px) and (max-width:1300px){	
 	.user{
 	float:left;
 	padding-top:1px; 
-	width: 100px;
+	width: 120px;
 	}
+}
 	.user_a{
 		text-decoration: none;
 		color: black;

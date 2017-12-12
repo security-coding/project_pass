@@ -19,20 +19,27 @@ ul{
    list-style:none;
    
    }
-.sidebar{
-    color: rgba(35, 99, 151, 0.5);
-    border-color:rgba(255,255,255,0.4);
-    border: 1px dotted rgba(129, 161, 199,0.5) ;
-    border-radius: 10px;
-	-moz-box-shadow: -2px 7px 22px #696485;
-	-webkit-box-shadow: -2px 7px 22px #696485;
-	box-shadow: -2px 7px 22px #696485;
-}
+
+
+
 #profileLine{
 	margin: 0 0 0 0;
     padding: 0 0 0 0;
     border : 0;
     float: left;
+}
+@media all and (min-width:768px) and (max-width:1300px){
+#menu{
+ 	color: rgba(35, 99, 151, 0.5);
+	position: fixed;
+}
+
+.sidebar{
+    color: rgba(35, 99, 151, 0);
+    border-color:rgba(255,255,255,0.4);
+    border-radius: 10px;
+	
+}
 }
 </style>
 
@@ -124,7 +131,7 @@ function memberClear(){
  <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
-	<article class="container-fluid" >
+	<article id="Form" class="container-fluid" >
 
 	
 	<div class="page-header">
@@ -133,8 +140,8 @@ function memberClear(){
 	</div>
 	</div>
 	
-	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%">
-		<ul class="nav nav-sidebar">
+	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%;">
+		<ul id="menu" class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>
@@ -142,7 +149,7 @@ function memberClear(){
 		</ul>
 	</div>
 
-	<div class="col-xs-8 col-sm-6">
+	<div id="mainForm" class="col-xs-8 col-sm-6">
 		<div class="col-md-12">	
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
 			
@@ -183,7 +190,7 @@ function memberClear(){
 					<c:forEach begin="1" end="13" varStatus="status">
 					<li id="profileLine"><img id="img${status.count}" class="img"
 						src="/resources/images/profile/img${status.count}.png"
-						onclick="setMyimage(this)" style="width:auto; height: auto; overflow: hidden;"></li>
+						onclick="setMyimage(this)" ></li>
 					</c:forEach>
 				</ul>
 			</div>
