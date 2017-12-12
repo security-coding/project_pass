@@ -3,6 +3,7 @@ package com.pknu.pass.play.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.DetailDto;
@@ -10,24 +11,15 @@ import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
 
 public interface PlayDao {
-
-	//상영예정
-	public ArrayList<MainDto> getPoster();
 	
-	public ArrayList<MainDto> getChange(String pType);
-
-	public ArrayList<MainDto> getNextPoster(HashMap<String, String> stNum);
-	
-	public ArrayList<MainDto> getAllNextPoster(String stNum);
-	
-	//상영중
-    public ArrayList<MainDto> getNowPoster();
-	
-	public ArrayList<MainDto> getNowChange(String pType);
-
-	public ArrayList<MainDto> getNowNextPoster(HashMap<String, String> stNum);
-	
-	public ArrayList<MainDto> getNowAllNextPoster(String stNum);
+	public ArrayList<MainDto> getNowAllNextPoster(HashMap<String, Object> map);
+	public ArrayList<MainDto> getNowGenreNextPoster(HashMap<String, Object> map);
+	public ArrayList<MainDto> getComeAllNextPoster(HashMap<String, Object> map);
+	public ArrayList<MainDto> getComeGenreNextPoster(HashMap<String, Object> map);
+	public int getTotalNowPlays();
+	public int getGenreNowPlays(String genre);
+	public int getTotalComePlays();
+	public int getGenreComePlays(String genre);
 	
 	//상세페이지
 	public ArrayList<String> getDetailPoster(String mt20id);

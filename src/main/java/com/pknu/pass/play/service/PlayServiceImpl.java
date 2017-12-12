@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dao.LoginDao;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dao.PlayDao;
@@ -23,99 +24,23 @@ public class PlayServiceImpl implements PlayService {
 	@Autowired
 	PlayDao playDao;
 
-	// 현재 상영작
+	
 	@Override
-	public void playNowMain(Model model) {
+		public ArrayList<MainDto> getNowNextPoster(PagingDto stNum, String genre) {
 
-//		ArrayList<MainDto> posters = new ArrayList<>();
-//		posters = playDao.getNowPoster();
+		ArrayList<MainDto> result=new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("p", stNum);
+		map.put("genre", genre);
 		
-		 System.out.println("DB한번접속");
-		 model.addAttribute("playList", playDao.getNowPoster());
-
-	}
-
-	@Override
-	public ArrayList<MainDto> getNowChange(String type) {
-		ArrayList<MainDto> posters = new ArrayList<>();
-
-		if (type.equals("전체")) {
-			posters = playDao.getNowPoster();
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType("전체");
-			}
-
-		} else {
-			posters = playDao.getNowChange(type);
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType(posters.get(0).getGenrenm());
-			}
+		if(genre.equals("전체")) {
+			result=playDao.getNowAllNextPoster(map);
+		}else {
+			result=playDao.getNowGenreNextPoster(map);
 		}
-
-		return posters;
-	}
-
-	@Override
-	public ArrayList<MainDto> getNowNextPoster(String stNum, String pType) {
-
-		ArrayList<MainDto> posters = new ArrayList<>();
-		if (pType.equals("전체")) {
-			posters = playDao.getNowAllNextPoster(stNum);
-		} else {
-			HashMap<String, String> map = new HashMap<>();
-			map.put("stNum", stNum);
-			map.put("pType", pType);
-			posters = playDao.getNowNextPoster(map);
-		}
-
-		return posters;
-	}
-
-	// 상영예정작
-	@Override
-	public void playMain(Model model) {
-
-		ArrayList<MainDto> posters = new ArrayList<>();
-		posters = playDao.getPoster();
-		model.addAttribute("playList", posters);
-
-	}
-
-	@Override
-	public ArrayList<MainDto> getChange(String type) {
-		ArrayList<MainDto> posters = new ArrayList<>();
-
-		if (type.equals("전체")) {
-			posters = playDao.getPoster();
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType("전체");
-			}
-
-		} else {
-			posters = playDao.getChange(type);
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType(posters.get(0).getGenrenm());
-			}
-		}
-
-		return posters;
-	}
-
-	@Override
-	public ArrayList<MainDto> getNextPoster(String stNum, String pType) {
-
-		ArrayList<MainDto> posters = new ArrayList<>();
-		if (pType.equals("전체")) {
-			posters = playDao.getAllNextPoster(stNum);
-		} else {
-			HashMap<String, String> map = new HashMap<>();
-			map.put("stNum", stNum);
-			map.put("pType", pType);
-			posters = playDao.getNextPoster(map);
-		}
-
-		return posters;
-	}
+		
+       return result;
+	} 
 
 	// 상세페이지
 	@Override
@@ -181,7 +106,7 @@ public class PlayServiceImpl implements PlayService {
 		ArrayList<MainBoxofficeDto> boxPosters = new ArrayList<>();
 
 		boxPosters = playDao.getBoxChange(type);
-		// System.out.println(posters.toString());
+		
 		return boxPosters;
 	}
 
@@ -221,5 +146,47 @@ public class PlayServiceImpl implements PlayService {
 			playDao.insertBookmark(bookmark);
 		else
 			playDao.deleteBookmark(bookmark);
+	}
+
+	@Override
+	public int getTotalNowPlays() {
+		
+		return playDao.getTotalNowPlays();
+	}
+
+	@Override
+	public int getGenreNowPlays(String genre) {
+		
+		return playDao.getGenreNowPlays(genre);
+	}
+
+	@Override
+	public ArrayList<MainDto> getComeNextPoster(PagingDto stNum, String genre) {
+		
+		ArrayList<MainDto> result=new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("p", stNum);
+		map.put("genre", genre);
+		
+		if(genre.equals("전체")) {
+			result=playDao.getComeAllNextPoster(map);
+		}else {
+			result=playDao.getComeGenreNextPoster(map);
+		}
+
+		
+       return result;
+	}
+
+	@Override
+	public int getTotalComePlays() {
+		
+		return playDao.getTotalComePlays();
+	}
+
+	@Override
+	public int getGenreComePlays(String genre) {
+		
+		return playDao.getGenreComePlays(genre);
 	}
 }

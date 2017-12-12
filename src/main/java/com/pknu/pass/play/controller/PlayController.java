@@ -2,6 +2,7 @@ package com.pknu.pass.play.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pknu.pass.comment.dto.CommentDto;
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
@@ -51,68 +54,77 @@ public class PlayController {
 
 	// 현재공연
 	@RequestMapping(value = "/now" ,method=RequestMethod.GET)
-	public String playNowMain(Model model) {
+	public String playNowMain() {
          
-		playService.playNowMain(model);
+
 		
 		return "play/playinglist";
 
+
 	}
 
+	
+	@RequestMapping(value="/now/getNextPoster")
 	@ResponseBody
-	@RequestMapping(value = "/now/change")
-	public ArrayList<MainDto> getNowChange(String type) throws Exception {
+	public Map<String, Object> getNowNextPoster(String genre,int index, int pageStartNum){							
 
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Object> paramMap = new HashMap<>();
 		ArrayList<MainDto> fileNames = new ArrayList<>();
-
-		fileNames = playService.getNowChange(type);
-
-		return fileNames;
+		
+		PagingDto paging = new PagingDto();
+		paging.setIndex(index);
+		paging.setPageStartNum(pageStartNum);
+		if(genre.equals("전체")) {
+			paging.setTotal(playService.getTotalNowPlays());			
+		}else {
+			paging.setTotal(playService.getGenreNowPlays(genre));  	
+		}
+		
+		fileNames = playService.getNowNextPoster(paging, genre);
+		resultMap.put("p", paging);
+		resultMap.put("list", fileNames);
+		
+		
+		return 	resultMap;
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/now/getNextPoster")
-	public ArrayList<MainDto> getNowNextPoster(String stNum, String index) throws Exception {
-
-		ArrayList<MainDto> fileNames = new ArrayList<>();
-
-		fileNames = playService.getNowNextPoster(stNum, index);
-         System.out.println(fileNames.get(0).getSidonm());
-		return fileNames;
-	}
+	
 
 	// 상영예정작
 	@RequestMapping(value = "/come")
-	public String playMain(Model model) {
+	public String playMain() {
 
-		playService.playMain(model);
+
 		return "play/playlist";
 
-	}
 
+	}
+	
+	@RequestMapping(value="/come/getNextPoster")
 	@ResponseBody
-	@RequestMapping(value = "/come/change")
-	public ArrayList<MainDto> getChange(String type) throws Exception {
-
+	public Map<String, Object> getNextPoster(String genre,int index, int pageStartNum){							
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		Map<String, Object> paramMap = new HashMap<>();
 		ArrayList<MainDto> fileNames = new ArrayList<>();
-
-		fileNames = playService.getChange(type);
-
-		return fileNames;
-
+		PagingDto paging = new PagingDto();
+		paging.setIndex(index);
+		paging.setPageStartNum(pageStartNum);
+		if(genre.equals("전체")) {
+			paging.setTotal(playService.getTotalComePlays());
+			
+		}else {
+			paging.setTotal(playService.getGenreComePlays(genre));  		
+		}
+		fileNames = playService.getComeNextPoster(paging, genre);
+		resultMap.put("p", paging);
+		resultMap.put("list", fileNames);
+		
+		
+		return 	resultMap;
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/come/getNextPoster")
-	public ArrayList<MainDto> getNextPoster(String stNum, String index) throws Exception {
-
-		ArrayList<MainDto> fileNames = new ArrayList<>();
-
-		fileNames = playService.getNextPoster(stNum, index);
-
-		return fileNames;
-	}
-
+	
 //	상세페이지
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String getDetail(String mt20id, Model model,HttpSession session) throws Exception {

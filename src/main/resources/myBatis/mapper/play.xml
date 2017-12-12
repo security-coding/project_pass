@@ -7,39 +7,8 @@
 
 
 	<!-- 현재상영작 -->
-	<select id="getNowChange" parameterType="String" resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		FROM (  select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		        from image e, concert a, place p
-		        where e.mt20id = a.mt20id and a.mt10id=p.mt10id and  a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		        order by prfpdfrom asc) human )
-		where rum BETWEEN 1 and 20
-	</select>
-
-	<select id="getNowPoster" resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		      from image e, concert a, place p
-		      where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate 
-		      order by prfpdfrom asc) human )
-		where rum BETWEEN 1 and 20
-	</select>
-
-
-	<select id="getNowNextPoster" parameterType="hashMap"
-		resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		     from image e, concert a, place p
-		     where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		     order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
-
-	<select id="getNowAllNextPoster" parameterType="String"
+	
+   <select id="getNowAllNextPoster" parameterType="HashMap"
 		resultType="predto">
 		SELECT *
 		from(SELECT rownum rum, human.*
@@ -47,10 +16,66 @@
 		           from image e, concert a, place p
 	 	           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
 		           order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
+		where rum BETWEEN #{p.start} AND #{p.last}
+	</select>
+	
+	<select id="getNowGenreNextPoster" parameterType="HashMap"
+		resultType="predto">
+		SELECT *
+		from(SELECT rownum rum, human.*
+		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		           from image e, concert a, place p
+	 	           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and genrenm=#{genre} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
+		           order by prfpdfrom asc) human )
+		where rum BETWEEN #{p.start} AND #{p.last}
 	</select>
 
 
+     <select id="getComeAllNextPoster" parameterType="HashMap"
+		resultType="predto">
+		SELECT *
+		from(SELECT rownum rum, human.*
+		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		           from image e, concert a, place p
+	 	           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
+		           order by prfpdfrom asc) human )
+		where rum BETWEEN #{p.start} AND #{p.last}
+	</select>
+	
+	<select id="getComeGenreNextPoster" parameterType="HashMap"
+		resultType="predto">
+		SELECT *
+		from(SELECT rownum rum, human.*
+		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
+		           from image e, concert a, place p
+	 	           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and genrenm=#{genre} and e.imagetype = 1 and a.prfpdfrom > sysdate
+		           order by prfpdfrom asc) human )
+		where rum BETWEEN #{p.start} AND #{p.last}
+	</select>
+
+<!-- 테스트 -->
+    <select id="getTotalNowPlays" resultType="Integer">
+		SELECT count(*) 
+		FROM concert
+		WHERE sysdate >= prfpdfrom and prfpdto >= sysdate
+	</select>
+    
+     <select id="getGenreNowPlays" parameterType="String" resultType="Integer">
+		SELECT count(*) 
+		FROM concert
+		WHERE genrenm=#{genre} and sysdate >= prfpdfrom and prfpdto >= sysdate
+	</select> 
+	<select id="getTotalComePlays" resultType="Integer">
+		SELECT count(*) 
+		FROM concert
+		WHERE prfpdfrom > sysdate
+	</select>
+    
+     <select id="getGenreComePlays" parameterType="String" resultType="Integer">
+		SELECT count(*) 
+		FROM concert
+		WHERE genrenm=#{genre} and prfpdfrom > sysdate
+	</select> 
 	<!-- 상영예정 -->
 	<select id="getChange" parameterType="String" resultType="predto">
 		SELECT *
@@ -61,35 +86,6 @@
 		where rum BETWEEN 1 and 20
 	</select>
 
-	<select id="getPoster" resultType="predto">
-		SELECT * 
-		  from(SELECT rownum rum, human.*
-		       FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		              from image e, concert a, place p 
-		              where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
-		              order by prfpdfrom asc) human)
-		where rum BETWEEN 1 and 20
-	</select>
-
-	<select id="getNextPoster" parameterType="hashMap" resultType="predto">
-		SELECT *
-		  from(SELECT rownum rum, human.*
-		      FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		             from image e, concert a, place p
-		             where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
-		             order by prfpdfrom asc) human )
-		  where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
-
-	<select id="getAllNextPoster" parameterType="String" resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		           from image e, concert a, place p
-		           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
-		           order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
 
 	<!-- 내 포스터 -->
 

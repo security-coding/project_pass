@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
+import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.DetailDto;
@@ -15,17 +16,13 @@ import com.pknu.pass.play.dto.MainDto;
 
 public interface PlayService {
 
-	public void playMain(Model model);
-
-	public ArrayList<MainDto> getChange(String type);
-
-	public ArrayList<MainDto> getNextPoster(String stNum, String pType);
-
-	public void playNowMain(Model model);
-
-	public ArrayList<MainDto> getNowChange(String type);
-
-	public ArrayList<MainDto> getNowNextPoster(String stNum, String pType);
+	public ArrayList<MainDto> getNowNextPoster(PagingDto stNum, String pType);
+	public ArrayList<MainDto> getComeNextPoster(PagingDto stNum, String pType);
+	
+	public int getTotalNowPlays();
+	public int getGenreNowPlays(String genre);
+	public int getTotalComePlays();
+	public int getGenreComePlays(String genre);
 
 	public void getDetail(String mt20id, Model model, HttpSession session);
 
