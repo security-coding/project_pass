@@ -62,14 +62,14 @@
 }
 #logo .image {
 	width: 150px;
-	height: 30px;
+	height: 40px;
 }
 
 /*    --------------------------------------------------
 	:: Inputs & Buttons
 	-------------------------------------------------- */
 #btn-login:hover{
-	background-color: #1fa67b;
+
 }
 .form-control {
     color: #212121;
@@ -77,7 +77,7 @@
 .btn-custom {
     color: #fff;
     font-weight:bold;
-	background-color: rgba(133, 221, 119, 0.4);
+ 	background-color: rgba(133, 221, 119, 0.9);
 }
 .btn-custom:hover,
 .btn-custom:focus {
@@ -108,6 +108,7 @@
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 
 <script>
+
 function blank(){
 	if($('#keyword').val()==""){
 		alert("검색어를 입력해주세요");
@@ -134,6 +135,9 @@ function showPassword() {
     }
     
 }
+
+
+
 </script>
 
 <script>
@@ -145,6 +149,8 @@ $(function() {
 		document.location.href = "../";
 
 	});
+	
+
 </script>
 
 	<!-- Navigation -->
@@ -205,21 +211,21 @@ $(function() {
 										<h1>Log in with your email account</h1>
 										<form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
 											<div class="form-group">
-												<label for="id" class="sr-only">Email</label> <input
+												<label for="id" class="sr-only">ID</label> <input
 													type="text" name="id" id="id" class="form-control"
-													placeholder="ID">
+													placeholder="ID" onchange="change(this);">
 											</div>
 											<div class="form-group">
 												<label for="password" class="sr-only">Password</label> <input
 													type="password" name="password" id="password" class="form-control"
-													placeholder="Password">
+													placeholder="Password" onchange="change();">
 											</div>
 											<div class="checkbox">
 												<span class="character-checkbox" onclick="showPassword()"></span>
 												<span class="label" style="font-weight: bold;">Show password</span>
 											</div>
 											<input type="submit" id="btn-login"
-												class="btn btn-custom btn-lg btn-block" value="Log in" oninput="CertifyCheck()">
+												class="btn btn-custom btn-lg btn-block" value="Log in">
 										</form>
 										<p><a href="/member/userloss">아이디/비밀번호찾기</a></p>
 										<hr>

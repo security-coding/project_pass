@@ -3,8 +3,6 @@ package com.pknu.pass.login.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pknu.pass.admin.controller.AdminController;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.login.service.LoginServiceImpl;
 
@@ -53,7 +50,7 @@ public class LoginController {
 		logindto.setEmail(logindto.getEmail()+"@"+stremail);
 		logindto.setPassword(password);
 		loginService.insertUser(logindto);
-		return "/home";
+		return "loginPage/successJoin";
 	}
 	
 	@RequestMapping(value="/joinIdCheck")//회원가입 아이디 중복 비동기로 확인

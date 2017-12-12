@@ -36,11 +36,11 @@ pageEncoding="UTF-8"%>
     position: absolute;
     top: 0;
     left: 0;
-    background: url(../images/templateimg/banner-bg.jpeg) no-repeat center center; 
+    background: url(../images/joinFormBack.jpg) no-repeat center center; 
     background-size:cover;
     width: 100%;
     height: 100%;
-    opacity : 0.5;
+    opacity : 0.6;
     z-index: -1;
 	}
 	</style>
@@ -172,7 +172,6 @@ pageEncoding="UTF-8"%>
 			 return false;
 		 }
 		if(idCheck==true&&emailCheck==true){
-			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
 			return true;
 		}else if(!idCheck || !emailCheck){
 			alert("확인해주세요");
@@ -453,8 +452,9 @@ $(function() {
                 </div>
             </div> 
             </div>
+            <%@include file="../footer.jsp" %>
             </div>
-       <%@include file="../footer.jsp" %>
+       
     </body>
 	   
     
