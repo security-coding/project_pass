@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<footer>
+    pageEncoding="UTF-8"%>    
+<footer style="margin-top: 6%;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
