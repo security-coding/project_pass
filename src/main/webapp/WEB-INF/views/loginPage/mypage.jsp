@@ -17,15 +17,22 @@
 <style>
 ul{
    list-style:none;
+   
    }
 .sidebar{
-    color: rgba(95, 219, 234, 0.5);
+    color: rgba(35, 99, 151, 0.5);
     border-color:rgba(255,255,255,0.4);
     border: 1px dotted rgba(129, 161, 199,0.5) ;
     border-radius: 10px;
 	-moz-box-shadow: -2px 7px 22px #696485;
 	-webkit-box-shadow: -2px 7px 22px #696485;
 	box-shadow: -2px 7px 22px #696485;
+}
+#profileLine{
+	margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
 }
 </style>
 
@@ -103,13 +110,7 @@ function memberClear(){
 
 //추가부분
 
-       var container = document.getElementById('map');
-		var options = {
-			center: new daum.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
 
-		var map = new daum.maps.Map(container, options);
 
 
 
@@ -123,7 +124,7 @@ function memberClear(){
  <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
-	<article class="container-fluid">
+	<article class="container-fluid" >
 
 	
 	<div class="page-header">
@@ -132,7 +133,7 @@ function memberClear(){
 	</div>
 	</div>
 	
-	<div class="col-sm-3 col-md-2 sidebar">
+	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%">
 		<ul class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
@@ -145,7 +146,7 @@ function memberClear(){
 		<div class="col-md-12">	
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post"><!-- form -->
 			
-			<div class="form-group">
+			<div class="form-group" style="margin-top: 2%">
 				<label for="id" id="id" name="id">ID:${id}
 				<div id="idcheck"></div>
 			</div>
@@ -174,15 +175,15 @@ function memberClear(){
 			<div>
 			<img id="myimage" src="${imageUrl}" alt="..." class="img-thumbnail">
 			</div>
-			<div class="btn-group">
+			<div class="btn-group" style="">
 <!-- 				<button id="spreadBtn" type="button"> -->
 <%-- 					<img id="myimage" src="${imageUrl}"> <span class="caret"></span> --%>
 <!-- 				</button> -->
 				<ul id="hiddenList" style="display: none;">
 					<c:forEach begin="1" end="13" varStatus="status">
-					<li><img id="img${status.count}" class="img"
+					<li id="profileLine"><img id="img${status.count}" class="img"
 						src="/resources/images/profile/img${status.count}.png"
-						onclick="setMyimage(this)" style="width:50px; height:50px;"></li>
+						onclick="setMyimage(this)" style="width:auto; height: auto; overflow: hidden;"></li>
 					</c:forEach>
 				</ul>
 			</div>

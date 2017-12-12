@@ -114,7 +114,7 @@ function passSearchSubmit(){
 <body>
 	<%@include file="../header.jsp"%>
 	<div class="container">
-	<h2 style="margin-top: 6%;" class="text-center">아이디찾기</h2>
+	<h2 style="margin-top: 8%;" class="text-center">아이디찾기</h2>
 	<div class="col-md-6 col-md-offset-3">
 		<form id="idForm" class="form-horizontal" role="form"
 			action="/member/userlossid" method="post" onsubmit="return idSearchSubmit()">

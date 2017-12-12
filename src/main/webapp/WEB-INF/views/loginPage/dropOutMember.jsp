@@ -19,7 +19,7 @@ ul{
    list-style:none;
    }
 .sidebar{
-    color: rgba(95, 219, 234, 0.5);
+    color: rgba(35, 99, 151, 0.5);
     border-color:rgba(255,255,255,0.4);
     border: 1px dotted rgba(129, 161, 199,0.5) ;
     border-radius: 10px;
@@ -36,7 +36,7 @@ ul{
  <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
-	<article class="container-fluid">
+	<article class="container-fluid" style="height:640px;">
 
 	
 	<div class="page-header">
@@ -45,7 +45,7 @@ ul{
 	</div>
 	</div>
 	
-	<div class="col-sm-3 col-md-2 sidebar">
+	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%">
 		<ul class="nav nav-sidebar">
 			<li><p>메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
@@ -57,7 +57,7 @@ ul{
 	<div class="col-xs-8 col-sm-6">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/memberClear" onsubmit="return memberClear()" method="post"><!-- form -->
 			
-			<div class="form-group">
+			<div class="form-group" style="margin-top: 2%">
 				<label for="id" id="id" name="id">ID:${id}
 				<div id="idcheck"></div>
 			</div>
@@ -76,11 +76,10 @@ ul{
 				</button>
 			</div>
 			</div>
-		</form>
-	
+		</form>	
 	</article>
-	<%@include file="../footer.jsp" %>
 </body>
+	<%@include file="../footer.jsp" %>
 <script>
 
 let passCheck=false;

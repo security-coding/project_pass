@@ -23,7 +23,6 @@ import org.w3c.dom.NodeList;
 import com.pknu.pass.admin.dao.AdminDao;
 import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.common.dto.PagingDto;
-import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.common.util.FileUtil;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
@@ -60,7 +59,7 @@ public class AdminServiceImpl implements AdminService {
 			Document xmlDoc = getXMLInf(url.toString());
 			Element root = xmlDoc.getDocumentElement();
 
-			NodeList nodeList = root.getElementsByTagName("db");//"db"??
+			NodeList nodeList = root.getElementsByTagName("db");//"open api 에 있는 db라는 태그값 가져온다. "
 
 			if (nodeList.getLength() == 0)
 				return;
