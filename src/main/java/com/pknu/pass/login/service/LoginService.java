@@ -1,5 +1,6 @@
 package com.pknu.pass.login.service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
@@ -10,7 +11,7 @@ public interface LoginService {
 
 	public void insertUser(LoginDto logindto);
 
-	public String login(String id, String password,HttpSession session, Model model);
+	public String login(String id, String password,HttpServletRequest request, Model model);
 
 	public String logout(HttpSession session);
 

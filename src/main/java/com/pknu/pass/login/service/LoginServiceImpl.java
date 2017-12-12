@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,16 +54,12 @@ public class LoginServiceImpl implements LoginService {
 
 
 	@Override
-	public String login(String id, String pass, HttpSession session, Model model) {
+	public String login(String id, String pass, HttpServletRequest request, Model model) {
 		String view = null;
 		LoginDto user = null;
+		HttpSession session = request.getSession();
 		
 		user = logindao.getUser(id);//id가 있으면 전부 가져온다. 
-		
-		int dbCertifyCheckNo = 0;// 메일 인증 않함.
-		int passFail = 0;// 비밀번호 실패.
-		int Notmember = 0;// 회원가입 신청안함.
-		int loginBan = 0;// 불량계정 정지.
 		
 		if(user != null) {
 			String password = user.getPassword();
@@ -80,7 +77,9 @@ public class LoginServiceImpl implements LoginService {
 					if (password.equals(securityUtil.encrypt(pass))) {
 						session.setAttribute("id", id);
 						session.setAttribute("imageUrl", profile);
-						view = "/home";
+						
+						String referer = request.getHeader("Referer");
+						view = "redirect:" + referer;
 					} else {// 비밀번호 실패
 						model.addAttribute("passFail",Fail);
 						view = "loginPage/loginFail";

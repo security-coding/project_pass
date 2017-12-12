@@ -22,14 +22,13 @@ import com.pknu.pass.login.service.LoginServiceImpl;
 @Controller
 @RequestMapping("/member")
 public class LoginController {
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class); 
 	@Autowired
 	LoginServiceImpl loginService;
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)//로그인기능
-	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpSession session,Model model) {
+	public String login(@RequestParam("id")String id,@RequestParam("password")String password,HttpServletRequest request ,Model model) {
 		System.out.println(id);
-		return loginService.login(id,password,session,model);
+		return loginService.login(id,password,request,model);
 	}
 
 	

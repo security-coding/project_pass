@@ -227,12 +227,12 @@ pageEncoding="UTF-8"%>
                                 <c:when test="${fullHeart eq 0}">
                                     <img id="empty-heart" src="/images/likes/empty-heart.png" value=0
                                          style="width:20px;, height:20px;" onclick="changeImg(this)">
-                                    <span id=inCount name=inCount></span>
+                                    <span id=inCount></span>
                                 </c:when>
                                 <c:when test="${fullHeart eq 1}">
                                     <img id="full-heart" src="/images/likes/full-heart.png" value=1
                                          style="width:20px;, height:20px;" onclick="changeImg(this)">
-                                    <span id=inCount name=inCount></span>
+                                    <span id=inCount></span>
                                 </c:when>
                             </c:choose>
                             </div>
