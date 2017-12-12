@@ -61,8 +61,9 @@
 	display: block;
 }
 #logo .image {
-	width: 150px;
-	height: 40px;
+	width: 130px;
+	height: 25px;
+	margin-top: 10px;
 }
 
 /*    --------------------------------------------------
@@ -167,7 +168,7 @@ $(function() {
 						class="icon-bar"></span>
 				</button>
 				<div id="logo">
-				<a class="navbar-brand topnav" href="/"><img class="image" src="/resources/images/logo2.png" /></a>
+				<a class="navbar-brand topnav" href="/"><img class="image" src="/resources/images/logo.png" /></a>
 				</div>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
