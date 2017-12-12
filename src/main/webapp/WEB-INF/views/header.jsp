@@ -213,12 +213,12 @@ $(function() {
 											<div class="form-group">
 												<label for="id" class="sr-only">ID</label> <input
 													type="text" name="id" id="id" class="form-control"
-													placeholder="ID" onchange="change(this);">
+													placeholder="ID">
 											</div>
 											<div class="form-group">
 												<label for="password" class="sr-only">Password</label> <input
 													type="password" name="password" id="password" class="form-control"
-													placeholder="Password" onchange="change();">
+													placeholder="Password">
 											</div>
 											<div class="checkbox">
 												<span class="character-checkbox" onclick="showPassword()"></span>

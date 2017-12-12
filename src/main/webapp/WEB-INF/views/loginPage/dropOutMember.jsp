@@ -79,6 +79,7 @@ ul{
 		</form>
 	
 	</article>
+	<%@include file="../footer.jsp" %>
 </body>
 <script>
 

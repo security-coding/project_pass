@@ -250,6 +250,7 @@ ul{
 		
 	</div>	
 </article>
+<%@include file="../footer.jsp" %>
 </body>
 
 <!-- /container -->

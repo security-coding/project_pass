@@ -25,8 +25,7 @@ $(function(){
 	if(Notmember == 0) {
 		alert("존재하지않는 아이디 입니다.\n회원가입을해주세요");
 	}
-// 	document.location.href="../";
-	history.back();
+ 	document.location.href="../";
 });
 </script>
 

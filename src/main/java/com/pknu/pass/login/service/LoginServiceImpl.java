@@ -114,7 +114,7 @@ public class LoginServiceImpl implements LoginService {
 		session.removeAttribute("id");
 		session.invalidate();
 
-		return "/home";
+		return "redirect:/";
 	}
 
 	@Override

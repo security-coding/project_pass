@@ -29,7 +29,7 @@ public class LoginController {
 	}
 
 	
-	@RequestMapping(value="/logout",method=RequestMethod.POST)//로그아웃기능
+	@RequestMapping(value="/logout")//로그아웃기능
 	public String logout(HttpSession session) {
 		return loginService.logout(session);
 	}
