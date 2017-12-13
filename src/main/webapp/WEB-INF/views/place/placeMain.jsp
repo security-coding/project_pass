@@ -50,6 +50,12 @@
         .titleInf {
             margin-left: 15px;
         }
+
+        @media screen and (max-width: 768px){
+            #map {
+                height: 300px;
+            }
+        }
     </style>
     <title>주변 공연 찾기</title>
 </head>
@@ -57,7 +63,7 @@
 <div>
     <%@include file="../header.jsp" %>
 </div>
-<h1 class="text-center" style="margin-top: 6%;'">주변 공연 위치 찾기</h1>
+<h1 class="text-center" style="margin-top: 80px;'">주변 공연 위치 찾기</h1>
 <div class="content">
     <div class="col-md-4">
         <div class="well">
