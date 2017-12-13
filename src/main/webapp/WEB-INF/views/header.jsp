@@ -55,22 +55,14 @@
     font-size: 14px;
 	margin-bottom: 20px;
 }
-#login .forget {
-    font-size: 13px;
-	text-align: center;
-	display: block;
-}
+
 #logo .image {
-	width: 130px;
 	height: 25px;
 }
 
 /*    --------------------------------------------------
 	:: Inputs & Buttons
 	-------------------------------------------------- */
-#btn-login:hover{
-
-}
 .form-control {
     color: #212121;
 }
@@ -87,11 +79,7 @@
 /*    --------------------------------------------------
     :: Footer
 	-------------------------------------------------- */
-#footer {
-    color: #6d6d6d;
-    font-size: 12px;
-		
-}
+
 #footer p {
     margin-bottom: 0;
 }

@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
                         alert("북마크가 설정되었습니다");
                         $(obj).attr("src", "/images/likes/bookmark.png");
                         $(obj).attr("value", 1);
-                    } else {
+                    } else {₩
                         $(obj).attr("src", "/images/likes/non_bookmark.png");
                         $(obj).attr("value", 0);
                     }
@@ -90,6 +90,11 @@ pageEncoding="UTF-8"%>
         }
 
         $(function () {
+            if (id == '') {
+                $("#commentContent").attr('readonly',true);
+                $("#commentContent").html('로그인 후 댓글을 쓸 수 있습니다.');
+            }
+
             $.ajax({
                 type: "POST",
                 async: true,

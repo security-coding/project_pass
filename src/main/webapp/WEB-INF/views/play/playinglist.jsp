@@ -12,7 +12,6 @@
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </head>
-<!-- <body style="background-color : #f8f8f8;"> -->
 <div>
     <%@include file="../header.jsp" %>
 </div>
@@ -147,12 +146,12 @@
                 ;
                 $.each(data, function (index, item) {
 
-                    str = "<div class='col-lg-15 col-md-3 col-xs-3 boxContent' >"
+                    str = "<div class='col-lg-15 col-md-15 col-sm-3 col-xs-6' >"
                         + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
 
-                        + "<div style='position: relative; z-index: 1;' class='imageUrl'>"
+                        + "<div style='position: relative; z-index: 1;'>"
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
-                        + "<div class='img-fluid img-thumbnail overlay'>"
+                        + "<div class='overlay'>"
                         + "<div class='text'>"
                         + "<p>~" + item.sidonm + "~</p><br>"
                         + "<p>" + item.prfnm + "</p><br>"
