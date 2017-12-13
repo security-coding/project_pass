@@ -45,7 +45,7 @@
 		margin-left: 15px;
 	}
 </style>
-<title>주변 공연 위치</title>
+<title>주변 공연 찾기</title>
 </head>
 <body>
 	<div>
