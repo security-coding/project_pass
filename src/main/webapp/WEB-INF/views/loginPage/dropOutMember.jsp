@@ -20,16 +20,23 @@ ul{
    }
 @media all and (min-width:768px) and (max-width:1300px){
 #menu{
- 	color: rgba(35, 99, 151, 0.5);
-	position: fixed;
+ 	border-style:solid;
+ 	border-color:rgba(0,0,0,0.5);
+ 	position: fixed;
+ 	border-radius: 10px;
+ 	width: 150px;
+ 	height: 165px;
+ 	
 }
 
-.sidebar{
-    color: rgba(35, 99, 151, 0);
-    border-color:rgba(255,255,255,0.4);
-    border-radius: 10px;
-	
 }
+#menu{
+ 	border-style:solid;
+ 	border-color:rgba(0,0,0,0.5);
+  	border-radius: 10px;
+ 	width: 150px;
+ 	height: 165px;
+ 	
 }
 </style>
 
