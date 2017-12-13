@@ -213,24 +213,24 @@ $(function() {
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
 									<div class="center">
-										<h1>Log in with your email account</h1>
+										<h1>이용을 위해서는 로그인이 필요합니다.</h1>
 										<form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
 											<div class="form-group">
-												<label for="id" class="sr-only">ID</label> <input
+												<label for="id" class="sr-only">아이디</label> <input
 													type="text" name="id" id="id" class="form-control"
-													placeholder="ID">
+													placeholder="아이디">
 											</div>
 											<div class="form-group">
-												<label for="password" class="sr-only">Password</label> <input
+												<label for="password" class="sr-only">비밀번호</label> <input
 													type="password" name="password" id="password" class="form-control"
-													placeholder="Password">
+													placeholder="비밀번호">
 											</div>
 											<div class="checkbox">
 												<span class="character-checkbox" onclick="showPassword()"></span>
-												<span class="label" style="font-weight: bold;">Show password</span>
+												<span class="label" style="font-weight: bold;">비밀번호 표시하기</span>
 											</div>
 											<input type="submit" id="btn-login"
-												class="btn btn-custom btn-lg btn-block" value="Log in">
+												class="btn btn-custom btn-lg btn-block" value="로그인">
 										</form>
 										<p><a href="/member/userloss">아이디/비밀번호찾기</a></p>
 										<hr>

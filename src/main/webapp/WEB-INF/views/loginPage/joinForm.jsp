@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
 	let emailCheck = false;
 	
 	function checkId() {
-		$("#joinId").on("blur", function() {
+		$("#joinId").on("change", function() {
 			$.ajax({
 				type : "POST",
 				async : true,
@@ -90,7 +90,7 @@ pageEncoding="UTF-8"%>
 	}
 	
 	$(function() {
-		$("#email").on("blur", function() {
+		$("#email").on("change", function() {
 			$.ajax({
 				type : "POST",
 				async : true,
