@@ -215,6 +215,8 @@ function memberClear(){
 		</form>
 		</div>
 		<!-- bookmark content -->
+		<br>
+		<h3 class="text-center" >북마크 LIST</h3>
 		<div class="row">
 			<c:forEach var="bookmark" items="${list}">
 			<div class="col-sm-6 col-md-4">
