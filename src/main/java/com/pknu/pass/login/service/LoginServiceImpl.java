@@ -34,9 +34,9 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private SecurityUtil securityUtil;
 	
-	private int Fail=0;
-	private int Success=1;
-	private int alreadySuccess=2;
+	private final static int FAIL=0;
+	private final static int SUCCESS=1;
+	private final static int ALREADY_SUCCESS=2;
 
 	@Override
 	public void insertUser(LoginDto logindto) {
@@ -70,7 +70,7 @@ public class LoginServiceImpl implements LoginService {
 			if(certify == 1) {
 				switch (grade) {//grade 권한: 0=밴 1=일반회원 2=관리자 
 				case 0://밴
-					model.addAttribute("loginBan", Fail);
+					model.addAttribute("loginBan", FAIL);
 					view = "loginPage/loginFail";
 					break;
 				case 1://일반 회원
@@ -81,7 +81,7 @@ public class LoginServiceImpl implements LoginService {
 						String referer = request.getHeader("Referer");
 						view = "redirect:" + referer;
 					} else {// 비밀번호 실패
-						model.addAttribute("passFail",Fail);
+						model.addAttribute("passFail",FAIL);
 						view = "loginPage/loginFail";
 					}
 					break;
@@ -90,7 +90,7 @@ public class LoginServiceImpl implements LoginService {
 						session.setAttribute("id", id);
 						view = "admin/main";
 					} else{// 비밀번호 실패
-						model.addAttribute("passFail",Fail);
+						model.addAttribute("passFail",FAIL);
 						view = "loginPage/loginFail";
 					}
 					break;
@@ -98,11 +98,11 @@ public class LoginServiceImpl implements LoginService {
 					break;
 				}
 			} else if (certify == 0) {//회원가입 인증이 되지 않았음
-				model.addAttribute("dbCertify", Fail);
+				model.addAttribute("dbCertify", FAIL);
 				view = "/home";
 			}
 		} else {//아이디가 존재하지 않을때
-			model.addAttribute("Notmember", Fail);
+			model.addAttribute("Notmember", FAIL);
 			view = "loginPage/loginFail";
 		}
 		
@@ -122,9 +122,9 @@ public class LoginServiceImpl implements LoginService {
 		String dbjoinIdCheck = logindao.loginCheck(inputId);
 		System.out.println(dbjoinIdCheck);
 		if (dbjoinIdCheck != null) {
-			return Fail;
+			return FAIL;
 		} else {
-			return Success;
+			return SUCCESS;
 		}
 
 	}
@@ -134,9 +134,9 @@ public class LoginServiceImpl implements LoginService {
 		String result = inputemail + "@" + selectaddress;
 		String dbjoinemailCheck = logindao.logineMailCheck(result);
 		if (dbjoinemailCheck != null) {
-			return Fail;
+			return FAIL;
 		} else {
-			return Success;
+			return SUCCESS;
 		}
 	}
 
@@ -190,20 +190,20 @@ public class LoginServiceImpl implements LoginService {
 		LoginDto User = logindao.checkJoin(certKey);
 		if (User.getCertify() == LoginDto.SUCCESS) {
 			// 이미 링크 클릭(가입 절차 모두완료된 상태)
-			model.addAttribute("certKey", Success);
-			return Success;
+			model.addAttribute("certKey", SUCCESS);
+			return SUCCESS;
 
 		} else if (User.getCertify() == LoginDto.FAIL) {
 			// dto를 업데이트 해준다. (certify => 1) User의 ID값 이용
-			checkjoin = alreadySuccess;
+			checkjoin = ALREADY_SUCCESS;
 			logindao.checkJoinUpdate(certKey);
 			model.addAttribute("certKey", checkjoin);
 			return checkjoin;
 		} else{
 			// certKey가 존재 하지 않는 키라는 뜻!(회원가입 신청 한적이없음)
-			checkjoin = Fail;
+			checkjoin = FAIL;
 			model.addAttribute("certKey", checkjoin);
-			return Fail;
+			return FAIL;
 		}
 
 	}
@@ -235,28 +235,25 @@ public class LoginServiceImpl implements LoginService {
 		String result = email;
 		String dbJoineMailCheck = logindao.logineMailCheck(result);
 		if (dbJoineMailCheck != null) {
-			return Success;
+			return SUCCESS;
 		} else {
-			return Fail;
+			return FAIL;
 		}
 
 	}
 
 	public int reSetPassCheck(String email, String id) {
-		System.out.println(id);
-		System.out.println(email);
 		int status = 0;
-		String result = email;
 		LoginDto user=logindao.getUser(id);
 		
 		String dbmailCheck = user.getEmail();
 		String dbidCheck = user.getId();
 		
 		if (dbmailCheck != null && dbidCheck != null) {
-			status = Success;
+			status = SUCCESS;
 
 		} else if (dbmailCheck == null || dbidCheck != null) {
-			status = Fail;
+			status = FAIL;
 		}
 
 		return status;
@@ -272,10 +269,10 @@ public class LoginServiceImpl implements LoginService {
 		defaultPw=(String)logindao.loginCheck(id);//쿼리문이 동일함
 		
 		if(pw.equals(defaultPw)) {
-			result=Success;
+			result=SUCCESS;
 			System.out.println(result);			
 		}else{
-			result=Fail;
+			result=FAIL;
 			System.out.println(result);
 			
 		}
