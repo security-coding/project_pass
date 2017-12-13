@@ -219,7 +219,9 @@ function memberClear(){
 			<c:forEach var="bookmark" items="${list}">
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
+					<a href="/play/detail?mt20id=${bookmark.mt20id}">
 					<img src="${bookmark.imageUrl}" alt="...">
+					</a>
 					<div class="caption">
 						<h3>${bookmark.prfnm}</h3>
 						<p>${bookmark.prfpdfrom}</p>
