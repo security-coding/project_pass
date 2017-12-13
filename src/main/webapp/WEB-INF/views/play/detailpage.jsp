@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>detailpage.jsp*Concert Information</title>
+    <title>${detailInf.prfnm}-상세정보</title>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
     <!-- 부가적인 테마 -->

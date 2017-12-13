@@ -12,12 +12,13 @@
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </head>
-<body style="background-color : #f8f8f8;">
+<!-- <body style="background-color : #f8f8f8;"> -->
 <div>
     <%@include file="../header.jsp"%>
 </div>
 
-<h1 class="text-center" style="margin-top: 6%;'">현재 공연작</h1>
+<h1 id="headerName" class="text-center" style="margin-top: 6%;'">현재 공연작</h1>
+
 <div class="typeNav" > 
 	<ul class="nav nav-tabs  nav-justified">
 		<li  role="presentation"><a class="top" href="#" onclick="change('전체');">전체</a></li>
