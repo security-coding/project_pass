@@ -62,10 +62,17 @@
 <script>
     let stNum = 1;
 
-    $(".top").on("click", function () {
-        var offset = $("#headerName").offset();
-        $('html, body').animate({scrollTop: offset.top}, 2000);
-    });
+//     $(".top").on("click", function () {
+//         var offset = $("#headerName").offset();
+//         $('html, body').animate({scrollTop: offset.top}, 2000);
+//     });
+      $(".top").on("click", function(){
+		    $('html, body').animate({
+		        scrollTop: 0
+		    }, 500);
+		    return false; 
+		});
+
 
     $(function () {
         var jbOffset = $('.typeNav').offset();
