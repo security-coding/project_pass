@@ -16,7 +16,7 @@
     <%@include file="../header.jsp"%>
 </div>
 
-<h1 id="headerName" class="text-center" style="margin-top: 6%;'">공연 예정작</h1>
+<h1 id="headerName" class="text-center" style="margin-top: 80px;'">공연 예정작</h1>
 <div class="typeNav">
     <ul class="nav nav-tabs  nav-justified">
         <li role="presentation"><a class="top" href="#" onclick="change('전체');">전체</a></li>

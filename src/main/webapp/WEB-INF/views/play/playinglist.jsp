@@ -17,7 +17,7 @@
     <%@include file="../header.jsp"%>
 </div>
 
-<h1 id="headerName" class="text-center" style="margin-top: 6%;'">현재 공연작</h1>
+<h1 id="headerName" class="text-center" style="margin-top: 80px;'">현재 공연작</h1>
 
 <div class="typeNav" > 
 	<ul class="nav nav-tabs  nav-justified">
