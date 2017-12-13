@@ -109,6 +109,10 @@
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 
 <script>
+function empty() {
+	$("#id").val('');
+	$("#password").val('');
+}
 
 function blank(){
 	if($('#keyword').val()==""){
@@ -206,7 +210,7 @@ $(function() {
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+								<span aria-hidden="true" onclick="empty()">×</span> <span class="sr-only">Close</span>
 							</button>
 							<h4 class="modal-title text-center">로그인</h4>
 						</div>

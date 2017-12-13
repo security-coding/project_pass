@@ -18,25 +18,36 @@
 ul{
    list-style:none;
    }
-@media all and (min-width:768px) and (max-width:1300px){
-#menu{
- 	border-style:solid;
- 	border-color:rgba(0,0,0,0.5);
- 	position: fixed;
- 	border-radius: 10px;
- 	width: 150px;
- 	height: 165px;
- 	
+@media all and (min-width:768px) and (max-width:1300px) {
+	#menu {
+		border-style: solid;
+		border-color: rgba(0, 0, 0, 0.5);
+		position: fixed;
+		border-radius: 10px;
+		width: 150px;
+		height: 165px;
+	}
+	#headerMenu {
+		font-size: 16px;
+		margin-left: 15px;
+		color: rgba(122, 157, 255, 1);
+		
+	}
 }
 
+#menu {
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	width: 150px;
+	height: 165px;
 }
-#menu{
- 	border-style:solid;
- 	border-color:rgba(0,0,0,0.5);
-  	border-radius: 10px;
- 	width: 150px;
- 	height: 165px;
- 	
+
+#headerMenu {
+	font-size: 16px;
+	margin-left: 15px;
+	color: rgba(122, 157, 255, 1);
+	
 }
 </style>
 
@@ -57,7 +68,7 @@ ul{
 	
 	<div  class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%;" >
 		<ul id="menu" class="nav nav-sidebar">
-			<li><p>메뉴</p></li>
+			<li><p id="headerMenu">메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>
 			<li><a href="/member/memberClearForm">회원탈퇴</a></li>
