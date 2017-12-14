@@ -43,7 +43,17 @@ ul{
 		color: rgba(122, 157, 255, 1);
 		
 	}
+	#map{
+		width: 100%;
+		height: 450px;
+	}
 }
+
+#map{
+	width: 100%;
+	height: 400px;
+}
+
 
 #menu {
 	border-style: solid;
@@ -243,7 +253,7 @@ function memberClear(){
 		</div>
 	</div>
 	<div id="mapContainer" class="col-md-8">
-		<div id="map" style="width:500px;height:400px;"></div>
+		<div id="map" style=""></div>
 	</div>
 	</div>
 	</div>
@@ -254,11 +264,6 @@ function memberClear(){
 	
 	
 <script>
-
-
-
-
-
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {

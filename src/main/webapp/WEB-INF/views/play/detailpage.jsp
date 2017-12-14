@@ -9,16 +9,13 @@ pageEncoding="UTF-8"%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${detailInf.prfnm}-상세정보</title>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-    <!-- 부가적인 테마 -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="/css/detailpage.css"/>'>
 
-    <!-- jQuery 모달 불러들이기 필수요소-->
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-    <!-- Bootstrap Core JavaScript -->
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
+
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2805bdc19b8576a7e4c249cfc74a27f2&libraries=services"></script>
 
@@ -63,7 +60,7 @@ pageEncoding="UTF-8"%>
         }
 
         function bookmark(obj) {
-            if (id == '') {
+            if (id === '') {
                 alert("북마크 기능을 이용하기 위해서는 로그인이 필요합니다.");
                 return;
             }
@@ -90,6 +87,11 @@ pageEncoding="UTF-8"%>
         }
 
         $(function () {
+            if (id == '') {
+                $("#commentContent").attr('readonly',true);
+                $("#commentContent").html('로그인 후 댓글을 쓸 수 있습니다.');
+            }
+
             $.ajax({
                 type: "POST",
                 async: true,

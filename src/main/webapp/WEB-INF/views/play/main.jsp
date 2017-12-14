@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
 
@@ -28,19 +28,19 @@ pageEncoding="UTF-8"%>
     </script>
 
 
-
     <style>
         #searchHeader {
             font-size: 4.5rem;
         }
+
         .page-content {
-        		margin-bottom: 10%;
+            margin-bottom: 10%;
         }
     </style>
 </head>
 
 <body>
-<%@include file="../header.jsp"%>
+<%@include file="../header.jsp" %>
 
 <!-- Header -->
 <a id="about"></a>
@@ -86,16 +86,16 @@ pageEncoding="UTF-8"%>
     <div class="text-center" id="typeNav">
         <h1>BOX OFFICE</h1>
     </div>
-<div class="typeNav" > 
-	<ul class="nav nav-tabs  nav-justified">  
-	  <li  role="presentation"><a href="#" onclick="change('YK');">연극</a></li>
-	  <li  role="presentation"><a href="#" onclick="change('MU');">뮤지컬</a></li>
-	  <li  role="presentation"><a href="#" onclick="change('CCO');">클래식/오페라</a></li>
-	  <li  role="presentation"><a href="#" onclick="change('MMB');">무용/발래</a></li> 
-	  <li  role="presentation"><a href="#" onclick="change('KKB');">국악/복합</a></li>	  
-	</ul>
-</div>
-<br>	
+    <div class="typeNav">
+        <ul class="nav nav-tabs  nav-justified">
+            <li class="col-xs-4" role="presentation"><a href="#" onclick="change('YK');">연극</a></li>
+            <li class="col-xs-4" role="presentation"><a href="#" onclick="change('MU');">뮤지컬</a></li>
+            <li class="col-xs-4" role="presentation"><a href="#" onclick="change('CCO');">클래식/오페라</a></li>
+            <li class="col-xs-6" role="presentation"><a href="#" onclick="change('MMB');">무용/발래</a></li>
+            <li class="col-xs-6" role="presentation"><a href="#" onclick="change('KKB');">국악/복합</a></li>
+        </ul>
+    </div>
+    <br>
     <div class="container">
         <div class="row text-center">
             <div class="poster">
@@ -103,13 +103,14 @@ pageEncoding="UTF-8"%>
                 <c:forEach var="play" items="${boxList}" varStatus="status">
                     <div class="col-lg-15 col-md-3 col-sm-3 col-xs-6">
                         <a href="/play/detail?mt20id=${play.mt20id}">
-                            <div style="position: absolute; z-index: 2;"><img src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
+                            <div style="position: absolute; z-index: 2;"><img
+                                    src="/resources/images/rank/poster_rank_${status.count}.png"/></div>
                             <div style="position: relative; z-index: 1;">
                                 <img class="img-responsive img-thumbnail image-lg image-md image-sm image-xs"
-                                          src="${play.imageurl}" alt=""/>
+                                     src="${play.imageurl}" alt=""/>
                                 <div class="overlay">
                                     <div class="text">
-                                        <%-- <p>RANK ${play.rnum}</p><br> --%>
+                                            <%-- <p>RANK ${play.rnum}</p><br> --%>
                                         <p>~${play.area}~</p><br>
                                         <p>${play.prfnm}</p><br>
                                         <p>${play.prfpd}</p><br>
@@ -142,7 +143,7 @@ pageEncoding="UTF-8"%>
     $(document).ready(function () {
         var jbOffset = $('.typeNav').offset();
 
-       
+
         $(window).scroll(function () {
 
             if ($(document).scrollTop() > jbOffset.top) {
@@ -201,7 +202,7 @@ pageEncoding="UTF-8"%>
                         + "<div style='position: relative; z-index: 1;'>"
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageurl + "' alt=''/>"
                         + "<div class='overlay'>"
-                        + "<div class='text'>" 							                    
+                        + "<div class='text'>"
                         + "<p>~" + item.area + "~</p><br>"
                         + "<p>" + item.prfnm + "</p><br>"
                         + "<p>" + item.prfpd + "</p><br>"

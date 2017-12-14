@@ -1,151 +1,131 @@
 @charset "UTF-8";
 .boxContent {
-  position: relative;
-  width: 50%;
+    position: relative;
+    width: 50%;
 }
 
-.overlay  {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-/* 	left: 11px; */
-	left: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-	opacity: 0;
-	transition: .5s ease;
-	background-color: rgba(0,0,0,0.65);
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* 	left: 11px; */
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .overlay:hover {
-	opacity: 1;
+    opacity: 1;
 }
 
 .text {
-	width: 100%;
-	height: 100%;
-	color: white;
-	font-size: 1.333rem;
-	position: absolute;
-	top: 65%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 1.333rem;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
 .typeNav {
-/* 	width: 100%; */
-/* 	height: 70px; */
-	background: white;
-	opacity: 1;
-/* 	list-style: none; */
-/* 	padding-top: 20px; */
-	
-/* 	text-align:center; */
-	
-/* 	text-decoration: none;	 */
+    background: white;
+    opacity: 1;
 }
-
-/* .typeNav li { */
-/* /* 	float: left; */ */
-/* 	margin-right: 50px; */
-/* 	list-style: none; */
-	
-/* 	display:inline-block; */
-/* } */
-
-/* .typeNav > a { */
-/* 	font-size: 1 rem; */
-/* 	color: white; */
-/* 	font-weight: bold; */
-/* 	text-decoration: none; */
-	
-}
-
 
 .butn {
-	font-size: 1.333 rem;
-	color: white;
-	font-weight: bold;
-	text-decoration: none;
+    font-size: 1.333rem;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
-
 
 .image-xs {
-	width: 100%;
-	height: 280px;
+    width: 100%;
+    height: 280px;
 }
 
-@media ( min-width : 768px) {
-	.image-sm {
-		width: 100%;
-		height: 320px;
-	}
+@media ( min-width: 768px) {
+    .image-sm {
+        width: 100%;
+        height: 320px;
+    }
 }
 
-@media ( min-width : 992px) {
-	.image-md {
-		width: 100%;
-		height: 350px;
-	}
+@media ( min-width: 992px) {
+    .image-md {
+        width: 100%;
+        height: 350px;
+    }
 }
 
-@media ( min-width : 1200px) {
-	.image-lg {
-		width: 100%;
-		height: 373px;
-	
-	}
+@media ( min-width: 1200px) {
+    .image-lg {
+        width: 100%;
+        height: 373px;
+
+    }
+}
 
 .col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
-	position: relative;
-	min-height: 1px;
-	padding-right: 10px;
-	padding-left: 10px;
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .col-xs-15 {
-	width: 20%;
-	float: left;
+    width: 20%;
+    float: left;
 }
 
-@media ( min-width : 768px) {
-	.col-sm-15 {
-		width: 20%;
-		float: left;
-	}
+@media ( min-width: 768px) {
+    .col-sm-15 {
+        width: 20%;
+        float: left;
+    }
 }
 
-@media ( min-width : 992px) {
-	.col-md-15 {
-		width: 20%;
-		float: left;
-	}
+@media ( min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
 }
 
-@media ( min-width : 1200px) {
-	.col-lg-15 {
-		width: 20%;
-		float: left;
-	}
+@media ( min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
 }
 
 .boxoffice {
-	width: 16%;
-	height: 5%;
-	margin: 40px auto;
+    width: 16%;
+    height: 5%;
+    margin: 40px auto;
 }
 
- .jbFixed {
+.jbFixed {
         position: fixed;
         z-index: 5;
         width: 100%;
         top: 50px;
-
 }
 
-#typeNav{
-	color: gray;
+@media screen and (max-width: 768px){
+    .nav-tabs.nav-justified>li {
+        float: left;
+    }
+
+    .nav-tabs.nav-justified>li> a {
+        padding: 5px 0;
+    }
 }
 
