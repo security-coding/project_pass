@@ -12,19 +12,11 @@ import com.pknu.pass.play.dto.MainDto;
 public interface PlayDao {
 
 	//상영예정
-	public ArrayList<MainDto> getPoster();
-	
-	public ArrayList<MainDto> getChange(String pType);
-
 	public ArrayList<MainDto> getNextPoster(HashMap<String, String> stNum);
 	
 	public ArrayList<MainDto> getAllNextPoster(String stNum);
 	
 	//상영중
-    public ArrayList<MainDto> getNowPoster();
-	
-	public ArrayList<MainDto> getNowChange(String pType);
-
 	public ArrayList<MainDto> getNowNextPoster(HashMap<String, String> stNum);
 	
 	public ArrayList<MainDto> getNowAllNextPoster(String stNum);

@@ -15,15 +15,7 @@ import com.pknu.pass.play.dto.MainDto;
 
 public interface PlayService {
 
-	public void playMain(Model model);
-
-	public ArrayList<MainDto> getChange(String type);
-
 	public ArrayList<MainDto> getNextPoster(String stNum, String pType);
-
-	public void playNowMain(Model model);
-
-	public ArrayList<MainDto> getNowChange(String type);
 
 	public ArrayList<MainDto> getNowNextPoster(String stNum, String pType);
 
@@ -33,9 +25,9 @@ public interface PlayService {
 
 	public ArrayList<PlaceDto> getNearMap(String la, String lo);
 
-	public void boxTest(Model model);
+	public void boxTest(Model model);//
 
-	public ArrayList<MainBoxofficeDto> getBoxChange(String type);
+	public ArrayList<MainBoxofficeDto> getBoxChange(String type);//
 
 	public HashMap<String, Integer> UpdateLikes(String id, String mt20id, int changeVal, Model model);
 

@@ -35,7 +35,6 @@ public class PlayController {
 
 		return "play/main";
 	}
-	
 
 	@ResponseBody
 	@RequestMapping(value = "/change")
@@ -51,67 +50,38 @@ public class PlayController {
 
 	// 현재공연
 	@RequestMapping(value = "/now" ,method=RequestMethod.GET)
-	public String playNowMain(Model model) {
-         
-		playService.playNowMain(model);
-		
+	public String playNowMain() {
+         		
 		return "play/playinglist";
 
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/now/change")
-	public ArrayList<MainDto> getNowChange(String type) throws Exception {
-
-		ArrayList<MainDto> fileNames = new ArrayList<>();
-
-		fileNames = playService.getNowChange(type);
-
-		return fileNames;
-	}
-
-	@ResponseBody
 	@RequestMapping(value = "/now/getNextPoster")
-	public ArrayList<MainDto> getNowNextPoster(String stNum, String index) throws Exception {
+	public ArrayList<MainDto> getNowNextPoster( String genre,String stNum) throws Exception {
 
 		ArrayList<MainDto> fileNames = new ArrayList<>();
 
-		fileNames = playService.getNowNextPoster(stNum, index);
-        
-		if(fileNames.size() == 0)
-			return null;
-		
+		fileNames = playService.getNowNextPoster(stNum, genre);
+        		
 		return fileNames;
 	}
 
 	// 상영예정작
 	@RequestMapping(value = "/come")
-	public String playMain(Model model) {
+	public String playMain() {
 
-		playService.playMain(model);
 		return "play/playlist";
 
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/come/change")
-	public ArrayList<MainDto> getChange(String type) throws Exception {
-
-		ArrayList<MainDto> fileNames = new ArrayList<>();
-
-		fileNames = playService.getChange(type);
-
-		return fileNames;
-
-	}
-
-	@ResponseBody
 	@RequestMapping(value = "/come/getNextPoster")
-	public ArrayList<MainDto> getNextPoster(String stNum, String index) throws Exception {
+	public ArrayList<MainDto> getNextPoster(String genre,String stNum) throws Exception {
 
 		ArrayList<MainDto> fileNames = new ArrayList<>();
 
-		fileNames = playService.getNextPoster(stNum, index);
+		fileNames = playService.getNextPoster(stNum, genre);
 
 		return fileNames;
 	}

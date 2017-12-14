@@ -25,37 +25,6 @@ public class PlayServiceImpl implements PlayService {
 
 	// 현재 상영작
 	@Override
-	public void playNowMain(Model model) {
-
-//		ArrayList<MainDto> posters = new ArrayList<>();
-//		posters = playDao.getNowPoster();
-		
-		 System.out.println("DB한번접속");
-		 model.addAttribute("playList", playDao.getNowPoster());
-
-	}
-
-	@Override
-	public ArrayList<MainDto> getNowChange(String type) {
-		ArrayList<MainDto> posters = new ArrayList<>();
-
-		if (type.equals("전체")) {
-			posters = playDao.getNowPoster();
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType("전체");
-			}
-
-		} else {
-			posters = playDao.getNowChange(type);
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType(posters.get(0).getGenrenm());
-			}
-		}
-
-		return posters;
-	}
-
-	@Override
 	public ArrayList<MainDto> getNowNextPoster(String stNum, String pType) {
 
 		ArrayList<MainDto> posters = new ArrayList<>();
@@ -67,40 +36,10 @@ public class PlayServiceImpl implements PlayService {
 			map.put("pType", pType);
 			posters = playDao.getNowNextPoster(map);
 		}
-
 		return posters;
 	}
 
 	// 상영예정작
-	@Override
-	public void playMain(Model model) {
-
-		ArrayList<MainDto> posters = new ArrayList<>();
-		posters = playDao.getPoster();
-		model.addAttribute("playList", posters);
-
-	}
-
-	@Override
-	public ArrayList<MainDto> getChange(String type) {
-		ArrayList<MainDto> posters = new ArrayList<>();
-
-		if (type.equals("전체")) {
-			posters = playDao.getPoster();
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType("전체");
-			}
-
-		} else {
-			posters = playDao.getChange(type);
-			if (!posters.isEmpty()) {
-				posters.get(0).setpType(posters.get(0).getGenrenm());
-			}
-		}
-
-		return posters;
-	}
-
 	@Override
 	public ArrayList<MainDto> getNextPoster(String stNum, String pType) {
 
