@@ -166,7 +166,7 @@
                     <li><a href="/play/come">공연 예정작</a></li>
                     <li><a href="/place">주변 공연 찾기</a></li>
 
-                    <li>
+                    <li style="height: 50px;">
                         <c:if test="${id==null}">
                             <%@include file="./loginPage/login.jsp" %>
                         </c:if>
