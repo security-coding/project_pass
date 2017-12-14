@@ -37,5 +37,5 @@ public interface AdminService {
 	int selectTotalComment(PagingDto paging);
 	void deleteComment(int commentNum);
 	
-
+    List<PlaceDto> searchPlace(String value);
 }

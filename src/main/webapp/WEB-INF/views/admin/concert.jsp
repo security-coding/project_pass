@@ -8,8 +8,7 @@
 <title>Admin Page(Concert)</title>
 
 <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-<link rel="stylesheet"
-	href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <link rel="stylesheet" href='<c:url value="/css/dashboard.css"/>'>
 
 </head>
@@ -101,6 +100,9 @@
 								<%@include file="../paging.jsp"%>
 							</div>
 						</div>
+					</div>
+					<div>
+						<button class="btn btn-sm btn-info" onclick="location.href='/admin/applyConcert'">공연 정보 등록</button>
 					</div>
 				</div>
 			</div>

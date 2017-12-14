@@ -165,4 +165,20 @@ public class AdminController {
 		System.out.println(commentNum);
 		adminService.deleteComment(commentNum);
 	}
+
+	@RequestMapping(value = "/applyConcert", method = RequestMethod.GET)
+	public String applyConcert(HttpServletRequest request) {
+		return "admin/applyConcert";
+	}
+
+	@RequestMapping(value = "/searchPlace", method = RequestMethod.GET)
+	public String searchPlace(HttpServletRequest request) {
+		return "admin/searchPlace";
+	}
+
+	@RequestMapping(value = "/searchPlace", method = RequestMethod.POST)
+	@ResponseBody
+	public List<PlaceDto> searchPlace(HttpServletRequest request, String value) {
+		return adminService.searchPlace(value);
+	}
 }

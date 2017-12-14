@@ -41,6 +41,11 @@
 		<constructor-arg value="47ada5583c08472ca6e324cb319cfac7" />
 	</bean>
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000"/>
+		<property name="maxInMemorySize" value="10000000" />
+	</bean>
+
 	<context:component-scan base-package="com.pknu.pass.admin" />
 
 

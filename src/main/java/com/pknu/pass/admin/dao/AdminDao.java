@@ -42,8 +42,7 @@ public interface AdminDao {
 	List<CommentDto> selectComment(PagingDto paging);
 	int selectTotalComment(PagingDto paging);
 	void deleteComment(int commentNum);
-	
-	
-	
+
+    List<PlaceDto> searchPlace(String value);
 }
 
