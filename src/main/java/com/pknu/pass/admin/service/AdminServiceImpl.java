@@ -354,8 +354,15 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<PlaceDto> searchPlace(String value) {
-        return adminDao.searchPlace(value);
-    }
+    public List<PlaceDto> searchPlace(String value) { return adminDao.searchPlace(value); }
 
+    @Override
+    public void applyConcert(ConcertDto concert, HttpServletRequest request) {
+        adminDao.applyConcert(concert);
+
+        List<ImageDto> imageList = fileUtil.uploadImageFile(concert.getMt20id(),request);
+
+        for (ImageDto image : imageList)
+            adminDao.insertImageInf(image);
+    }
 }

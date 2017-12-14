@@ -38,4 +38,6 @@ public interface AdminService {
 	void deleteComment(int commentNum);
 	
     List<PlaceDto> searchPlace(String value);
+
+	void applyConcert(ConcertDto concert, HttpServletRequest request);
 }

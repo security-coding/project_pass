@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.common.dto.PagingDto;
-import com.pknu.pass.common.dto.PagingDto;
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
@@ -44,5 +43,6 @@ public interface AdminDao {
 	void deleteComment(int commentNum);
 
     List<PlaceDto> searchPlace(String value);
+	void applyConcert(ConcertDto concert);
 }
 

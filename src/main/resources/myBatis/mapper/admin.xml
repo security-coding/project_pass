@@ -313,8 +313,30 @@
             FCLTYNM,
             SIDONM
         FROM PLACE
-        WHERE FCLTYNM LIKE '%'||#{value}||'%'
+        WHERE FCLTYNM LIKE '%' || #{value} || '%'
     </select>
+
+    <insert id="applyConcert" parameterType="concert">
+        <selectKey keyProperty="mt20id" resultType="java.lang.String" order="AFTER">
+            SELECT 'PA'||LPAD(CONCERT_MT20ID_SEQ.currval,6,0) FROM dual
+        </selectKey>
+        INSERT INTO CONCERT VALUES (
+        'PA'||LPAD(CONCERT_MT20ID_SEQ.nextval,6,0),
+        #{prfnm},
+        #{prfpdfrom},
+        #{prfpdto},
+        #{fcltynm},
+        #{prfcast},
+        #{prfcrew},
+        #{prfruntime},
+        #{prfage},
+        #{entrpsnm},
+        #{pcseguidance},
+        #{genrenm},
+        #{mt10id},
+        #{dtguidance}
+        )
+    </insert>
 </mapper>
 	
 	

@@ -49,7 +49,7 @@
             <div class="placeholders">
                 <div class="placeholder">
                     <div class="table-responsive">
-                        <form class="form-group" id="frm" name="frm" enctype="multipart/form-data">
+                        <form class="form-group" id="frm" name="frm" action="/admin/applyConcert" method="post" enctype="multipart/form-data">
                         <table class="table table-bordered">
                             <colgroup>
                                 <col width="25%">
@@ -58,13 +58,13 @@
                             <tbody>
                             <tr>
                                 <th scope="row">공연명</th>
-                                <td><input type="text" class="form-control" id="prfnm" name="prfnm"></td>
+                                <td><input type="text" class="form-control" id="prfnm" name="prfnm" required></td>
                             </tr>
                             <tr>
                                 <th>공연 시작 날짜</th>
                                 <td>
                                 <div class="input-group date">
-                                    <input type="text" class="form-control" id="prfpdfrom" name="prfpdfrom">
+                                    <input type="text" class="form-control" id="prfpdfrom" name="prfpdfrom" required>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                                 </td>
@@ -73,38 +73,38 @@
                                 <th>공연 종료 날짜</th>
                                 <td>
                                 <div class="input-group date">
-                                    <input type="text" class="form-control" id="prfpdto" name="prfpdto">
+                                    <input type="text" class="form-control" id="prfpdto" name="prfpdto" required>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>공연 시설명</th>
-                                <td><input type="text" class="form-control" id="fcltynm" name="fcltynm" onclick="openPlace();"></td>
+                                <td><input type="text" class="form-control" id="fcltynm" name="fcltynm" onclick="openPlace(); required"></td>
                             </tr>
                             <tr>
                                 <th>공연 출연진</th>
-                                <td><input type="text" class="form-control" id="prfcast" name="prfcast"></td>
+                                <td><input type="text" class="form-control" id="prfcast" name="prfcast" required></td>
                             </tr>
                             <tr>
                                 <th>공연 제작진</th>
-                                <td><input type="text" class="form-control" id="prfcrew" name="prfcrew"></td>
+                                <td><input type="text" class="form-control" id="prfcrew" name="prfcrew" required></td>
                             </tr>
                             <tr>
                                 <th>공연출연진</th>
-                                <td><input type="text" class="form-control" id="prfruntime" name="prfruntime"></td>
+                                <td><input type="text" class="form-control" id="prfruntime" name="prfruntime" required></td>
                             </tr>
                             <tr>
                                 <th>공연 관람 연령</th>
-                                <td><input type="text" class="form-control" id="prfage" name="prfage"></td>
+                                <td><input type="text" class="form-control" id="prfage" name="prfage" required></td>
                             </tr>
                             <tr>
                                 <th>제작사</th>
-                                <td><input type="text" class="form-control" id="entrpsnm" name="entrpsnm"></td>
+                                <td><input type="text" class="form-control" id="entrpsnm" name="entrpsnm" required></td>
                             </tr>
                             <tr>
                                 <th>티켓 가격</th>
-                                <td><input type="text" class="form-control" id="pcseguidance" name="pcseguidance"></td>
+                                <td><input type="text" class="form-control" id="pcseguidance" name="pcseguidance" required></td>
                             </tr>
                             <tr>
                                 <th>장르</th>
@@ -120,12 +120,14 @@
                             </tr>
                             <tr>
                                 <th>공연시간</th>
-                                <td><input type="text" class="form-control" id="dtguidance" name="dtguidance"></td>
+                                <td><input type="text" class="form-control" id="dtguidance" name="dtguidance" required></td>
                             </tr>
                             </tbody>
-                            <input type="file" name="poster" id="poster">
-                            <input type="hidden" id="mt10id" name="mt10id">
+                            <input type="hidden" id="mt10id" name="mt10id" required>
                         </table>
+                            <input class="form-control" type="file" name="upload_file_0" id="upload_file_0">
+
+                            <input type="submit" class="btn btn-default" value="등록하기">
                         </form>
                     </div>
                 </div>

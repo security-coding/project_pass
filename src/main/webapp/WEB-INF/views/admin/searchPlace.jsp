@@ -5,13 +5,20 @@
     <title>searchPlace(admin)</title>
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
+    <style>
+        button {
+            border: 0;
+            background: transparent;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h3>공연 시설 검색</h3>
     <div class="input-group">
         <input class="form-control" type="text" id="search" name="search">
-        <span class="input-group-btn"><input class="btn btn-info" type="button" id="btn" name="btn" onclick="searchPlace();" value="검 색"></span>
+        <span class="input-group-btn"><input class="btn btn-info" type="button" id="btn" name="btn"
+                                             onclick="searchPlace();" value="검 색"></span>
     </div>
     <hr/>
     <div id="table"></div>
@@ -21,9 +28,9 @@
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 <script>
-    $('#search').on('keypress',function (e) {
-       if (e.which === 13)
-           searchPlace();
+    $('#search').on('keypress', function (e) {
+        if (e.which === 13)
+            searchPlace();
     });
 
     function searchPlace() {
@@ -45,9 +52,11 @@
 
                 $.each(data, function (index, place) {
                     str += '<tr>';
-                    str += ' <td><a href="javascript:sendValue(this);"><p>' + place.fcltynm + '</p></a></td>';
-                    str += ' <td>' + place.sidonm + '</td>';
-                    str += ' <input type="hidden" id="mt10id" name="mt10id" value="' + place.mt10id + '">';
+                    str += '<td>' +
+                        '<button onclick="sendValue(this);"><span>' + place.fcltynm + '</span></button>' +
+                        '<span style="display: none">' + place.mt10id + '</span>' +
+                        '</td>';
+                    str += '<td>' + place.sidonm + '</td>';
                     str += '</tr>';
                 });
 
@@ -59,12 +68,13 @@
     }
 
     function sendValue(obj) {
-        var fcltynm = $(obj).children().text();
-        var mt10id = $(obj).parents();
+        var fcltynm = $(obj).text();
+        var mt10id = $(obj).next().text();
 
-        console.log(fcltynm);
+        $(opener.document).find('#fcltynm').val(fcltynm);
+        $(opener.document).find('#mt10id').val(mt10id);
 
-        // $('#fcltynm',opener).text(fcltynm);
+        window.close();
     }
 </script>
 </body>
