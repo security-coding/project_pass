@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- mybatis map 선언 표시 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-              "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pknu.pass.comment.dao.CommentDao">
-	
 
-	<select id="getComments" parameterType="HashMap" resultType="comment">
-		SELECT *
-		FROM ( SELECT ROWNUM RNUM, C.* 
-				FROM ( SELECT *
-						FROM COMMENTS WHERE mt20id = #{mt20id}
-						ORDER BY COMMENTNUM DESC ) C ) COMMENTS NATURAL JOIN MEMBER
-		WHERE RNUM BETWEEN #{p.start} AND #{p.last}
-	</select>
-	
-	<insert id="insertComment" parameterType="comment">
-		insert into comments values(comment_seq.nextVal,#{id},
-									#{commentContent},TO_CHAR(SYSTIMESTAMP,'YYYY-MM-DD HH24:MI:SS'),#{mt20id})
-	</insert>
-	
-	<select id="getTotalComments" parameterType="HashMap" resultType="Integer">
-		SELECT count(*) 
-		FROM COMMENTS
-		WHERE mt20id = #{mt20id}
-	</select>
-	
-	<delete id="deleteComment" parameterType="Integer">
-		DELETE
-		FROM COMMENTS	
-		WHERE commentNum = #{commentNum}
-	</delete>
-	 
+
+    <select id="getComments" parameterType="HashMap" resultType="comment">
+        SELECT *
+        FROM (SELECT
+                  ROWNUM RNUM,
+                  C.*
+              FROM (SELECT *
+                    FROM COMMENTS
+                    WHERE mt20id = #{mt20id}
+                    ORDER BY COMMENTNUM DESC) C) COMMENTS NATURAL JOIN MEMBER
+        WHERE RNUM BETWEEN #{p.start} AND #{p.last}
+    </select>
+
+    <insert id="insertComment" parameterType="comment">
+        INSERT INTO comments VALUES (comment_seq.nextVal, #{id},
+                                     #{commentContent}, TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI:SS'), #{mt20id})
+    </insert>
+
+    <select id="getTotalComments" parameterType="HashMap" resultType="Integer">
+        SELECT count(*)
+        FROM COMMENTS
+        WHERE mt20id = #{mt20id}
+    </select>
+
+    <delete id="deleteComment" parameterType="Integer">
+        DELETE
+        FROM COMMENTS
+        WHERE commentNum = #{commentNum}
+    </delete>
+
 </mapper>

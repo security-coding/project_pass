@@ -12,22 +12,22 @@ import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.MainDto;
 
 @Service
-public class PlaceServiceImpl implements PlaceService{
-	@Autowired
-	PlaceDao placeDao;
-	
-	@Override
-	public List<PlaceDto> selectPlace(String la, String lo) {
-		Map<String,String> paramMap = new HashMap<>();
-		paramMap.put("la", la);
-		paramMap.put("lo", lo);
-		
-		return placeDao.selectPlace(paramMap);
-	}
+public class PlaceServiceImpl implements PlaceService {
+    @Autowired
+    PlaceDao placeDao;
 
-	@Override
-	public List<MainDto> getTitles(String mt10id) {
-		return placeDao.getTitles(mt10id);
-	}
-	
+    @Override
+    public List<PlaceDto> selectPlace(String la, String lo) {
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("la", la);
+        paramMap.put("lo", lo);
+
+        return placeDao.selectPlace(paramMap);
+    }
+
+    @Override
+    public List<MainDto> getTitles(String mt10id) {
+        return placeDao.getTitles(mt10id);
+    }
+
 }

@@ -27,7 +27,7 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public ArrayList<MainDto> getNowNextPoster(String stNum, String pType) {
 
-		ArrayList<MainDto> posters = new ArrayList<>();
+		ArrayList<MainDto> posters;
 		if (pType.equals("전체")) {
 			posters = playDao.getNowAllNextPoster(stNum);
 		} else {
@@ -43,7 +43,7 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public ArrayList<MainDto> getNextPoster(String stNum, String pType) {
 
-		ArrayList<MainDto> posters = new ArrayList<>();
+		ArrayList<MainDto> posters;
 		if (pType.equals("전체")) {
 			posters = playDao.getAllNextPoster(stNum);
 		} else {
@@ -65,8 +65,8 @@ public class PlayServiceImpl implements PlayService {
 		paramMap.put("mt20id", mt20id);
 		paramMap.put("id", id);
 
-		DetailDto detailInf = new DetailDto();
-		ArrayList<String> detailImages = new ArrayList<>();
+		DetailDto detailInf;
+		ArrayList<String> detailImages;
 
 		detailImages = playDao.getDetailPoster(mt20id);
 		detailInf = playDao.getDetailInf(mt20id);
@@ -86,8 +86,8 @@ public class PlayServiceImpl implements PlayService {
 
 	// 검색
 	@Override
-	public void getsearch(String keyword, Model model) {
-		ArrayList<DetailDto> value = new ArrayList<>();
+	public void getSearch(String keyword, Model model) {
+		ArrayList<DetailDto> value;
 
 		value = playDao.getsearch(keyword);
 		System.out.println(value);
@@ -117,7 +117,7 @@ public class PlayServiceImpl implements PlayService {
 	@Override
 	public ArrayList<MainBoxofficeDto> getBoxChange(String type) {
 
-		ArrayList<MainBoxofficeDto> boxPosters = new ArrayList<>();
+		ArrayList<MainBoxofficeDto> boxPosters;
 
 		boxPosters = playDao.getBoxChange(type);
 		// System.out.println(posters.toString());

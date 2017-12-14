@@ -63,11 +63,11 @@ public class AdminServiceImpl implements AdminService {
             ArrayList<ConcertDto> concertList = new ArrayList<>();
 
             Document xmlDoc = getXMLInf(url.toString());
-            Element root = xmlDoc.getDocumentElement();
+            Element root = xmlDoc.getDocumentElement(); // xml 파일에 있는 최상단 root('dbs')를 가지고 온다.
 
-            NodeList nodeList = root.getElementsByTagName("db");//"open api 에 있는 db라는 태그값 가져온다. "
+            NodeList nodeList = root.getElementsByTagName("db");//"open api 에 있는 db라는 태그값들(db태그 여러개 존재)을 가져온다. "
 
-            if (nodeList.getLength() == 0)
+            if (nodeList.getLength() == 0)  // db 태그가 없다면 xml파일에 정보가 없음을 의미
                 return;
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -91,12 +91,11 @@ public class AdminServiceImpl implements AdminService {
     private void insertConcertInf(ArrayList<ConcertDto> concertList, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
 
-        ArrayList<String> imageUrlList = null;
-        ArrayList<ImageDto> imageList = null;
+        ArrayList<String> imageUrlList;
+        ArrayList<ImageDto> imageList;
 
         for (ConcertDto concert : concertList) {
             imageUrlList = new ArrayList<>();
-            imageList = new ArrayList<>();
 
             StringBuffer url = new StringBuffer("http://www.kopis.or.kr/openApi/restful/pblprfr/");
 
@@ -137,7 +136,7 @@ public class AdminServiceImpl implements AdminService {
             // 공연 상세정보 DB 업로드
             adminDao.insertConcertInf(concert);
 
-            // 사진 업로드 부분(!poster.contains("kopis")??
+            // 사진 업로드 부분(kopis에서 제공하는 url이 아니거나, 업데이트 체크를 했을 때 업데이트가 된 경우 또는 새로 추가하는 정보인 경우 파일 업로드를 진행)
             if (!poster.contains("kopis") || imgUpdateCheck(mt20id, poster, session)) {
                 imageList = fileUtil.uploadImageFile(mt20id, imageUrlList, session);
 
@@ -285,6 +284,7 @@ public class AdminServiceImpl implements AdminService {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder parser = dbf.newDocumentBuilder();
 
+            // 파싱된 xml 파일을 리턴해준다
             return parser.parse(url);
         } catch (Exception e) {
 

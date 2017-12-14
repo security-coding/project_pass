@@ -11,48 +11,49 @@ import com.pknu.pass.play.dto.MainDto;
 
 public interface PlayDao {
 
-	//상영예정
-	public ArrayList<MainDto> getNextPoster(HashMap<String, String> stNum);
-	
-	public ArrayList<MainDto> getAllNextPoster(String stNum);
-	
-	//상영중
-	public ArrayList<MainDto> getNowNextPoster(HashMap<String, String> stNum);
-	
-	public ArrayList<MainDto> getNowAllNextPoster(String stNum);
-	
-	//상세페이지
-	public ArrayList<String> getDetailPoster(String mt20id);
+    //상영예정
+    ArrayList<MainDto> getNextPoster(HashMap<String, String> stNum);
 
-	public ArrayList<DetailDto> getDetailintroImage(String mt20id);
+    ArrayList<MainDto> getAllNextPoster(String stNum);
 
-	public DetailDto getDetailInf(String mt20id);
+    //상영중
+    ArrayList<MainDto> getNowNextPoster(HashMap<String, String> stNum);
 
-	//좋아요
-	public void getLikes(HashMap<String, String> likes);
+    ArrayList<MainDto> getNowAllNextPoster(String stNum);
 
-	public String changeLikes(HashMap<String, String> paramMap);
-	
-	public void delLikes(HashMap<String, String> likes);
-	
-	//좋아요 내 카운트 기능
-	
-	public int likesCount(HashMap<String, String> likes);
-	
-	//검색
-	public ArrayList<DetailDto> getsearch(String keyword);
-	
-	//지도
-	public ArrayList<PlaceDto> getNearMap(HashMap<String, String> lalo);
-	
-	//박스오피스
-    public ArrayList<MainBoxofficeDto> getBoxOffice();
-    
-    public ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
+    //상세페이지
+    ArrayList<String> getDetailPoster(String mt20id);
 
-    	//북마크
-	public void insertBookmark(BookmarkDto bookmark);
-	public void deleteBookmark(BookmarkDto bookmark);
-	public int getBookmark(HashMap<String, String> paramMap);
-	
+
+    DetailDto getDetailInf(String mt20id);
+
+    //좋아요
+    void getLikes(HashMap<String, String> likes);
+
+    String changeLikes(HashMap<String, String> paramMap);
+
+    void delLikes(HashMap<String, String> likes);
+
+    //좋아요 내 카운트 기능
+
+    int likesCount(HashMap<String, String> likes);
+
+    //검색
+    ArrayList<DetailDto> getsearch(String keyword);
+
+    //지도
+    ArrayList<PlaceDto> getNearMap(HashMap<String, String> lalo);
+
+    //박스오피스
+    ArrayList<MainBoxofficeDto> getBoxOffice();
+
+    ArrayList<MainBoxofficeDto> getBoxChange(String cateCode);
+
+    //북마크
+    void insertBookmark(BookmarkDto bookmark);
+
+    void deleteBookmark(BookmarkDto bookmark);
+
+    int getBookmark(HashMap<String, String> paramMap);
+
 }
