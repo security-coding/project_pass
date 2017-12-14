@@ -41,11 +41,11 @@
 
         <!--로그인 안할시 로그인버튼리아 회원가입버튼을 나타나게함-->
         <c:if test="${id==null}">
-            <%@include file="login.jsp" %>
+<%--             <%@include file="login.jsp" %> --%>
         </c:if>
 
         <c:if test="${id!=null}">
-            <%@include file="loginOk.jsp" %>
+<%--             <%@include file="loginOk.jsp" %> --%>
         </c:if>
     </div>
     <!--/.navbar-collapse -->

@@ -4,12 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>userloss.jsp * 아이디/비밀번호 찾기</title>	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 
 		
-<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
 
 <script>
 
@@ -105,14 +106,13 @@ function passSearchSubmit(){
 
 </script>
 
-</head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>	
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>		
+<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <body>
 	<%@include file="../header.jsp"%>
+	
 	<div class="container">
 	<h2 style="margin-top:90px;" class="text-center">아이디찾기</h2>
 	<div class="col-md-6 col-md-offset-3">
@@ -162,16 +162,5 @@ function passSearchSubmit(){
 </div>
 <%@include file="../footer.jsp"%>
 </body>
-
-<!-- /container -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-	<!--부트스트랩-->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-
 
 </html>

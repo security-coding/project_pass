@@ -12,15 +12,11 @@
 
     <title>joinForm.jsp * 회원 가입</title>
 
-    <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
-    <!-- 부가적인 테마 -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 
     <!-- jQuery 모달 불러들이기 필수요소-->
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
     <!-- 지도 api -->
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -465,16 +461,5 @@ $(function() {
 </div>
 
 </body>
-
-
-<!-- Javascript -->
-<!--         <script src="assets/js/jquery.backstretch.min.js"></script> -->
-<!--         <script src="assets/js/wow.min.js"></script> -->
-<!--         <script src="assets/js/retina-1.1.0.min.js"></script> -->
-<!--         <script src="assets/js/scripts.js"></script> -->
-
-<!--[if lt IE 10]>
-<script src="assets/js/placeholder.js"></script>
-<![endif]-->
 
 </html>

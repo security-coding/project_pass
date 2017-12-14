@@ -99,7 +99,7 @@ public class LoginController {
 		loginService.myPageUpdate(session,password,logindto);
 		loginService.logout(session);
 		
-		return "/home";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/updateprofile")//프로필 사진 비동기변경
@@ -158,7 +158,7 @@ public class LoginController {
 	@RequestMapping(value="/memberClear")
 	public String memberClear(HttpSession sesseion) {
 		loginService.memberClear(sesseion);
-		return "/home";
+		return "redirect:/";
 		
 	}
 }

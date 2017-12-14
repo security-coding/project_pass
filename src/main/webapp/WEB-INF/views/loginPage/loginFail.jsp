@@ -14,7 +14,6 @@
             if (passFail == 0) {
                 alert("비밀번호가 틀렸습니다. 다시확인해주세요");
             }
-// 	document.location.href="../";
             history.back();
         });
 
@@ -34,8 +33,7 @@
             let loginBan =${loginBan};
             if (loginBan == 0) {
                 alert("정지된 아이디 입니다.");
-            }
-// 	document.location.href="../";
+            };
             history.back();
         });
     </script>
