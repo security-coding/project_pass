@@ -29,7 +29,7 @@ ul{
     border : 0;
     float: left;
 }
-@media all and (min-width:228px) and (max-width:414px) {
+@media screen and (max-width:768px) {
 	#menu {
 		border-style: solid;
 		border-color: rgba(0, 0, 0, 0.5);
@@ -55,10 +55,10 @@ ul{
 
 	}
 	#mobileImg{
-	margin-top: 114%; 
-	margin-left: -30px; 
+	right : 16px;
+	bottom : 16px;
 	position: fixed ; 
-	z-index:1 ;
+	z-index:10 ;
 	}
 	
 	#mainForm{
@@ -112,6 +112,10 @@ ul{
 			width:246px; 
 			border-radius:10px;
 		}
+		#drawer p{
+			font-size: 20px;
+		}
+		
 		/* left속성이 -(width)px 라서 화면 밖에 있고 left를 0으로 바꿔서 화면에 나타난다.  */
 		#drawer.opened {
 			left: 0;
@@ -160,7 +164,7 @@ ul{
 		</ul>
 	</div>
 
-	<div class="col-xs-8 col-sm-6">		
+	<div class="col-xs-12 col-sm-6">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
 			<div class="form-group" style="margin-top: 2%">
@@ -180,20 +184,43 @@ ul{
 			<div class="form-group">
 				<label for="changPassCheck">변경한 비밀번호 확인</label> <input type="password"
 					class="form-control" id="changPassCheck" placeholder="변경할비밀번호 확인" >
-			</div>
 			
-			<div class="form-group">
-			<label>Address:
-			<div>
-				<input type="text" id="address" name="address" placeholder="주소" value="${userInf.address}" > - <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" value="${userInf.detailAddress}"> <input type="button" onclick="execDaumPostcode()" value="주소변경">
-			</div>
-			</label>
+			<table>
+						<tr>
+							<label style="margin-top: 12px">주소: 
+							<td>
+							<td>
+								<div class="form-group">
+
+									<input type="text" id="address" name="address"
+										class="form-control" value="${userInf.address}" style="margin-left: 13px;">
+								</div>
+							</td>
+							</label>
+							</td>
+
+							<td style="padding: 5px;">
+								<p style="padding-right: 16px; padding-left: 29px;">-</p>
+							</td>
+
+							<td>
+								<div class="form-group">
+									<label class="sr-only" for="detailAddress">상세주소</label> <td><input
+										type="text" id="detailaddress" name="detailAddress"
+										class="form-control" value="${userInf.detailAddress}" style="margin-bottom: 12px; margin-left: -17px;"></td>
+									<td><input class="btn btn-info pull-right" type="button" onclick="execDaumPostcode()" value="주소변경" style="margin-bottom: 13px; margin-left: -12px;"></td>
+								</div>
+							</td>
+						</tr>
+
+					</table>
 			</div>
 			
 			<input type="hidden" name="la" id="la" value='${userInf.la}'>
 			<input type="hidden" name="lo" id="lo" value='${userInf.lo}'>
 			
 			<div class="form-group text-center">
+			
 				<button id="passUpbtn" type="submit" class="btn btn-info" >
 					회원정보변경<i class="fa fa-check spaceLeft"></i>
 				</button>
@@ -201,17 +228,19 @@ ul{
 					되돌아가기<i class="fa fa-times spaceLeft"></i>
 				</button>
 			</div>
+			
 		</form>
 		
 	</div>
 	
 		<!--모바일 메뉴바-->
 		<div id="mobileBar" class="drawer-toggle pull-right" onclick="setOpened()">
-		<i class="ic-menu"><img id="mobileImg" src="/images/mobileBar.png" alt="" style="" ></i>
+		<i class="ic-menu"><img id="mobileImg" src="/images/mobileBar.png" alt=""></i>
 		</div>
 		<nav id="drawer">
 		 <ul>
 			<li><p>메뉴</p></li>
+			<hr>
 			<li><a href="/member/mypage">내정보</a></li>
 			<hr>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>

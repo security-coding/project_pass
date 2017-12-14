@@ -26,7 +26,7 @@ ul{
     border : 0;
     float: left;
 }
-@media all and (min-width:228px) and (max-width:414px) {
+@media screen and (max-width:768px) {
 	#menu {
 		border-style: solid;
 		border-color: rgba(0, 0, 0, 0.5);
@@ -52,14 +52,14 @@ ul{
 
 	}
 	#mobileImg{
-	margin-top: 114%; 
-	margin-left: -30px; 
+	right : 16px;
+	bottom : 16px; 
 	position: fixed ; 
 	z-index:1 ;
 	}
 	
 	#mainForm{
-		margin-left: 33px;
+		margin-left: 0px;
 	}
 	
 }
