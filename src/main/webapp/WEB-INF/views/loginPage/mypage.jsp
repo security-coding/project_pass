@@ -323,13 +323,14 @@ function memberClear(){
 		<div class="row">
 	<h3 class="text-center" >거주지 주변 공연현황 </h3>
 	<div class="content">
+	
+	<div id="mapContainer" class="col-md-8">
+		<div id="map" style=""></div>
+	</div>
 	<div class="col-md-4">
 		<div class="well">			
 			<div id="resultTitles"></div>
 		</div>
-	</div>
-	<div id="mapContainer" class="col-md-8">
-		<div id="map" style=""></div>
 	</div>
 	</div>
 	</div>
