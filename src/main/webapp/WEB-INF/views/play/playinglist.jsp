@@ -12,9 +12,8 @@
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
     <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 </head>
-<div>
-    <%@include file="../header.jsp" %>
-</div>
+<body>
+<%@include file="../header.jsp" %>
 
 <h1 id="headerName" class="text-center" style="margin-top: 80px;'">현재 공연작</h1>
 
@@ -26,7 +25,7 @@
         <li class="col-xs-15" role="presentation"><a class="top" href="#" onclick="change('클래식');">클래식</a></li>
         <li class="col-xs-15" role="presentation"><a class="top" href="#" onclick="change('오페라');">오페라</a></li>
         <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('무용');">무용</a></li>
-        <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('발래');">발래</a></li>
+        <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('발레');">발레</a></li>
         <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('국악');">국악</a></li>
         <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('복합');">복합</a></li>
     </ul>
