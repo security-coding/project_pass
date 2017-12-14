@@ -117,7 +117,6 @@
 	</select>
 
 	<select id="getNearMap" parameterType="hashMap" resultType="place">
-
 		select p.FCLTYNM, p.MT10ID, p.LA, p.LO, DISTNACE_WGS84(#{la}, #{lo},
 		p.LA, p.LO) as DISTANCE, c.prfnm
 		from PLACE p, concert c
