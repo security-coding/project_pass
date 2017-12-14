@@ -109,6 +109,11 @@ ul{
 			width:246px; 
 			border-radius:10px;
 		}
+		
+		#drawer p{
+			font-size: 20px;
+		}
+		
 		/* left속성이 -(width)px 라서 화면 밖에 있고 left를 0으로 바꿔서 화면에 나타난다.  */
 		#drawer.opened {
 			left: 0;
@@ -342,6 +347,7 @@ function memberClear(){
 		<nav id="drawer">
 		 <ul>
 			<li><p>메뉴</p></li>
+			<hr>
 			<li><a href="/member/mypage">내정보</a></li>
 			<hr>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>

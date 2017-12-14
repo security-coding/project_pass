@@ -110,6 +110,11 @@ ul{
 			width:246px; 
 			border-radius:10px;
 		}
+		
+		#drawer p{
+			font-size: 20px;
+		}
+		
 		/* left속성이 -(width)px 라서 화면 밖에 있고 left를 0으로 바꿔서 화면에 나타난다.  */
 		#drawer.opened {
 			left: 0;
@@ -158,7 +163,7 @@ ul{
 		</ul>
 	</div>
 
-	<div class="col-xs-8 col-sm-6">		
+	<div class="col-xs-12 col-sm-6">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/memberClear" onsubmit="return memberClear()" method="post"><!-- form -->
 			
 			<div class="form-group" style="margin-top: 2%">
@@ -189,6 +194,7 @@ ul{
 		<nav id="drawer">
 		 <ul>
 			<li><p>메뉴</p></li>
+			<hr>
 			<li><a href="/member/mypage">내정보</a></li>
 			<hr>
 			<li><a href="/member/myPassChange">회원정보 변경</a></li>
