@@ -22,6 +22,7 @@ import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
+import org.springframework.web.multipart.MultipartRequest;
 
 @Controller
 @RequestMapping("/admin")
@@ -162,7 +163,28 @@ public class AdminController {
 	@RequestMapping(value="/comment/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public void deleteComment(HttpServletRequest request,int commentNum) {
-		System.out.println(commentNum);
 		adminService.deleteComment(commentNum);
+	}
+
+	@RequestMapping(value = "/applyConcert", method = RequestMethod.GET)
+	public String applyConcert(HttpServletRequest request) {
+		return "admin/applyConcert";
+	}
+
+	@RequestMapping(value = "/applyConcert", method = RequestMethod.POST)
+	public String applyConcert(ConcertDto concert, HttpServletRequest request) {
+		adminService.applyConcert(concert, request);
+		return "admin/concert";
+	}
+
+	@RequestMapping(value = "/searchPlace", method = RequestMethod.GET)
+	public String searchPlace(HttpServletRequest request) {
+		return "admin/searchPlace";
+	}
+
+	@RequestMapping(value = "/searchPlace", method = RequestMethod.POST)
+	@ResponseBody
+	public List<PlaceDto> searchPlace(HttpServletRequest request, String value) {
+		return adminService.searchPlace(value);
 	}
 }
