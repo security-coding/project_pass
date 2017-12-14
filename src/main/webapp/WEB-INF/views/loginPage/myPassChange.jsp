@@ -274,12 +274,5 @@ if ($('#address').val() != ""&& $('#detailAddress').val() != "") {
 </article>
 <%@include file="../footer.jsp" %>
 </body>
-
-<!-- /container -->
-
 <script src='<c:url value="/js/bootstrap.min.js"/>'></script>
-
-
-
-
 </html>
