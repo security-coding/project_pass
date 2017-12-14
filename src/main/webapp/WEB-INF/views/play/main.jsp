@@ -14,6 +14,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="/css/boxoffice.css"/>'>
 
     <script>

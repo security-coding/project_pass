@@ -81,7 +81,7 @@
 
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-4 placeholder">
-                    <img src='<c:url value="images/audience-868074_640.jpg"/>' width="200" height="200" class="img-circle"
+                    <img src='<c:url value="/images/audience-868074_640.jpg"/>' width="200" height="200" class="img-circle"
                          alt="Generic placeholder thumbnail">
                     <h4>공연 정보 업데이트</h4>
                     <span class="text-muted">Something else</span>

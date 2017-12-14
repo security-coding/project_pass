@@ -14,23 +14,23 @@ import com.pknu.pass.play.dto.MainDto;
 @Controller
 @RequestMapping("/place")
 public class PlaceController {
-	@Autowired
-	PlaceService placeService;
-	
-	@RequestMapping
-	public String placeMain() {
-		return "place/placeMain";
-	}
-	
-	@RequestMapping(value="/select")
-	@ResponseBody
-	public List<PlaceDto> selectPlace(String la, String lo) {
-		return placeService.selectPlace(la,lo);
-	}
-	
-	@RequestMapping(value = "/titles")
-	@ResponseBody
-	public List<MainDto> getTitles(String mt10id) {
-		return placeService.getTitles(mt10id);
-	}
+    @Autowired
+    PlaceService placeService;
+
+    @RequestMapping
+    public String placeMain() {
+        return "place/placeMain";
+    }
+
+    @RequestMapping(value = "/select")
+    @ResponseBody
+    public List<PlaceDto> selectPlace(String la, String lo) {
+        return placeService.selectPlace(la, lo);
+    }
+
+    @RequestMapping(value = "/titles")
+    @ResponseBody
+    public List<MainDto> getTitles(String mt10id) {
+        return placeService.getTitles(mt10id);
+    }
 }

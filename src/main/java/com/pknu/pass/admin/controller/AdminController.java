@@ -22,147 +22,169 @@ import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
+import org.springframework.web.multipart.MultipartRequest;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-	@Autowired
-	AdminService adminService;
+    @Autowired
+    AdminService adminService;
 
-	@RequestMapping
-	public String adminMain(HttpServletRequest request, Model model) {
-		return "admin/main";
-	}
+    @RequestMapping
+    public String adminMain(HttpServletRequest request, Model model) {
+        return "admin/main";
+    }
 
-	/*
-	 * DB Update 부분
-	 */
-	@RequestMapping(value = "/update/concert", method = RequestMethod.POST)
-	@ResponseBody
-	public void getConcertInf(HttpServletRequest request, String stdate, String eddate, String prfstate)
-			throws Exception {
-		logger.info("Concert Info Update Service");
-		adminService.getConertInf(request, stdate, eddate, prfstate);
-	}
+    /*
+     * DB Update 부분
+     */
+    @RequestMapping(value = "/update/concert", method = RequestMethod.POST)
+    @ResponseBody
+    public void getConcertInf(HttpServletRequest request, String stdate, String eddate, String prfstate)
+            throws Exception {
+        logger.info("Concert Info Update Service");
+        adminService.getConertInf(request, stdate, eddate, prfstate);
+    }
 
-	@RequestMapping(value = "/update/place", method = RequestMethod.POST)
-	@ResponseBody
-	public void getPlaceInf(HttpServletRequest request) {
-		logger.info("Place Info Update Service");
-		adminService.getPlaceInf();
-	}
+    @RequestMapping(value = "/update/place", method = RequestMethod.POST)
+    @ResponseBody
+    public void getPlaceInf(HttpServletRequest request) {
+        logger.info("Place Info Update Service");
+        adminService.getPlaceInf();
+    }
 
-	@RequestMapping(value = "/update/boxoffice", method = RequestMethod.POST)
-	@ResponseBody
-	public void getBoxofficeInf(HttpServletRequest request) {
-		logger.info("BoxOffice Update Service");
-		adminService.getBoxofficeInf();
-	}
+    @RequestMapping(value = "/update/boxoffice", method = RequestMethod.POST)
+    @ResponseBody
+    public void getBoxofficeInf(HttpServletRequest request) {
+        logger.info("BoxOffice Update Service");
+        adminService.getBoxofficeInf();
+    }
 
-	@RequestMapping(value = "/select/concert", method = RequestMethod.GET)
-	public String selectConcert(HttpServletRequest request) {
-		return "admin/concert";
-	}
+    @RequestMapping(value = "/select/concert", method = RequestMethod.GET)
+    public String selectConcert(HttpServletRequest request) {
+        return "admin/concert";
+    }
 
-	@RequestMapping(value = "/select/concert", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> selectConcert(HttpServletRequest request, PagingDto paging) {
-		Map<String, Object> resultMap = new HashMap<>();
+    @RequestMapping(value = "/select/concert", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> selectConcert(HttpServletRequest request, PagingDto paging) {
+        Map<String, Object> resultMap = new HashMap<>();
 
-		List<ConcertDto> concertList = adminService.selectConcert(paging);
-		paging.setTotal(adminService.selectTotalConcert(paging));
-		resultMap.put("list", concertList);
-		resultMap.put("p", paging);
+        List<ConcertDto> concertList = adminService.selectConcert(paging);
+        paging.setTotal(adminService.selectTotalConcert(paging));
+        resultMap.put("list", concertList);
+        resultMap.put("p", paging);
 
-		return resultMap;
-	}
+        return resultMap;
+    }
 
-	@RequestMapping(value = "/select/place", method = RequestMethod.GET)
-	public String selectPlace(HttpServletRequest request) {
+    @RequestMapping(value = "/select/place", method = RequestMethod.GET)
+    public String selectPlace(HttpServletRequest request) {
 
-		return "admin/place";
-	}
+        return "admin/place";
+    }
 
-	@RequestMapping(value = "/select/place", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> selectPlace(HttpServletRequest request, PagingDto paging) {
-		Map<String, Object> resultMap = new HashMap<>();
+    @RequestMapping(value = "/select/place", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> selectPlace(HttpServletRequest request, PagingDto paging) {
+        Map<String, Object> resultMap = new HashMap<>();
 
-		List<PlaceDto> placeList = adminService.selectPlace(paging);
-		paging.setTotal(adminService.selectTotalPlace(paging));
+        List<PlaceDto> placeList = adminService.selectPlace(paging);
+        paging.setTotal(adminService.selectTotalPlace(paging));
 
-		resultMap.put("list", placeList);
-		resultMap.put("p", paging);
+        resultMap.put("list", placeList);
+        resultMap.put("p", paging);
 
-		return resultMap;
-	}
+        return resultMap;
+    }
 
-	@RequestMapping(value = "/select/boxoffice")
-	public String selectBoxoffice(HttpServletRequest request, Model model) {
-		Map<String, List<BoxofficeDto>> paramMap = adminService.selectBoxoffice();
+    @RequestMapping(value = "/select/boxoffice")
+    public String selectBoxoffice(HttpServletRequest request, Model model) {
+        Map<String, List<BoxofficeDto>> paramMap = adminService.selectBoxoffice();
 
-		model.addAttribute("boxof", paramMap);
+        model.addAttribute("boxof", paramMap);
 
-		return "admin/boxoffice";
-	}
+        return "admin/boxoffice";
+    }
 
-	@RequestMapping(value = "/member", method = RequestMethod.GET)
-	public String selectMember(HttpServletRequest request) {
-		return "admin/member";
-	}
+    @RequestMapping(value = "/member", method = RequestMethod.GET)
+    public String selectMember(HttpServletRequest request) {
+        return "admin/member";
+    }
 
-	@RequestMapping(value = "/member", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> selectMember(HttpServletRequest request, PagingDto paging) {
-		logger.info(paging.toString());
-		Map<String, Object> resultMap = new HashMap<>();
+    @RequestMapping(value = "/member", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> selectMember(HttpServletRequest request, PagingDto paging) {
+        logger.info(paging.toString());
+        Map<String, Object> resultMap = new HashMap<>();
 
-		List<LoginDto> memberList = adminService.selectMember(paging);
-		paging.setTotal(adminService.selectTotalMember(paging));
+        List<LoginDto> memberList = adminService.selectMember(paging);
+        paging.setTotal(adminService.selectTotalMember(paging));
 
-		resultMap.put("list", memberList);
-		resultMap.put("p", paging);
+        resultMap.put("list", memberList);
+        resultMap.put("p", paging);
 
-		return resultMap;
-	}
-	
-	@RequestMapping(value = "/memberComment", method = RequestMethod.POST)
-	@ResponseBody
-	public List<CommentDto> selectMemberComment(HttpServletRequest request, String id) {
-		return adminService.selectMemberComment(id);
-	}
+        return resultMap;
+    }
 
-	@RequestMapping(value = "/member/changeGrade")
-	@ResponseBody
-	public void changeGrade(HttpServletRequest request, LoginDto member) {
-		adminService.changeGrade(member);
-	}
+    @RequestMapping(value = "/memberComment", method = RequestMethod.POST)
+    @ResponseBody
+    public List<CommentDto> selectMemberComment(HttpServletRequest request, String id) {
+        return adminService.selectMemberComment(id);
+    }
 
-	@RequestMapping(value = "/comment", method = RequestMethod.GET)
-	public String selectComment(HttpServletRequest request) {
-		return "admin/comment";
-	}
+    @RequestMapping(value = "/member/changeGrade")
+    @ResponseBody
+    public void changeGrade(HttpServletRequest request, LoginDto member) {
+        adminService.changeGrade(member);
+    }
 
-	@RequestMapping(value = "/comment", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> selectComment(HttpServletRequest request, PagingDto paging) {
-		Map<String, Object> resultMap = new HashMap<>();
-		
-		List<CommentDto> commentList = adminService.selectComment(paging);
-		paging.setTotal(adminService.selectTotalComment(paging));
-		
-		resultMap.put("list", commentList);
-		resultMap.put("p", paging);
-		
-		return resultMap;
-	}
+    @RequestMapping(value = "/comment", method = RequestMethod.GET)
+    public String selectComment(HttpServletRequest request) {
+        return "admin/comment";
+    }
 
-	@RequestMapping(value="/comment/delete", method = RequestMethod.POST)
-	@ResponseBody
-	public void deleteComment(HttpServletRequest request,int commentNum) {
-		System.out.println(commentNum);
-		adminService.deleteComment(commentNum);
-	}
+    @RequestMapping(value = "/comment", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> selectComment(HttpServletRequest request, PagingDto paging) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<CommentDto> commentList = adminService.selectComment(paging);
+        paging.setTotal(adminService.selectTotalComment(paging));
+
+        resultMap.put("list", commentList);
+        resultMap.put("p", paging);
+
+        return resultMap;
+    }
+
+    @RequestMapping(value = "/comment/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteComment(HttpServletRequest request, int commentNum) {
+        adminService.deleteComment(commentNum);
+    }
+
+    @RequestMapping(value = "/applyConcert", method = RequestMethod.GET)
+    public String applyConcert(HttpServletRequest request) {
+        return "admin/applyConcert";
+    }
+
+    @RequestMapping(value = "/applyConcert", method = RequestMethod.POST)
+    public String applyConcert(ConcertDto concert, HttpServletRequest request) {
+        adminService.applyConcert(concert, request);
+        return "admin/concert";
+    }
+
+    @RequestMapping(value = "/searchPlace", method = RequestMethod.GET)
+    public String searchPlace(HttpServletRequest request) {
+        return "admin/searchPlace";
+    }
+
+    @RequestMapping(value = "/searchPlace", method = RequestMethod.POST)
+    @ResponseBody
+    public List<PlaceDto> searchPlace(HttpServletRequest request, String value) {
+        return adminService.searchPlace(value);
+    }
 }

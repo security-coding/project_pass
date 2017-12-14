@@ -1,196 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- mybatis map 선언 표시 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pknu.pass.play.dao.PlayDao">
 
+    <!-- 메인 박스오피스 -->
+    <select id="getBoxOffice" resultType="mainbox">
 
-	<!-- 현재상영작 -->
-	<select id="getNowChange" parameterType="String" resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		FROM (  select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		        from image e, concert a, place p
-		        where e.mt20id = a.mt20id and a.mt10id=p.mt10id and  a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		        order by prfpdfrom asc) human )
-		where rum BETWEEN 1 and 20
-	</select>
+        SELECT
+            area,
+            prfdtcnt,
+            nmrs,
+            prfpd,
+            cate,
+            prfplcnm,
+            prfnm,
+            rnum,
+            mt20id,
+            imageurl
+        FROM boxoffice
+            NATURAL JOIN image
+        WHERE catecode = 'YK' AND imagetype = 1
+        ORDER BY rnum
+    </select>
 
-	<select id="getNowPoster" resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		      from image e, concert a, place p
-		      where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate 
-		      order by prfpdfrom asc) human )
-		where rum BETWEEN 1 and 20
-	</select>
+    <select id="getBoxChange" parameterType="String" resultType="mainbox">
 
+        SELECT
+            area,
+            prfdtcnt,
+            nmrs,
+            prfpd,
+            cate,
+            prfplcnm,
+            prfnm,
+            rnum,
+            mt20id,
+            imageurl
+        FROM boxoffice
+            NATURAL JOIN image
+        WHERE catecode = #{cateCode} AND imagetype = 1
+        ORDER BY rnum
+    </select>
 
-	<select id="getNowNextPoster" parameterType="hashMap"
-		resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		     from image e, concert a, place p
-		     where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		     order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
+    <!-- 현재상영작 -->
+    <select id="getNowNextPoster" parameterType="hashMap"
+            resultType="predto">
+        SELECT *
+        FROM (SELECT
+                  rownum rum,
+                  human.*
+              FROM (SELECT
+                        e.imageUrl,
+                        a.genrenm,
+                        a.prfnm,
+                        a.prfpdfrom,
+                        a.prfpdto,
+                        a.fcltynm,
+                        a.mt20id,
+                        p.SIDONM
+                    FROM image e, concert a, place p
+                    WHERE e.mt20id = a.mt20id AND a.mt10id = p.mt10id AND a.genrenm = #{pType} AND e.imagetype = 1 AND
+                          sysdate >= a.prfpdfrom AND a.prfpdto >= sysdate
+                    ORDER BY prfpdfrom ASC) human)
+        WHERE rum BETWEEN (#{stNum}) * 20 + 1 AND ((#{stNum}) + 1) * 20
+    </select>
 
-	<select id="getNowAllNextPoster" parameterType="String"
-		resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		           from image e, concert a, place p
-	 	           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and sysdate >= a.prfpdfrom and a.prfpdto >= sysdate
-		           order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
-
-
-	<!-- 상영예정 -->
-	<select id="getChange" parameterType="String" resultType="predto">
-		SELECT *
-		 from(SELECT rownum rum, human.*
-		      FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		           from image e, concert a, place p
-		           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate order by prfpdfrom asc) human )
-		where rum BETWEEN 1 and 20
-	</select>
-
-	<select id="getPoster" resultType="predto">
-		SELECT * 
-		  from(SELECT rownum rum, human.*
-		       FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		              from image e, concert a, place p 
-		              where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
-		              order by prfpdfrom asc) human)
-		where rum BETWEEN 1 and 20
-	</select>
-
-	<select id="getNextPoster" parameterType="hashMap" resultType="predto">
-		SELECT *
-		  from(SELECT rownum rum, human.*
-		      FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		             from image e, concert a, place p
-		             where e.mt20id = a.mt20id and a.mt10id=p.mt10id and a.genrenm=#{pType} and e.imagetype = 1 and a.prfpdfrom > sysdate
-		             order by prfpdfrom asc) human )
-		  where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
-
-	<select id="getAllNextPoster" parameterType="String" resultType="predto">
-		SELECT *
-		from(SELECT rownum rum, human.*
-		     FROM (select e.imageUrl, a.genrenm, a.prfnm, a.prfpdfrom, a.prfpdto, a.fcltynm, a.mt20id, p.SIDONM
-		           from image e, concert a, place p
-		           where e.mt20id = a.mt20id and a.mt10id=p.mt10id and e.imagetype = 1 and a.prfpdfrom > sysdate
-		           order by prfpdfrom asc) human )
-		where rum BETWEEN (#{stNum})*20+1 and ((#{stNum})+1)*20
-	</select>
-
-	<!-- 내 포스터 -->
-
-	<select id="getDetailPoster" parameterType="String" resultType="String">
-		select imageUrl
-		from image natural join concert
-		where mt20id = #{mt20id}
-		order by imagetype, imagenum
-	</select>
-
-	<!-- 내 정보 -->
-
-	<select id="getDetailInf" parameterType="String" resultType="detail">
-		select prfnm, prfpdfrom, prfpdto, fcltynm, prfcast, prfcrew, prfruntime, prfage, entrpsnm, pcseguidance, dtguidance, la, lo, genrenm, mt20id
-		from concert natural join place
-		where mt20id=#{mt20id}
-	</select>
+    <select id="getNowAllNextPoster" parameterType="String"
+            resultType="predto">
+        SELECT *
+        FROM (SELECT
+                  rownum rum,
+                  human.*
+              FROM (SELECT
+                        e.imageUrl,
+                        a.genrenm,
+                        a.prfnm,
+                        a.prfpdfrom,
+                        a.prfpdto,
+                        a.fcltynm,
+                        a.mt20id,
+                        p.SIDONM
+                    FROM image e, concert a, place p
+                    WHERE e.mt20id = a.mt20id AND a.mt10id = p.mt10id AND e.imagetype = 1 AND sysdate >= a.prfpdfrom AND
+                          a.prfpdto >= sysdate
+                    ORDER BY prfpdfrom ASC) human)
+        WHERE rum BETWEEN (#{stNum}) * 20 + 1 AND ((#{stNum}) + 1) * 20
+    </select>
 
 
-	<!-- 검색 -->
-	<select id="getsearch" parameterType="String" resultType="detail">
-		select prfnm,prfpdfrom,prfpdto,fcltynm,prfcast,prfcrew,c.mt20id,imageurl,dtguidance
-		from concert c ,image i
-		where i.mt20id=c.mt20id and i.imagetype=1 and prfnm like '%'||#{keyword}||'%'
-	</select>
+    <!-- 상영예정 -->
+    <select id="getNextPoster" parameterType="hashMap" resultType="predto">
+        SELECT *
+        FROM (SELECT
+                  rownum rum,
+                  human.*
+              FROM (SELECT
+                        e.imageUrl,
+                        a.genrenm,
+                        a.prfnm,
+                        a.prfpdfrom,
+                        a.prfpdto,
+                        a.fcltynm,
+                        a.mt20id,
+                        p.SIDONM
+                    FROM image e, concert a, place p
+                    WHERE e.mt20id = a.mt20id AND a.mt10id = p.mt10id AND a.genrenm = #{pType} AND e.imagetype = 1 AND
+                          a.prfpdfrom > sysdate
+                    ORDER BY prfpdfrom ASC) human)
+        WHERE rum BETWEEN (#{stNum}) * 20 + 1 AND ((#{stNum}) + 1) * 20
+    </select>
 
-	<select id="getNearMap" parameterType="hashMap" resultType="place">
-		select p.FCLTYNM, p.MT10ID, p.LA, p.LO, DISTNACE_WGS84(#{la}, #{lo},
-		p.LA, p.LO) as DISTANCE, c.prfnm
-		from PLACE p, concert c
-		where (LA
-		between #{la}-0.019 and #{la}+0.019)
-		and (LO between #{lo}-0.022 and
-		#{lo}+0.022)and p.mt10id=c.mt10id and
-		sysdate > c.prfpdfrom and
-		c.prfpdto > sysdate
-		order by DISTANCE
-	</select>
+    <select id="getAllNextPoster" parameterType="String" resultType="predto">
+        SELECT *
+        FROM (SELECT
+                  rownum rum,
+                  human.*
+              FROM (SELECT
+                        e.imageUrl,
+                        a.genrenm,
+                        a.prfnm,
+                        a.prfpdfrom,
+                        a.prfpdto,
+                        a.fcltynm,
+                        a.mt20id,
+                        p.SIDONM
+                    FROM image e, concert a, place p
+                    WHERE e.mt20id = a.mt20id AND a.mt10id = p.mt10id AND e.imagetype = 1 AND a.prfpdfrom > sysdate
+                    ORDER BY prfpdfrom ASC) human)
+        WHERE rum BETWEEN (#{stNum}) * 20 + 1 AND ((#{stNum}) + 1) * 20
+    </select>
+
+    <!-- 내 포스터 -->
+    <select id="getDetailPoster" parameterType="String" resultType="String">
+        SELECT imageUrl
+        FROM image
+            NATURAL JOIN concert
+        WHERE mt20id = #{mt20id}
+        ORDER BY imagetype, imagenum
+    </select>
+
+    <!-- 내 정보 -->
+    <select id="getDetailInf" parameterType="String" resultType="detail">
+        SELECT
+            prfnm,
+            prfpdfrom,
+            prfpdto,
+            fcltynm,
+            prfcast,
+            prfcrew,
+            prfruntime,
+            prfage,
+            entrpsnm,
+            pcseguidance,
+            dtguidance,
+            la,
+            lo,
+            genrenm,
+            mt20id
+        FROM concert
+            NATURAL JOIN place
+        WHERE mt20id = #{mt20id}
+    </select>
 
 
-	<select id="getBoxOffice" resultType="mainbox">
+    <!-- 검색 -->
+    <select id="getsearch" parameterType="String" resultType="detail">
+        SELECT
+            prfnm,
+            prfpdfrom,
+            prfpdto,
+            fcltynm,
+            prfcast,
+            prfcrew,
+            c.mt20id,
+            imageurl,
+            dtguidance
+        FROM concert c, image i
+        WHERE i.mt20id = c.mt20id AND i.imagetype = 1 AND prfnm LIKE '%' || #{keyword} || '%'
+    </select>
 
-		select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
-		from boxoffice natural join image
-		where catecode = 'YK' and imagetype = 1
-		order by rnum
-	</select>
+    <select id="getNearMap" parameterType="hashMap" resultType="place">
+        SELECT
+            p.FCLTYNM,
+            p.MT10ID,
+            p.LA,
+            p.LO,
+            DISTNACE_WGS84(#{la}, #{lo},
+                           p.LA, p.LO) AS DISTANCE,
+            c.prfnm
+        FROM PLACE p, concert c
+        WHERE (LA
+        BETWEEN #{la} - 0.019 AND #{la} + 0.019)
+              AND (LO BETWEEN #{lo} - 0.022 AND
+        #{lo} + 0.022) AND p.mt10id = c.mt10id AND
+              sysdate > c.prfpdfrom AND
+              c.prfpdto > sysdate
+        ORDER BY DISTANCE
+    </select>
 
-	<select id="getBoxChange" parameterType="String" resultType="mainbox">
+    <!-- 상세페이지 내 좋아요 기능 주입 -->
 
-		select area, prfdtcnt, nmrs, prfpd, cate, prfplcnm, prfnm, rnum, mt20id, imageurl
-		from boxoffice natural join image
-		where catecode = #{cateCode} and imagetype = 1
-		order by rnum
-	</select>
+    <insert id="getLikes" parameterType="hashMap">
+        INSERT INTO likes
+        VALUES (likes_seq.nextval, #{mt20id}, #{id})
+    </insert>
 
+    <!-- 상세페이지 내 좋아요 기능 판별 -->
 
-	<!-- 상세페이지 내 좋아요 기능 주입 -->
+    <select id="changeLikes" resultType="String" parameterType="hashMap">
+        SELECT mt20id
+        FROM likes
+        WHERE mt20id = #{mt20id} AND id = #{id}
+    </select>
 
-	<insert id="getLikes" parameterType="hashMap">
-		insert into likes
-		values(likes_seq.nextval,#{mt20id},#{id})
-	</insert>
+    <!-- 상세페이지 내 좋아요 기능 이미 된 것 삭제 (원복) -->
 
-	<!-- 상세페이지 내 좋아요 기능 판별 -->
+    <delete id="delLikes" parameterType="hashMap">
+        DELETE FROM likes
+        WHERE
+            mt20id = #{mt20id} AND id = #{id}
+    </delete>
 
-	<select id="changeLikes" resultType="String" parameterType="hashMap">
-		select mt20id from likes
-		where mt20id=#{mt20id} and id=#{id}
-	</select>
+    <!-- 	상세페이지 내 좋아요 기능 카운트 관련 -->
+    <select id="likesCount" resultType="int" parameterType="hashMap">
+        SELECT count(mt20id)
+        FROM likes
+        WHERE mt20id = #{mt20id}
+    </select>
 
-	<!-- 상세페이지 내 좋아요 기능 이미 된 것 삭제 (원복) -->
+    <insert id="insertBookmark" parameterType="com.pknu.pass.play.dto.BookmarkDto">
+        INSERT INTO BOOKMARK
+        VALUES (BOOKMARK_SEQ.nextval, #{mt20id}, #{id})
+    </insert>
 
-	<delete id="delLikes" parameterType="hashMap">
-		delete from likes
-		where
-		mt20id=#{mt20id} and id=#{id}
-	</delete>
-	
-<!-- 	상세페이지 내 좋아요 기능 카운트 관련 -->
-	<select id="likesCount" resultType="int" parameterType="hashMap">
-		select count(mt20id)
-		from likes
-		where mt20id=#{mt20id}
-	</select>
-	
-	<insert id="insertBookmark" parameterType="com.pknu.pass.play.dto.BookmarkDto">
-		INSERT INTO BOOKMARK 
-		VALUES (BOOKMARK_SEQ.nextval,#{mt20id},#{id}) 
-	</insert>
-	
-	<delete id="deleteBookmark" parameterType="com.pknu.pass.play.dto.BookmarkDto">
-		DELETE FROM BOOKMARK
-		WHERE mt20id = #{mt20id} AND id = #{id}
-	</delete>
-	
-	<select id="getBookmark" parameterType="HashMap" resultType="Integer">
-		SELECT COUNT(*)
-		FROM BOOKMARK
-		WHERE mt20id = #{mt20id} AND id = #{id}
-	</select>
+    <delete id="deleteBookmark" parameterType="com.pknu.pass.play.dto.BookmarkDto">
+        DELETE FROM BOOKMARK
+        WHERE mt20id = #{mt20id} AND id = #{id}
+    </delete>
+
+    <select id="getBookmark" parameterType="HashMap" resultType="Integer">
+        SELECT COUNT(*)
+        FROM BOOKMARK
+        WHERE mt20id = #{mt20id} AND id = #{id}
+    </select>
 </mapper>
 	
 	
