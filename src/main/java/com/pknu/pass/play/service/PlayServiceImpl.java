@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.pknu.pass.login.dao.LoginDao;
-import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dao.PlayDao;
 import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.DetailDto;
@@ -94,17 +92,6 @@ public class PlayServiceImpl implements PlayService {
 
 		model.addAttribute("keyword", value);
 
-	}
-
-	// 지도
-	@Override
-	public ArrayList<PlaceDto> getNearMap(String la, String lo) {
-
-		HashMap<String, String> lalo = new HashMap<>();
-		lalo.put("la", la);
-		lalo.put("lo", lo);
-
-		return playDao.getNearMap(lalo);
 	}
 
 	@Override
