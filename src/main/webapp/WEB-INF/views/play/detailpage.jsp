@@ -318,7 +318,6 @@ pageEncoding="UTF-8"%>
 
             <!-- Comments Form -->
             <div class="card my-4">
-                <p/>
                 <h3 class="card-header">댓글 남기기</h3>
                 <div class="card-body">
                     <div class="form-group">

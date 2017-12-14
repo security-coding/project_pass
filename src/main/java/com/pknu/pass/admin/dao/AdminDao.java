@@ -1,7 +1,6 @@
 package com.pknu.pass.admin.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.pknu.pass.comment.dto.CommentDto;
 import com.pknu.pass.common.dto.PagingDto;

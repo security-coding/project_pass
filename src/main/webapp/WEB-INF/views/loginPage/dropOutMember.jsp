@@ -180,8 +180,8 @@ ul{
 				<button id="passUpbtn" type="submit" class="btn btn-info">
 					회원탈퇴<i class="fa fa-check spaceLeft"></i>
 				</button>
-				<button type="reset" class="btn btn-warning" onclick="document.location.href = '../'"/>
-					되돌아기<i class="fa fa-times spaceLeft"></i>
+				<button type="reset" class="btn btn-warning" onclick="document.location.href = '../'">
+					되돌아가기<i class="fa fa-times spaceLeft"></i>
 				</button>
 			</div>
 			</div>
@@ -238,7 +238,7 @@ $(function() {
 						
 					}
 				} else if($("#currentPw").val() == "") {
-					html = "<b>현재비밀번호를 입력해 주세요</b>"
+					html = "<b>현재비밀번호를 입력해 주세요</b>";
 				    alert("현재 비밀번호를 입력해주세요.");
 					passCheck = false;
 					console.log("비밀번호 입력");

@@ -40,7 +40,7 @@ $(function() {
 						 
 					}
 				} else if($("#email1").val() == ""){	
-					html = "<b>이메일을입력해주세요</b>"
+					html = "<b>이메일을입력해주세요</b>";
 					$("#emailCheck").html(html).css("color", "red");
 					 emailCheck=false; 
 				}

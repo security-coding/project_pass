@@ -30,7 +30,7 @@
 					let html;
 					if ($("#joinId").val() != "") {
 						if (data == "1") {
-							html = "<b>사용 가능한 아이디입니다.</b>"
+							html = "<b>사용 가능한 아이디입니다.</b>";
 							$("#idCheck").html(html).css("color", "blue");
 							console.log("가능한 아이디");
 							idCheck=true;
@@ -43,7 +43,7 @@
 							
 						}
 					} else {
-						html = "<b>아이디를 입력해 주세요</b>"
+						html = "<b>아이디를 입력해 주세요</b>";
 						$("#idCheck").html(html).css("color", "red");
 						idCheck=false;
 						
@@ -71,7 +71,7 @@
 					let html;
 					if ($("#email").val() != ""&&$("#str_email").val()!="") {
 						if (data == "1") {
-							html = "<b>사용 가능한 이메일입니다.</b>"
+							html = "<b>사용 가능한 이메일입니다.</b>";
 							$("#emailCheck").html(html).css("color", "blue");
 							 emailCheck=true;
 							 
@@ -82,7 +82,7 @@
 							 
 						}
 					} else if($("#email").val() != ""||$("#str_email").val()!=""){	
-						html = "<b>이메일을입력해주세요</b>"
+						html = "<b>이메일을입력해주세요</b>";
 						$("#emailCheck").html(html).css("color", "red");
 						 emailCheck=false;
 						 
@@ -97,7 +97,7 @@
 		let html;
 		if(idCheck==true&&emailCheck==true){
 			alert("메일인증을 보냈습니다\n잠시만기다려주세요");
-			html="<img src='/resources/images/'>"
+			html="<img src='/resources/images/'>";
 			return true;
 		}else if(!idCheck || !emailCheck){
 			alert("확인해주세요");
@@ -290,7 +290,7 @@
 				 return false;
 			 }
 			 if(pass!=passCheck){
-				 alert("패스워드가 일치하지 않습니다")
+				 alert("패스워드가 일치하지 않습니다");
 			 	$("#joinPassCheck").focus();
 				 return false;
 			 }
@@ -302,10 +302,10 @@
 		$("#joinId").blur(function(){
 			let html;
 			if($("#joinId").val()==""){
-				html="<b>암호를 입력해주세요</b>"
+				html="<b>암호를 입력해주세요</b>";
 				$("#passCheck").html(html).css("color","red");
 			}else{
-				html=""
+				html="";
 				$("#passCheck").html(html).css("color","white");
 			}
 		});
@@ -313,10 +313,10 @@
 	 	$("#joinPassCheck").blur(function(){
 	 		let html;
 	 		if($("#joinPass").val()!=$("#joinPassCheck").val()){
-				html="<b>암호가 일치하지 않습니다.</b>"
+				html="<b>암호가 일치하지 않습니다.</b>";
 				$("#passCheck2").html(html).css("color","red");
 	 		}else if($("#joinPass").val()==$("#joinPassCheck").val()&&$("#joinPass").val()!=""&&$("#pass2").val()!=""){
-				html="<b>암호가 일치합니다.</b>"
+				html="<b>암호가 일치합니다.</b>";
 				$("#passCheck2").html(html).css("color","blue");
 	 		}
 	 	});

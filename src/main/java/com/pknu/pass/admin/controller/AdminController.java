@@ -22,7 +22,6 @@ import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BoxofficeDto;
 import com.pknu.pass.play.dto.ConcertDto;
-import org.springframework.web.multipart.MultipartRequest;
 
 @Controller
 @RequestMapping("/admin")

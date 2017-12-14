@@ -17,12 +17,12 @@ public class LoginAspect {
 	private static final Logger logger = LoggerFactory.getLogger(LoginAspect.class);
 
 	@Pointcut("execution(* com.pknu.pass.login.controller.LoginController.mypageInf(..)) ")
-	public void mypageInf() {};
+	public void mypageInf() {}
 
-	@Pointcut("execution(* com.pknu.pass.login.controller.LoginController.myPassChengeForm(..)) ")
-	public void myPassChengeForm() {};
+    @Pointcut("execution(* com.pknu.pass.login.controller.LoginController.myPassChengeForm(..)) ")
+	public void myPassChengeForm() {}
 
-	@Around("mypageInf()||myPassChengeForm()")
+    @Around("mypageInf()||myPassChengeForm()")
 	public Object loginPageAdvice(ProceedingJoinPoint point) throws Throwable {
 		logger.debug("loginController" + point.getSignature().getName() + "()");
 

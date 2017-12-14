@@ -30,7 +30,7 @@
 <form class="login-form navbar-right" action="/member/logout" method="post">
     <a href="/member/mypage" class="user_a">
         <p class="user">
-            <img alt="" style="width:30px; height:30px;" src="${imageUrl}">
+            <img alt="" style="width:30px; height:30px;" src="${imageUrl}" onerror="this.style.display='none'">
             <span style="font-size: 15px;">&nbsp&nbsp${id}</span>
         </p>
     </a>

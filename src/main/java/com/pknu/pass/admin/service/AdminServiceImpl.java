@@ -43,7 +43,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     FileUtil fileUtil;
-    @Resource
+
+    @Resource(name = "apiKey")
     private String API_KEY;
 
     @Override
@@ -228,7 +229,7 @@ public class AdminServiceImpl implements AdminService {
 
                 place.setDetail(mt13cnt, fcltychartr, opende, seatscale, telno, relateurl, adres, la, lo);
                 adminDao.insertPlaceInf(place);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }
@@ -286,7 +287,7 @@ public class AdminServiceImpl implements AdminService {
 
             // 파싱된 xml 파일을 리턴해준다
             return parser.parse(url);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
         return null;

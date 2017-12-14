@@ -71,8 +71,8 @@
 	</error-page>
 
 	<error-page>
-		<exception-type>java.lang.Excetion</exception-type>
-		<location>/common/error/Excetion</location>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/common/error/Exception</location>
 	</error-page>
 
 	<error-page>

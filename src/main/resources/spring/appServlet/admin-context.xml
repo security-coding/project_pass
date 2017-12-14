@@ -37,7 +37,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean id="API_KEY" class="java.lang.String">
+    <bean id="apiKey" class="java.lang.String">
         <constructor-arg value="47ada5583c08472ca6e324cb319cfac7"/>
     </bean>
 

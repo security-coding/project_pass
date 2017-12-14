@@ -21,7 +21,7 @@
         </choose>
         <if test='filter != null and value != ""'>
             <choose>
-                <when test='filter = "ALL"'>
+                <when test='filter == "ALL"'>
                     AND (PRFNM LIKE '%'||#{value}||'%'
                     OR FCLTYNM LIKE '%'||#{value}||'%')
                 </when>
@@ -52,7 +52,7 @@
         </choose>
         <if test='filter != null and value != ""'>
             <choose>
-                <when test='filter = "ALL"'>
+                <when test='filter == "ALL"'>
                     AND (PRFNM LIKE '%'||#{value}||'%'
                     OR FCLTYNM LIKE '%'||#{value}||'%')
                 </when>

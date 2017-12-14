@@ -110,7 +110,7 @@
     var customOverlay = new daum.maps.CustomOverlay({
         position: new daum.maps.LatLng(37.537187, 127.005476),
         content: content
-    })
+    });
 
     customOverlay.setMap(map);
 

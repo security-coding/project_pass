@@ -102,7 +102,7 @@
 		               + "</div>"
 		               + "</div>"
 		               + "</div>"
-		               + "</a></div>"  
+		               + "</a></div>";
 		               $(".poster").append(str);	       
 			});
 			
