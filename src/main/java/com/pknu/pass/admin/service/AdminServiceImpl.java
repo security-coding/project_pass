@@ -33,8 +33,14 @@ import com.pknu.pass.play.dto.ImageDto;
 @Service
 @Transactional
 public class AdminServiceImpl implements AdminService {
+
+    private AdminDao adminDao;
+
     @Autowired
-    AdminDao adminDao;
+    public void setAdminDao(AdminDao adminDao) {
+        this.adminDao = adminDao;
+    }
+
     @Autowired
     FileUtil fileUtil;
     @Resource
@@ -354,13 +360,15 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<PlaceDto> searchPlace(String value) { return adminDao.searchPlace(value); }
+    public List<PlaceDto> searchPlace(String value) {
+        return adminDao.searchPlace(value);
+    }
 
     @Override
     public void applyConcert(ConcertDto concert, HttpServletRequest request) {
         adminDao.applyConcert(concert);
 
-        List<ImageDto> imageList = fileUtil.uploadImageFile(concert.getMt20id(),request);
+        List<ImageDto> imageList = fileUtil.uploadImageFile(concert.getMt20id(), request);
 
         for (ImageDto image : imageList)
             adminDao.insertImageInf(image);

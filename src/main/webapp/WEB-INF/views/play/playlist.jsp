@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
     <link rel="stylesheet" href='<c:url value="/css/boxoffice.css"/>'>
     <!-- jQuery -->
     <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
@@ -26,7 +27,7 @@
         <li class="col-xs-15" role="presentation"><a class="top" href="#" onclick="change('클래식');">클래식</a></li>
         <li class="col-xs-15" role="presentation"><a class="top" href="#" onclick="change('오페라');">오페라</a></li>
         <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('무용');">무용</a></li>
-        <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('발래');">발래</a></li>
+        <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('발레');">발레</a></li>
         <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('국악');">국악</a></li>
         <li class="col-xs-3" role="presentation"><a class="top" href="#" onclick="change('복합');">복합</a></li>
     </ul>

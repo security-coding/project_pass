@@ -18,31 +18,29 @@ import com.pknu.pass.play.dto.DetailDto;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-	@Autowired
-	CommentDao commentDao;
+    @Autowired
+    CommentDao commentDao;
 
-	
-	@Override
-	public int getTotalComments(Map<String, Object> paramMap) {
-		return commentDao.getTotalComments(paramMap);
-	}
 
-	@Override
-	public List<CommentDto> getComments(Map<String, Object> paramMap) {
-		return commentDao.getComments(paramMap);
-	}
+    @Override
+    public int getTotalComments(Map<String, Object> paramMap) {
+        return commentDao.getTotalComments(paramMap);
+    }
 
-	@Override
-	public void insertComment(CommentDto comment) {
-		commentDao.insertComment(comment);			
-	}
+    @Override
+    public List<CommentDto> getComments(Map<String, Object> paramMap) {
+        return commentDao.getComments(paramMap);
+    }
 
-	@Override
-	public void deleteComment(int commentNum) {
-		commentDao.deleteComment(commentNum);
-	}
+    @Override
+    public void insertComment(CommentDto comment) {
+        commentDao.insertComment(comment);
+    }
 
-	
-	
+    @Override
+    public void deleteComment(int commentNum) {
+        commentDao.deleteComment(commentNum);
+    }
+
 
 }
