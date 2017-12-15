@@ -9,9 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 		
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
-
+<script src='<c:url value="/js/bootstrap.min.js"/>'></script>
 <script>
 
 let idCheck=false;
@@ -107,8 +109,6 @@ function passSearchSubmit(){
 </script>
 
 </head>	
-<link rel="stylesheet" href='<c:url value="/css/bootstrap.min.css"/>'>		
-<link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 
 <body>
 	<%@include file="../header.jsp"%>
@@ -116,7 +116,7 @@ function passSearchSubmit(){
 	<div class="container">
 	<h2 style="margin-top:90px;" class="text-center">아이디찾기</h2>
 	<div class="col-md-6 col-md-offset-3">
-		<form id="idForm" class="form-horizontal" role="form"
+		<form class="form-horizontal" role="form"
 			action="/member/userlossid" method="post" onsubmit="return idSearchSubmit()">
 			<!-- form -->
 			<div class="form-group">
@@ -127,7 +127,7 @@ function passSearchSubmit(){
 			</div>
 
 			<div class="form-group text-center">
-				<button id="signupbtn" type="submit" class="btn btn-info">
+				<button type="submit" class="btn btn-info">
 					아이디찾기<i class="fa fa-check spaceLeft"></i>
 				</button>
 			</div>
@@ -136,7 +136,7 @@ function passSearchSubmit(){
 	<div class="clearfix"></div>
 	<h2 style="margin-top: 6%;" class="text-center">비밀번호 찾기</h2>
 	<div class="col-md-6 col-md-offset-3">
-		<form id="idForm" class="form-horizontal" role="form"
+		<form class="form-horizontal" role="form"
 			action="/member/userlosspass" method="post" onsubmit="return passSearchSubmit()">
 			<!-- form -->
 			<div class="form-group">
@@ -153,7 +153,7 @@ function passSearchSubmit(){
 			</div>
 
 			<div class="form-group text-center">
-				<button id="signupbtn" type="submit" class="btn btn-info">
+				<button type="submit" class="btn btn-info">
 					비밀번호찾기<i class="fa fa-check spaceLeft"></i>
 				</button>
 			</div>
