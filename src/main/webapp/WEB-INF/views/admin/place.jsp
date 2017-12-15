@@ -22,7 +22,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Pass Admin Page</a>
+				<a class="navbar-brand" href="/">Main Page로 이동</a>
 			</div>
 		</div>
 	</nav>
@@ -30,7 +30,7 @@
 
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
+			<ul id="navbar" class="nav nav-sidebar">
 				<li><a href="/admin">공연 정보 업데이트</a></li>
 				<li><a href="/admin/select/concert">공연 목록</a></li>
 				<li class="active"><a href="#">공연 시설 목록<span

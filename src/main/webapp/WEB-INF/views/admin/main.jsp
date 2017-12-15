@@ -54,14 +54,14 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Pass Admin Page</a>
+				<a class="navbar-brand" href="/">Main Page로 이동</a>
 			</div>
 		</div>
 	</nav>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div id="navbar" class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="#">공연 정보 업데이트<span class="sr-only">(current)</span></a></li>
                 <li><a href="/admin/select/concert">공연 목록</a></li>

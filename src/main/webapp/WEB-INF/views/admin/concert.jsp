@@ -23,7 +23,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Pass Admin Page</a>
+            <a class="navbar-brand" href="/">Main Page로 이동</a>
         </div>
     </div>
 </nav>
@@ -66,7 +66,7 @@
                         </select>
 
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..."
+                            <input type="text" class="form-control" placeholder="검색어를 입력해주세요."
                                    id="value"> <span class="input-group-btn">
 									<button class="btn btn-primary" type="button"
                                             onclick="searchConcert();">

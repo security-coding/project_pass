@@ -67,8 +67,9 @@
 
 
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                ajaxList();
                 stNum++;
+                ajaxList();
+
             }
         });
     });

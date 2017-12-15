@@ -20,7 +20,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Pass Admin Page</a>
+            <a class="navbar-brand" href="/">Main Page로 이동</a>
         </div>
     </div>
 </nav>

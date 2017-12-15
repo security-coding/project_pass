@@ -30,11 +30,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Pass Admin Page</a>
+                <a class="navbar-brand" href="/">Main Page로 이동</a>
 			</div>
 		</div>
 	</nav>
-
 
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
@@ -58,8 +57,22 @@
 
 				<div class="placeholders">
 					<div>
-						<div class="pull-right">
-							<span>유저 DB 갯수 <span class="badge"></span></span>
+						<div class="col-md-4 col-md-offset-4">
+							<select class="form-control" id="filter">
+								<option value="ALL">전 체</option>
+								<option value="COMMENTCONTENT">게시글 내용</option>
+								<option value="ID">유저 아이디</option>
+							</select>
+
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="검색어를 입력해주세요."
+									   id="value"> <span class="input-group-btn">
+									<button class="btn btn-primary" type="button"
+											onclick="searchComment();">
+										<i>search</i>
+									</button>
+								</span>
+							</div>
 						</div>
 						<div class="clearfix"></div>
 						<div class="placeholder">
@@ -98,6 +111,8 @@
 			var submitData = {};
 			submitData.index = paging.p.index;
 			submitData.pageStartNum = paging.p.pageStartNum;
+            submitData.filter = $('#filter').val();
+            submitData.value = $('#value').val();
 			
 			    $.ajax({
 			        url: '/admin/comment',
@@ -143,6 +158,12 @@
 		        }
 			});
 		}
+
+        function searchComment() {
+            paging.p.index = 0;
+            paging.p.pageStartNum = 1;
+            ajaxList();
+        }
 	</script>
 </body>
 </html>
