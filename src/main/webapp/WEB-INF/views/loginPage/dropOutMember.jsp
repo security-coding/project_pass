@@ -167,13 +167,12 @@ ul{
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/memberClear" onsubmit="return memberClear()" method="post"><!-- form -->
 			
 			<div class="form-group" style="margin-top: 2%">
-				<label for="id" id="id" name="id">ID:${id}
-				<div id="idcheck"></div>
+				<label for="id" id="id" name="id" style="font-size: 19px">ID:${id}
 			</div>
 			
 			<div class="form-group">
 				<label for="currentPw">비밀번호</label> <input type="password"
-					class="form-control" id="currentPw" name="currentPw" placeholder="현재비밀번호">
+					class="form-control" id="currentPw" name="currentPw" placeholder="현재비밀번호" >
 			</div>
 			
 			<div class="form-group text-center">
@@ -238,7 +237,6 @@ $(function() {
 						
 					}
 				} else if($("#currentPw").val() == "") {
-					html = "<b>현재비밀번호를 입력해 주세요</b>";
 				    alert("현재 비밀번호를 입력해주세요.");
 					passCheck = false;
 					console.log("비밀번호 입력");

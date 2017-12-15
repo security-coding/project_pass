@@ -168,7 +168,7 @@ ul{
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
 			<div class="form-group">
-				<label for="id" id="id" name="id" style="font-size:19px">ID:${userInf.id}</label>
+				<label for="id" id="id" name="id" style="font-size:19px;">ID:${userInf.id}</label>
 			</div>
 			
 			<div class="form-group">
@@ -183,7 +183,7 @@ ul{
 			
 			<div class="form-group">
 				<label for="changPassCheck">변경한 비밀번호 확인</label> <input type="password"
-					class="form-control" id="changPassCheck" placeholder="변경할비밀번호 확인" >
+					class="form-control" id="changPassCheck" placeholder="변경할비밀번호 확인">
 			
 			<table>
 						<tr>
