@@ -269,6 +269,11 @@ $(function() {
 		html.classList.add("opened");
 		drawer.classList.add("opened");
 		blocker.classList.add("opened");
+		$('body').on('scroll touchmove mousewheel', function(event) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			  return false;
+			});
 		
 	}
 	function removeOpened() {
@@ -279,6 +284,7 @@ $(function() {
 			html.classList.remove("opened");
 			drawer.classList.remove("opened");
 			blocker.classList.remove("opened");
+			$('body').off('scroll touchmove mousewheel');
 		}
 	}
 	

@@ -414,6 +414,12 @@ if ($('#address').val() != ""&& $('#detailAddress').val() != "") {
 			html.classList.add("opened");
 			drawer.classList.add("opened");
 			blocker.classList.add("opened");
+			/*스크롤 방지 온*/
+			$('body').on('scroll touchmove mousewheel', function(event) {
+				  event.preventDefault();
+				  event.stopPropagation();
+				  return false;
+				});
 			
 		}
 		function removeOpened() {
@@ -424,6 +430,8 @@ if ($('#address').val() != ""&& $('#detailAddress').val() != "") {
 				html.classList.remove("opened");
 				drawer.classList.remove("opened");
 				blocker.classList.remove("opened");
+				/*스크롤 방지 오프*/
+				$('body').off('scroll touchmove mousewheel');
 			}
 		}
 	

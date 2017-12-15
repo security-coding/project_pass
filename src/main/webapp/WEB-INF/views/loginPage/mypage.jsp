@@ -471,6 +471,12 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 				html.classList.add("opened");
 				drawer.classList.add("opened");
 				blocker.classList.add("opened");
+				/*스크롤 방지 온*/
+				$('body').on('scroll touchmove mousewheel', function(event) {
+					  event.preventDefault();
+					  event.stopPropagation();
+					  return false;
+					});
 				
 			}
 			function removeOpened() {
@@ -482,6 +488,8 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 					drawer.classList.remove("opened");
 					blocker.classList.remove("opened");
 				}
+				/*스크롤 방지 온*/
+				$('body').off('scroll touchmove mousewheel');
 			}
 		 
 </script>	
