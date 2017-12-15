@@ -174,7 +174,7 @@ pageEncoding="UTF-8"%>
                         str += "<div class='media-body'>";
                         str += "<h5 class='mt-0'>" + "작성자 : " + comment.id + "&nbsp&nbsp&nbsp&nbsp" + "작성일 : " + comment.commentDate;
                         if (comment.id == id) {
-                            str += "&nbsp&nbsp&nbsp&nbsp&nbsp" + "<button id='commentDelete' class='btn btn-primary' onclick='deleteComment(this);'>" + "삭제" + "</button>";
+                            str += "&nbsp&nbsp&nbsp&nbsp&nbsp" + "<button id='commentDelete' class='btn btn-sm btn-danger' onclick='deleteComment(this);'>" + "삭제" + "</button>";
                         }
                         str += "</h5>";
                         str += comment.commentContent;
@@ -324,7 +324,7 @@ pageEncoding="UTF-8"%>
                         <textarea id="commentContent" class="form-control" rows="3"></textarea>
                     </div>
                     <div align="right">
-                        <button id="commentWrite" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 댓글 남기기</button>
+                        <button id="commentWrite" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 댓글 남기기</button>
                         <div>
                         </div>
                     </div>
