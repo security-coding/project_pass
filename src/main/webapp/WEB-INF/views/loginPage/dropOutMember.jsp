@@ -163,7 +163,7 @@ ul{
 		</ul>
 	</div>
 
-	<div class="col-xs-12 col-sm-6">		
+	<div class="col-xs-12 col-sm-6" style="padding-left: 37px">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/memberClear" onsubmit="return memberClear()" method="post"><!-- form -->
 			
 			<div class="form-group" style="margin-top: 2%">

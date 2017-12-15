@@ -163,7 +163,7 @@ ul{
 		</ul>
 	</div>
 
-	<div class="col-xs-12 col-sm-6" style="margin-left: 3%">		
+	<div class="col-xs-12 col-sm-6" style="margin-left: 3%; margin-top: 1%;">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
 			<div class="form-group">

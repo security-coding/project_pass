@@ -226,7 +226,7 @@ function memberClear(){
 	</div>
 	</div>
 	
-	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1%;">
+	<div class="col-sm-3 col-md-2 sidebar" style="margin-top: 1.1%; margin-left: -15px">
 		<ul id="menu" class="nav nav-sidebar">
 			<li><p id="headerMenu">메뉴</p></li>
 			<li class="active"><a href="/member/mypage">내정보<span class="sr-only">(current)</span></a></li>
