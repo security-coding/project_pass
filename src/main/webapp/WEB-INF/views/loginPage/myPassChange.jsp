@@ -167,8 +167,8 @@ ul{
 	<div class="col-xs-12 col-sm-6">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
-			<div class="form-group" style="margin-top: 2%">
-				<label for="id" id="id" name="id" >ID:${userInf.id}</label>
+			<div class="form-group">
+				<label for="id" id="id" name="id" style="font-size:19px">ID:${userInf.id}</label>
 			</div>
 			
 			<div class="form-group">
@@ -206,7 +206,7 @@ ul{
 							<td>
 								<div class="form-group">
 									<label class="sr-only" for="detailAddress">상세주소</label> <td><input
-										type="text" id="detailaddress" name="detailAddress"
+										type="text" id="detailAddress" name="detailAddress"
 										class="form-control" value="${userInf.detailAddress}" style="margin-bottom: 12px; margin-left: -17px;"></td>
 									<td><input class="btn btn-info pull-right" type="button" onclick="execDaumPostcode()" value="주소변경" style="margin-bottom: 13px; margin-left: -12px;"></td>
 								</div>
@@ -277,13 +277,11 @@ ul{
 							passCheck = true;
 							
 						} else if(data==0) {
-							html = "<b>현재 비밀번호 틀림<b>";
 							console.log('현재 비밀번호 틀림');
 							passCheck = false;
 							
 						}
 					} else {
-						html = "<b>현재비밀번호를 입력해 주세요</b>";
 						passCheck = false;
 						console.log("비밀번호 입력");
 					}
@@ -395,14 +393,6 @@ if ($('#address').val() != ""&& $('#detailAddress').val() != "") {
 						});
 					}
 				}).open();
-	}
-
-	function memberClear() {
-		if (confirm("회원 탈퇴하시겠습니까?") == true) {
-
-		} else {
-			return false;
-		}
 	}
 	
 	// 모바일 메뉴바 열고 닫기 스크립트

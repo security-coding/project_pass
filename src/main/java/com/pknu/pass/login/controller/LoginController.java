@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +22,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)//로그인기능
     public String login(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletRequest request, Model model) {
-        System.out.println(id);
+        
         return loginService.login(id, password, request, model);
     }
 
@@ -43,9 +41,7 @@ public class LoginController {
     @RequestMapping(value = "/insertuser")//회원가입 데이터 db에 삽입
     public String insertuser(LoginDto logindto, @RequestParam("str_email") String stremail,
                              @RequestParam("joinPass") String password,
-                             @RequestParam("joinId") String id
-    ) {
-
+                             @RequestParam("joinId") String id) {
         logindto.setId(id);
         logindto.setEmail(logindto.getEmail() + "@" + stremail);
         logindto.setPassword(password);
@@ -55,19 +51,19 @@ public class LoginController {
 
     @RequestMapping(value = "/joinIdCheck")//회원가입 아이디 중복 비동기로 확인
     @ResponseBody
-    public ResponseEntity<String> joinIdCheck(@RequestParam("inputId") String inputId, HttpServletRequest request) {
+    public int joinIdCheck(@RequestParam("inputId") String inputId, HttpServletRequest request) {
 
         int result = loginService.joinIdCheck(inputId);
 
-        return new ResponseEntity<String>(String.valueOf(result), HttpStatus.OK);
+        return result;
     }
 
     @RequestMapping(value = "/joinemailCheck")//회원가입 이메일 중복 비동기로 확인
     @ResponseBody
-    public ResponseEntity<String> joinemailCheck(@RequestParam("inputemail") String inputemail, @RequestParam("str_email") String selectaddress) {
+    public int joinemailCheck(@RequestParam("inputemail") String inputemail, @RequestParam("str_email") String selectaddress) {
 
         int result = loginService.joineMailCheck(inputemail, selectaddress);
-        return new ResponseEntity<String>(String.valueOf(result), HttpStatus.OK);
+        return result;
     }
 
     @RequestMapping(value = "/mypage")//회원정보 페이지로 가는것
@@ -123,7 +119,6 @@ public class LoginController {
 
     @RequestMapping(value = "/userlossid")//아이디 찾고 결과페이지 이동
     public String userlossid(LoginDto logindto, Model model, @RequestParam("email1") String email) {
-        System.out.println(email);
         logindto.setEmail(email);
         loginService.userLossId(logindto, model);
         return "loginPage/lossresult";
@@ -134,7 +129,7 @@ public class LoginController {
         logindto.setEmail(email);
         logindto.setId(id);
         loginService.userLossPass(logindto, pass);
-        return "/home";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/standlossid")//아이디 찾기할때 ajax로 찾는아이디에 이메일이 있는지 없는지 확인

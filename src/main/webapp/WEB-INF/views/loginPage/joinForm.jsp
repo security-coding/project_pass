@@ -59,7 +59,7 @@
 				success : function(data) {
 					let html;
 					if ($("#joinId").val() != "") {
-						if (data == "1") {
+						if (data == 1) {
 							html = "<b>사용 가능한 아이디입니다.</b>";
 							$("#idCheck").html(html).css("color", "blue");
 							console.log("가능한 아이디");
@@ -87,7 +87,7 @@
 	}
 	
 	$(function() {
-		$("#email").on("change", function() {
+		$("#email").on("change", function() {	
 			$.ajax({
 				type : "POST",
 				async : true,
@@ -100,7 +100,7 @@
 				success : function(data) {
 					let html;
 					if ($("#email").val() != ""&&$("#str_email").val()!="") {
-						if (data == "1") {
+						if (data == 1) {
 							html = "<b>사용 가능한 이메일입니다.</b>";
 							$("#emailCheck").html(html).css("color", "blue");
 							 emailCheck=true;

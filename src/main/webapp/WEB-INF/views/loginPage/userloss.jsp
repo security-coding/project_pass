@@ -99,6 +99,7 @@ function idSearchSubmit(){
 
 function passSearchSubmit(){
 	if(emailCheck==true && idCheck==true){
+		alert("이메일을 보내는 중 입니다\n확인후 잠시만 기다려주세요.");
 		return true;
 	}else if(emailCheck==false||idCheck==false){
 		alert("아이디 혹은 이메일이 일치하지 않습니다.");

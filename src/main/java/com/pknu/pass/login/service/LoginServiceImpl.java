@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public void insertUser(LoginDto logindto) {
-        System.out.println(logindto.getPassword());
+
         String certKey = UUID.randomUUID().toString().replaceAll("-", "");
         String SecurityPass = securityUtil.encrypt(logindto.getPassword());
 
@@ -120,7 +120,6 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public int joinIdCheck(String inputId) {
         String dbjoinIdCheck = logindao.loginCheck(inputId);
-        System.out.println(dbjoinIdCheck);
         if (dbjoinIdCheck != null) {
             return FAIL;
         } else {
@@ -270,11 +269,8 @@ public class LoginServiceImpl implements LoginService {
 
         if (pw.equals(defaultPw)) {
             result = SUCCESS;
-            System.out.println(result);
         } else {
             result = FAIL;
-            System.out.println(result);
-
         }
         return result;
     }
