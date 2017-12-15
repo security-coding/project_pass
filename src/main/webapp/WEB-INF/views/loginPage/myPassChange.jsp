@@ -146,8 +146,7 @@ ul{
  <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
-	<article class="container-fluid" style="height:640px;">
-
+	<article style="height:640px;">
 	
 	<div class="page-header">
 	<div>
@@ -164,7 +163,7 @@ ul{
 		</ul>
 	</div>
 
-	<div class="col-xs-12 col-sm-6">		
+	<div class="col-xs-12 col-sm-6" style="margin-left: 3%">		
 		<form id="loginForm" class="form-horizontal" role="form" action="/member/updateuser" method="post" onsubmit="return submitCheck()"><!-- form -->
 			
 			<div class="form-group">

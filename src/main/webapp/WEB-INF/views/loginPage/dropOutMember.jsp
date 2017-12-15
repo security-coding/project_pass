@@ -144,7 +144,7 @@ ul{
  <link rel="stylesheet" href='<c:url value="/css/bootstrap-theme.min.css"/>'>
 <body>
 	
-	<article class="container-fluid" style="height:640px;">
+	<article style="height:640px;">
 	
 	
 	
