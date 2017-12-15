@@ -22,9 +22,9 @@ public class ErrorController {
 		return "error";
 	}
 
-	@RequestMapping(value = "/exception")
+	@RequestMapping(value = "/Exception")
 	public String exception(HttpServletRequest request, Model model) {
-		logger.error("exception");
+		logger.error("Exception");
 		pageErrorLog(request);
 		model.addAttribute("msg", "예외 상황이 발생하였습니다.");
 

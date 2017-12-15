@@ -92,7 +92,7 @@
             <li class="col-xs-4" role="presentation"><a href="#" onclick="change('YK');">연극</a></li>
             <li class="col-xs-4" role="presentation"><a href="#" onclick="change('MU');">뮤지컬</a></li>
             <li class="col-xs-4" role="presentation"><a href="#" onclick="change('CCO');">클래식/오페라</a></li>
-            <li class="col-xs-6" role="presentation"><a href="#" onclick="change('MMB');">무용/발래</a></li>
+            <li class="col-xs-6" role="presentation"><a href="#" onclick="change('MMB');">무용/발레</a></li>
             <li class="col-xs-6" role="presentation"><a href="#" onclick="change('KKB');">국악/복합</a></li>
         </ul>
     </div>
@@ -212,7 +212,7 @@
                         + "</div>"
                         + "</div>"
                         + "</div>"
-                        + "</a></div>"
+                        + "</a></div>";
 
                     $(".poster").append(str);
                     window.scroll(0, getOffsetTop(document.getElementById("typeNav")));

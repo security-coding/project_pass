@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 
 import com.pknu.pass.play.dto.ImageDto;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 

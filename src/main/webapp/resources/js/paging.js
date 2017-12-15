@@ -115,4 +115,4 @@ var paging = {
         $('.index').html('1');
         $('.nextBtn').children('li').remove();
     }
-}
+};

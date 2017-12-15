@@ -283,7 +283,7 @@ ul{
 							
 						}
 					} else {
-						html = "<b>현재비밀번호를 입력해 주세요</b>"
+						html = "<b>현재비밀번호를 입력해 주세요</b>";
 						passCheck = false;
 						console.log("비밀번호 입력");
 					}
@@ -313,7 +313,7 @@ if ($('#address').val() != ""&& $('#detailAddress').val() != "") {
 					 	return false;
 					 }
 				if(pass!=passcheck){
-						 alert("패스워드가 일치하지 않습니다")
+						 alert("패스워드가 일치하지 않습니다");
 					 	$("#changPassCheck").focus();
 						 return false;
 					}

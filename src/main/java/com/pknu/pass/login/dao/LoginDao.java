@@ -7,30 +7,30 @@ import com.pknu.pass.play.dto.MainDto;
 
 public interface LoginDao {
 
-	public void insertUser(LoginDto logindto);
+	void insertUser(LoginDto logindto);
 
-	public String loginCheck(String id);
+	String loginCheck(String id);
 	
-	public String logineMailCheck(String result);
+	String logineMailCheck(String result);
 	
-	public void myPageUpdate(LoginDto logindto);
+	void myPageUpdate(LoginDto logindto);
 
-	public void updateProfile(LoginDto logindto);
+	void updateProfile(LoginDto logindto);
 	
-	public LoginDto checkJoin(String certKey);
+	LoginDto checkJoin(String certKey);
 
-	public void checkJoinUpdate(String certKey);
+	void checkJoinUpdate(String certKey);
 
-	public String userLossId(LoginDto logindto);
+	String userLossId(LoginDto logindto);
 
-	public void updatePass(LoginDto logindto);
+	void updatePass(LoginDto logindto);
 
-	public LoginDto getUser(String id);
+	LoginDto getUser(String id);
 
-	public String currentPwCheck(String id);
+	String currentPwCheck(String id);
 
-	public void memberClear(String id);
+	void memberClear(String id);
 
-	public List<MainDto> getBookmark(String id);
+	List<MainDto> getBookmark(String id);
 	
 }

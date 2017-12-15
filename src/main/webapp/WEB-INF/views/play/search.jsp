@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 
@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <div>
-    <%@include file="../header.jsp"%>
+    <%@include file="../header.jsp" %>
 </div>
 <div class="container" style="margin-top: 6%;">
     <div>
@@ -99,9 +99,9 @@ pageEncoding="UTF-8"%>
     </div>
 </div>
 <div>
-	<%@include file="../footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 </div>
-   
+
 
 <!-- Bootstrap core JavaScript -->
 <script src='<c:url value="/js/jquery_1.12.4_jquery.js"/>'></script>
