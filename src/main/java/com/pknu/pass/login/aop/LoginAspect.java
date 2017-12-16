@@ -21,8 +21,11 @@ public class LoginAspect {
 
     @Pointcut("execution(* com.pknu.pass.login.controller.LoginController.myPassChengeForm(..)) ")
 	public void myPassChengeForm() {}
-
-    @Around("mypageInf()||myPassChengeForm()")
+    
+    @Pointcut("execution(* com.pknu.pass.login.controller.LoginController.memberClearForm(..))")
+    public void memberClearForm() {}
+    
+    @Around("mypageInf()||myPassChengeForm()||memberClearForm()")
 	public Object loginPageAdvice(ProceedingJoinPoint point) throws Throwable {
 		logger.debug("loginController" + point.getSignature().getName() + "()");
 
@@ -38,7 +41,7 @@ public class LoginAspect {
 			}
 		}
 		if (session.getAttribute("id") == null) {
-			return "play/main";
+			return "redirect:/";
 		}
 		return point.proceed();
 	}
