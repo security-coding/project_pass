@@ -331,7 +331,7 @@
         <h3 class="text-center">북마크 LIST</h3>
         <div class="row">
             <c:forEach var="bookmark" items="${list}">
-                <div class="col-lg-12 col-md-12 col-sm-6 col-md-4">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <a href="/play/detail?mt20id=${bookmark.mt20id}">
                             <img src="${bookmark.imageUrl}" alt="...">

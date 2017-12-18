@@ -1,10 +1,10 @@
 package com.pknu.pass.place.dao;
 
-import java.util.List;
-import java.util.Map;
-
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.MainDto;
+
+import java.util.List;
+import java.util.Map;
 
 public interface PlaceDao {
 

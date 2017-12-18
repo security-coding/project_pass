@@ -1,10 +1,9 @@
 package com.pknu.pass.play.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
+import com.pknu.pass.play.dto.BookmarkDto;
+import com.pknu.pass.play.dto.MainBoxofficeDto;
+import com.pknu.pass.play.dto.MainDto;
+import com.pknu.pass.play.service.PlayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pknu.pass.play.dto.BookmarkDto;
-import com.pknu.pass.play.dto.MainBoxofficeDto;
-import com.pknu.pass.play.dto.MainDto;
-import com.pknu.pass.play.service.PlayService;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/play")

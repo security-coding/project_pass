@@ -1,11 +1,10 @@
 package com.pknu.pass.login.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.pknu.pass.login.dto.LoginDto;
 import org.springframework.ui.Model;
 
-import com.pknu.pass.login.dto.LoginDto;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public interface LoginService {
 

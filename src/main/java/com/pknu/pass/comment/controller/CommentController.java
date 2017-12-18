@@ -1,19 +1,17 @@
 package com.pknu.pass.comment.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
+import com.pknu.pass.comment.dto.CommentDto;
+import com.pknu.pass.comment.service.CommentService;
+import com.pknu.pass.common.dto.PagingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pknu.pass.comment.dto.CommentDto;
-import com.pknu.pass.comment.service.CommentService;
-import com.pknu.pass.common.dto.PagingDto;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/comment")
