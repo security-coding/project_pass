@@ -42,7 +42,8 @@ public class LoginController {
     public String insertuser(LoginDto logindto, @RequestParam("str_email") String stremail,
                              @RequestParam("joinPass") String password,
                              @RequestParam("joinId") String id) {
-        logindto.setId(id);
+    	System.out.println(stremail);
+    	logindto.setId(id);
         logindto.setEmail(logindto.getEmail() + "@" + stremail);
         logindto.setPassword(password);
         loginService.insertUser(logindto);
@@ -61,7 +62,7 @@ public class LoginController {
     @RequestMapping(value = "/joinemailCheck")//회원가입 이메일 중복 비동기로 확인
     @ResponseBody
     public int joinemailCheck(@RequestParam("inputemail") String inputemail, @RequestParam("str_email") String selectaddress) {
-
+    	System.out.println(selectaddress);
         int result = loginService.joineMailCheck(inputemail, selectaddress);
         return result;
     }
