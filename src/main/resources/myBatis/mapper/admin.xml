@@ -136,13 +136,20 @@
 
     <select id="selectComment" parameterType="paging" resultType="comment">
         SELECT *
-        FROM (SELECT
-        ROWNUM RNUM,
-        C.*
+        FROM (SELECT ROWNUM RNUM, C.*
         FROM (SELECT *
-        FROM COMMENTS WHERE 1 = 1
+        FROM COMMENTS
+        WHERE 1 = 1
         <if test='filter != null and value !=""'>
-            AND ${filter} = #{value}
+            <choose>
+                <when test='filter = "ALL"'>
+                    AND (COMMENTCONTENT LIKE '%'||#{value}||'%'
+                    OR ID LIKE '%'||#{value}||'%')
+                </when>
+                <otherwise>
+                    AND ${filter} LIKE '%'||#{value}||'%'
+                </otherwise>
+            </choose>
         </if>
         ) C)
         WHERE RNUM BETWEEN #{start} AND #{last}
@@ -152,7 +159,15 @@
         SELECT COUNT(*)
         FROM COMMENTS WHERE 1 = 1
         <if test='filter != null and value !=""'>
-            AND ${filter} = #{value}
+            <choose>
+                <when test='filter = "ALL"'>
+                    AND (COMMENTCONTENT LIKE '%'||#{value}||'%'
+                    OR ID LIKE '%'||#{value}||'%')
+                </when>
+                <otherwise>
+                    AND ${filter} LIKE '%'||#{value}||'%'
+                </otherwise>
+            </choose>
         </if>
     </select>
 

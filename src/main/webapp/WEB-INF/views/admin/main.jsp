@@ -169,7 +169,7 @@
         </div>
     </div>
     <div class="wrap-loading display-none">
-    <div><img src="images/ajax_loader6.gif"></div>
+    <div><img src='<c:url value="/images/ajax_loader6.gif"/>'></div>
 </div>
 </div>
 <script>
