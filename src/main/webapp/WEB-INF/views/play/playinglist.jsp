@@ -92,7 +92,7 @@
                 }
                 $.each(data, function (index, item) {
 
-                    str = "<div class='col-lg-15 col-md-15 col-sm-3 col-xs-6' >"
+                    str = "<div class='col-lg-15 col-md-3 col-sm-3 col-xs-6' >"
                         + "<a href='/play/detail?mt20id=" + item.mt20id + "'>"
                         + "<div style='position: relative; z-index: 1;'>"
                         + "<img class='img-fluid img-thumbnail image-lg image-md image-sm image-xs' src= '" + item.imageUrl + "' alt=''/>"
