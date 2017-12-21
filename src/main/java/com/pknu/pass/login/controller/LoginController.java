@@ -1,8 +1,7 @@
 package com.pknu.pass.login.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.pknu.pass.login.dto.LoginDto;
+import com.pknu.pass.login.service.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pknu.pass.login.dto.LoginDto;
-import com.pknu.pass.login.service.LoginServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/member")
@@ -42,7 +41,8 @@ public class LoginController {
     public String insertuser(LoginDto logindto, @RequestParam("str_email") String stremail,
                              @RequestParam("joinPass") String password,
                              @RequestParam("joinId") String id) {
-        logindto.setId(id);
+    	System.out.println(stremail);
+    	logindto.setId(id);
         logindto.setEmail(logindto.getEmail() + "@" + stremail);
         logindto.setPassword(password);
         loginService.insertUser(logindto);
@@ -61,7 +61,7 @@ public class LoginController {
     @RequestMapping(value = "/joinemailCheck")//회원가입 이메일 중복 비동기로 확인
     @ResponseBody
     public int joinemailCheck(@RequestParam("inputemail") String inputemail, @RequestParam("str_email") String selectaddress) {
-
+    	System.out.println(selectaddress);
         int result = loginService.joineMailCheck(inputemail, selectaddress);
         return result;
     }

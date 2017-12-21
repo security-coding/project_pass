@@ -127,8 +127,17 @@ public class PagingDto {
 
     @Override
     public String toString() {
-        return "PagingFrontVO [pageCnt=" + pageCnt + ", index=" + index + ", pageStartNum=" + pageStartNum
-                + ", listCnt=" + listCnt + ", total=" + total + ", pageLastNum=" + pageLastNum + ", lastChk=" + lastChk
-                + "]";
+        return "PagingDto{" +
+                "pageCnt=" + pageCnt +
+                ", index=" + index +
+                ", pageStartNum=" + pageStartNum +
+                ", listCnt=" + listCnt +
+                ", total=" + total +
+                ", pageLastNum=" + pageLastNum +
+                ", lastChk=" + lastChk +
+                ", filter='" + filter + '\'' +
+                ", value='" + value + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

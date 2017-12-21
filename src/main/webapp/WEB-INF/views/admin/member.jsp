@@ -190,7 +190,7 @@ pageEncoding="UTF-8"%>
     };
 
     function changeGrade(obj) {
-        var id = $(obj).parents().prevAll("#id").text();
+        var id = $(obj).parents().prevAll(".id").text();
         var grade = 1 - $(obj).val();
         if (confirm("회원 상태를 변경하시겠습니까?") == true) {
             $.ajax({
@@ -201,7 +201,7 @@ pageEncoding="UTF-8"%>
                     grade: grade
                 },
                 success: function () {
-                    if (grade == 0) {
+                    if (grade === 0) {
                         $(obj).html('Block');
                         $(obj).removeClass("btn-primary").addClass("btn-danger");
                         $(obj).attr('value', grade);

@@ -1,9 +1,9 @@
 package com.pknu.pass.place.service;
 
-import java.util.List;
-
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.MainDto;
+
+import java.util.List;
 
 public interface PlaceService {
 

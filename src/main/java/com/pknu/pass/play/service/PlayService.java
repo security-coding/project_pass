@@ -1,15 +1,13 @@
 package com.pknu.pass.play.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.ui.Model;
-
 import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
+import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface PlayService {
 

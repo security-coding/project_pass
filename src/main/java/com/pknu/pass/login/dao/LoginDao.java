@@ -1,9 +1,9 @@
 package com.pknu.pass.login.dao;
 
-import java.util.List;
-
 import com.pknu.pass.login.dto.LoginDto;
 import com.pknu.pass.play.dto.MainDto;
+
+import java.util.List;
 
 public interface LoginDao {
 

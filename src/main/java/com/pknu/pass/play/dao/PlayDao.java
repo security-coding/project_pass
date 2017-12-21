@@ -1,13 +1,13 @@
 package com.pknu.pass.play.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.pknu.pass.place.dto.PlaceDto;
 import com.pknu.pass.play.dto.BookmarkDto;
 import com.pknu.pass.play.dto.DetailDto;
 import com.pknu.pass.play.dto.MainBoxofficeDto;
 import com.pknu.pass.play.dto.MainDto;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface PlayDao {
 

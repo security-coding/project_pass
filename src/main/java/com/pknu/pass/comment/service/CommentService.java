@@ -1,9 +1,9 @@
 package com.pknu.pass.comment.service;
 
+import com.pknu.pass.comment.dto.CommentDto;
+
 import java.util.List;
 import java.util.Map;
-
-import com.pknu.pass.comment.dto.CommentDto;
 
 
 public interface CommentService {
