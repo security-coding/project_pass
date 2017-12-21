@@ -241,7 +241,9 @@ public class AdminServiceImpl implements AdminService {
         // {연극, 뮤지컬, 클래식&오페라, 무용&발레, 국악&복합}
         String[] catecodeArr = {"YK", "MU", "CCO", "MMB", "KKB"};
         String ststype = "week";
-//		String ststype = "month";
+
+        
+        //		String ststype = "month";
 
         try {
             // 주간 오피스 최대 순위 20위 But. 분야에 따라 20위까지 안뜨는 경우가 있음.
